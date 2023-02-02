@@ -6,6 +6,7 @@ import com.example.genericdawawalauser.modalClass.RegisterModelRoot;
 import com.example.genericdawawalauser.modalClass.TimeSlotsModels.TimeSlotsModelRoot;
 import com.example.genericdawawalauser.modalClass.UniqueAPiModel;
 import com.example.genericdawawalauser.modalClass.UpdateUserPhoneModel;
+import com.example.genericdawawalauser.modalClass.WalletAmountModal;
 
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -65,6 +66,12 @@ public interface ApiInterface {
     Call<TimeSlotsModelRoot> getDoctorSlots(
             @Field("availableDate") String availableDate,
             @Field("doctor_Id") String doctor_Id
+    );
+
+    @FormUrlEncoded
+    @POST("getUserWallet")
+    Call<WalletAmountModal> getUserWallet(
+            @Field("userId") String userId
     );
 
 }

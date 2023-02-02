@@ -14,6 +14,7 @@ import com.example.genericdawawalauser.modalClass.RegisterModelRoot;
 import com.example.genericdawawalauser.modalClass.TimeSlotsModels.TimeSlotsModelRoot;
 import com.example.genericdawawalauser.modalClass.UniqueAPiModel;
 import com.example.genericdawawalauser.modalClass.UpdateUserPhoneModel;
+import com.example.genericdawawalauser.modalClass.WalletAmountModal;
 import com.example.genericdawawalauser.utils.CommonUtils;
 
 import okhttp3.MultipartBody;
@@ -275,5 +276,33 @@ public class ViewModalClass extends ViewModel {
             }
         });
         return GetDoctorSlotsMutableLiveData;
+    }
+
+
+    private MutableLiveData<WalletAmountModal> walletAmountModalMutableLiveData;
+
+    public LiveData<WalletAmountModal> walletAmountModalLiveData(Activity activity, String userId) {
+
+        walletAmountModalMutableLiveData = new MutableLiveData<>();
+
+        apiInterface.getUserWallet(userId).enqueue(new Callback<WalletAmountModal>() {
+            @Override
+            public void onResponse(@NonNull Call<WalletAmountModal> call, Response<WalletAmountModal> response) {
+                if (response.body() != null) {
+                    if (response.body().getSuccess().equals("0")) {
+                        Toast.makeText(activity, "" + response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                    } else {
+                        walletAmountModalMutableLiveData.postValue(response.body());
+                    }
+                } else {
+                    Toast.makeText(activity, "Technical error", Toast.LENGTH_SHORT).show();
+                }
+            }
+            @Override
+            public void onFailure(Call<WalletAmountModal> call, Throwable t) {
+                Toast.makeText(activity, "" + t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+        return walletAmountModalMutableLiveData;
     }
 }

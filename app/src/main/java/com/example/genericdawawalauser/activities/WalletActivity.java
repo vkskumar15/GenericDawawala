@@ -1,6 +1,7 @@
 package com.example.genericdawawalauser.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
 
 import android.content.IntentFilter;
 import android.os.Bundle;
@@ -9,6 +10,9 @@ import android.view.View;
 import com.example.genericdawawalauser.R;
 import com.example.genericdawawalauser.adapters.MyWalletAdapter;
 import com.example.genericdawawalauser.databinding.ActivityWalletBinding;
+import com.example.genericdawawalauser.modalClass.WalletAmountModal;
+import com.example.genericdawawalauser.retrofit.ViewModalClass;
+import com.example.genericdawawalauser.utils.CommonUtils;
 import com.example.genericdawawalauser.utils.NeTWorkChange;
 
 public class WalletActivity extends AppCompatActivity {
@@ -18,11 +22,25 @@ public class WalletActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ActivityWalletBinding inflate = ActivityWalletBinding.inflate(getLayoutInflater());
-        binding = inflate;
+        binding = ActivityWalletBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         setAdapter();
+
+        getWalletAmount();
         onClicks();
+    }
+
+    private void getWalletAmount() {
+        new ViewModalClass().walletAmountModalLiveData(WalletActivity.this, CommonUtils.getUserId()).observe(WalletActivity.this, new Observer<WalletAmountModal>() {
+            @Override
+            public void onChanged(WalletAmountModal walletAmountModal) {
+                if (walletAmountModal.getSuccess().equalsIgnoreCase("1"))
+                {
+
+                    binding.txtTotalAmount.setText("₹ "+walletAmountModal.getDetails().getWallet());
+                }
+            }
+        });
     }
 
     private void onClicks() {

@@ -1,0 +1,446 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".fragments.onlineConsult.FinalAppointmentFragment">
+
+    <RelativeLayout
+        android:id="@+id/relative_select_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/dp_15"
+        android:paddingVertical="15dp">
+
+        <ImageView
+            android:id="@+id/back_arrow_time_slot"
+            android:layout_width="@dimen/dp_24"
+            android:layout_height="@dimen/dp_24"
+            android:layout_alignParentLeft="true"
+            android:src="@drawable/left_arrow" />
+
+        <TextView
+            android:id="@+id/text_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="Order Review"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sp_18" />
+
+    </RelativeLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/dp_10">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card1_review"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dp_10"
+                app:cardElevation="@dimen/dp_10">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/img_profile_review"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_marginVertical="@dimen/dp_10"
+                        android:layout_marginLeft="@dimen/dp_15"
+                        android:layout_marginTop="4dp"
+                        android:src="@drawable/doctor_12"
+                        app:civ_border_color="@color/green"
+                        app:civ_border_width="@dimen/dp_1" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/dp_10"
+                        android:layout_toRightOf="@id/img_profile_review"
+                        android:gravity="center_vertical"
+                        android:paddingVertical="@dimen/dp_5">
+
+                        <TextView
+                            android:id="@+id/doc_name_review"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:text="Dr. Name"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/sp_16"
+                            android:textStyle="bold"
+
+                            />
+
+                        <TextView
+                            android:id="@+id/doc_speciality_and_qualification"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/doc_name_review"
+                            android:layout_marginTop="@dimen/dp_5"
+                            android:singleLine="true"
+                            android:text="About Doc" />
+
+                    </RelativeLayout>
+
+                    <View
+                        android:id="@+id/view1_review"
+                        android:layout_width="wrap_content"
+                        android:layout_height="1dp"
+                        android:visibility="invisible"
+                        android:layout_below="@id/img_profile_review"
+                        android:layout_marginVertical="4dp"
+                        android:background="@color/grey" />
+
+
+                    <RelativeLayout
+                        android:id="@+id/consultation"
+                        android:layout_width="match_parent"
+                        android:elevation="@dimen/space10"
+                        android:background="@drawable/doctor_rating_background"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/space5"
+                        android:layout_below="@id/view1_review"
+                        android:gravity="center_vertical"
+                        android:paddingVertical="@dimen/dp_5">
+
+                        <ImageView
+                            android:id="@+id/img_video_camera"
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
+                            android:layout_marginLeft="10dp"
+                            android:src="@drawable/ic_phone_call"
+                            app:tint="@color/grey" />
+
+                        <TextView
+                            android:id="@+id/txt_consultation"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="@dimen/sp_15"
+                            android:layout_toRightOf="@id/img_video_camera"
+                            android:text="Online\nCunsultation"
+                            android:textColor="@color/green"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+
+
+                    </RelativeLayout>
+
+                    <View
+                        android:id="@+id/view_review"
+                        android:layout_width="wrap_content"
+                        android:layout_height="1dp"
+                        android:visibility="invisible"
+                        android:layout_below="@id/consultation"
+                        android:layout_marginVertical="4dp"
+                        android:background="@color/grey" />
+
+
+
+                    <View
+                        android:id="@+id/view2_review"
+                        android:layout_width="wrap_content"
+                        android:layout_height="1dp"
+                        android:layout_below="@id/view_review"
+                        android:layout_marginVertical="4dp"
+                        android:visibility="invisible"
+                        android:background="@color/grey" />
+
+
+                    <ImageView
+                        android:id="@+id/img_calender_review"
+                        android:layout_width="@dimen/dp_40"
+                        android:layout_height="@dimen/dp_40"
+                        android:layout_below="@id/view2_review"
+                        android:layout_marginVertical="@dimen/dp_10"
+                        android:layout_marginLeft="@dimen/dp_15"
+                        android:src="@drawable/ic_baseline_calendar_today_24"
+                        app:tint="#6C6969" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_below="@id/view2_review"
+                        android:layout_marginLeft="@dimen/dp_10"
+                        android:layout_toRightOf="@id/img_calender_review"
+                        android:gravity="center_vertical"
+                        android:paddingVertical="@dimen/dp_5">
+
+                        <TextView
+                            android:id="@+id/date"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:singleLine="true"
+                            android:text="Appointment Date"
+                            android:textStyle="bold"
+
+                            />
+
+                        <TextView
+                            android:id="@+id/appointmentdate"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/date"
+                            android:layout_marginTop="@dimen/dp_5"
+                            android:text="Time , Slot"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/sp_16"
+                            android:textStyle="bold" />
+
+
+                    </RelativeLayout>
+
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card2_review"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/card1_review"
+                android:layout_marginBottom="@dimen/dp_10"
+                app:cardElevation="@dimen/dp_10">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp">
+
+                    <TextView
+                        android:id="@+id/patient_details"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="@dimen/dp_10"
+                        android:layout_marginLeft="@dimen/dp_15"
+                        android:text="Patient Details"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/sp_15" />
+
+                    <TextView
+                        android:id="@+id/addAccount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginVertical="@dimen/dp_10"
+                        android:layout_marginEnd="15dp"
+                        android:text="ADD DETAILS"
+                        android:textColor="@color/green"
+                        android:textSize="@dimen/sp_15" />
+
+
+<!--                    <RelativeLayout-->
+<!--                        android:id="@+id/patientDetails_lay"-->
+<!--                        android:layout_width="95dp"-->
+<!--                        android:layout_height="105dp"-->
+<!--                        android:layout_below="@id/patient_details"-->
+<!--                        android:layout_marginLeft="@dimen/dp_15"-->
+<!--                        android:layout_marginBottom="@dimen/dp_10"-->
+<!--                        android:background="@drawable/bg_consult">-->
+
+<!--                        <LinearLayout-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="match_parent"-->
+<!--                            android:gravity="center"-->
+<!--                            android:orientation="vertical">-->
+
+<!--                            <ImageView-->
+<!--                                android:id="@+id/profile_icon"-->
+<!--                                android:layout_width="@dimen/dp_40"-->
+<!--                                android:layout_height="@dimen/dp_40"-->
+<!--                                android:src="@drawable/ic_user" />-->
+
+<!--                            <TextView-->
+<!--                                android:id="@+id/txt_nameUser"-->
+<!--                                android:layout_width="wrap_content"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:layout_marginTop="@dimen/dp_5"-->
+<!--                                android:text="Name"-->
+<!--                                android:textColor="@color/black"-->
+<!--                                android:textSize="@dimen/sp_15" />-->
+
+<!--                            <ImageView-->
+<!--                                android:layout_width="@dimen/dp_20"-->
+<!--                                android:layout_height="@dimen/dp_20"-->
+<!--                                android:layout_marginTop="@dimen/dp_5"-->
+<!--                                android:src="@drawable/ic_checked"-->
+<!--                                app:tint="@color/green" />-->
+
+<!--                        </LinearLayout>-->
+
+<!--                        <ImageView-->
+<!--                            android:id="@+id/cancelIconDetails"-->
+<!--                            android:layout_width="@dimen/dp_20"-->
+<!--                            android:layout_height="@dimen/dp_20"-->
+<!--                            android:layout_alignParentEnd="true"-->
+<!--                            android:layout_margin="@dimen/dp_5"-->
+<!--                            android:src="@drawable/ic_close_cross_"-->
+<!--                            app:tint="@color/red" />-->
+
+<!--                    </RelativeLayout>-->
+
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+<!--            <androidx.cardview.widget.CardView-->
+<!--                android:id="@+id/card3_review"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_below="@id/card2_review"-->
+<!--                android:layout_marginBottom="@dimen/dp_10"-->
+<!--                app:cardElevation="@dimen/dp_10">-->
+
+<!--                <RelativeLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content">-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/order_summary_head"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginVertical="@dimen/dp_10"-->
+<!--                        android:layout_marginLeft="@dimen/dp_15"-->
+<!--                        android:text="Order Summary"-->
+<!--                        android:textColor="@color/black"-->
+<!--                        android:textSize="@dimen/sp_16"-->
+<!--                        android:textStyle="bold" />-->
+
+<!--                    <View-->
+<!--                        android:id="@+id/view3_review"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="1dp"-->
+<!--                        android:layout_below="@id/order_summary_head"-->
+<!--                        android:background="@color/grey" />-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/txt_online_consult"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_below="@id/view3_review"-->
+<!--                        android:layout_marginVertical="@dimen/dp_10"-->
+<!--                        android:layout_marginLeft="@dimen/dp_14"-->
+<!--                        android:text="Online Consultation"-->
+<!--                        android:textColor="@color/black" />-->
+
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/priceOnline"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_below="@id/view3_review"-->
+<!--                        android:layout_alignParentRight="true"-->
+<!--                        android:layout_marginVertical="@dimen/dp_10"-->
+<!--                        android:layout_marginRight="@dimen/dp_15"-->
+<!--                        android:text="\u20B9 0"-->
+<!--                        android:textColor="@color/black"-->
+<!--                        android:textSize="@dimen/sp_14" />-->
+
+<!--                    <EditText-->
+<!--                        android:id="@+id/coupon_code_edit"-->
+<!--                        android:layout_width="230dp"-->
+<!--                        android:layout_height="40dp"-->
+<!--                        android:layout_below="@id/priceOnline"-->
+<!--                        android:layout_marginHorizontal="@dimen/dp_20"-->
+<!--                        android:layout_marginTop="@dimen/dp_5"-->
+<!--                        android:layout_marginBottom="@dimen/dp_5"-->
+<!--                        android:background="@drawable/bg_edittext_dv"-->
+<!--                        android:hint="Enter coupon Code"-->
+<!--                        android:importantForAutofill="no"-->
+<!--                        android:inputType="textPersonName"-->
+<!--                        android:maxLines="1"-->
+<!--                        android:paddingStart="@dimen/dp_30"-->
+<!--                        android:paddingEnd="@dimen/dp_15"-->
+<!--                        android:textColor="#0C0C0C"-->
+<!--                        android:textSize="15sp"-->
+<!--                        tools:ignore="RtlSymmetry" />-->
+
+<!--                    <androidx.appcompat.widget.AppCompatButton-->
+<!--                        android:id="@+id/account_apply_appointment"-->
+<!--                        android:layout_width="@dimen/dp_100"-->
+<!--                        android:layout_height="@dimen/dp_40"-->
+<!--                        android:layout_below="@id/priceOnline"-->
+<!--                        android:layout_alignParentEnd="true"-->
+<!--                        android:layout_centerHorizontal="true"-->
+<!--                        android:layout_marginTop="5dp"-->
+<!--                        android:layout_marginEnd="@dimen/dp_10"-->
+<!--                        android:layout_marginBottom="@dimen/dp_10"-->
+<!--                        android:background="@drawable/button_design"-->
+<!--                        android:elevation="5dp"-->
+<!--                        android:paddingVertical="@dimen/dp_10"-->
+<!--                        android:text="Apply"-->
+<!--                        android:textAllCaps="false"-->
+<!--                        android:textColor="@color/white"-->
+<!--                        android:textSize="15sp" />-->
+
+
+<!--                    <View-->
+<!--                        android:id="@+id/view4_review"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="1dp"-->
+<!--                        android:layout_below="@id/account_apply_appointment"-->
+<!--                        android:background="@color/grey" />-->
+
+<!--                    <TextView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_below="@id/view4_review"-->
+<!--                        android:layout_marginVertical="@dimen/dp_10"-->
+<!--                        android:layout_marginLeft="@dimen/dp_15"-->
+<!--                        android:text="Sub Total"-->
+<!--                        android:textColor="@color/black" />-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/priceSubTotal"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_below="@id/view4_review"-->
+<!--                        android:layout_alignParentRight="true"-->
+<!--                        android:layout_marginVertical="@dimen/dp_10"-->
+<!--                        android:layout_marginRight="@dimen/dp_15"-->
+<!--                        android:text="\u20B9 0"-->
+<!--                        android:textColor="@color/black"-->
+<!--                        android:textSize="@dimen/sp_15" />-->
+
+<!--                    <LinearLayout-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_below="@+id/priceSubTotal"-->
+<!--                        android:layout_marginTop="@dimen/dp_10"-->
+<!--                        android:layout_marginBottom="@dimen/dp_20"-->
+<!--                        android:orientation="horizontal">-->
+
+<!--                        <CheckBox-->
+<!--                            android:id="@+id/checkBox_terms"-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_marginHorizontal="@dimen/dp_10"-->
+<!--                            android:gravity="center_vertical"-->
+<!--                            android:paddingStart="@dimen/dp_10"-->
+<!--                            android:text="@string/terms_conditions_for_online_consultations" />-->
+
+<!--                    </LinearLayout>-->
+
+<!--                </RelativeLayout>-->
+<!--            </androidx.cardview.widget.CardView>-->
+
+
+        </RelativeLayout>
+    </androidx.core.widget.NestedScrollView>
+
+
+</LinearLayout>

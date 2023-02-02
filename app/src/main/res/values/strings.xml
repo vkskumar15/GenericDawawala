@@ -1,0 +1,88 @@
+<resources>
+    <string name="app_name">GenericDawawala(User)</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="doc_verification">A verification code has been sent to the phone number.
+    Please enter the code below.</string>
+
+    <string name="requiredNameField"><font fgcolor='#000000'>NAME</font><font fgcolor='#FF0000'>*</font></string>
+    <string name="requiredNumberField"><font fgcolor='#000000'>MOBILE NUMBER</font><font fgcolor='#FF0000'>*</font></string>
+    <string name="preparing"><font fgcolor='#4f9f1a'>*</font> Preparing of the Surgery</string>
+    <string name="map_key">AIzaSyD8JA1Fm0Jtqyj4kBqlUMB5MMOZkHLGkto</string>
+    <string name="login">Login</string>
+    <string name="forgot_password">Forgot Password</string>
+    <string name="or">OR</string>
+    <string name="register">Register</string>
+    <string name="profile_verified">Your profile is\nSuccessfully Verified</string>
+    <string name="logout">Logout</string>
+    <string name="submit">Submit</string>
+    <string name="save">Save</string>
+    <string name="sure_logout">Are you sure want to log out?</string>
+    <string name="cancel">Cancel</string>
+    <string name="Search_here">SEARCH HERE</string>
+
+    <string name="facebook_app_id">905332436906178</string>
+    <string name="fb_login_protocol_scheme">fb905332436906178</string>
+    <string name="no_speciality_found">No Speciality Found</string>
+    <string name="search_your_medicine_here">SEARCH YOUR MEDICINE HERE</string>
+    <string name="description">description</string>
+    <string name="pregnancy_amp"><![CDATA[Pregnancy & amp]]></string>
+    <string name="loremtv">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s </string>
+    <string name="accept_terms_of_use">I accept the Generic Davawala <u>Terms of Use &amp; Privacy Policy</u></string>
+    <string name="terms_of_use">I accept the Generic Davawala <u>Terms of Use &amp; Privacy Policy</u></string>
+
+    <string name="packagedetailstv">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry
+        dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not
+        only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release
+        of Letraset sheets containing LoremLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the standard dummy
+        text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,
+        but also the leap into electronic typesetting,
+        Letraset sheets containing LoremLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the standard dummy
+        text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,
+        but also the leap into electronic typesetting,
+        remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem</string>
+    <string name="login_using_google_accounts">login using google accounts</string>
+    <string name="login_using_facebook_account">login using facebook account</string>
+    <string name="dont_have_an_account">Don\'t have an account?</string>
+    <string name="verification">Verification</string>
+    <string name="enter_your_verification_code">Enter your verification Code</string>
+    <string name="resend">Resend</string>
+    <string name="todo">TODO</string>
+
+
+    <string-array name="orderTracker">
+        <item>Placed</item>
+        <item>Dispatched</item>
+        <item>On the way</item>
+        <item>Delivered</item>
+    </string-array>
+    <string-array name="gender">
+        <item>Select Gender</item>
+        <item>Male</item>
+        <item>Female</item>
+        <item>Other</item>
+    </string-array>
+    <string name="title_activity_wallet">WalletActivity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="email">Email</string>
+    <string name="change_password">Change Password</string>
+    <string name="confirm_new_password">Confirm New Password</string>
+    <string name="hii_vikas_kumar">Hii Vikas Kumar</string>
+    <string name="notification">Notification</string>
+    <string name="coupons_offers"><![CDATA[Coupons & Offers]]></string>
+    <string name="your_all_coupons_offers_is_here"><![CDATA[Your All Coupons & Offers Is Here]]></string>
+    <string name="search_medicines">Search Medicines</string>
+    <string name="search_your_medicines">Search Your Medicines</string>
+    <string name="track_your_orders">Track Your Orders</string>
+    <string name="personal_details">Personal Details</string>
+    <string name="your_transaction">Your Transaction</string>
+    <string name="asd">Who Is The Patient</string>
+</resources>

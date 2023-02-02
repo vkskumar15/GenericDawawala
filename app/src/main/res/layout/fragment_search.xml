@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    tools:context=".fragments.homefragments.SearchFragment">
+
+    <androidx.core.widget.NestedScrollView
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:padding="10dp"
+                android:text="WHAT ARE YOU LOOKING FOR?"
+                android:textColor="@color/colorBlack"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="10dp"
+                android:paddingRight="20dp"
+                android:paddingLeft="20dp"
+                android:text="Medicines and other Healthcare Products"
+                android:textColor="@color/colorBlack"
+                android:drawableLeft="@drawable/ic_drugs_capsules_and_pills_small"
+                android:drawablePadding="10dp"
+                android:drawableTint="@color/appcolor"/>
+
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:paddingTop="10dp"
+                android:paddingRight="20dp"
+                android:visibility="gone"
+                android:paddingLeft="20dp"
+                android:text="Diagnostic Packages"
+                android:textColor="@color/colorBlack"
+                android:drawableLeft="@drawable/ic_microscope_small"
+                android:drawablePadding="10dp"
+                android:drawableTint="@color/appcolor"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:paddingTop="10dp"
+                android:paddingRight="20dp"
+                android:paddingLeft="20dp"
+                android:text="Search for Doctor"
+                android:textColor="@color/colorBlack"
+                android:drawableLeft="@drawable/ic_stethoscope"
+                android:drawablePadding="10dp"
+                android:drawableTint="@color/appcolor"/>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/et_search"
+        android:background="@drawable/search_bg"
+        android:layout_margin="10dp"
+        android:singleLine="true"
+        android:drawablePadding="@dimen/space10"
+        android:hint="SEARCH FOR ALL MEDICINES"
+        android:textSize="14dp"
+        android:padding="15dp"
+        android:drawableLeft="@drawable/ic_baseline_search_24"
+        android:drawableTint="@color/appcolor"
+        android:elevation="5dp"
+        android:fontFamily="@font/nunito"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/noSearchResultsFoundLinearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="visible">
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:layout_gravity="center_horizontal"
+            android:visibility="gone"
+            android:src="@drawable/ic_search"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.28" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:text="No Results Found"
+            android:textColor="@color/lightgrey"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:layout_marginTop="8dp"
+            android:padding="8dp"
+            android:gravity="center_horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/medicine_list_recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/space15"
+            android:visibility="visible"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:spanCount="2"
+            tools:listitem="@layout/list_medicine" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+</LinearLayout>

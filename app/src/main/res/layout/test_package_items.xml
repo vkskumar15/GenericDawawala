@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="220dp"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space100"
+        android:orientation="vertical"
+        android:padding="@dimen/space12"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/test_package_bg1">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ADVANCED"
+            android:textColor="@color/colorWhite"
+            android:id="@+id/tv_advanced"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="DOCWORLD ADVANCED HEALTH CHECKUP"
+            android:textSize="12sp"
+            android:textColor="@color/colorWhite"
+            android:id="@+id/testName"
+            android:ellipsize="marquee"
+            android:layout_below="@+id/tv_advanced"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="84 TESTS INCLUDED"
+            android:layout_marginTop="10dp"
+            android:textSize="10sp"
+            android:id="@+id/total_test"
+            android:textColor="@color/colorWhite"
+            android:layout_alignParentBottom="true"/>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/test_package_bg2"
+        android:elevation="5dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Rs. 3956.00"
+            android:layout_marginTop="10dp"
+            android:textSize="10sp"
+            android:id="@+id/actual_price"
+            android:textColor="@color/colorBlack"
+            android:layout_margin="15dp"
+            android:background="@drawable/strike_line"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:elevation="5dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Rs. 1025.00"
+                android:id="@+id/orignal_price"
+                android:textColor="@color/appcolor"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginBottom="15dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="72% OFF"
+                android:textColor="@color/appcolor"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginBottom="15dp"
+                android:background="@drawable/round_strock"
+                android:paddingVertical="@dimen/space2"
+                android:paddingHorizontal="5dp"
+                android:id="@+id/price_off"
+                android:textSize="10dp"
+                android:layout_alignParentRight="true"/>
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/med_cate_background"
+            android:padding="5dp"
+            android:layout_marginBottom="25dp"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_book_now"
+                android:text="BOOK NOW"
+                android:textColor="@color/colorWhite"
+                android:layout_centerVertical="true"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/tv_book_now"
+                android:src="@drawable/ic_baseline_arrow_forward_24"
+                android:padding="5dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:background="@drawable/full_round_bg"
+                app:tint="@color/testColor1" />
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragments.homefragments.DoctorBySpecialitiesFragment">
+
+
+    <RelativeLayout
+        android:id="@+id/relative_physician"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="15dp">
+
+        <ImageView
+            android:id="@+id/back_arrow_consult_physician"
+            android:layout_width="@dimen/dp_24"
+            android:layout_height="@dimen/dp_24"
+            android:layout_alignParentStart="true"
+            android:src="@drawable/left_arrow" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:id="@+id/type_name"
+
+            android:text="Consult Physician"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sp_18" />
+
+        <ImageView
+            android:id="@+id/img_filter"
+            android:layout_width="@dimen/dp_24"
+            android:layout_height="@dimen/dp_24"
+            android:layout_alignParentEnd="true"
+            android:src="@drawable/ic_baseline_filter_list_24"
+            app:tint="@color/black" />
+    </RelativeLayout>
+
+    <SearchView
+        android:id="@+id/searchView"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_below="@+id/relative_physician"
+        android:layout_marginHorizontal="@dimen/dp_20"
+        android:layout_marginTop="@dimen/dp_10"
+        android:background="@drawable/bg_doctor_list"
+        android:elevation="@dimen/dp_10"
+        android:gravity="center"
+        android:inputType="text"
+        android:maxLength="15"
+        android:paddingLeft="@dimen/dp_5"
+        android:singleLine="true"
+        android:textSize="@dimen/sp_15" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_consult"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/searchView"
+        android:layout_marginTop="@dimen/dp_10"
+        android:orientation="vertical"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/doctor_list" />
+
+</RelativeLayout>

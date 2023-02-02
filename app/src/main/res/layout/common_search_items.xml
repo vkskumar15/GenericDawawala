@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_marginVertical="@dimen/space2"
+    android:layout_marginHorizontal="@dimen/space10">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+    <com.makeramen.roundedimageview.RoundedImageView
+        android:id="@+id/iv_image"
+        app:riv_corner_radius="@dimen/space5"
+        android:layout_width="@dimen/space30"
+        android:scaleType="fitXY"
+        android:layout_height="@dimen/space30"
+        android:src="@drawable/plus"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:id="@+id/tv_search_list"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:text="Medicine"
+        android:textColor="@color/colorBlack"
+        android:layout_marginLeft="10dp"/>
+
+    </LinearLayout>
+
+    <View
+        android:layout_marginTop="@dimen/space5"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/grey"/>
+
+</LinearLayout>

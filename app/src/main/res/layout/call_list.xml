@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/ic_stethoscope"
+        android:id="@+id/icon"
+        app:tint="@color/appcolor"
+        android:layout_centerVertical="true"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/icon"
+        android:layout_toLeftOf="@+id/call"
+        android:text="Book Doctor Appointment"
+        android:textColor="@color/colorBlack"
+        android:layout_marginLeft="10dp"
+        android:id="@+id/doctor_name"/>
+
+    <TextView
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:text="Schedule"
+        android:visibility="gone"
+        android:id="@+id/tv_book_doc_schedule"
+        android:layout_alignParentRight="true"
+        android:textColor="@color/colorWhite"
+        android:background="@drawable/blue_green_icon_bg"
+        android:padding="5dp"
+        android:gravity="center"/>
+
+    <TextView
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:text="Call"
+        android:id="@+id/call"
+        android:layout_alignParentRight="true"
+        android:textColor="@color/colorWhite"
+        android:background="@drawable/btn_bg"
+        android:padding="5dp"
+        android:layout_marginRight="10dp"
+        android:gravity="center"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="9876543210"
+        android:textSize="12dp"
+        android:layout_toRightOf="@id/icon"
+        android:layout_marginLeft="10dp"
+        android:id="@+id/mobile"
+        android:layout_below="@id/doctor_name"/>
+</RelativeLayout>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:background="@drawable/cv_grey_strock"
+        android:layout_width="match_parent"
+        android:layout_margin="@dimen/space15"
+        android:layout_height="match_parent"
+        android:elevation="4dp"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:backgroundTint="@color/appcolor"
+            android:background="@drawable/top_round_corners">
+
+            <ImageView
+                android:id="@+id/iv_package"
+                android:layout_width="@dimen/space50"
+                android:layout_height="@dimen/space50"
+                android:background="@drawable/package_bg"
+                android:scaleType="centerCrop"
+                android:elevation="5dp"
+                android:padding="@dimen/space10"
+                tools:src="@drawable/ic_abdominoplasty" />
+
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Liposucation"
+                android:textColor="@color/colorWhite"
+                android:layout_toRightOf="@+id/iv_package"
+                android:textSize="18sp"
+                android:layout_centerVertical="true"
+                android:textStyle="bold"
+                android:layout_marginLeft="15dp"/>
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:orientation="vertical"
+            android:elevation="5dp"
+            android:id="@+id/ll_package_list">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="@dimen/space20"
+                android:text="Price starts from"/>
+
+            <TextView
+                android:id="@+id/tv_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Rs.150000.00"
+                android:layout_marginStart="@dimen/space20"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="20dp"
+                android:textColor="@color/colorBlack"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+    </LinearLayout>

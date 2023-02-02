@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.homefragments.NotificationFragment">
+
+    <RelativeLayout
+        android:id="@+id/notificationTopRL"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize">
+
+        <ImageView
+            android:id="@+id/notificationBackImg"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/space20"
+            android:src="@drawable/ic_baseline_arrow_back_24"
+            android:backgroundTint="@color/black"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:text="NOTIFICATIONS"
+            android:layout_centerInParent="true"
+            android:fontFamily="sans-serif-medium"
+            android:textSize="16sp"/>
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tv_nonotification"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="No Notification Found"
+        android:textStyle="bold"
+        android:layout_centerInParent="true"
+        android:textColor="@color/black"
+        android:elevation="@dimen/space5"/>
+
+
+    <LinearLayout
+        android:padding="@dimen/space10"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/notificationTopRL"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2"
+            android:layout_margin="10dp"
+            android:padding="10dp">
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/tab_btn_all"
+                android:layout_weight="1"
+                android:text="all"
+                android:textColor="@color/colorWhite"
+                android:background="@drawable/tab_bg_green"/>
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/tab_btn_offers"
+                android:layout_weight="1"
+                android:text="offers"
+                android:textColor="@color/grey"
+                android:background="@drawable/tab_bg_grey"/>
+
+        </LinearLayout>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="?actionBarSize"
+                android:id="@id/notificationTopActionRL">
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_baseline_arrow_back_24"
+                    android:layout_centerVertical="true"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:text="NOTIFICATIONS"
+                    android:textColor="@color/black"
+                    android:layout_centerInParent="true"/>
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@drawable/app_blue_light_color_strock"
+                android:padding="@dimen/space1"
+                android:orientation="horizontal">
+
+                <RelativeLayout
+                    android:id="@+id/notification_AllRL"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/left_round_corners">
+                    <TextView
+                        android:id="@+id/allTV"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="All"
+                        android:layout_centerInParent="true"
+                        android:textColor="@color/white"
+                        />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/notification_offersRL"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/white_right_round_corners">
+                    <TextView
+                        android:id="@+id/offerTV"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="OFFERS"
+                        android:layout_centerInParent="true"
+                        android:layout_weight="1"
+                        android:textColor="@color/appcolor"
+                        />
+
+                </RelativeLayout>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/notificationTopActionRL"
+                android:orientation="vertical">
+
+
+                <TextView
+                    android:id="@+id/txt_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/appcolor"
+                    android:paddingLeft="25dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:text="27-09-2020"
+                    android:textColor="#1B5E20"
+                    android:visibility="gone"
+                    tools:ignore="TextContrastCheck" />
+
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/recycler_dates"
+                    android:visibility="visible"
+                    android:layout_below="@+id/notificationTopActionRL"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:listitem="@layout/list_notification_dates">
+                </androidx.recyclerview.widget.RecyclerView>
+
+            </LinearLayout>
+
+
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/recyclerViewOffers"
+                android:visibility="gone"
+                android:layout_below="@+id/notificationTopActionRL"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/list_offers">
+
+            </androidx.recyclerview.widget.RecyclerView>
+
+
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+
+</RelativeLayout>

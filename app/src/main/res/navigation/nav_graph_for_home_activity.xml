@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph_for_home_activity"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.genericdawawalauser.fragments.homefragments.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_wellnessFragment"
+            app:destination="@id/wellnessFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_prescriptionsFragment"
+            app:destination="@id/prescriptionsFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_searchADoctorFragment"
+            app:destination="@id/searchADoctorFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_askDocworldFragment"
+            app:destination="@id/askDocworldFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_homeHealthcareFragment"
+            app:destination="@id/homeHealthcareFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_hospitalPackagesFragment"
+            app:destination="@id/hospitalPackagesFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_labTestFragment"
+            app:destination="@id/labTestFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_onlineConsultationFragment"
+            app:destination="@id/onlineConsultationFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_healthcareProductsFragment"
+            app:destination="@id/healthcareProductsFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+        />
+    </fragment>
+    <fragment
+        android:id="@+id/wellnessFragment"
+        android:name="com.example.genericdawawalauser.fragments.homefragments.WellnessFragment"
+        android:label="fragment_wellness"
+        tools:layout="@layout/fragment_wellness" />
+    <fragment
+        android:id="@+id/helpFragment"
+        android:name="com.example.genericdawawalauser.fragments.homefragments.HelpFragment"
+        android:label="fragment_help"
+        tools:layout="@layout/fragment_help" />
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.example.genericdawawalauser.fragments.homefragments.SearchFragment"
+        android:label="fragment_search"
+        tools:layout="@layout/fragment_search" />
+    <fragment
+        android:id="@+id/notificationFragment"
+        android:name="com.example.genericdawawalauser.fragments.homefragments.NotificationFragment"
+        android:label="fragment_notification"
+        tools:layout="@layout/fragment_notification" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.genericdawawalauser.fragments.homefragments.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profileFragment_to_personalDetailsFragment"
+            app:destination="@id/personalDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/prescriptionsFragment"
+        android:name="com.example.genericdawawalauser.fragments.homefragments.PrescriptionsFragment"
+        android:label="fragment_prescriptions"
+        tools:layout="@layout/fragment_prescriptions" >
+        <action
+            android:id="@+id/action_prescriptionsFragment_to_uploadedPrescriptionsFragment"
+            app:destination="@id/uploadedPrescriptionsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/uploadedPrescriptionsFragment"
+        android:name="com.example.genericdawawalauser.fragments.homefragments.UploadedPrescriptionsFragment"
+        android:label="fragment_uploaded_prescriptions"
+        tools:layout="@layout/fragment_uploaded_prescriptions" />
+    <fragment
+        android:id="@+id/searchADoctorFragment"
+        android:name="com.example.genericdawawalauser.fragments.homefragments.SearchADoctorFragment"
+        android:label="fragment_search_a_doctor"
+        tools:layout="@layout/fragment_search_a_doctor" >
+        <action
+            android:id="@+id/action_searchADoctorFragment_to_doctorBySpecialitiesFragment"
+            app:destination="@id/doctorBySpecialitiesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/doctorBySpecialitiesFragment"
+        android:name="com.example.genericdawawalauser.fragments.homefragments.DoctorBySpecialitiesFragment"
+        android:label="fragment_doctor_by_specialities"
+        tools:layout="@layout/fragment_doctor_by_specialities" >
+        <action
+            android:id="@+id/action_doctorBySpecialitiesFragment_to_doctorProfileFragment"
+            app:destination="@id/doctorProfileFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/doctorProfileFragment"
+        android:name="com.example.genericdawawalauser.fragments.profiles.DoctorProfileFragment"
+        android:label="fragment_doctor_profile"
+        tools:layout="@layout/fragment_doctor_profile" >
+        <action
+            android:id="@+id/action_doctorProfileFragment_to_selectSlotFragment"
+            app:destination="@id/selectSlotFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/selectSlotFragment"
+        android:name="com.example.genericdawawalauser.fragments.homefragments.SelectSlotFragment"
+        android:label="fragment_select_slot"
+        tools:layout="@layout/fragment_select_slot" >
+        <action
+            android:id="@+id/action_selectSlotFragment_to_finalBookingAppointmentFragment"
+            app:destination="@id/finalBookingAppointmentFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/finalBookingAppointmentFragment"
+        android:name="com.example.genericdawawalauser.fragments.homefragments.FinalBookingAppointmentFragment"
+        android:label="fragment_final_booking_appointment"
+        tools:layout="@layout/fragment_final_booking_appointment" >
+        <action
+            android:id="@+id/action_finalBookingAppointmentFragment_to_bookingPaymentActivity"
+            app:destination="@id/bookingPaymentActivity" />
+    </fragment>
+    <activity
+        android:id="@+id/bookingPaymentActivity"
+        android:name="com.example.genericdawawalauser.activities.BookingPaymentActivity"
+        android:label="activity_booking_payment"
+        tools:layout="@layout/activity_booking_payment" />
+    <fragment
+        android:id="@+id/askDocworldFragment"
+        android:name="com.example.genericdawawalauser.fragments.homefragments.AskDocworldFragment"
+        android:label="fragment_ask_docworld"
+        tools:layout="@layout/fragment_ask_docworld" />
+    <fragment
+        android:id="@+id/homeHealthcareFragment"
+        android:name="com.example.genericdawawalauser.fragments.homefragments.HomeHealthcareFragment"
+        android:label="fragment_home_healthcare"
+        tools:layout="@layout/fragment_home_healthcare" />
+    <fragment
+        android:id="@+id/hospitalPackagesFragment"
+        android:name="com.example.genericdawawalauser.fragments.homefragments.HospitalPackagesFragment"
+        android:label="fragment_hospital_packages"
+        tools:layout="@layout/fragment_hospital_packages" />
+    <fragment
+        android:id="@+id/labTestFragment"
+        android:name="com.example.genericdawawalauser.fragments.homefragments.LabTestFragment"
+        android:label="fragment_lab_test"
+        tools:layout="@layout/fragment_lab_test" />
+    <fragment
+        android:id="@+id/onlineConsultationFragment"
+        android:name="com.example.genericdawawalauser.fragments.homefragments.OnlineConsultationFragment"
+        android:label="fragment_online_consultation"
+        tools:layout="@layout/fragment_online_consultation" >
+        <action
+            android:id="@+id/action_onlineConsultationFragment_to_proceedOnlineConsultationFragment"
+            app:destination="@id/proceedOnlineConsultationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/proceedOnlineConsultationFragment"
+        android:name="com.example.genericdawawalauser.fragments.homefragments.ProceedOnlineConsultationFragment"
+        android:label="fragment_proceed_online_consultation"
+        tools:layout="@layout/fragment_proceed_online_consultation" />
+    <fragment
+        android:id="@+id/healthcareProductsFragment"
+        android:name="com.example.genericdawawalauser.fragments.homefragments.HealthcareProductsFragment"
+        android:label="fragment_healthcare_products"
+        tools:layout="@layout/fragment_healthcare_products" />
+    <fragment
+        android:id="@+id/personalDetailsFragment"
+        android:name="com.example.genericdawawalauser.fragments.PersonalDetailsFragment"
+        android:label="PersonalDetailsFragment" >
+        <action
+            android:id="@+id/action_personalDetailsFragment_to_editProfileFragment"
+            app:destination="@id/editProfileFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editProfileFragment"
+        android:name="com.example.genericdawawalauser.fragments.profiles.EditProfileFragment"
+        android:label="EditProfileFragment" />
+</navigation>

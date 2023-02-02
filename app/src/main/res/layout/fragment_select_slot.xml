@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragments.homefragments.SelectSlotFragment">
+
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Select date &amp; Time of your Appointment"
+                android:textSize="@dimen/text16"
+                android:textColor="@color/appcolor"
+                android:textAllCaps="true"
+                android:padding="@dimen/space5"
+                android:layout_margin="@dimen/space10" />
+            <CalendarView
+                android:id="@+id/simpleCalendarView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/tv_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center"
+                android:padding="@dimen/space10"
+                android:text="10/05/2020"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/space20"
+                android:textStyle="bold"
+                android:visibility="gone" />
+            <TextView
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Time of doctor's Availability"
+                android:textSize="@dimen/text18"
+                android:textColor="@color/appcolor"
+                android:textAllCaps="true"
+                android:padding="@dimen/space5"
+                android:layout_margin="@dimen/space10" />
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false"
+                android:scrollbars="none">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/btn_morning"
+                        android:layout_width="wrap_content"
+                        android:layout_height="45dp"
+                        android:layout_marginLeft="@dimen/space10"
+                        android:layout_marginRight="@dimen/space10"
+                        android:background="@drawable/rac_button_bg"
+                        android:paddingLeft="@dimen/space10"
+                        android:paddingRight="@dimen/space10"
+                        android:visibility="gone" />
+
+                    <Button
+                        android:id="@+id/btn_afterNoon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="45dp"
+                        android:layout_marginLeft="@dimen/space10"
+                        android:layout_marginRight="@dimen/space10"
+                        android:background="@drawable/rac_button_bg_border"
+                        android:paddingLeft="@dimen/space10"
+                        android:paddingRight="@dimen/space10"
+                        android:textColor="@color/black"
+                        android:visibility="gone" />
+
+                    <Button
+                        android:id="@+id/btn_evening"
+                        android:layout_width="wrap_content"
+                        android:layout_height="45dp"
+                        android:layout_marginLeft="@dimen/space10"
+                        android:layout_marginRight="@dimen/space10"
+                        android:background="@drawable/rac_button_bg_border"
+                        android:paddingLeft="@dimen/space10"
+                        android:paddingRight="@dimen/space10"
+                        android:textColor="@color/black"
+                        android:visibility="gone" />
+
+                </LinearLayout>
+
+            </HorizontalScrollView>
+
+
+
+            <LinearLayout
+                android:visibility="gone"
+                android:layout_marginBottom="@dimen/space10"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_marginLeft="@dimen/space10"
+                    android:gravity="center"
+                    android:background="@drawable/bg_gradient"
+                    android:layout_width="@dimen/space100"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_marginTop="@dimen/space5"
+                        android:textColor="@color/white"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="HOUR"/>
+
+                    <LinearLayout
+                        android:gravity="center"
+                        android:layout_gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <EditText
+                            android:inputType="number"
+                            android:maxLength="1"
+                            android:backgroundTint="@color/white"
+                            android:textColorHighlight="@color/white"
+                            android:textColorHint="@color/white"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:hint="0"/>
+
+                        <EditText
+                            android:inputType="number"
+                            android:maxLength="1"
+                            android:backgroundTint="@color/white"
+                            android:textColorHint="@color/white"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:hint="0"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_marginLeft="@dimen/space10"
+                    android:gravity="center_vertical"
+                    android:layout_gravity="center_vertical"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/space30"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=":"/>
+
+                <LinearLayout
+                    android:layout_marginLeft="@dimen/space10"
+                    android:gravity="center"
+                    android:background="@drawable/bg_gradient"
+                    android:layout_width="@dimen/space100"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_marginTop="@dimen/space5"
+                        android:textColor="@color/white"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="MINUTE"/>
+
+                    <LinearLayout
+                        android:gravity="center"
+                        android:layout_gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <EditText
+                            android:inputType="number"
+                            android:maxLength="1"
+                            android:backgroundTint="@color/white"
+                            android:textColorHighlight="@color/white"
+                            android:textColorHint="@color/white"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:hint="0"/>
+
+                        <EditText
+                            android:inputType="number"
+                            android:maxLength="1"
+                            android:backgroundTint="@color/white"
+                            android:textColorHint="@color/white"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:hint="0"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_not_found"
+                android:visibility="invisible"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Slot not found"
+                android:textSize="@dimen/text16"
+                android:textColor="@color/red"
+                android:layout_gravity="center"/>
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:visibility="visible"
+                android:layout_marginTop="@dimen/space10"
+                android:id="@+id/rv_slotTimeList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:listitem="@layout/list_time"
+                android:nestedScrollingEnabled="false"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:spanCount="4"/>
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_confirm"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Confirm"
+                android:textColor="@color/white"
+                android:background="@drawable/rac_button_bg"
+                android:layout_margin="@dimen/space30"/>
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+
+</LinearLayout>

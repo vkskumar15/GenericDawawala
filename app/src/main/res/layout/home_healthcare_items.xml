@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.8dp"
+        android:background="@color/grey"
+        />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="10dp"
+        android:orientation="horizontal">
+
+<!--<de.hdodenhof.circleimageview.CircleImageView-->
+<!--    android:layout_width="30dp"-->
+<!--    android:layout_height="30dp"-->
+<!--    android:layout_gravity="center_vertical"-->
+<!--&lt;!&ndash;    android:src="@drawable/doctor_12"&ndash;&gt;-->
+<!--    />-->
+<!--        -->
+        <ImageView
+            android:id="@+id/homeHealthCareIV"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:contentDescription="@string/description"
+            android:src="@drawable/doctor_12"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Physiotherapist"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="20dp"
+            android:textColor="@color/colorBlack"
+            android:id="@+id/home_healthcare_item"/>
+    </LinearLayout>
+
+
+</LinearLayout>

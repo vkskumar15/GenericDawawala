@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardElevation="@dimen/space10"
+        android:layout_margin="@dimen/space10"
+        app:cardCornerRadius="@dimen/space25">
+
+        <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/grey_strock"
+        android:padding="10dp"
+        android:layout_margin="1dp"
+        >
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:id="@+id/iv_fb"
+            app:civ_border_color="@color/appcolor"
+            app:civ_border_width="@dimen/space1"
+            android:src="@drawable/download_img45"
+            android:layout_centerVertical="true">
+
+        </de.hdodenhof.circleimageview.CircleImageView>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_clear"
+            android:hint="New"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/btn_bg"
+            android:textColorHint="@color/colorWhite"
+            android:layout_centerVertical="true"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/iv_fb"
+                android:layout_toLeftOf="@+id/btn_clear"
+                android:layout_marginStart="@dimen/space10"
+                android:layout_centerVertical="true"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_fb"
+                    android:text="Delivery Medicine"
+                    android:textColor="@color/colorBlack"
+
+
+                    />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_date4"
+                    android:text="30-9-2020"
+                    android:layout_below="@+id/tv_fb"
+                    android:textSize="12sp"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_time4"
+                    android:text="2 hrs ago"
+                    android:textSize="12sp"/>
+
+            </LinearLayout>
+
+
+    </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+</RelativeLayout>

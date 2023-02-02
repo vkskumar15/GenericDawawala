@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "865101424568",
+    "firebase_url": "https://genericdava-561b7-default-rtdb.firebaseio.com",
+    "project_id": "genericdava-561b7",
+    "storage_bucket": "genericdava-561b7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:865101424568:android:3c8b064a8f53f69a60914d",
+        "android_client_info": {
+          "package_name": "com.example.genericdawawalauser"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "865101424568-sp5k4bvpd1v6ll7fmsrdnqeqiim7jn75.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.genericdawawalauser",
+            "certificate_hash": "b5363ad80e31f4281a2bcb3a1801308781d970a4"
+          }
+        },
+        {
+          "client_id": "865101424568-db203kih51k33u1ev2j9mhn0caoem3lc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBIIhXQt6yzn2oq-6lqFYRxqd2qjHR-Y7k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "865101424568-db203kih51k33u1ev2j9mhn0caoem3lc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

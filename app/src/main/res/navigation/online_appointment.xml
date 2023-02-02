@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/online_appointment"
+    app:startDestination="@id/patientDetailFragment">
+
+    <fragment
+        android:id="@+id/patientDetailFragment"
+        android:name="com.example.genericdawawalauser.fragments.onlineConsult.PatientDetailFragment"
+        android:label="PatientDetailFragment" >
+        <action
+            android:id="@+id/action_patientDetailFragment_to_homeConsultationFragment"
+            app:destination="@id/homeConsultationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/homeConsultationFragment"
+        android:name="com.example.genericdawawalauser.fragments.onlineConsult.HomeConsultationFragment"
+        android:label="HomeConsultationFragment" >
+        <action
+            android:id="@+id/action_homeConsultationFragment_to_doctorBySpecialitiesFragment2"
+            app:destination="@id/doctorBySpecialitiesFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/doctorBySpecialitiesFragment2"
+        android:name="com.example.genericdawawalauser.fragments.homefragments.DoctorBySpecialitiesFragment"
+        android:label="fragment_doctor_by_specialities"
+        tools:layout="@layout/fragment_doctor_by_specialities" >
+        <action
+            android:id="@+id/action_doctorBySpecialitiesFragment2_to_doctorDetailsFragment"
+            app:destination="@id/doctorDetailsFragment" />
+        <action
+            android:id="@+id/action_doctorBySpecialitiesFragment2_to_doctorTimeSlotFragment"
+            app:destination="@id/doctorTimeSlotFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/doctorDetailsFragment"
+        android:name="com.example.genericdawawalauser.fragments.onlineConsult.DoctorDetailsFragment"
+        android:label="fragment_doctor_details"
+        tools:layout="@layout/fragment_doctor_details" />
+    <fragment
+        android:id="@+id/doctorTimeSlotFragment"
+        android:name="com.example.genericdawawalauser.fragments.onlineConsult.DoctorTimeSlotFragment"
+        android:label="fragment_doctor_time_slot"
+        tools:layout="@layout/fragment_doctor_time_slot" />
+</navigation>

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragments.homefragments.SearchADoctorFragment"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@drawable/search_bg"
+        android:elevation="@dimen/space3"
+        android:layout_marginVertical="@dimen/space4"
+        >
+
+        <EditText
+            android:id="@+id/et_search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/ic_baseline_search_24"
+            android:drawablePadding="@dimen/space10"
+            android:drawableTint="@color/appcolor"
+            android:elevation="5dp"
+            android:background="@drawable/search_strock"
+            android:hint="SEARCH HERE"
+            android:layout_margin="1dp"
+            android:padding="15dp"
+            android:singleLine="true"
+            android:textSize="14dp" />
+    </RelativeLayout>
+
+
+
+
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/med_cate_background"
+        android:padding="5dp"
+        android:layout_marginTop="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_common_searches"
+            android:text="Common Searches"
+            android:padding="10dp"
+            android:textColor="@color/colorWhite"
+            android:layout_centerVertical="true"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/tv_common_searches"
+            android:src="@drawable/ic_baseline_arrow_forward_24"
+            android:padding="5dp"
+            android:layout_centerVertical="true"
+            android:elevation="@dimen/space4"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/full_round_bg"
+            app:tint="@color/testColor1" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/tv_nospeacilty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="No Doctor Found"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:visibility="gone" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_common_searches"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/space10"
+            android:layout_marginTop="@dimen/space10"
+            android:layout_marginEnd="@dimen/space10"
+            android:layout_marginBottom="@dimen/space10"
+            android:orientation="vertical"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/common_search_items" />
+    </RelativeLayout>
+
+</LinearLayout>

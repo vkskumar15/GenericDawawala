@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/home_fragment"
+        android:icon="@drawable/ic_home"
+        android:title="HOME"
+        />
+    <item android:id="@+id/search_fragment"
+        android:icon="@drawable/threedsearch"
+        android:title="SEARCH"
+        />
+    <item android:id="@+id/help_fragment"
+        android:icon="@drawable/threedhelp"
+        android:title="HELP"/>
+
+    <item android:id="@+id/notification_fragment"
+        android:icon="@drawable/ic_notification"
+        android:title="NOTIFICATION"/>
+
+    <item android:id="@+id/profile_fragment"
+        android:icon="@drawable/threedprofile"
+        android:title="ACCOUNT"/>
+
+</menu>

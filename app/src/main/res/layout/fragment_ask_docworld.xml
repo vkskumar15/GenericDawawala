@@ -1,0 +1,476 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragments.homefragments.AskDocworldFragment">
+
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="?actionBarSize">
+
+                <ImageView
+                    android:id="@+id/askGenericBackImg"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_baseline_arrow_back_24"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/space20"
+                    android:backgroundTint="@color/black"
+                    android:contentDescription="@string/description"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:text="Ask GenericDawaWala"
+                    android:layout_centerInParent="true"/>
+
+            </RelativeLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@color/testColor"
+                android:padding="5dp"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Get Free Personalised Health Assessment"
+                    android:gravity="center"
+                    android:textSize="20sp"
+                    android:textColor="@color/colorBlack"
+                    android:layout_margin="10dp"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Our health companion engages with you in a conversation it's as good as talking to your doctor"
+                    android:gravity="center"
+                    android:textColor="@color/colorBlack"
+                    android:layout_margin="10dp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/space10"
+                    >
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/full_round_corners"
+                        android:layout_centerInParent="true"
+                        android:elevation="5dp"
+                        android:id="@+id/iv_consult"
+                        android:padding="@dimen/space18"
+                        android:layout_margin="10dp">
+
+                        <ImageView
+                            android:layout_width="@dimen/dp24"
+                            android:layout_height="@dimen/dp24"
+                            android:src="@drawable/solidarity__1_"
+                            android:layout_gravity="center"
+                            app:tint="@color/testColor"
+                            />
+
+                    </RelativeLayout>
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="CONSULT"
+                        android:layout_marginTop="@dimen/space4"
+                        android:textColor="@color/colorBlack"
+                        android:layout_below="@+id/iv_consult"
+                        android:layout_centerHorizontal="true"/>
+
+                </RelativeLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/iv_consult"
+                    android:layout_marginLeft="10dp"
+                    android:layout_centerVertical="true"
+                    android:text="Consult our health companion to talk about your symptoms and health conditions"
+                    android:padding="10dp"
+                    android:layout_marginRight="@dimen/space20"
+                    android:layout_marginTop="@dimen/space20"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/space10">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/full_round_corners"
+                        android:layout_centerInParent="true"
+                        android:elevation="5dp"
+                        android:id="@+id/iv_analyse"
+                        android:padding="@dimen/space18"
+                        android:layout_margin="10dp">
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="@dimen/dp24"
+                            android:src="@drawable/analytics"
+                            android:layout_gravity="center"
+                            app:tint="@color/testColor"
+                            />
+                    </RelativeLayout>
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="ANALYSE"
+                        android:layout_marginTop="@dimen/space4"
+                        android:textColor="@color/colorBlack"
+                        android:layout_below="@+id/iv_analyse"
+                        android:layout_centerHorizontal="true"/>
+
+                </RelativeLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/iv_consult"
+                    android:layout_marginLeft="10dp"
+                    android:layout_centerVertical="true"
+                    android:text="Smart companion analysis your input against 7 million diseases and illness patterns"
+                    android:padding="10dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="@dimen/space20"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/space10">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/full_round_corners"
+                        android:layout_centerInParent="true"
+                        android:elevation="5dp"
+                        android:id="@+id/iv_recommend"
+                        android:padding="@dimen/space18"
+                        android:layout_margin="10dp">
+
+                        <ImageView
+                            android:layout_width="@dimen/dp24"
+                            android:layout_height="@dimen/dp24"
+                            android:src="@drawable/ic_stethoscope_big"
+                            android:layout_gravity="center"
+                            app:tint="@color/testColor"
+                            />
+                    </RelativeLayout>
+
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="RECOMMEND"
+                        android:layout_marginTop="@dimen/space4"
+                        android:textColor="@color/colorBlack"
+                        android:layout_below="@+id/iv_recommend"
+                        android:layout_centerHorizontal="true"/>
+
+                </RelativeLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/iv_consult"
+                    android:layout_marginLeft="10dp"
+                    android:layout_centerVertical="true"
+                    android:text="Get recommendation and personalised treatment plans and empowering Doctors to make informed decisions"
+                    android:padding="10dp"
+                    android:layout_marginRight="@dimen/space20"
+                    android:layout_marginTop="@dimen/space20"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/space20"
+                android:background="@drawable/top_corners_round_20dp"
+                android:elevation="@dimen/space10"
+                android:layout_marginTop="@dimen/space40"
+                android:orientation="vertical">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:background="@null"
+                    android:hint="@string/requiredNameField"
+                    android:padding="10dp"
+                    android:inputType="text"
+                    android:singleLine="true"/>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/grey"
+                    android:layout_marginHorizontal="@dimen/space20"/>
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:background="@null"
+                    android:hint="@string/requiredNumberField"
+                    android:padding="10dp"
+                    android:inputType="number"
+                    android:singleLine="true"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/grey"
+                    android:layout_marginHorizontal="@dimen/space20"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="OTP will be send to your mobile no."
+                    android:textSize="12dp"
+                    android:layout_marginLeft="10dp"
+                    android:padding="10dp"/>
+            </LinearLayout>
+
+
+
+
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/btn_connect"
+                android:text="Connect"
+                android:textColor="@color/colorWhite"
+                android:background="@drawable/condition_list_bg"
+                android:elevation="@dimen/space10"
+                android:layout_marginHorizontal="@dimen/space20"
+                />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:layout_margin="10dp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_shield_with_lock"
+                    app:tint="#2e7568"
+                    android:id="@+id/iv_private"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_private"
+                    android:text="PRIVATE &amp; SECURE"
+                    android:layout_toRightOf="@+id/iv_private"
+                    android:layout_marginLeft="10dp"
+                    android:textColor="@color/colorBlack"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Your data is private &amp; secure"
+                    android:layout_toRightOf="@+id/iv_private"
+                    android:layout_below="@id/tv_private"
+                    android:layout_marginLeft="10dp"
+                    android:textColor="@color/colorBlack" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:layout_margin="10dp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_network"
+                    app:tint="#2e7568"
+                    android:id="@+id/iv_extensive"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_extensive"
+                    android:text="EXTENSIVE REPOSITORY"
+                    android:layout_toRightOf="@+id/iv_extensive"
+                    android:layout_marginLeft="10dp"
+                    android:textColor="@color/colorBlack"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Identifies 7 million unique disease pattern covering all gearographies and demogrpahies"
+                    android:layout_toRightOf="@+id/iv_extensive"
+                    android:layout_below="@id/tv_extensive"
+                    android:layout_marginLeft="10dp"
+                    android:textColor="@color/colorBlack" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:layout_margin="10dp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_learning"
+                    app:tint="#2e7568"
+                    android:id="@+id/iv_learning"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_learning"
+                    android:text="ALWAYS LEARNING"
+                    android:layout_toRightOf="@+id/iv_learning"
+                    android:layout_marginLeft="10dp"
+                    android:textColor="@color/colorBlack"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Docworld Deep learning algorithms are always learning"
+                    android:layout_toRightOf="@+id/iv_learning"
+                    android:layout_below="@id/tv_learning"
+                    android:layout_marginLeft="10dp"
+                    android:textColor="@color/colorBlack" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:layout_margin="10dp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_seo_and_web"
+                    app:tint="#2e7568"
+                    android:id="@+id/iv_accuracy"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_accuracy"
+                    android:text="ACCURACY"
+                    android:layout_toRightOf="@+id/iv_accuracy"
+                    android:layout_marginLeft="10dp"
+                    android:textColor="@color/colorBlack"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="High accurate and efficient using data driven precision"
+                    android:layout_toRightOf="@+id/iv_accuracy"
+                    android:layout_below="@id/tv_accuracy"
+                    android:layout_marginLeft="10dp"
+                    android:textColor="@color/colorBlack" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:layout_margin="10dp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_computer_folder"
+                    app:tint="#2e7568"
+                    android:id="@+id/iv_personal_records"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_personal_records"
+                    android:text="PERSONAL HEALTH RECORDS"
+                    android:layout_toRightOf="@+id/iv_personal_records"
+                    android:layout_marginLeft="10dp"
+                    android:textColor="@color/colorBlack"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Builds Health Profile for personalised recommendation"
+                    android:layout_toRightOf="@+id/iv_personal_records"
+                    android:layout_below="@id/tv_personal_records"
+                    android:layout_marginLeft="10dp"
+                    android:textColor="@color/colorBlack" />
+
+            </RelativeLayout>
+
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</RelativeLayout>

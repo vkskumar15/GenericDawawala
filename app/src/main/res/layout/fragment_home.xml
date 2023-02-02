@@ -1,0 +1,971 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/appcolor">
+
+
+        <ImageView
+            android:id="@+id/profile"
+            android:layout_width="@dimen/space30"
+            android:layout_height="@dimen/space30"
+            android:layout_marginStart="@dimen/space10"
+            android:layout_marginTop="@dimen/space10"
+            android:layout_marginEnd="@dimen/space10"
+            android:src="@drawable/ic_baseline_account_circle_24"
+            app:tint="@color/white" />
+
+        <ImageView
+            android:layout_width="@dimen/space30"
+            android:layout_height="@dimen/space30"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="@dimen/space10"
+            android:layout_marginTop="@dimen/space10"
+            android:layout_marginEnd="@dimen/space10"
+            android:layout_marginBottom="@dimen/space10"
+            android:src="@drawable/baseline_shopping_cart_24"
+            app:tint="@color/white" />
+
+    </RelativeLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/header"
+        android:fillViewport="true">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/welcome"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/space10"
+                android:layout_marginTop="@dimen/space10"
+                android:elevation="@dimen/space15"
+                android:text="@string/hii_vikas_kumar"
+                android:textColor="@color/white"
+                android:textSize="@dimen/space18"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/welcome_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/welcome"
+                android:layout_marginStart="@dimen/space10"
+                android:layout_marginTop="@dimen/space5"
+                android:elevation="@dimen/space15"
+                android:text="Welcome back"
+                android:textColor="@color/white"
+                android:textSize="@dimen/space14" />
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/space250"
+                android:scaleType="center"
+                android:src="@drawable/shape"
+                app:shapeAppearanceOverlay="@style/customRoundedImageView" />
+
+
+            <ImageView
+                android:layout_width="@dimen/space30"
+                android:layout_height="@dimen/space30"
+                android:layout_marginStart="@dimen/space10"
+                android:layout_marginTop="@dimen/space5"
+                android:layout_marginEnd="@dimen/space10"
+                android:layout_toRightOf="@id/welcome"
+                android:src="@drawable/namaste" />
+
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/card"
+                android:layout_width="match_parent"
+                android:layout_height="360dp"
+                android:layout_below="@+id/welcome_back"
+                android:layout_marginStart="@dimen/space10"
+                android:layout_marginLeft="@dimen/space20"
+                android:layout_marginTop="@dimen/space10"
+                android:layout_marginEnd="@dimen/space10"
+                android:layout_marginRight="@dimen/space20"
+                android:layout_marginBottom="@dimen/space10"
+                app:cardCornerRadius="@dimen/space20"
+                app:cardElevation="@dimen/space12">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:weightSum="3">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/space10"
+                            android:layout_marginTop="@dimen/space10"
+                            android:layout_marginRight="@dimen/space10"
+                            android:orientation="horizontal"
+                            android:weightSum="3">
+
+                            <androidx.cardview.widget.CardView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="@dimen/space5"
+                                android:layout_weight="1"
+                                app:cardCornerRadius="@dimen/space12"
+                                app:cardElevation="@dimen/space12">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:orientation="vertical">
+
+                                    <ImageView
+                                        android:id="@+id/iv_medicines"
+                                        android:layout_width="70dp"
+                                        android:layout_height="55dp"
+                                        android:layout_gravity="center"
+                                        android:layout_margin="10dp"
+                                        android:background="@drawable/icon_bg"
+                                        android:elevation="5dp"
+                                        android:paddingLeft="10dp"
+                                        android:paddingTop="10dp"
+                                        android:paddingRight="10dp"
+                                        android:paddingBottom="10dp"
+                                        android:src="@drawable/home1" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:layout_marginBottom="@dimen/space5"
+                                        android:gravity="center"
+                                        android:text="Medicines"
+                                        android:textAlignment="center"
+                                        android:textColor="@color/colorBlack"
+                                        android:textSize="12sp" />
+                                </LinearLayout>
+                            </androidx.cardview.widget.CardView>
+
+                            <androidx.cardview.widget.CardView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="@dimen/space5"
+                                android:layout_weight="1"
+                                app:cardCornerRadius="@dimen/space12"
+                                app:cardElevation="@dimen/space12">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical">
+
+                                    <ImageView
+                                        android:id="@+id/iv_test"
+                                        android:layout_width="70dp"
+                                        android:layout_height="55dp"
+                                        android:layout_gravity="center"
+                                        android:layout_margin="10dp"
+                                        android:background="@drawable/icon_bg"
+                                        android:elevation="5dp"
+                                        android:paddingLeft="10dp"
+                                        android:paddingTop="10dp"
+                                        android:paddingRight="10dp"
+                                        android:paddingBottom="10dp"
+                                        android:src="@drawable/home2" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:layout_marginBottom="@dimen/space5"
+                                        android:gravity="center"
+                                        android:text="Lab Test"
+                                        android:textAlignment="center"
+                                        android:textColor="@color/colorBlack"
+                                        android:textSize="12sp" />
+                                </LinearLayout>
+                            </androidx.cardview.widget.CardView>
+
+                            <androidx.cardview.widget.CardView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="@dimen/space5"
+                                android:layout_weight="1"
+                                app:cardCornerRadius="@dimen/space12"
+                                app:cardElevation="@dimen/space12">
+
+                                <LinearLayout
+                                    android:id="@+id/online_cunsult"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:background="@drawable/ripple"
+                                    android:orientation="vertical">
+
+                                    <ImageView
+                                        android:id="@+id/iv_consult"
+                                        android:layout_width="70dp"
+                                        android:layout_height="55dp"
+                                        android:layout_gravity="center"
+                                        android:layout_margin="10dp"
+                                        android:background="@drawable/icon_bg"
+                                        android:elevation="5dp"
+                                        android:paddingLeft="@dimen/space10"
+                                        android:paddingTop="10dp"
+                                        android:paddingRight="@dimen/space10"
+                                        android:paddingBottom="10dp"
+                                        android:src="@drawable/home3" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:layout_marginBottom="@dimen/space5"
+                                        android:gravity="center"
+                                        android:text="Online Consultation"
+                                        android:textAlignment="center"
+                                        android:textColor="@color/colorBlack"
+                                        android:textSize="12sp" />
+                                </LinearLayout>
+                            </androidx.cardview.widget.CardView>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/space10"
+                        android:layout_marginTop="@dimen/space10"
+                        android:layout_marginRight="@dimen/space10"
+                        android:orientation="horizontal"
+                        android:weightSum="3">
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/space5"
+                            android:layout_weight="1"
+                            app:cardCornerRadius="@dimen/space12"
+                            app:cardElevation="@dimen/space12">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical">
+
+                                <ImageView
+                                    android:layout_width="80dp"
+                                    android:layout_height="60dp"
+                                    android:layout_gravity="center"
+                                    android:layout_margin="5dp"
+                                    android:background="@drawable/icon_bg"
+                                    android:elevation="5dp"
+                                    android:paddingLeft="10dp"
+                                    android:paddingTop="10dp"
+                                    android:paddingRight="10dp"
+                                    android:paddingBottom="10dp"
+                                    android:src="@drawable/home4" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:layout_marginBottom="@dimen/space5"
+                                    android:gravity="center"
+                                    android:text="Dr. Appointment"
+                                    android:textAlignment="center"
+                                    android:textColor="@color/colorBlack"
+                                    android:textSize="12sp" />
+                            </LinearLayout>
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/space5"
+                            android:layout_weight="1"
+                            app:cardCornerRadius="@dimen/space12"
+                            app:cardElevation="@dimen/space12">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <ImageView
+                                    android:layout_width="80dp"
+                                    android:layout_height="60dp"
+                                    android:layout_gravity="center"
+                                    android:layout_margin="5dp"
+                                    android:background="@drawable/icon_bg"
+                                    android:elevation="5dp"
+                                    android:paddingLeft="10dp"
+                                    android:paddingTop="10dp"
+                                    android:paddingRight="10dp"
+                                    android:paddingBottom="10dp"
+                                    android:src="@drawable/home7" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:layout_marginBottom="@dimen/space5"
+                                    android:gravity="center"
+                                    android:text="Wellness Packages"
+                                    android:textAlignment="center"
+                                    android:textColor="@color/colorBlack"
+                                    android:textSize="12sp" />
+                            </LinearLayout>
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/space5"
+                            android:layout_weight="1"
+                            app:cardCornerRadius="@dimen/space12"
+                            app:cardElevation="@dimen/space12">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <ImageView
+                                    android:layout_width="80dp"
+                                    android:layout_height="60dp"
+                                    android:layout_gravity="center"
+                                    android:layout_margin="5dp"
+                                    android:background="@drawable/icon_bg"
+                                    android:elevation="5dp"
+                                    android:paddingLeft="@dimen/space10"
+                                    android:paddingTop="10dp"
+                                    android:paddingRight="@dimen/space10"
+                                    android:paddingBottom="10dp"
+                                    android:src="@drawable/home8" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:layout_marginBottom="@dimen/space5"
+                                    android:gravity="center"
+                                    android:text="Ask?"
+                                    android:textAlignment="center"
+                                    android:textColor="@color/colorBlack"
+                                    android:textSize="12sp" />
+                            </LinearLayout>
+                        </androidx.cardview.widget.CardView>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/space10"
+                        android:layout_marginTop="@dimen/space10"
+                        android:layout_marginRight="@dimen/space10"
+                        android:orientation="horizontal"
+                        android:weightSum="3">
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/space5"
+                            android:layout_weight="1"
+                            app:cardCornerRadius="@dimen/space12"
+                            app:cardElevation="@dimen/space12">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical">
+
+                                <ImageView
+                                    android:layout_width="80dp"
+                                    android:layout_height="60dp"
+                                    android:layout_gravity="center"
+                                    android:layout_margin="5dp"
+                                    android:background="@drawable/icon_bg"
+                                    android:elevation="5dp"
+                                    android:paddingLeft="10dp"
+                                    android:paddingTop="10dp"
+                                    android:paddingRight="10dp"
+                                    android:paddingBottom="10dp"
+                                    android:src="@drawable/home9" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:layout_marginBottom="@dimen/space5"
+                                    android:gravity="center"
+                                    android:text="Home Healthcare"
+                                    android:textAlignment="center"
+                                    android:textColor="@color/colorBlack"
+                                    android:textSize="12sp" />
+                            </LinearLayout>
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/space5"
+                            android:layout_weight="1"
+                            app:cardCornerRadius="@dimen/space12"
+                            app:cardElevation="@dimen/space12">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <ImageView
+                                    android:layout_width="80dp"
+                                    android:layout_height="60dp"
+                                    android:layout_gravity="center"
+                                    android:layout_margin="5dp"
+                                    android:background="@drawable/icon_bg"
+                                    android:elevation="5dp"
+                                    android:paddingLeft="10dp"
+                                    android:paddingTop="10dp"
+                                    android:paddingRight="10dp"
+                                    android:paddingBottom="10dp"
+                                    android:src="@drawable/home10" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:layout_marginBottom="@dimen/space5"
+                                    android:gravity="center"
+                                    android:text="Hospital Package"
+                                    android:textAlignment="center"
+                                    android:textColor="@color/colorBlack"
+                                    android:textSize="12sp" />
+                            </LinearLayout>
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/space5"
+                            android:layout_weight="1"
+                            app:cardCornerRadius="@dimen/space12"
+                            app:cardElevation="@dimen/space12">
+
+                            <LinearLayout
+                                android:id="@+id/wallet"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/ripple"
+                                android:orientation="vertical">
+
+                                <ImageView
+                                    android:layout_width="80dp"
+                                    android:layout_height="60dp"
+                                    android:layout_gravity="center"
+                                    android:layout_margin="5dp"
+                                    android:background="@drawable/icon_bg"
+                                    android:elevation="5dp"
+                                    android:paddingLeft="@dimen/space10"
+                                    android:paddingTop="10dp"
+                                    android:paddingRight="@dimen/space10"
+                                    android:paddingBottom="10dp"
+                                    android:src="@drawable/ic_wallet" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:layout_marginBottom="@dimen/space5"
+                                    android:gravity="center"
+                                    android:text="Wallet"
+                                    android:textAlignment="center"
+                                    android:textColor="@color/colorBlack"
+                                    android:textSize="12sp" />
+                            </LinearLayout>
+                        </androidx.cardview.widget.CardView>
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/card2"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_below="@+id/card"
+                android:layout_marginStart="@dimen/space10"
+                android:layout_marginLeft="@dimen/space20"
+                android:layout_marginEnd="@dimen/space10"
+                android:layout_marginRight="@dimen/space20"
+                android:layout_marginBottom="@dimen/space10"
+                app:cardCornerRadius="@dimen/space10"
+                app:cardElevation="@dimen/space6">
+
+                <com.smarteist.autoimageslider.SliderView
+                    android:id="@+id/slider"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:sliderAnimationDuration="600"
+                    app:sliderAutoCycleDirection="back_and_forth"
+                    app:sliderIndicatorAnimationDuration="600"
+                    app:sliderIndicatorEnabled="true"
+                    app:sliderIndicatorGravity="center_horizontal|bottom"
+                    app:sliderIndicatorMargin="15dp"
+                    app:sliderIndicatorOrientation="horizontal"
+                    app:sliderIndicatorPadding="3dp"
+                    app:sliderIndicatorRadius="2dp"
+                    app:sliderIndicatorSelectedColor="@color/darkgrey"
+                    app:sliderIndicatorUnselectedColor="@color/grey"
+                    app:sliderScrollTimeInSec="1" />
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/card3"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:layout_below="@+id/card2"
+                android:layout_marginStart="@dimen/space10"
+                android:layout_marginLeft="@dimen/space20"
+                android:layout_marginEnd="@dimen/space10"
+                android:layout_marginRight="@dimen/space20"
+                android:layout_marginBottom="@dimen/space10"
+                app:cardCornerRadius="@dimen/space10"
+                app:cardElevation="@dimen/space6">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:layout_width="@dimen/space100"
+                        android:layout_height="@dimen/space100"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="@dimen/space20"
+                        android:src="@drawable/bell" />
+
+                    <TextView
+                        android:id="@+id/notification"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/space10"
+                        android:layout_marginTop="@dimen/space20"
+                        android:text="@string/notification"
+                        android:textColor="@color/darkgrey"
+                        android:textSize="@dimen/space18"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/notification"
+                        android:layout_marginStart="@dimen/space10"
+                        android:layout_marginTop="@dimen/space10"
+                        android:text="Your All Notifications is Here."
+                        android:textColor="@color/darkgrey"
+                        android:textSize="@dimen/space14" />
+                </RelativeLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/card4"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:layout_below="@+id/card3"
+                android:layout_marginStart="@dimen/space10"
+                android:layout_marginLeft="@dimen/space20"
+                android:layout_marginEnd="@dimen/space10"
+                android:layout_marginRight="@dimen/space20"
+                android:layout_marginBottom="@dimen/space10"
+                app:cardCornerRadius="@dimen/space10"
+                app:cardElevation="@dimen/space6">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:layout_width="@dimen/space100"
+                        android:layout_height="@dimen/space100"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="@dimen/space20"
+                        android:src="@drawable/sale" />
+
+                    <TextView
+                        android:id="@+id/notification12"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/space10"
+                        android:layout_marginTop="@dimen/space20"
+                        android:text="@string/coupons_offers"
+                        android:textColor="@color/darkgrey"
+                        android:textSize="@dimen/space18"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/notification12"
+                        android:layout_marginStart="@dimen/space10"
+                        android:layout_marginTop="@dimen/space10"
+                        android:text="@string/your_all_coupons_offers_is_here"
+                        android:textColor="@color/darkgrey"
+                        android:textSize="@dimen/space14" />
+                </RelativeLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/card5"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:layout_below="@+id/card4"
+                android:layout_marginStart="@dimen/space10"
+                android:layout_marginLeft="@dimen/space20"
+                android:layout_marginEnd="@dimen/space10"
+                android:layout_marginRight="@dimen/space20"
+                android:layout_marginBottom="@dimen/space10"
+                app:cardCornerRadius="@dimen/space10"
+                app:cardElevation="@dimen/space6">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:layout_width="@dimen/space100"
+                        android:layout_height="@dimen/space100"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="@dimen/space20"
+                        android:src="@drawable/zoom" />
+
+                    <TextView
+                        android:id="@+id/notification123"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/space10"
+                        android:layout_marginTop="@dimen/space20"
+                        android:text="@string/search_medicines"
+                        android:textColor="@color/darkgrey"
+                        android:textSize="@dimen/space18"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/notification123"
+                        android:layout_marginStart="@dimen/space10"
+                        android:layout_marginTop="@dimen/space10"
+                        android:text="@string/search_your_medicines"
+                        android:textColor="@color/darkgrey"
+                        android:textSize="@dimen/space14" />
+                </RelativeLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+
+            <LinearLayout
+                android:id="@+id/one"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/card5"
+                android:orientation="vertical">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingHorizontal="16dp"
+                    android:paddingTop="4dp"
+                    android:paddingBottom="4dp">
+
+                    <TextView
+                        android:id="@+id/textView3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Flash Sale"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/flash_sale_seeall_textview"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="See all"
+                        android:textColor="@color/appcolor"
+                        app:layout_constraintBottom_toBottomOf="@+id/forwardimageView"
+                        app:layout_constraintEnd_toStartOf="@+id/forwardimageView"
+                        app:layout_constraintTop_toTopOf="@+id/forwardimageView" />
+
+                    <ImageView
+                        android:id="@+id/forwardimageView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="4dp"
+                        android:src="@drawable/arrow_forward"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/flash_sale_recyclerview"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="@dimen/space10"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="16dp"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:listitem="@layout/medicine_item" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/two"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/one"
+                android:layout_marginTop="8dp"
+                android:orientation="vertical">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingHorizontal="16dp"
+                    android:paddingTop="4dp"
+                    android:paddingBottom="4dp">
+
+                    <TextView
+                        android:id="@+id/textView9"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Trending Now"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/textView11"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="See all"
+                        android:textColor="@color/appcolor"
+                        app:layout_constraintBottom_toBottomOf="@+id/forwardimageView2"
+                        app:layout_constraintEnd_toStartOf="@+id/forwardimageView2"
+                        app:layout_constraintTop_toTopOf="@+id/forwardimageView2" />
+
+                    <ImageView
+                        android:id="@+id/forwardimageView2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="4dp"
+                        android:src="@drawable/arrow_forward"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/trending_recyclerview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="16dp"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:listitem="@layout/medicine_item" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/three"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/two"
+                android:layout_marginTop="8dp"
+                android:orientation="vertical">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingHorizontal="16dp"
+                    android:paddingTop="4dp"
+                    android:paddingBottom="4dp">
+
+                    <TextView
+                        android:id="@+id/textView14"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Just Launched"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/textView21"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="See all"
+                        android:textColor="@color/appcolor"
+                        app:layout_constraintBottom_toBottomOf="@+id/forwardimageView4"
+                        app:layout_constraintEnd_toStartOf="@+id/forwardimageView4"
+                        app:layout_constraintTop_toTopOf="@+id/forwardimageView4" />
+
+                    <ImageView
+                        android:id="@+id/forwardimageView4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="4dp"
+                        android:src="@drawable/arrow_forward"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/just_launched_recyclerview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="16dp"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:listitem="@layout/medicine_item" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/four"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/three"
+                android:layout_marginTop="8dp"
+                android:orientation="vertical">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingHorizontal="16dp"
+                    android:paddingTop="4dp"
+                    android:paddingBottom="4dp">
+
+                    <TextView
+                        android:id="@+id/textView19"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Lightning Deals"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/textView13"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="See all"
+                        android:textColor="@color/appcolor"
+                        app:layout_constraintBottom_toBottomOf="@+id/forwardimageView3"
+                        app:layout_constraintEnd_toStartOf="@+id/forwardimageView3"
+                        app:layout_constraintTop_toTopOf="@+id/forwardimageView3" />
+
+                    <ImageView
+                        android:id="@+id/forwardimageView3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="4dp"
+                        android:src="@drawable/arrow_forward"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/lightning_deals_recyclerview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="16dp"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:listitem="@layout/medicine_item" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/five"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/four"
+                android:layout_marginTop="8dp"
+                android:orientation="vertical">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingHorizontal="16dp"
+                    android:paddingTop="4dp"
+                    android:paddingBottom="4dp">
+
+                    <TextView
+                        android:id="@+id/textView29"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Trending Today"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/textView23"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="See all"
+                        android:textColor="@color/appcolor"
+                        app:layout_constraintBottom_toBottomOf="@+id/forwardimageView6"
+                        app:layout_constraintEnd_toStartOf="@+id/forwardimageView6"
+                        app:layout_constraintTop_toTopOf="@+id/forwardimageView6" />
+
+                    <ImageView
+                        android:id="@+id/forwardimageView6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="4dp"
+                        android:src="@drawable/arrow_forward"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/trending_today_recyclerview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="16dp"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:listitem="@layout/medicine_item" />
+            </LinearLayout>
+        </RelativeLayout>
+    </androidx.core.widget.NestedScrollView>
+</RelativeLayout>

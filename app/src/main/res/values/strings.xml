@@ -21,6 +21,7 @@
     <string name="sure_logout">Are you sure want to log out?</string>
     <string name="cancel">Cancel</string>
     <string name="Search_here">SEARCH HERE</string>
+    <string name="terms_conditions_for_online_consultations"><![CDATA[I agree to the terms & conditions for online consultations]]></string>
 
     <string name="facebook_app_id">905332436906178</string>
     <string name="fb_login_protocol_scheme">fb905332436906178</string>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -36,6 +36,7 @@
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
+        android:layout_below="@id/relative_select_time"
         android:layout_height="match_parent"
         android:layout_marginTop="@dimen/dp_10">
 
@@ -100,20 +101,20 @@
                         android:id="@+id/view1_review"
                         android:layout_width="wrap_content"
                         android:layout_height="1dp"
-                        android:visibility="invisible"
                         android:layout_below="@id/img_profile_review"
                         android:layout_marginVertical="4dp"
-                        android:background="@color/grey" />
+                        android:background="@color/grey"
+                        android:visibility="invisible" />
 
 
                     <RelativeLayout
                         android:id="@+id/consultation"
                         android:layout_width="match_parent"
-                        android:elevation="@dimen/space10"
-                        android:background="@drawable/doctor_rating_background"
                         android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="@dimen/space5"
                         android:layout_below="@id/view1_review"
+                        android:layout_marginHorizontal="@dimen/space5"
+                        android:background="@drawable/doctor_rating_background"
+                        android:elevation="@dimen/space10"
                         android:gravity="center_vertical"
                         android:paddingVertical="@dimen/dp_5">
 
@@ -144,11 +145,10 @@
                         android:id="@+id/view_review"
                         android:layout_width="wrap_content"
                         android:layout_height="1dp"
-                        android:visibility="invisible"
                         android:layout_below="@id/consultation"
                         android:layout_marginVertical="4dp"
-                        android:background="@color/grey" />
-
+                        android:background="@color/grey"
+                        android:visibility="invisible" />
 
 
                     <View
@@ -157,8 +157,8 @@
                         android:layout_height="1dp"
                         android:layout_below="@id/view_review"
                         android:layout_marginVertical="4dp"
-                        android:visibility="invisible"
-                        android:background="@color/grey" />
+                        android:background="@color/grey"
+                        android:visibility="invisible" />
 
 
                     <ImageView
@@ -211,236 +211,450 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/card2_review"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/dp_220"
                 android:layout_below="@id/card1_review"
                 android:layout_marginBottom="@dimen/dp_10"
                 app:cardElevation="@dimen/dp_10">
 
-                <RelativeLayout
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp">
+                    android:layout_marginTop="4dp"
+                    android:orientation="vertical">
 
                     <TextView
                         android:id="@+id/patient_details"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginVertical="@dimen/dp_10"
-                        android:layout_marginLeft="@dimen/dp_15"
+                        android:layout_marginStart="@dimen/dp_15"
                         android:text="Patient Details"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/sp_15" />
+                        android:textSize="@dimen/sp_15"
+                        android:textStyle="bold" />
 
-                    <TextView
-                        android:id="@+id/addAccount"
-                        android:layout_width="wrap_content"
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/space10"
+                            android:text="Patient Name: "
+                            android:textColor="@color/appcolor"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginStart="@dimen/space10"
+                            android:layout_marginEnd="@dimen/space10"
+                            android:text="Patient Name: "
+                            android:textColor="@color/appcolor" />
+
+                    </RelativeLayout>
+
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:layout_marginVertical="@dimen/dp_10"
-                        android:layout_marginEnd="15dp"
-                        android:text="ADD DETAILS"
-                        android:textColor="@color/green"
-                        android:textSize="@dimen/sp_15" />
+                        android:layout_marginVertical="@dimen/space5">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/space10"
+                            android:text="Patient Age: "
+                            android:textColor="@color/appcolor"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginStart="@dimen/space10"
+                            android:layout_marginEnd="@dimen/space10"
+                            android:text="Patient Gender: "
+                            android:textColor="@color/appcolor" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="@dimen/space5">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/space10"
+                            android:text="Patient Gender: "
+                            android:textColor="@color/appcolor"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginStart="@dimen/space10"
+                            android:layout_marginEnd="@dimen/space10"
+                            android:text="Patient Name: "
+                            android:textColor="@color/appcolor" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="@dimen/space5">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/space10"
+                            android:text="Patient Number: "
+                            android:textColor="@color/appcolor"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginStart="@dimen/space10"
+                            android:layout_marginEnd="@dimen/space10"
+                            android:text="Patient Name: "
+                            android:textColor="@color/appcolor" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="@dimen/space5">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/space10"
+                            android:text="Number Number: "
+                            android:textColor="@color/appcolor"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginStart="@dimen/space10"
+                            android:layout_marginEnd="@dimen/space10"
+                            android:text="Health Problem: "
+                            android:textColor="@color/appcolor" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="@dimen/space5">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/space10"
+                            android:text="Symptom: "
+                            android:textColor="@color/appcolor"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginStart="@dimen/space10"
+                            android:layout_marginEnd="@dimen/space10"
+                            android:text="Health Problem: "
+                            android:textColor="@color/appcolor" />
+
+                    </RelativeLayout>
 
 
-<!--                    <RelativeLayout-->
-<!--                        android:id="@+id/patientDetails_lay"-->
-<!--                        android:layout_width="95dp"-->
-<!--                        android:layout_height="105dp"-->
-<!--                        android:layout_below="@id/patient_details"-->
-<!--                        android:layout_marginLeft="@dimen/dp_15"-->
-<!--                        android:layout_marginBottom="@dimen/dp_10"-->
-<!--                        android:background="@drawable/bg_consult">-->
-
-<!--                        <LinearLayout-->
-<!--                            android:layout_width="match_parent"-->
-<!--                            android:layout_height="match_parent"-->
-<!--                            android:gravity="center"-->
-<!--                            android:orientation="vertical">-->
-
-<!--                            <ImageView-->
-<!--                                android:id="@+id/profile_icon"-->
-<!--                                android:layout_width="@dimen/dp_40"-->
-<!--                                android:layout_height="@dimen/dp_40"-->
-<!--                                android:src="@drawable/ic_user" />-->
-
-<!--                            <TextView-->
-<!--                                android:id="@+id/txt_nameUser"-->
-<!--                                android:layout_width="wrap_content"-->
-<!--                                android:layout_height="wrap_content"-->
-<!--                                android:layout_marginTop="@dimen/dp_5"-->
-<!--                                android:text="Name"-->
-<!--                                android:textColor="@color/black"-->
-<!--                                android:textSize="@dimen/sp_15" />-->
-
-<!--                            <ImageView-->
-<!--                                android:layout_width="@dimen/dp_20"-->
-<!--                                android:layout_height="@dimen/dp_20"-->
-<!--                                android:layout_marginTop="@dimen/dp_5"-->
-<!--                                android:src="@drawable/ic_checked"-->
-<!--                                app:tint="@color/green" />-->
-
-<!--                        </LinearLayout>-->
-
-<!--                        <ImageView-->
-<!--                            android:id="@+id/cancelIconDetails"-->
-<!--                            android:layout_width="@dimen/dp_20"-->
-<!--                            android:layout_height="@dimen/dp_20"-->
-<!--                            android:layout_alignParentEnd="true"-->
-<!--                            android:layout_margin="@dimen/dp_5"-->
-<!--                            android:src="@drawable/ic_close_cross_"-->
-<!--                            app:tint="@color/red" />-->
-
-<!--                    </RelativeLayout>-->
-
-                </RelativeLayout>
+                </LinearLayout>
 
             </androidx.cardview.widget.CardView>
 
-<!--            <androidx.cardview.widget.CardView-->
-<!--                android:id="@+id/card3_review"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_below="@id/card2_review"-->
-<!--                android:layout_marginBottom="@dimen/dp_10"-->
-<!--                app:cardElevation="@dimen/dp_10">-->
 
-<!--                <RelativeLayout-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content">-->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_80"
+                android:id="@+id/card"
+                android:layout_below="@id/card2_review"
+                android:layout_marginVertical="@dimen/space10"
+                android:layout_marginBottom="@dimen/dp_10"
+                app:cardElevation="@dimen/dp_10">
 
-<!--                    <TextView-->
-<!--                        android:id="@+id/order_summary_head"-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:layout_marginVertical="@dimen/dp_10"-->
-<!--                        android:layout_marginLeft="@dimen/dp_15"-->
-<!--                        android:text="Order Summary"-->
-<!--                        android:textColor="@color/black"-->
-<!--                        android:textSize="@dimen/sp_16"-->
-<!--                        android:textStyle="bold" />-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/space10"
+                    android:orientation="vertical">
 
-<!--                    <View-->
-<!--                        android:id="@+id/view3_review"-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_height="1dp"-->
-<!--                        android:layout_below="@id/order_summary_head"-->
-<!--                        android:background="@color/grey" />-->
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="@dimen/space5">
 
-<!--                    <TextView-->
-<!--                        android:id="@+id/txt_online_consult"-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:layout_below="@id/view3_review"-->
-<!--                        android:layout_marginVertical="@dimen/dp_10"-->
-<!--                        android:layout_marginLeft="@dimen/dp_14"-->
-<!--                        android:text="Online Consultation"-->
-<!--                        android:textColor="@color/black" />-->
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/space10"
+                            android:text="Coupon Code: "
+                            android:textColor="@color/black"
+                            android:textStyle="bold" />
 
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginStart="@dimen/space10"
+                            android:layout_marginEnd="@dimen/space10"
+                            android:text="Apply"
+                            android:textColor="@color/appcolor"
+                            android:textStyle="bold" />
 
-<!--                    <TextView-->
-<!--                        android:id="@+id/priceOnline"-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:layout_below="@id/view3_review"-->
-<!--                        android:layout_alignParentRight="true"-->
-<!--                        android:layout_marginVertical="@dimen/dp_10"-->
-<!--                        android:layout_marginRight="@dimen/dp_15"-->
-<!--                        android:text="\u20B9 0"-->
-<!--                        android:textColor="@color/black"-->
-<!--                        android:textSize="@dimen/sp_14" />-->
+                    </RelativeLayout>
 
-<!--                    <EditText-->
-<!--                        android:id="@+id/coupon_code_edit"-->
-<!--                        android:layout_width="230dp"-->
-<!--                        android:layout_height="40dp"-->
-<!--                        android:layout_below="@id/priceOnline"-->
-<!--                        android:layout_marginHorizontal="@dimen/dp_20"-->
-<!--                        android:layout_marginTop="@dimen/dp_5"-->
-<!--                        android:layout_marginBottom="@dimen/dp_5"-->
-<!--                        android:background="@drawable/bg_edittext_dv"-->
-<!--                        android:hint="Enter coupon Code"-->
-<!--                        android:importantForAutofill="no"-->
-<!--                        android:inputType="textPersonName"-->
-<!--                        android:maxLines="1"-->
-<!--                        android:paddingStart="@dimen/dp_30"-->
-<!--                        android:paddingEnd="@dimen/dp_15"-->
-<!--                        android:textColor="#0C0C0C"-->
-<!--                        android:textSize="15sp"-->
-<!--                        tools:ignore="RtlSymmetry" />-->
-
-<!--                    <androidx.appcompat.widget.AppCompatButton-->
-<!--                        android:id="@+id/account_apply_appointment"-->
-<!--                        android:layout_width="@dimen/dp_100"-->
-<!--                        android:layout_height="@dimen/dp_40"-->
-<!--                        android:layout_below="@id/priceOnline"-->
-<!--                        android:layout_alignParentEnd="true"-->
-<!--                        android:layout_centerHorizontal="true"-->
-<!--                        android:layout_marginTop="5dp"-->
-<!--                        android:layout_marginEnd="@dimen/dp_10"-->
-<!--                        android:layout_marginBottom="@dimen/dp_10"-->
-<!--                        android:background="@drawable/button_design"-->
-<!--                        android:elevation="5dp"-->
-<!--                        android:paddingVertical="@dimen/dp_10"-->
-<!--                        android:text="Apply"-->
-<!--                        android:textAllCaps="false"-->
-<!--                        android:textColor="@color/white"-->
-<!--                        android:textSize="15sp" />-->
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/grey" />
 
 
-<!--                    <View-->
-<!--                        android:id="@+id/view4_review"-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_height="1dp"-->
-<!--                        android:layout_below="@id/account_apply_appointment"-->
-<!--                        android:background="@color/grey" />-->
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/space20"
 
-<!--                    <TextView-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:layout_below="@id/view4_review"-->
-<!--                        android:layout_marginVertical="@dimen/dp_10"-->
-<!--                        android:layout_marginLeft="@dimen/dp_15"-->
-<!--                        android:text="Sub Total"-->
-<!--                        android:textColor="@color/black" />-->
+                        android:layout_marginVertical="@dimen/space10"
+                        android:background="@drawable/ripple">
 
-<!--                    <TextView-->
-<!--                        android:id="@+id/priceSubTotal"-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:layout_below="@id/view4_review"-->
-<!--                        android:layout_alignParentRight="true"-->
-<!--                        android:layout_marginVertical="@dimen/dp_10"-->
-<!--                        android:layout_marginRight="@dimen/dp_15"-->
-<!--                        android:text="\u20B9 0"-->
-<!--                        android:textColor="@color/black"-->
-<!--                        android:textSize="@dimen/sp_15" />-->
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/space10"
+                            android:text="Apply Coupon: "
+                            android:textColor="@color/black"
+                            app:drawableStartCompat="@drawable/baseline_discount_24"
+                            app:drawableTint="@color/grey" />
 
-<!--                    <LinearLayout-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:layout_below="@+id/priceSubTotal"-->
-<!--                        android:layout_marginTop="@dimen/dp_10"-->
-<!--                        android:layout_marginBottom="@dimen/dp_20"-->
-<!--                        android:orientation="horizontal">-->
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="@dimen/space20"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginStart="@dimen/space10"
+                            android:layout_marginEnd="@dimen/space10"
+                            android:rotation="90"
+                            android:src="@drawable/ic_up_arrow"
+                            app:tint="@color/grey" />
 
-<!--                        <CheckBox-->
-<!--                            android:id="@+id/checkBox_terms"-->
-<!--                            android:layout_width="match_parent"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:layout_marginHorizontal="@dimen/dp_10"-->
-<!--                            android:gravity="center_vertical"-->
-<!--                            android:paddingStart="@dimen/dp_10"-->
-<!--                            android:text="@string/terms_conditions_for_online_consultations" />-->
+                    </RelativeLayout>
 
-<!--                    </LinearLayout>-->
+                </LinearLayout>
 
-<!--                </RelativeLayout>-->
-<!--            </androidx.cardview.widget.CardView>-->
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card3_review"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/card"
+                android:layout_marginBottom="@dimen/dp_20"
+                app:cardElevation="@dimen/dp_10">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/order_summary_head"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="@dimen/dp_10"
+                        android:layout_marginLeft="@dimen/dp_15"
+                        android:text="Bill Summary"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/sp_16"
+                        android:textStyle="bold" />
+
+                    <View
+                        android:id="@+id/view4_review"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/grey" />
+
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="@dimen/space5">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/space10"
+                            android:text="Total Amount: "
+                            android:textSize="14sp"
+                            android:textColor="#943C3A3A"
+                             />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginStart="@dimen/space10"
+                            android:layout_marginEnd="@dimen/space10"
+                            android:text="₹1234"
+                            android:textColor="@color/darkgrey" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="@dimen/space5">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/space10"
+                            android:text="Total Discount: "
+                            android:textSize="14sp"
+                            android:textColor="@color/appcolor"
+                             />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginStart="@dimen/space10"
+                            android:layout_marginEnd="@dimen/space10"
+                            android:text="₹124"
+                            android:textColor="@color/appcolor" />
+
+                    </RelativeLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/grey" />
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="@dimen/space5">
+
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/space10"
+                        android:text="To be paid: "
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/appcolor"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginStart="@dimen/space10"
+                        android:layout_marginEnd="@dimen/space10"
+                        android:text="₹124"
+                        android:textStyle="bold"
+                        android:textSize="@dimen/dp_16"
+                        android:textColor="@color/appcolor" />
+                    </RelativeLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/priceSubTotal"
+                        android:layout_marginTop="@dimen/dp_10"
+                        android:layout_marginBottom="@dimen/dp_50"
+                        android:orientation="horizontal">
+
+                        <CheckBox
+                            android:id="@+id/checkBox_terms"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginHorizontal="@dimen/dp_10"
+                            android:gravity="center_vertical"
+                            android:paddingStart="@dimen/dp_10"
+                            android:text="@string/terms_conditions_for_online_consultations" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
 
 
         </RelativeLayout>
     </androidx.core.widget.NestedScrollView>
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_alignParentBottom="true"
+        android:background="@color/white"
+        android:layout_marginTop="@dimen/space10"
+        android:layout_height="@dimen/dp_60">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_marginBottom="@dimen/space20"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/space5">
 
-</LinearLayout>
+
+
+            <TextView
+                android:id="@+id/paid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/space10"
+                android:text="To be paid"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:textColor="@color/darkgrey"
+                />
+
+
+            <TextView
+                android:layout_below="@id/paid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/space10"
+                android:layout_marginEnd="@dimen/space10"
+                android:text="₹124"
+                android:textStyle="bold"
+                android:textSize="@dimen/dp_18"
+                android:textColor="@color/appcolor" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_register"
+                android:layout_width="@dimen/dp_180"
+                android:layout_height="40dp"
+                android:layout_marginEnd="@dimen/space10"
+                android:layout_marginBottom="2dp"
+                android:layout_alignParentEnd="true"
+                android:background="@drawable/btn_bg"
+                android:padding="10dp"
+                android:text="Book Appointment"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</RelativeLayout>

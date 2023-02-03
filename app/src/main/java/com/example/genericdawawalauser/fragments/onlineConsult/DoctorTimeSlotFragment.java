@@ -197,43 +197,23 @@ public class DoctorTimeSlotFragment extends Fragment implements GridViewSelectMo
             }
         });
 
-        back_arrow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        back_arrow.setOnClickListener(v -> requireActivity().onBackPressed());
 
-                requireActivity().onBackPressed();
+        button.setOnClickListener(v -> {
 
-            }
+              FinalAppointmentFragment.doctorModelDetails = doctorModelDetails;
+
+         Navigation.findNavController(v).navigate(R.id.finalAppointmentFragment);
+
         });
 
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                //   ReviewOrderFragment.doctorModelDetails = doctorModelDetails;
-
-                //   Navigation.findNavController(v).navigate(R.id.action_selectTimeSlot_to_reviewOrder);
-
-            }
-        });
-
-        relativeLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        relativeLayout.setOnClickListener(v -> {
 
 //                Navigation.findNavController(view).navigate(R.id.action_selectTimeSlot_to_videoChat);
 
-            }
         });
 
-        selectDate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                getCalendar();
-
-            }
-        });
+        selectDate.setOnClickListener(view -> getCalendar());
 
     }
 

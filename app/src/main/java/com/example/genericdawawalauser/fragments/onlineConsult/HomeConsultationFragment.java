@@ -1,11 +1,19 @@
 package com.example.genericdawawalauser.fragments.onlineConsult;
 
+import android.app.Dialog;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.SearchView;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.navigation.Navigation;
@@ -17,12 +25,14 @@ import com.example.genericdawawalauser.fragments.homefragments.DoctorBySpecialit
 import com.example.genericdawawalauser.modalClass.DoctorModelDetails;
 import com.example.genericdawawalauser.modalClass.DoctorModelRoot;
 import com.example.genericdawawalauser.retrofit.ViewModalClass;
+import com.example.genericdawawalauser.utils.App;
 
 import java.util.ArrayList;
 
 public class HomeConsultationFragment extends Fragment implements Adapter_Recycler_Location.Select {
     FragmentHomeConsultationBinding binding;
     Adapter_Recycler_Location adapter_recycler_location;
+    String problem, symptom;
 
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -43,7 +53,7 @@ public class HomeConsultationFragment extends Fragment implements Adapter_Recycl
 
     private void setData() {
 
-        binding.backArrowSelectLocation.setOnClickListener(v -> {
+        binding.back.setOnClickListener(v -> {
             requireActivity().onBackPressed();
         });
 
@@ -84,7 +94,33 @@ public class HomeConsultationFragment extends Fragment implements Adapter_Recycl
     @Override
     public void onClick(DoctorModelDetails doctorModelDetails) {
         DoctorBySpecialitiesFragment.doctorModelDetails = doctorModelDetails;
-
         Navigation.findNavController(binding.getRoot()).navigate(R.id.doctorBySpecialitiesFragment2);
+
+        App.getSingleton().setProblem(doctorModelDetails.getSpecialty());
+
+//        final Dialog dialog = new Dialog(requireActivity());
+//        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+//        dialog.setCancelable(true);
+//        dialog.setCanceledOnTouchOutside(false);
+//        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+//        dialog.setContentView(R.layout.symptom_layout);
+//        EditText text =  dialog.findViewById(R.id.symptom);
+//        AppCompatButton dialogButton =  dialog.findViewById(R.id.btn_next);
+//        dialogButton.setOnClickListener(v -> {
+//             symptom = text.getText().toString();
+//
+//            App.getSingleton().setSymptom(symptom);
+//            if (symptom.isEmpty())
+//            {
+//                Toast.makeText(requireActivity(), "Please enter your symptom", Toast.LENGTH_SHORT).show();
+//
+//            }else {
+//
+//
+//            }
+//
+//        });
+
+
     }
 }

@@ -6,32 +6,30 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragments.onlineConsult.DoctorTimeSlotFragment">
 
-    <RelativeLayout
-        android:id="@+id/relative_select_time"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/dp_15"
-        android:paddingVertical="15dp">
+        android:layout_height="@dimen/space50"
+        android:id="@+id/relative_select_time"
+        android:background="@color/appcolor"
+        android:orientation="horizontal">
 
         <ImageView
-            android:id="@+id/back_arrow_time_slot"
-            android:layout_width="@dimen/dp_24"
-            android:layout_height="@dimen/dp_24"
-            android:layout_alignParentLeft="true"
-            android:src="@drawable/left_arrow" />
-
-        <TextView
-            android:id="@+id/text_location"
+            android:id="@+id/back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
             android:layout_gravity="center"
-            android:gravity="center"
-            android:text="Select Time Slot"
-            android:textColor="@color/black"
-            android:textSize="@dimen/sp_18" />
+            android:layout_marginStart="@dimen/space10"
+            android:src="@drawable/ic_baseline_arrow_back_24"
+            app:tint="@color/white" />
 
-    </RelativeLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="@dimen/space20"
+            android:text="Select Time Slot"
+            android:textColor="@color/white" />
+    </LinearLayout>
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

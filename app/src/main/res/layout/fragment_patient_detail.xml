@@ -30,163 +30,198 @@
             android:textColor="@color/white" />
     </LinearLayout>
 
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/card5"
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:layout_below="@+id/card4"
-        android:layout_marginStart="@dimen/space10"
-        android:layout_marginLeft="@dimen/space20"
-        android:layout_marginTop="@dimen/space10"
-        android:layout_marginEnd="@dimen/space10"
-        android:layout_marginRight="@dimen/space20"
-        android:layout_marginBottom="@dimen/space10"
-        app:cardCornerRadius="@dimen/space10"
-        app:cardElevation="@dimen/space6">
+        android:fillViewport="true"
+        android:layout_height="match_parent">
 
-        <ImageView
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="fitXY"
-            android:src="@drawable/banner" />
-    </com.google.android.material.card.MaterialCardView>
+            android:orientation="vertical"
+            android:layout_height="match_parent">
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/card5"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_below="@+id/card4"
+                android:layout_marginStart="@dimen/space10"
+                android:layout_marginLeft="@dimen/space20"
+                android:layout_marginTop="@dimen/space10"
+                android:layout_marginEnd="@dimen/space10"
+                android:layout_marginRight="@dimen/space20"
+                android:layout_marginBottom="@dimen/space10"
+                app:cardCornerRadius="@dimen/space10"
+                app:cardElevation="@dimen/space6">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/space10"
-        android:layout_marginLeft="@dimen/space10"
-        android:layout_marginTop="@dimen/space10"
-        android:layout_marginRight="@dimen/space10"
-        android:text="@string/asd"
-        android:textColor="@color/appcolor"
-        android:textStyle="bold" />
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/banner" />
+            </com.google.android.material.card.MaterialCardView>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyler_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/space10"
-        android:layout_marginTop="@dimen/space10"
-        android:layout_marginRight="@dimen/space10"
-        android:layout_marginBottom="@dimen/space10"
-        android:orientation="horizontal"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/space10"
+                android:layout_marginLeft="@dimen/space10"
+                android:layout_marginTop="@dimen/space10"
+                android:layout_marginRight="@dimen/space10"
+                android:text="@string/asd"
+                android:textColor="@color/appcolor"
+                android:textStyle="bold" />
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:layout_marginLeft="@dimen/space10"
-        android:layout_marginTop="@dimen/space10"
-        android:layout_marginRight="@dimen/space10">
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyler_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/space10"
+                android:layout_marginTop="@dimen/space10"
+                android:layout_marginRight="@dimen/space10"
+                android:layout_marginBottom="@dimen/space10"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="@dimen/space170"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_gravity="center"
-            android:layout_marginTop="10dp"
-            android:hint="Patient Age"
-            app:endIconMode="clear_text"
-            app:startIconTint="@color/appcolor">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:layout_marginLeft="@dimen/space10"
+                android:layout_marginTop="@dimen/space10"
+                android:layout_marginRight="@dimen/space10">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/signIn_email"
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="@dimen/space170"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:hint="Patient Age"
+                    app:endIconMode="clear_text"
+                    app:startIconTint="@color/appcolor">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/age"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="number" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="@dimen/space50"
+                    android:layout_height="@dimen/space50"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="@dimen/space100"
+                    android:elevation="@dimen/space5"
+                    app:cardCornerRadius="@dimen/space100">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:id="@+id/male"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:layout_width="@dimen/space35"
+                            android:layout_height="@dimen/space35"
+                            android:layout_centerInParent="true"
+                            android:src="@drawable/male" />
+                    </RelativeLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="@dimen/space50"
+                    android:layout_height="@dimen/space50"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="@dimen/space35"
+                    android:elevation="@dimen/space5"
+                    app:cardCornerRadius="@dimen/space100">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:id="@+id/feMale"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:layout_width="@dimen/space35"
+                            android:layout_height="@dimen/space35"
+                            android:layout_centerInParent="true"
+                            android:src="@drawable/woman" />
+                    </RelativeLayout>
+                </com.google.android.material.card.MaterialCardView>
+            </RelativeLayout>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/space10"
+                android:layout_marginLeft="@dimen/space10"
+                android:layout_marginTop="@dimen/space10"
+                android:layout_marginRight="@dimen/space10"
+                android:text="Doctor will call you on this number"
+                android:textColor="@color/appcolor"
+                android:textStyle="bold" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="number" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:layout_gravity="center"
+                android:layout_marginLeft="@dimen/space20"
+                android:layout_marginTop="@dimen/space20"
+                android:layout_marginRight="@dimen/space20"
+                android:layout_marginBottom="@dimen/space5"
+                android:hint="Mobile Number"
+                app:endIconMode="clear_text"
+                app:startIconDrawable="@drawable/ic_phone_digital_communication_tool"
+                app:startIconTint="@color/appcolor">
 
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="@dimen/space50"
-            android:layout_height="@dimen/space50"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            android:layout_marginEnd="@dimen/space100"
-            android:elevation="@dimen/space5"
-            app:cardCornerRadius="@dimen/space100">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/number"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="phone" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <RelativeLayout
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="@dimen/space20"
+                android:layout_marginTop="@dimen/space5"
+                android:layout_marginRight="@dimen/space20"
+                android:layout_marginBottom="@dimen/space20"
+                android:hint="Patient Name"
+                app:endIconMode="clear_text"
+                app:startIconDrawable="@drawable/ic_baseline_account_circle_24"
+                app:startIconTint="@color/appcolor">
 
-                <ImageView
-                    android:layout_width="@dimen/space35"
-                    android:layout_height="@dimen/space35"
-                    android:layout_centerInParent="true"
-                    android:src="@drawable/male" />
-            </RelativeLayout>
-        </com.google.android.material.card.MaterialCardView>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="@dimen/space50"
-            android:layout_height="@dimen/space50"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            android:layout_marginEnd="@dimen/space35"
-            android:elevation="@dimen/space5"
-            app:cardCornerRadius="@dimen/space100">
-
-            <RelativeLayout
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_next"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/space20"
+                android:layout_marginTop="@dimen/space20"
+                android:layout_marginRight="@dimen/space20"
+                android:layout_marginBottom="@dimen/space20"
+                android:background="@drawable/btn_bg"
+                android:padding="10dp"
+                android:text="Next"
+                android:textAllCaps="true"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
 
-                <ImageView
-                    android:layout_width="@dimen/space35"
-                    android:layout_height="@dimen/space35"
-                    android:layout_centerInParent="true"
-                    android:src="@drawable/woman" />
-            </RelativeLayout>
-        </com.google.android.material.card.MaterialCardView>
-    </RelativeLayout>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/space10"
-        android:layout_marginLeft="@dimen/space10"
-        android:layout_marginTop="@dimen/space10"
-        android:layout_marginRight="@dimen/space10"
-        android:text="Phone Number"
-        android:textColor="@color/appcolor"
-        android:textStyle="bold" />
-
-    <com.google.android.material.textfield.TextInputLayout
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginLeft="@dimen/space20"
-        android:layout_marginTop="@dimen/space20"
-        android:layout_marginRight="@dimen/space20"
-        android:layout_marginBottom="@dimen/space20"
-        android:hint="Mobile Number"
-        app:endIconMode="clear_text"
-        app:startIconDrawable="@drawable/ic_phone_digital_communication_tool"
-        app:startIconTint="@color/appcolor">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/phone_no"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="phone" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_next"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/space20"
-        android:layout_marginTop="@dimen/space20"
-        android:layout_marginRight="@dimen/space20"
-        android:layout_marginBottom="@dimen/space20"
-        android:background="@drawable/btn_bg"
-        android:fontFamily="@font/nunito"
-        android:padding="10dp"
-        android:text="Next"
-        android:textAllCaps="true"
-        android:textColor="@color/white"
-        android:textSize="16sp"
-        android:textStyle="bold" />
 </LinearLayout>

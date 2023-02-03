@@ -10,11 +10,13 @@ import androidx.lifecycle.ViewModel;
 
 import com.example.genericdawawalauser.modalClass.ChangePasswordModal;
 import com.example.genericdawawalauser.modalClass.DoctorModelRoot;
+import com.example.genericdawawalauser.modalClass.GenerateOrderIdModel;
 import com.example.genericdawawalauser.modalClass.RegisterModelRoot;
 import com.example.genericdawawalauser.modalClass.TimeSlotsModels.TimeSlotsModelRoot;
 import com.example.genericdawawalauser.modalClass.UniqueAPiModel;
 import com.example.genericdawawalauser.modalClass.UpdateUserPhoneModel;
 import com.example.genericdawawalauser.modalClass.WalletAmountModal;
+import com.example.genericdawawalauser.modalClass.WalletHistoryModal;
 import com.example.genericdawawalauser.utils.CommonUtils;
 
 import okhttp3.MultipartBody;
@@ -270,6 +272,7 @@ public class ViewModalClass extends ViewModel {
                     Toast.makeText(activity, "Technical error", Toast.LENGTH_SHORT).show();
                 }
             }
+
             @Override
             public void onFailure(Call<TimeSlotsModelRoot> call, Throwable t) {
                 Toast.makeText(activity, "" + t.getMessage(), Toast.LENGTH_SHORT).show();
@@ -282,12 +285,13 @@ public class ViewModalClass extends ViewModel {
     private MutableLiveData<WalletAmountModal> walletAmountModalMutableLiveData;
 
     public LiveData<WalletAmountModal> walletAmountModalLiveData(Activity activity, String userId) {
-
+        CommonUtils.showProgress(activity, "Loading....");
         walletAmountModalMutableLiveData = new MutableLiveData<>();
 
         apiInterface.getUserWallet(userId).enqueue(new Callback<WalletAmountModal>() {
             @Override
             public void onResponse(@NonNull Call<WalletAmountModal> call, Response<WalletAmountModal> response) {
+                CommonUtils.dismissProgress();
                 if (response.body() != null) {
                     if (response.body().getSuccess().equals("0")) {
                         Toast.makeText(activity, "" + response.body().getMessage(), Toast.LENGTH_SHORT).show();
@@ -298,11 +302,100 @@ public class ViewModalClass extends ViewModel {
                     Toast.makeText(activity, "Technical error", Toast.LENGTH_SHORT).show();
                 }
             }
+
             @Override
             public void onFailure(Call<WalletAmountModal> call, Throwable t) {
+                CommonUtils.dismissProgress();
                 Toast.makeText(activity, "" + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
         return walletAmountModalMutableLiveData;
+    }
+
+
+    private MutableLiveData<GenerateOrderIdModel> genOrderId;
+
+    public LiveData<GenerateOrderIdModel> generateOrderId(final Activity activity, String amount) {
+
+        genOrderId = new MutableLiveData<>();
+        CommonUtils.showProgress(activity, "Loading....");
+        apiInterface.generateOrderId(amount).enqueue(new Callback<GenerateOrderIdModel>() {
+            @Override
+            public void onResponse(Call<GenerateOrderIdModel> call, Response<GenerateOrderIdModel> response) {
+                CommonUtils.dismissProgress();
+                if (response.body() != null) {
+                    genOrderId.postValue(response.body());
+                } else {
+                    Toast.makeText(activity, " body null ", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<GenerateOrderIdModel> call, Throwable t) {
+                CommonUtils.dismissProgress();
+                Toast.makeText(activity, t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        return genOrderId;
+    }
+
+
+    private MutableLiveData<WalletAmountModal> emergencyPaymentModalMutableLiveData;
+
+    public LiveData<WalletAmountModal> AddWalletAmountModalLiveData(Activity activity, String userId, String amount, String razorpay_order_id, String razorpay_payment_id, String razorpay_signature) {
+
+        emergencyPaymentModalMutableLiveData = new MutableLiveData<>();
+        CommonUtils.showProgress(activity, "Loading....");
+        apiInterface.addUserWallet(userId, amount, razorpay_order_id, razorpay_payment_id, razorpay_signature).enqueue(new Callback<WalletAmountModal>() {
+            @Override
+            public void onResponse(@NonNull Call<WalletAmountModal> call, Response<WalletAmountModal> response) {
+                CommonUtils.dismissProgress();
+                if (response.body() != null) {
+                    emergencyPaymentModalMutableLiveData.postValue(response.body());
+                } else {
+                    emergencyPaymentModalMutableLiveData.postValue(null);
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<WalletAmountModal> call, Throwable t) {
+                CommonUtils.dismissProgress();
+                emergencyPaymentModalMutableLiveData.postValue(null);
+
+            }
+        });
+
+        return emergencyPaymentModalMutableLiveData;
+
+    }
+
+
+    private MutableLiveData<WalletHistoryModal> walletHistoryModalMutableLiveData;
+
+    public LiveData<WalletHistoryModal> walletHistoryModalLiveData(Activity activity, String userId) {
+
+        emergencyPaymentModalMutableLiveData = new MutableLiveData<>();
+        apiInterface.userWalletHistory(userId).enqueue(new Callback<WalletHistoryModal>() {
+            @Override
+            public void onResponse(@NonNull Call<WalletHistoryModal> call, Response<WalletHistoryModal> response) {
+                if (response.body() != null) {
+                    walletHistoryModalMutableLiveData.postValue(response.body());
+                } else {
+                    walletHistoryModalMutableLiveData.postValue(null);
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<WalletHistoryModal> call, Throwable t) {
+                walletHistoryModalMutableLiveData.postValue(null);
+
+            }
+        });
+
+        return walletHistoryModalMutableLiveData;
+
     }
 }

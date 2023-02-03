@@ -2,6 +2,10 @@ package com.example.genericdawawalauser.utils;
 
 public class Singleton {
     public String DocAddress;
+    public String age;
+    public String number;
+    public String relation;
+    public String gender;
     public String DocEmail;
     public String DocGender;
     public String DocLicenseNum;
@@ -80,6 +84,82 @@ public class Singleton {
     private String string_Password;
     public String surname;
     public String user;
+    public String symptom;
+    public String problem;
+    public String fees;
+    public String doctor_id;
+
+    public String getFees() {
+        return fees;
+    }
+
+    public void setFees(String fees) {
+        this.fees = fees;
+    }
+
+    public String getDoctor_id() {
+        return doctor_id;
+    }
+
+    public void setDoctor_id(String doctor_id) {
+        this.doctor_id = doctor_id;
+    }
+
+    public String getProblem() {
+        return problem;
+    }
+
+    public void setProblem(String problem) {
+        this.problem = problem;
+    }
+
+    public String getSymptom() {
+        return symptom;
+    }
+
+    public void setSymptom(String symptom) {
+        this.symptom = symptom;
+    }
+
+    public String getAge() {
+        return age;
+    }
+
+    public void setAge(String age) {
+        this.age = age;
+    }
+
+    public String getNumber() {
+        return number;
+    }
+
+    public void setNumber(String number) {
+        this.number = number;
+    }
+
+    public String getRelation() {
+        return relation;
+    }
+
+    public void setRelation(String relation) {
+        this.relation = relation;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public String getF0id() {
+        return f0id;
+    }
+
+    public void setF0id(String f0id) {
+        this.f0id = f0id;
+    }
 
     public String getDriverEmail() {
         return this.driverEmail;

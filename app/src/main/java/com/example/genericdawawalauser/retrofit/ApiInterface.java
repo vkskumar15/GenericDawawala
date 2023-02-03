@@ -2,11 +2,13 @@ package com.example.genericdawawalauser.retrofit;
 
 import com.example.genericdawawalauser.modalClass.ChangePasswordModal;
 import com.example.genericdawawalauser.modalClass.DoctorModelRoot;
+import com.example.genericdawawalauser.modalClass.GenerateOrderIdModel;
 import com.example.genericdawawalauser.modalClass.RegisterModelRoot;
 import com.example.genericdawawalauser.modalClass.TimeSlotsModels.TimeSlotsModelRoot;
 import com.example.genericdawawalauser.modalClass.UniqueAPiModel;
 import com.example.genericdawawalauser.modalClass.UpdateUserPhoneModel;
 import com.example.genericdawawalauser.modalClass.WalletAmountModal;
+import com.example.genericdawawalauser.modalClass.WalletHistoryModal;
 
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -71,6 +73,30 @@ public interface ApiInterface {
     @FormUrlEncoded
     @POST("getUserWallet")
     Call<WalletAmountModal> getUserWallet(
+            @Field("userId") String userId
+    );
+
+    @FormUrlEncoded
+    @POST("orderIdGenerate")
+    Call<GenerateOrderIdModel> generateOrderId(
+            @Field("amount") String amount
+    );
+
+    @FormUrlEncoded
+    @POST("addUserWallet")
+    Call<WalletAmountModal> addUserWallet(
+            @Field("userId") String userId,
+            @Field("wallet_amount") String wallet_amount,
+            @Field("razorpay_order_id") String razorpay_order_id,
+            @Field("razorpay_payment_id") String razorpay_payment_id,
+            @Field("razorpay_signature") String razorpay_signature
+
+    );
+
+
+    @FormUrlEncoded
+    @POST("userWalletHistory")
+    Call<WalletHistoryModal> userWalletHistory(
             @Field("userId") String userId
     );
 

@@ -5,45 +5,68 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <androidx.cardview.widget.CardView
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:cardBackgroundColor="#cce7f4"
+        android:layout_height="140dp"
         app:cardCornerRadius="@dimen/space20"
-        app:cardElevation="@dimen/space2"
-        app:cardUseCompatPadding="true">
+        app:strokeColor="@color/red"
+        android:layout_marginHorizontal="@dimen/space10"
+        android:layout_marginTop="@dimen/space10"
+        android:layout_marginBottom="@dimen/space5"
+        app:strokeWidth="@dimen/space1"
+        app:cardElevation="@dimen/space12">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/space20">
+            android:layout_height="wrap_content">
 
-            <LinearLayout
+            <RelativeLayout
                 android:id="@+id/txt_title"
                 android:layout_width="match_parent"
+                android:layout_marginStart="@dimen/space10"
+                android:layout_marginTop="@dimen/space20"
                 android:layout_height="@dimen/space30">
 
                 <ImageView
-                    android:id="@+id/image"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:id="@+id/credit"
+                    android:layout_width="@dimen/space20"
+                    android:layout_height="@dimen/space20"
+                    android:layout_centerVertical="true"
                     android:layout_gravity="center_vertical"
                     android:rotation="180"
                     android:src="@drawable/ic_up_arrow"
                     app:tint="@color/green" />
 
+
+
                 <TextView
+                    android:id="@+id/credited"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="@dimen/space10"
-                    android:layout_toRightOf="@+id/image"
+                    android:layout_toRightOf="@+id/credit"
+                    android:layout_centerVertical="true"
                     android:gravity="center"
-                    android:text="CREDITED"
-                    android:textColor="@color/black"
+                    android:text="Credited"
+                    android:textAllCaps="false"
+                    android:textColor="@color/appcolor"
                     android:textSize="@dimen/sp_14"
                     android:textStyle="bold" />
-            </LinearLayout>
+
+                <TextView
+                    android:id="@+id/txt_amount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/space10"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:text="₹ 1000"
+                    android:textColor="@color/black"
+
+                    android:textSize="@dimen/sp_14"
+                    android:textStyle="bold" />
+            </RelativeLayout>
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -59,6 +82,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/space10"
                         android:text="Transaction Id : "
                         android:textColor="@color/black"
                         android:textSize="@dimen/text12" />
@@ -72,26 +96,40 @@
                         android:textSize="@dimen/text12" />
                 </LinearLayout>
 
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_marginTop="@dimen/space5"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/space10"
+                        android:text="Payment Id : "
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text12" />
+
+                    <TextView
+                        android:id="@+id/txt_payment_id_lab"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="123456789012345689"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text12" />
+                </LinearLayout>
+
                 <TextView
                     android:id="@+id/txt_date_and_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/space10"
+                    android:layout_marginTop="@dimen/space5"
                     android:text="15 September,2021  05:35:45"
                     android:textColor="#716262"
+                    android:layout_marginStart="@dimen/space10"
                     android:textSize="@dimen/text12" />
             </LinearLayout>
 
-            <TextView
-                android:id="@+id/txt_amount"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:text="₹ 1000"
-                android:textColor="@color/black"
-                android:textSize="@dimen/sp_14"
-                android:textStyle="bold" />
+
         </RelativeLayout>
-    </androidx.cardview.widget.CardView>
+    </com.google.android.material.card.MaterialCardView>
 </RelativeLayout>

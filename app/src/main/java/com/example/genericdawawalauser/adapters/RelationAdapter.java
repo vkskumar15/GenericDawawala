@@ -16,16 +16,13 @@ public class RelationAdapter extends RecyclerView.Adapter<RelationAdapter.ViewHo
     private Context context;
     private List<RelationModal> list;
     private SelectData selectData;
+
     private int rowIndex=-1;
 
     public interface SelectData{
 
         void onClick(RelationModal relationModal);
 
-    }
-    public RelationAdapter(Context context2, List<RelationModal> list2) {
-        this.context = context2;
-        this.list = list2;
     }
 
 
@@ -39,6 +36,7 @@ public class RelationAdapter extends RecyclerView.Adapter<RelationAdapter.ViewHo
         return new ViewHolder(PatientLayoutBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false));
     }
 
+    @SuppressLint("ResourceAsColor")
     public void onBindViewHolder(ViewHolder holder, @SuppressLint("RecyclerView") int position) {
         holder.binding.testName.setText(this.list.get(position).getName());
 
@@ -55,12 +53,13 @@ public class RelationAdapter extends RecyclerView.Adapter<RelationAdapter.ViewHo
 
         if (rowIndex == position) {
 
-            holder.itemView.setBackgroundResource(R.drawable.outline_select_slot_address);
+            holder.binding.card.setBackgroundResource(R.drawable.outline_select_slot_address);
             holder.binding.testName.setTextColor(Color.WHITE);
 
         } else {
 
             holder.binding.testName.setTextColor(Color.BLACK);
+            holder.binding.card.setBackgroundColor(Color.parseColor("#FFFFFFFF"));
 
         }
     }

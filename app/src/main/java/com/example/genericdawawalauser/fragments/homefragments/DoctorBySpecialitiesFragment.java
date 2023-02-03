@@ -21,11 +21,11 @@ import com.example.genericdawawalauser.fragments.onlineConsult.DoctorTimeSlotFra
 import com.example.genericdawawalauser.modalClass.DoctorModelDetails;
 import com.example.genericdawawalauser.modalClass.DoctorModelRoot;
 import com.example.genericdawawalauser.retrofit.ViewModalClass;
+import com.example.genericdawawalauser.utils.App;
 
 public class DoctorBySpecialitiesFragment extends Fragment {
     FragmentDoctorBySpecialitiesBinding binding;
     public static DoctorModelDetails doctorModelDetails;
-
 
 
     @Override
@@ -53,10 +53,14 @@ public class DoctorBySpecialitiesFragment extends Fragment {
                     DoctorBySpecialitiesAdapter adapter = new DoctorBySpecialitiesAdapter(requireContext(), doctorModelDetails -> {
 
                         DoctorDetailsFragment.doctorModelDetails =doctorModelDetails;
-
                         Navigation.findNavController(binding.getRoot()).navigate(R.id.doctorDetailsFragment);
+
+
+
                     }, doctorModelRoot.getDetails(), doctorModelDetails -> {
                         DoctorTimeSlotFragment.doctorModelDetails = doctorModelDetails;
+                        App.getSingleton().setFees(doctorModelDetails.getOnline_price());
+                        App.getSingleton().setDoctor_id(doctorModelDetails.getDoc_vendorId());
                         Navigation.findNavController(binding.getRoot()).navigate(R.id.doctorTimeSlotFragment);
                     });
                     binding.recyclerConsult.setAdapter(adapter);

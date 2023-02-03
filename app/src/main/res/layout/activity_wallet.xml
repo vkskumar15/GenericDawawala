@@ -85,6 +85,24 @@
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/space5"
+                android:layout_marginBottom="@dimen/space5"
+                android:hint="Enter Amount"
+                app:endIconMode="clear_text">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/amount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_tap_to_withdraw"
                 android:layout_width="wrap_content"
@@ -97,6 +115,8 @@
                 android:paddingLeft="@dimen/space30"
                 android:paddingRight="@dimen/space30"
                 android:textColorHint="@color/white" />
+
+
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 

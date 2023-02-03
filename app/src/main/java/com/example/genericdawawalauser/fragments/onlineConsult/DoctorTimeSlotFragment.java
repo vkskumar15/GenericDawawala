@@ -73,8 +73,7 @@ public class DoctorTimeSlotFragment extends Fragment implements GridViewSelectMo
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_doctor_time_slot, container, false);
 
@@ -91,6 +90,9 @@ public class DoctorTimeSlotFragment extends Fragment implements GridViewSelectMo
         doctorId = doctorModelDetails.getId();
 
         selectDate.setText(getDateTime());
+
+        FinalAppointmentFragment.appointmentDateToSend = getDateTimeToSend();
+        FinalAppointmentFragment.appointmentDateToShow = getDateTime();
 
 
         if (doctorModelDetails != null) {
@@ -201,9 +203,9 @@ public class DoctorTimeSlotFragment extends Fragment implements GridViewSelectMo
 
         button.setOnClickListener(v -> {
 
-              FinalAppointmentFragment.doctorModelDetails = doctorModelDetails;
+            FinalAppointmentFragment.doctorModelDetails = doctorModelDetails;
 
-         Navigation.findNavController(v).navigate(R.id.finalAppointmentFragment);
+            Navigation.findNavController(v).navigate(R.id.finalAppointmentFragment);
 
         });
 
@@ -220,7 +222,7 @@ public class DoctorTimeSlotFragment extends Fragment implements GridViewSelectMo
     private void setData() {
 
         Glide.with(getContext()).load(Uri.parse(doctorModelDetails.getDoctorImage())).error(R.drawable.doctor_12).into(doctorImage);
-        doctor_name.setText("Dr. "+doctorModelDetails.getName());
+        doctor_name.setText("Dr. " + doctorModelDetails.getName());
         String specialityAndQualification = doctorModelDetails.getQualificationTitle() + " , " + doctorModelDetails.getSpecialistTitle();
         doctorQualificationAndSpeciality.setText(specialityAndQualification);
         String price = "\u20B9 " + doctorModelDetails.getOnline_price();
@@ -233,7 +235,7 @@ public class DoctorTimeSlotFragment extends Fragment implements GridViewSelectMo
 
         relativeLayout = view.findViewById(R.id.relative_select_time_3);
 //        recyclerView= view.findViewById(R.id.recycler_time_slot);
-        back_arrow = view.findViewById(R.id.back_arrow_time_slot);
+        back_arrow = view.findViewById(R.id.back);
         button = view.findViewById(R.id.btn_continue);
 
         back_arrow.setOnClickListener(v -> {
@@ -267,7 +269,7 @@ public class DoctorTimeSlotFragment extends Fragment implements GridViewSelectMo
     @Override
     public void onClick(String slot) {
 
-
+        FinalAppointmentFragment.appointmentSlot = slot;
         button.setVisibility(View.VISIBLE);
 
     }
@@ -293,43 +295,31 @@ public class DoctorTimeSlotFragment extends Fragment implements GridViewSelectMo
     }
 
     private void getCalendar() {
-        // Get Current Date
         final Calendar c = Calendar.getInstance();
         mYear = c.get(Calendar.YEAR);
         mMonth = c.get(Calendar.MONTH);
         mDay = c.get(Calendar.DAY_OF_MONTH);
 
-        DatePickerDialog datePickerDialog = new DatePickerDialog(getActivity(), new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(android.widget.DatePicker view, int i, int i1, int i2) {
-                Date myDate = new Date();
-                myDate.setMonth(i1);
-                myDate.setYear(i - 1900);
-                myDate.setDate(i2);
-//                        date=dayOfMonth + "/" + (monthOfYear + 1) + "/" + year;
-                SimpleDateFormat dmyFormat = new SimpleDateFormat("yyyy-MM-dd");
-                // Format the date to Strings
-                String mdy = dmyFormat.format(myDate);
+        DatePickerDialog datePickerDialog = new DatePickerDialog(getActivity(), (view, i, i1, i2) -> {
+            Date myDate = new Date();
+            myDate.setMonth(i1);
+            myDate.setYear(i - 1900);
+            myDate.setDate(i2);
+            SimpleDateFormat dmyFormat = new SimpleDateFormat("yyyy-MM-dd");
+            String mdy = dmyFormat.format(myDate);
 
-                dateToSend = mdy;
+            dateToSend = mdy;
 
-                //  ReviewOrderFragment.appointmentDateToSend=dateToSend;
+            FinalAppointmentFragment.appointmentDateToSend = dateToSend;
+            SimpleDateFormat dmyFormat2 = new SimpleDateFormat("dd-MMM-yyyy");
+            String mdy2 = dmyFormat2.format(myDate);
+            selected_date = mdy2;
 
-//                Toast.makeText(getContext(), "date to send :- "+dateToSend, Toast.LENGTH_SHORT).show();
+            selectDate.setText(selected_date);
 
-                SimpleDateFormat dmyFormat2 = new SimpleDateFormat("dd-MMM-yyyy");
-                // Format the date to Strings
-                String mdy2 = dmyFormat2.format(myDate);
+            FinalAppointmentFragment.appointmentDateToShow = selected_date;
 
-                selected_date = mdy2;
-
-                selectDate.setText(selected_date);
-
-                // ReviewOrderFragment.appointmentDateToShow=selected_date;
-
-                getSlots(doctorId, dateToSend);
-
-            }
+            getSlots(doctorId, dateToSend);
 
         }, mYear, mMonth, mDay);
 
@@ -368,6 +358,7 @@ public class DoctorTimeSlotFragment extends Fragment implements GridViewSelectMo
                         if (timeSlotsModelRoot.getDetails().getMorning_type().equalsIgnoreCase("1")) {
 
                             mCheck = 1;
+
 
                             gridViewSelectMorningSlotAdapter = new GridViewSelectMorningSlotAdapter(getContext(), timeSlotsModelRoot.getDetails().getMorning_slots(), DoctorTimeSlotFragment.this);
                             gridViewMorning.setAdapter(gridViewSelectMorningSlotAdapter);

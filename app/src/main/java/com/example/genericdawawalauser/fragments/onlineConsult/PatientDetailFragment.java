@@ -1,9 +1,12 @@
 package com.example.genericdawawalauser.fragments.onlineConsult;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
+
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
@@ -11,6 +14,8 @@ import com.example.genericdawawalauser.R;
 import com.example.genericdawawalauser.adapters.RelationAdapter;
 import com.example.genericdawawalauser.databinding.FragmentPatientDetailBinding;
 import com.example.genericdawawalauser.modalClass.RelationModal;
+import com.example.genericdawawalauser.utils.App;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,11 +23,16 @@ public class PatientDetailFragment extends Fragment {
     private RelationAdapter adapter;
     FragmentPatientDetailBinding binding;
     private List<RelationModal> list = new ArrayList();
+    String gender, relation;
+
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         this.binding = FragmentPatientDetailBinding.inflate(inflater, container, false);
+
         setAdapter();
         onClicks();
+
+
         this.list.add(new RelationModal("Myself"));
         this.list.add(new RelationModal("Wife"));
         this.list.add(new RelationModal("Father"));
@@ -39,8 +49,61 @@ public class PatientDetailFragment extends Fragment {
     }
 
     private void onClicks() {
+
+        binding.male.setOnClickListener(v -> {
+
+            gender = "male";
+            binding.male.setBackgroundColor(Color.parseColor("#0daaed"));
+            binding.feMale.setBackgroundColor(Color.parseColor("#FFFFFFFF"));
+
+
+        });
+
+        binding.feMale.setOnClickListener(v -> {
+
+            gender = "female";
+            binding.feMale.setBackgroundColor(Color.parseColor("#0daaed"));
+            binding.male.setBackgroundColor(Color.parseColor("#FFFFFFFF"));
+
+        });
+
+
         this.binding.btnNext.setOnClickListener(view -> {
-            Navigation.findNavController(this.binding.getRoot()).navigate(R.id.homeConsultationFragment);
+            String age = binding.age.getText().toString();
+            String number = binding.number.getText().toString();
+            String name = binding.name.getText().toString();
+
+            if (relation==null)
+            {
+                Toast.makeText(requireActivity(), "Select Relation", Toast.LENGTH_SHORT).show();
+
+            }else if (age.isEmpty())
+            {
+                Toast.makeText(requireActivity(), "Enter age", Toast.LENGTH_SHORT).show();
+
+            }else if (gender==null)
+            {
+                Toast.makeText(requireActivity(), "Select Gender", Toast.LENGTH_SHORT).show();
+
+            }else if (number.isEmpty())
+            {
+                Toast.makeText(requireActivity(), "Enter Mobile Number", Toast.LENGTH_SHORT).show();
+
+            }else if (name.isEmpty())
+            {
+                Toast.makeText(requireActivity(), "Enter Patient Name", Toast.LENGTH_SHORT).show();
+
+            }else {
+
+                App.getSingleton().setRelation(relation);
+                App.getSingleton().setAge(age);
+                App.getSingleton().setGender(gender);
+                App.getSingleton().setNumber(number);
+                App.getSingleton().setName(name);
+
+                Navigation.findNavController(this.binding.getRoot()).navigate(R.id.homeConsultationFragment);
+
+            }
 
         });
         this.binding.back.setOnClickListener(view -> {
@@ -51,7 +114,9 @@ public class PatientDetailFragment extends Fragment {
 
 
     private void setAdapter() {
-        this.adapter = new RelationAdapter(requireContext(), this.list);
+        this.adapter = new RelationAdapter(requireContext(), this.list, relationModal -> {
+            relation = relationModal.getName();
+        });
         this.binding.recylerView.setAdapter(this.adapter);
     }
 }

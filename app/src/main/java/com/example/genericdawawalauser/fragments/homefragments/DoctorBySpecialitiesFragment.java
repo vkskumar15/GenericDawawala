@@ -29,8 +29,7 @@ public class DoctorBySpecialitiesFragment extends Fragment {
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         binding = FragmentDoctorBySpecialitiesBinding.inflate(inflater, container, false);
 
@@ -38,29 +37,28 @@ public class DoctorBySpecialitiesFragment extends Fragment {
         setAdapter();
 
         binding.backArrowConsultPhysician.setOnClickListener(v -> {
+
             requireActivity().onBackPressed();
+
         });
         return binding.getRoot();
     }
 
     private void setAdapter() {
 
-        new ViewModalClass().getDoctorsAsPerSpecialityLiveData(requireActivity(), doctorModelDetails.getId(), String.valueOf(latitude),String.valueOf(longitude)).observe(requireActivity(), new Observer<DoctorModelRoot>() {
+        new ViewModalClass().getDoctorsAsPerSpecialityLiveData(requireActivity(), doctorModelDetails.getId(), String.valueOf(latitude), String.valueOf(longitude)).observe(requireActivity(), new Observer<DoctorModelRoot>() {
             @Override
             public void onChanged(DoctorModelRoot doctorModelRoot) {
-                if (doctorModelRoot.getSuccess().equalsIgnoreCase("1"))
-                {
+                if (doctorModelRoot.getSuccess().equalsIgnoreCase("1")) {
                     DoctorBySpecialitiesAdapter adapter = new DoctorBySpecialitiesAdapter(requireContext(), doctorModelDetails -> {
 
-                        DoctorDetailsFragment.doctorModelDetails =doctorModelDetails;
+                        DoctorDetailsFragment.doctorModelDetails = doctorModelDetails;
                         Navigation.findNavController(binding.getRoot()).navigate(R.id.doctorDetailsFragment);
-
-
 
                     }, doctorModelRoot.getDetails(), doctorModelDetails -> {
                         DoctorTimeSlotFragment.doctorModelDetails = doctorModelDetails;
                         App.getSingleton().setFees(doctorModelDetails.getOnline_price());
-                        App.getSingleton().setDoctor_id(doctorModelDetails.getDoc_vendorId());
+                        App.getSingleton().setDoctor_id(doctorModelDetails.getId());
                         Navigation.findNavController(binding.getRoot()).navigate(R.id.doctorTimeSlotFragment);
                     });
                     binding.recyclerConsult.setAdapter(adapter);

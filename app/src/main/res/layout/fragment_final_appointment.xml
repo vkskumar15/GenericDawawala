@@ -655,7 +655,7 @@
                 android:textColor="@color/appcolor" />
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btn_register"
+                android:id="@+id/book_now"
                 android:layout_width="@dimen/dp_180"
                 android:layout_height="40dp"
                 android:layout_marginEnd="@dimen/space10"

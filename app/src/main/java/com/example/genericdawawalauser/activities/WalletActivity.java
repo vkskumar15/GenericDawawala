@@ -45,10 +45,13 @@ public class WalletActivity extends AppCompatActivity implements PaymentResultWi
         super.onCreate(savedInstanceState);
         binding = ActivityWalletBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        setAdapter();
+
+
 
         getWalletAmount();
         onClicks();
+
+        setAdapter();
     }
 
     private void getWalletAmount() {
@@ -128,16 +131,17 @@ public class WalletActivity extends AppCompatActivity implements PaymentResultWi
     }
 
     private void setAdapter() {
+        new ViewModalClass().walletHistoryModalLiveData(WalletActivity.this, CommonUtils.getUserId()).observe(WalletActivity.this,
+                walletHistoryModal -> {
+                    if (walletHistoryModal.getSuccess().equalsIgnoreCase("1"))
+                    {
+                       MyWalletAdapter adapter = new MyWalletAdapter(WalletActivity.this, walletHistoryModal.getDetails());
+                       binding.recyclerviewCreditedAmount.setAdapter(adapter);
+                    }else {
+                        Toast.makeText(WalletActivity.this, ""+walletHistoryModal.getMessage(), Toast.LENGTH_SHORT).show();
 
-        new ViewModalClass().walletHistoryModalLiveData(WalletActivity.this, CommonUtils.getUserId()).observe(WalletActivity.this, new Observer<WalletHistoryModal>() {
-            @Override
-            public void onChanged(WalletHistoryModal walletHistoryModal) {
-                if (walletHistoryModal.getSuccess().equalsIgnoreCase("1"))
-                {
-                    //MyWalletAdapter adapter = new MyWalletAdapter(WalletActivity.this, walletHistoryModal.getDetails());
-                }
-            }
-        });
+                    }
+                });
     }
 
     public void onStart() {

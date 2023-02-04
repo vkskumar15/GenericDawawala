@@ -37,10 +37,10 @@
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/space15"
+        android:layout_height="@dimen/dp_210"
+        android:layout_marginStart="@dimen/space10"
         android:layout_marginTop="@dimen/space10"
-        android:layout_marginEnd="@dimen/space15"
+        android:layout_marginEnd="@dimen/space10"
         app:cardCornerRadius="@dimen/space10"
         app:cardElevation="@dimen/space12"
         app:strokeColor="@color/red"
@@ -50,7 +50,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:padding="@dimen/space30">
+            android:padding="@dimen/space10">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -91,7 +91,9 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="@dimen/space5"
+                app:startIconDrawable="@drawable/baseline_currency_rupee_24"
                 android:layout_marginBottom="@dimen/space5"
+                app:startIconTint="@color/appcolor"
                 android:hint="Enter Amount"
                 app:endIconMode="clear_text">
 
@@ -108,7 +110,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/space40"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="@dimen/space15"
+                android:layout_marginTop="@dimen/space10"
                 android:background="@drawable/round_strock"
                 android:backgroundTint="@color/appcolor"
                 android:hint="Recharge Your Wallet"
@@ -136,7 +138,5 @@
         android:id="@+id/recyclerview_credited_amount"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginLeft="@dimen/space10"
-        android:layout_marginRight="@dimen/space10"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 </LinearLayout>

@@ -7,8 +7,8 @@
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
-        android:layout_height="140dp"
-        app:cardCornerRadius="@dimen/space20"
+        android:layout_height="120dp"
+        app:cardCornerRadius="@dimen/space10"
         app:strokeColor="@color/red"
         android:layout_marginHorizontal="@dimen/space10"
         android:layout_marginTop="@dimen/space10"
@@ -24,8 +24,9 @@
                 android:id="@+id/txt_title"
                 android:layout_width="match_parent"
                 android:layout_marginStart="@dimen/space10"
-                android:layout_marginTop="@dimen/space20"
+                android:layout_marginTop="@dimen/space10"
                 android:layout_height="@dimen/space30">
+
 
                 <ImageView
                     android:id="@+id/credit"
@@ -35,7 +36,17 @@
                     android:layout_gravity="center_vertical"
                     android:rotation="180"
                     android:src="@drawable/ic_up_arrow"
-                    app:tint="@color/green" />
+                    app:tint="@color/appcolor" />
+
+                <ImageView
+                    android:id="@+id/debit_card"
+                    android:layout_width="@dimen/space20"
+                    android:layout_height="@dimen/space20"
+                    android:layout_centerVertical="true"
+                    android:visibility="gone"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/debit"
+                    />
 
 
 
@@ -44,8 +55,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginStart="@dimen/space10"
-                    android:layout_toRightOf="@+id/credit"
+                    android:layout_marginStart="@dimen/space30"
                     android:layout_centerVertical="true"
                     android:gravity="center"
                     android:text="Credited"
@@ -99,6 +109,7 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_marginTop="@dimen/space5"
+                    android:id="@+id/txt_payment"
                     android:layout_height="wrap_content">
 
                     <TextView

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#faf9f9"
@@ -75,12 +76,12 @@
                         app:civ_border_width="2dp" />
 
                     <LinearLayout
-                        android:layout_width="wrap_content"
                         android:id="@+id/line1"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/space10"
+                        android:layout_marginStart="@dimen/space5"
+                        android:layout_marginTop="@dimen/space30"
                         android:layout_toEndOf="@id/profile_image"
-                        android:layout_marginTop="@dimen/space40"
                         android:orientation="horizontal">
 
                         <ImageView
@@ -94,20 +95,21 @@
                             android:id="@+id/name"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Vikas Kumar"
-                            android:layout_marginStart="@dimen/space10"
                             android:layout_gravity="center"
+                            android:layout_marginStart="@dimen/space10"
+                            android:text="Vikas Kumar"
                             android:textColor="@color/appcolor"
                             android:textSize="@dimen/space16"
                             android:textStyle="bold" />
                     </LinearLayout>
 
                     <LinearLayout
-                        android:layout_width="wrap_content"
                         android:id="@+id/line2"
-                        android:layout_below="@id/line1"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/space10"
+                        android:layout_below="@id/line1"
+                        android:layout_marginStart="@dimen/space5"
+                        android:layout_marginTop="@dimen/space5"
                         android:layout_toEndOf="@id/profile_image"
                         android:orientation="horizontal">
 
@@ -131,30 +133,75 @@
                     </LinearLayout>
 
 
-
-
-                    <TextView
-                        android:id="@+id/dob"
+                    <LinearLayout
+                        android:id="@+id/line3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/line2"
-                        android:layout_marginStart="@dimen/space10"
-                        android:layout_toRightOf="@id/profile_image"
-                        android:drawableStart="@drawable/ic_baseline_calendar_today_24"
-                        android:drawableTint="@color/grey"
-                        android:text="Vikas@gmail.com"
-                        android:textColor="@color/appcolor"
-                        android:textSize="@dimen/space14" />
+                        android:layout_below="@id/line2"
+                        android:layout_marginStart="@dimen/space5"
+                        android:layout_marginTop="@dimen/space5"
+                        android:layout_toEndOf="@id/profile_image"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="@dimen/space18"
+                            android:layout_height="@dimen/space18"
+                            android:layout_gravity="center"
+                            android:src="@drawable/ic_baseline_calendar_today_24"
+                            app:tint="@color/grey" />
+
+                        <TextView
+                            android:id="@+id/dob"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/line1"
+                            android:layout_marginStart="@dimen/space10"
+                            android:text="Vikas@gmail.com"
+                            android:textColor="@color/appcolor"
+                            android:textSize="@dimen/space14" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/line4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/line3"
+                        android:layout_marginStart="@dimen/space5"
+                        android:layout_marginTop="@dimen/space5"
+                        android:layout_toEndOf="@id/profile_image"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="@dimen/space18"
+                            android:layout_height="@dimen/space18"
+                            android:layout_gravity="center"
+                            android:src="@drawable/ic_phone_call__1_"
+                            app:tint="@color/grey" />
+
+                        <TextView
+                            android:id="@+id/phone"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/space10"
+                            android:text="@string/vikas_gmail_com"
+                            android:textColor="@color/appcolor"
+                            android:textSize="@dimen/space14"
+                            tools:ignore="SpUsage" />
+
+                    </LinearLayout>
 
                     <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
                         android:layout_marginStart="@dimen/space10"
-                        android:layout_marginEnd="@dimen/space10"
-                        android:src="@drawable/ic_baseline_arrow_forward_ios_24"
+                        android:layout_marginEnd="@dimen/space20"
+                        android:rotation="90"
+                        android:src="@drawable/ic_up_arrow"
                         app:tint="@color/red" />
+
                 </RelativeLayout>
             </com.google.android.material.card.MaterialCardView>
 
@@ -172,8 +219,10 @@
                 app:strokeWidth="1dp">
 
                 <RelativeLayout
+
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:background="@drawable/ripple">
 
                     <ImageView
                         android:id="@+id/iv_medicines"
@@ -268,8 +317,10 @@
                 app:strokeWidth="1dp">
 
                 <RelativeLayout
+                    android:id="@+id/online_cunsult"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:background="@drawable/ripple">
 
                     <ImageView
                         android:id="@+id/iv_medicines3"

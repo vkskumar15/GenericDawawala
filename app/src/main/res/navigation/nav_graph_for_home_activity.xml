@@ -70,6 +70,9 @@
         <action
             android:id="@+id/action_profileFragment_to_personalDetailsFragment"
             app:destination="@id/personalDetailsFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_myOnlineConsultFragment"
+            app:destination="@id/myOnlineConsultFragment" />
     </fragment>
     <fragment
         android:id="@+id/prescriptionsFragment"
@@ -186,4 +189,9 @@
         android:id="@+id/editProfileFragment"
         android:name="com.example.genericdawawalauser.fragments.profiles.EditProfileFragment"
         android:label="EditProfileFragment" />
+    <fragment
+        android:id="@+id/myOnlineConsultFragment"
+        android:name="com.example.genericdawawalauser.fragments.profiles.MyOnlineConsultFragment"
+        android:label="fragment_my_online_consult"
+        tools:layout="@layout/fragment_my_online_consult" />
 </navigation>

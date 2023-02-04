@@ -21,25 +21,39 @@ public class ProfileFragment extends Fragment {
     FragmentProfileBinding binding;
 
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentProfileBinding.inflate(inflater, container, false);
 
-
         setData();
+        onClicks();
 
+
+        return binding.getRoot();
+    }
+
+    private void onClicks() {
         binding.profile.setOnClickListener(v -> {
 
             Navigation.findNavController(v).navigate(R.id.personalDetailsFragment);
         });
-        return binding.getRoot();
+
+        binding.onlineCunsult.setOnClickListener(v -> {
+
+            Navigation.findNavController(v).navigate(R.id.myOnlineConsultFragment);
+        });
+
+        binding.back.setOnClickListener(v -> {
+
+            requireActivity().onBackPressed();
+        });
+
     }
 
     private void setData() {
         binding.name.setText(App.getSharedPre().getString(AppConstants.USER_NAME));
         binding.email.setText(App.getSharedPre().getString(AppConstants.USER_EMAIL));
-        binding.phoneNo.setText(App.getSharedPre().getString(AppConstants.PHONE_NUMBER));
+        binding.phone.setText(App.getSharedPre().getString(AppConstants.PHONE_NUMBER));
         binding.dob.setText(App.getSharedPre().getString(AppConstants.DOB));
         Glide.with(requireContext()).load(App.getSharedPre().getString(AppConstants.USER_IMAGE)).into(binding.profileImage);
     }

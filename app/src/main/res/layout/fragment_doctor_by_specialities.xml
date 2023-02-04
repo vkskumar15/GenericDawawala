@@ -6,8 +6,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragments.homefragments.DoctorBySpecialitiesFragment">
 
-
-
     <RelativeLayout
         android:id="@+id/relative_physician"
         android:layout_width="match_parent"

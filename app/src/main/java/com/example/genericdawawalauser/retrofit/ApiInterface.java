@@ -3,7 +3,9 @@ package com.example.genericdawawalauser.retrofit;
 import com.example.genericdawawalauser.modalClass.ChangePasswordModal;
 import com.example.genericdawawalauser.modalClass.DoctorModelRoot;
 import com.example.genericdawawalauser.modalClass.GenerateOrderIdModel;
+import com.example.genericdawawalauser.modalClass.PendingOnlineAppointmentModal;
 import com.example.genericdawawalauser.modalClass.RegisterModelRoot;
+import com.example.genericdawawalauser.modalClass.TimeSlotsModels.OnlineAppointmentModal;
 import com.example.genericdawawalauser.modalClass.TimeSlotsModels.TimeSlotsModelRoot;
 import com.example.genericdawawalauser.modalClass.UniqueAPiModel;
 import com.example.genericdawawalauser.modalClass.UpdateUserPhoneModel;
@@ -99,5 +101,29 @@ public interface ApiInterface {
     Call<WalletHistoryModal> userWalletHistory(
             @Field("userId") String userId
     );
+
+
+
+    @FormUrlEncoded
+    @POST("DoctorAppointment")
+    Call<OnlineAppointmentModal> DoctorAppointment(
+            @Field("userId") String userId,
+            @Field("docId") String docId,
+            @Field("releation") String releation,
+            @Field("patient_gender") String patient_gender,
+            @Field("patient_name") String patient_name,
+            @Field("patient_age") String patient_age,
+            @Field("patient_number") String patient_number,
+            @Field("healthProblem") String healthProblem,
+            @Field("appointmentDate") String appointmentDate,
+            @Field("amount") String amount);
+
+
+    @FormUrlEncoded
+    @POST("pendingDocAppointment")
+    Call<PendingOnlineAppointmentModal> pendingDocAppointment(
+            @Field("userId") String userId
+    );
+
 
 }

@@ -3,7 +3,10 @@ package com.example.genericdawawalauser.modalClass;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
 public class WalletHistoryModal {
+
     @SerializedName("success")
     @Expose
     private String success;
@@ -12,7 +15,7 @@ public class WalletHistoryModal {
     private String message;
     @SerializedName("details")
     @Expose
-    private Details details;
+    private List<Detail> details;
 
     public String getSuccess() {
         return success;
@@ -30,14 +33,14 @@ public class WalletHistoryModal {
         this.message = message;
     }
 
-    public Details getDetails() {
+    public List<Detail> getDetails() {
         return details;
     }
 
-    public void setDetails(Details details) {
+    public void setDetails(List<Detail> details) {
         this.details = details;
     }
-    public class Details {
+    public class Detail {
 
         @SerializedName("id")
         @Expose

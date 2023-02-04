@@ -11,7 +11,9 @@ import androidx.lifecycle.ViewModel;
 import com.example.genericdawawalauser.modalClass.ChangePasswordModal;
 import com.example.genericdawawalauser.modalClass.DoctorModelRoot;
 import com.example.genericdawawalauser.modalClass.GenerateOrderIdModel;
+import com.example.genericdawawalauser.modalClass.PendingOnlineAppointmentModal;
 import com.example.genericdawawalauser.modalClass.RegisterModelRoot;
+import com.example.genericdawawalauser.modalClass.TimeSlotsModels.OnlineAppointmentModal;
 import com.example.genericdawawalauser.modalClass.TimeSlotsModels.TimeSlotsModelRoot;
 import com.example.genericdawawalauser.modalClass.UniqueAPiModel;
 import com.example.genericdawawalauser.modalClass.UpdateUserPhoneModel;
@@ -376,7 +378,7 @@ public class ViewModalClass extends ViewModel {
 
     public LiveData<WalletHistoryModal> walletHistoryModalLiveData(Activity activity, String userId) {
 
-        emergencyPaymentModalMutableLiveData = new MutableLiveData<>();
+        walletHistoryModalMutableLiveData = new MutableLiveData<>();
         apiInterface.userWalletHistory(userId).enqueue(new Callback<WalletHistoryModal>() {
             @Override
             public void onResponse(@NonNull Call<WalletHistoryModal> call, Response<WalletHistoryModal> response) {
@@ -385,7 +387,6 @@ public class ViewModalClass extends ViewModel {
                 } else {
                     walletHistoryModalMutableLiveData.postValue(null);
                 }
-
             }
 
             @Override
@@ -396,6 +397,66 @@ public class ViewModalClass extends ViewModel {
         });
 
         return walletHistoryModalMutableLiveData;
-
     }
+
+
+    private MutableLiveData<OnlineAppointmentModal> onlineAppointmentModalMutableLiveData;
+
+    public LiveData<OnlineAppointmentModal> onlineAppointmentModalLiveData(Activity activity,
+                                                                           String userId, String docId, String releation, String patient_gender,
+                                                                           String patient_name, String patient_age, String patient_number, String healthProblem,
+                                                                           String appointmentDate, String amount) {
+
+        onlineAppointmentModalMutableLiveData = new MutableLiveData<>();
+        CommonUtils.showProgress(activity, "Loading....");
+        apiInterface.DoctorAppointment(userId, docId, releation, patient_gender, patient_name, patient_age, patient_number, healthProblem, appointmentDate, amount).enqueue(new Callback<OnlineAppointmentModal>() {
+            @Override
+            public void onResponse(@NonNull Call<OnlineAppointmentModal> call, Response<OnlineAppointmentModal> response) {
+                CommonUtils.dismissProgress();
+                if (response.body() != null) {
+                    onlineAppointmentModalMutableLiveData.postValue(response.body());
+                } else {
+                    onlineAppointmentModalMutableLiveData.postValue(null);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<OnlineAppointmentModal> call, Throwable t) {
+                CommonUtils.dismissProgress();
+                onlineAppointmentModalMutableLiveData.postValue(null);
+
+            }
+        });
+
+        return onlineAppointmentModalMutableLiveData;
+    }
+
+
+    private MutableLiveData<PendingOnlineAppointmentModal> pendingOnlineAppointmentModalMutableLiveData;
+
+    public LiveData<PendingOnlineAppointmentModal> pendingOnlineAppointmentModalLiveData(Activity activity, String userId) {
+        CommonUtils.showProgress(activity, "Loading....");
+        pendingOnlineAppointmentModalMutableLiveData = new MutableLiveData<>();
+        apiInterface.pendingDocAppointment(userId).enqueue(new Callback<PendingOnlineAppointmentModal>() {
+            @Override
+            public void onResponse(@NonNull Call<PendingOnlineAppointmentModal> call, Response<PendingOnlineAppointmentModal> response) {
+                CommonUtils.dismissProgress();
+                if (response.body() != null) {
+                    pendingOnlineAppointmentModalMutableLiveData.postValue(response.body());
+                } else {
+                    pendingOnlineAppointmentModalMutableLiveData.postValue(null);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<PendingOnlineAppointmentModal> call, Throwable t) {
+                CommonUtils.dismissProgress();
+                pendingOnlineAppointmentModalMutableLiveData.postValue(null);
+
+            }
+        });
+
+        return pendingOnlineAppointmentModalMutableLiveData;
+    }
+
 }

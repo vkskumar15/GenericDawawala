@@ -84,6 +84,9 @@
     <string name="search_your_medicines">Search Your Medicines</string>
     <string name="track_your_orders">Track Your Orders</string>
     <string name="personal_details">Personal Details</string>
-    <string name="your_transaction">Your Transaction</string>
+    <string name="your_transaction">Your Transactions</string>
     <string name="asd">Who Is The Patient</string>
+    <string name="vikas_gmail_com">Vikas@gmail.com</string>
+    <string name="my_online_appointments">My Online Appointments</string>
+    <string name="pending">Pending</string>
 </resources>

@@ -1,6 +1,7 @@
 package com.example.genericdawawalauser.fragments.onlineConsult;
 
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,8 +16,15 @@ import com.example.genericdawawalauser.adapters.RelationAdapter;
 import com.example.genericdawawalauser.databinding.FragmentPatientDetailBinding;
 import com.example.genericdawawalauser.modalClass.RelationModal;
 import com.example.genericdawawalauser.utils.App;
+import com.example.genericdawawalauser.utils.AppConstants;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class PatientDetailFragment extends Fragment {
@@ -45,8 +53,16 @@ public class PatientDetailFragment extends Fragment {
         this.list.add(new RelationModal("Daughter"));
         this.list.add(new RelationModal("Son"));
         this.list.add(new RelationModal("Other"));
+
+
+        binding.number.setText(App.getSharedPre().getString(AppConstants.PHONE_NUMBER));
+        binding.name.setText(App.getSharedPre().getString(AppConstants.USER_NAME));
+
         return this.binding.getRoot();
     }
+
+
+
 
     private void onClicks() {
 

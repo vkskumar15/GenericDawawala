@@ -43,7 +43,8 @@ public class MyOnlineConsultFragment extends Fragment {
     }
 
     private void setAdapter() {
-        new ViewModalClass().pendingOnlineAppointmentModalLiveData(requireActivity(), CommonUtils.getUserId()).observe(requireActivity(), new Observer<PendingOnlineAppointmentModal>() {
+
+        new ViewModalClass().pendingOnlineAppointmentModalLiveData(requireActivity(), CommonUtils.getUserId(), "0").observe(requireActivity(), new Observer<PendingOnlineAppointmentModal>() {
             @Override
             public void onChanged(PendingOnlineAppointmentModal pendingOnlineAppointmentModal) {
                 if (pendingOnlineAppointmentModal.getSuccess().equalsIgnoreCase("1")) {
@@ -142,40 +143,83 @@ public class MyOnlineConsultFragment extends Fragment {
                 binding.txtCurrentVisit.setBackgroundResource(R.drawable.bg_tab_current_white);
                 binding.txtHistoryConsultation.setBackgroundResource(R.drawable.bg_right_tab_read_green);
 
+                setHistoryAdapter();
 
             }
         });
 
 
-        binding.txtCurrentVisit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        binding.txtCurrentVisit.setOnClickListener(v -> {
 
-                binding.recyclerViewDoctorPrescriptions.setVisibility(View.GONE);
-                binding.rvVisitsUpcoming.setVisibility(View.GONE);
-                binding.rvVisitsCurrent.setVisibility(View.VISIBLE);
+            binding.recyclerViewDoctorPrescriptions.setVisibility(View.GONE);
+            binding.rvVisitsUpcoming.setVisibility(View.GONE);
+            binding.rvVisitsCurrent.setVisibility(View.VISIBLE);
 
-                binding.txtUpcomingVisits.setTextColor(Color.BLACK);
-                binding.txtHistoryConsultation.setTextColor(Color.BLACK);
-                binding.txtCurrentVisit.setTextColor(Color.WHITE);
+            binding.txtUpcomingVisits.setTextColor(Color.BLACK);
+            binding.txtHistoryConsultation.setTextColor(Color.BLACK);
+            binding.txtCurrentVisit.setTextColor(Color.WHITE);
 
-                binding.txtUpcomingVisits.setBackgroundResource(R.drawable.bg_left_tab_upcoming_white);
-                binding.txtCurrentVisit.setBackgroundResource(R.drawable.current_order);
-                binding.txtHistoryConsultation.setBackgroundResource(R.drawable.bg_right_tab_read);
+            binding.txtUpcomingVisits.setBackgroundResource(R.drawable.bg_left_tab_upcoming_white);
+            binding.txtCurrentVisit.setBackgroundResource(R.drawable.current_order);
+            binding.txtHistoryConsultation.setBackgroundResource(R.drawable.bg_right_tab_read);
 
+            setApprovedAdapter();
+        });
+
+
+        binding.back.setOnClickListener(v -> requireActivity().onBackPressed());
+    }
+
+    private void setHistoryAdapter() {
+        new ViewModalClass().pendingOnlineAppointmentModalLiveData(requireActivity(), CommonUtils.getUserId(), "2").observe(requireActivity(), pendingOnlineAppointmentModal -> {
+            if (pendingOnlineAppointmentModal.getSuccess().equalsIgnoreCase("1")) {
+                PendingOnlineConsultAdapter adapter = new PendingOnlineConsultAdapter(pendingOnlineAppointmentModal.getDetails(), requireActivity(), new PendingOnlineConsultAdapter.Reschedule() {
+                    @Override
+                    public void reschedule(PendingOnlineAppointmentModal.Detail detail) {
+
+                    }
+
+                    @Override
+                    public void cancel(PendingOnlineAppointmentModal.Detail detail) {
+
+                        cancelOrder(detail);
+                    }
+                });
+                binding.recyclerViewDoctorPrescriptions.setAdapter(adapter);
+            } else {
+
+                binding.tvNotFound.setVisibility(View.VISIBLE);
 
             }
         });
 
 
-        binding.back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                requireActivity().onBackPressed();
+    }
+
+    private void setApprovedAdapter() {
+
+        new ViewModalClass().pendingOnlineAppointmentModalLiveData(requireActivity(), CommonUtils.getUserId(), "1").observe(requireActivity(), pendingOnlineAppointmentModal -> {
+            if (pendingOnlineAppointmentModal.getSuccess().equalsIgnoreCase("1")) {
+                PendingOnlineConsultAdapter adapter = new PendingOnlineConsultAdapter(pendingOnlineAppointmentModal.getDetails(), requireActivity(), new PendingOnlineConsultAdapter.Reschedule() {
+                    @Override
+                    public void reschedule(PendingOnlineAppointmentModal.Detail detail) {
+
+                    }
+
+                    @Override
+                    public void cancel(PendingOnlineAppointmentModal.Detail detail) {
+
+                        cancelOrder(detail);
+                    }
+                });
+                binding.rvVisitsCurrent.setAdapter(adapter);
+            } else {
+
+                binding.tvNotFound.setVisibility(View.VISIBLE);
+
             }
         });
     }
-
 
 
 }

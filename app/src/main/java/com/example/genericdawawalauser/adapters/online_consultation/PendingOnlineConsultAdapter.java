@@ -1,7 +1,9 @@
 package com.example.genericdawawalauser.adapters.online_consultation;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -20,8 +22,7 @@ public class PendingOnlineConsultAdapter extends RecyclerView.Adapter<PendingOnl
     private Reschedule reschedule;
 
 
-    public interface Reschedule
-    {
+    public interface Reschedule {
         void reschedule(PendingOnlineAppointmentModal.Detail detail);
 
         void cancel(PendingOnlineAppointmentModal.Detail detail);
@@ -42,14 +43,42 @@ public class PendingOnlineConsultAdapter extends RecyclerView.Adapter<PendingOnl
     public void onBindViewHolder(ViewHolder holder, int position) {
 
         Glide.with(context).load(list.get(position).getDoctorImage()).into(holder.binding.circularImage);
-        holder.binding.drName.setText("Dr. "+list.get(position).getDocName());
+        holder.binding.drName.setText("Dr. " + list.get(position).getDocName());
         holder.binding.txtTime.setText(list.get(position).getAppointmentDate());
         holder.binding.txtLanguage.setText(list.get(position).getLanguage());
         holder.binding.txtPatientName.setText(list.get(position).getPatientName());
         holder.binding.txtPaymentIdLab.setText(list.get(position).getTransctionId());
         holder.binding.txtDateAndTime.setText(list.get(position).getHealthProblem());
-        holder.binding.txtAmount.setText("₹ "+list.get(position).getAmount());
+        holder.binding.txtAmount.setText("₹ " + list.get(position).getAmount());
 
+        if (list.get(position).getStatus().equalsIgnoreCase("1")) {
+            holder.binding.start.setVisibility(View.GONE);
+            holder.binding.status.setText("Status: Approved");
+            holder.binding.status.setTextColor(Color.parseColor("#0daaed"));
+        }
+
+
+        if (list.get(position).getStatus().equalsIgnoreCase("2")) {
+            holder.binding.start.setVisibility(View.GONE);
+            holder.binding.startTwo.setVisibility(View.VISIBLE);
+            holder.binding.status.setText(list.get(position).getCancelBy());
+            holder.binding.status.setTextColor(Color.parseColor("#c91b20"));
+        }
+        if (list.get(position).getCancelBy().equalsIgnoreCase("cancelled by doctor")) {
+            holder.binding.startTwo.setVisibility(View.GONE);
+            holder.binding.refund.setVisibility(View.VISIBLE);
+            holder.binding.refund.setText("Note: Your full amount has been refunded check your wallet");
+        }
+
+        if (list.get(position).getCancelBy().equalsIgnoreCase("doctor")) {
+            holder.binding.startTwo.setVisibility(View.GONE);
+            holder.binding.refund.setVisibility(View.VISIBLE);
+            holder.binding.refund.setText("Note: Your full amount has been refunded check your wallet");
+        }
+
+        if (list.get(position).getCancelBy().equalsIgnoreCase("cancelled by user")) {
+            holder.binding.startTwo.setVisibility(View.GONE);
+        }
 
         holder.binding.rescheduleButton.setOnClickListener(v -> {
 
@@ -57,6 +86,16 @@ public class PendingOnlineConsultAdapter extends RecyclerView.Adapter<PendingOnl
         });
 
         holder.binding.cancelButton.setOnClickListener(v -> {
+
+            reschedule.cancel(list.get(position));
+        });
+
+        holder.binding.viewButton.setOnClickListener(v -> {
+
+            reschedule.reschedule(list.get(position));
+        });
+
+        holder.binding.downloadButton.setOnClickListener(v -> {
 
             reschedule.cancel(list.get(position));
         });

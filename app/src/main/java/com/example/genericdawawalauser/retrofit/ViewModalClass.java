@@ -434,10 +434,10 @@ public class ViewModalClass extends ViewModel {
 
     private MutableLiveData<PendingOnlineAppointmentModal> pendingOnlineAppointmentModalMutableLiveData;
 
-    public LiveData<PendingOnlineAppointmentModal> pendingOnlineAppointmentModalLiveData(Activity activity, String userId) {
+    public LiveData<PendingOnlineAppointmentModal> pendingOnlineAppointmentModalLiveData(Activity activity, String userId, String type) {
         CommonUtils.showProgress(activity, "Loading....");
         pendingOnlineAppointmentModalMutableLiveData = new MutableLiveData<>();
-        apiInterface.pendingDocAppointment(userId).enqueue(new Callback<PendingOnlineAppointmentModal>() {
+        apiInterface.pendingDocAppointment(userId ,type).enqueue(new Callback<PendingOnlineAppointmentModal>() {
             @Override
             public void onResponse(@NonNull Call<PendingOnlineAppointmentModal> call, Response<PendingOnlineAppointmentModal> response) {
                 CommonUtils.dismissProgress();

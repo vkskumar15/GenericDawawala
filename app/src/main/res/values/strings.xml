@@ -89,4 +89,6 @@
     <string name="vikas_gmail_com">Vikas@gmail.com</string>
     <string name="my_online_appointments">My Online Appointments</string>
     <string name="pending">Pending</string>
+    <string name="coupon_offers"><![CDATA[Coupon & offers]]></string>
+    <string name="enter_coupon_code">Enter Coupon Code</string>
 </resources>

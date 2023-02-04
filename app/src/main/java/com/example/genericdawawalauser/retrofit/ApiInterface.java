@@ -122,7 +122,8 @@ public interface ApiInterface {
     @FormUrlEncoded
     @POST("pendingDocAppointment")
     Call<PendingOnlineAppointmentModal> pendingDocAppointment(
-            @Field("userId") String userId
+            @Field("userId") String userId,
+            @Field("type") String type
     );
 
 

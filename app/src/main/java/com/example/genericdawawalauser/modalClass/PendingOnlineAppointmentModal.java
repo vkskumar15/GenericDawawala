@@ -106,6 +106,18 @@ public class PendingOnlineAppointmentModal {
         @Expose
         private String doctorImage;
 
+        @SerializedName("cancelBy")
+        @Expose
+        private String cancelBy;
+
+        public String getCancelBy() {
+            return cancelBy;
+        }
+
+        public void setCancelBy(String cancelBy) {
+            this.cancelBy = cancelBy;
+        }
+
         public String getId() {
             return id;
         }

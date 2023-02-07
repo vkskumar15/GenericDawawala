@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragments.homefragments.DoctorBySpecialitiesFragment">
 
     <RelativeLayout
         android:id="@+id/relative_physician"
         android:layout_width="match_parent"
-        android:background="@color/appcolor"
         android:layout_height="wrap_content"
+        android:background="@color/appcolor"
         android:padding="15dp">
 
         <ImageView
@@ -26,11 +26,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:gravity="center"
+            android:layout_marginStart="@dimen/space10"
             android:layout_toRightOf="@id/back_arrow_consult_physician"
+            android:gravity="center"
             android:text="Consult Physician"
             android:textColor="@color/white"
-            android:layout_marginStart="@dimen/space10"
             android:textSize="@dimen/sp_14" />
 
         <ImageView
@@ -66,6 +66,6 @@
         android:layout_marginTop="@dimen/dp_10"
         android:orientation="vertical"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:listitem="@layout/doctor_list" />
+        tools:listitem="@layout/doctor_appointment_list" />
 
 </RelativeLayout>

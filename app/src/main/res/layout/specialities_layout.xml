@@ -46,7 +46,8 @@
                 android:layout_centerVertical="true"
                 android:layout_marginEnd="@dimen/space10"
                 android:rotation="-90"
-                android:src="@drawable/ic_down_circular_button" />
+                android:src="@drawable/ic_down_circular_button"
+                app:tint="@color/red" />
         </RelativeLayout>
     </com.google.android.material.card.MaterialCardView>
 </RelativeLayout>

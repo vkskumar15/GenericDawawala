@@ -18,6 +18,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.genericdawawalauser.R;
+import com.example.genericdawawalauser.activities.DrAppointmentActivity;
 import com.example.genericdawawalauser.activities.OnlineConsultationActivity;
 import com.example.genericdawawalauser.activities.WalletActivity;
 import com.example.genericdawawalauser.adapters.ImageSliderAdapter;
@@ -69,6 +70,11 @@ public class HomeFragment extends Fragment {
         });
         fragmentHomeBinding.wallet.setOnClickListener(v -> {
             startActivity(new Intent(requireActivity(), WalletActivity.class));
+
+        });
+
+        fragmentHomeBinding.drAppointment.setOnClickListener(v -> {
+            startActivity(new Intent(requireActivity(), DrAppointmentActivity.class));
 
         });
     }

@@ -1,0 +1,261 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="200dp"
+    android:layout_margin="5dp"
+    android:background="@drawable/bg_doctor_list"
+    android:elevation="5dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="@dimen/space1"
+        android:layout_marginTop="@dimen/space1"
+        android:layout_marginEnd="@dimen/space1"
+        android:layout_marginBottom="@dimen/space1"
+        android:padding="@dimen/space10">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/iv_doctor_image"
+            android:layout_width="@dimen/space70"
+            android:layout_height="@dimen/space70"
+            android:layout_centerVertical="true"
+            android:src="@drawable/doctor16767"
+            app:civ_border_color="@color/red"
+            app:civ_border_width="2dp" />
+
+        <LinearLayout
+            android:id="@+id/line2"
+            android:layout_width="140dp"
+            android:layout_height="@dimen/dp_120"
+            android:layout_marginStart="@dimen/dp_7"
+            android:layout_marginLeft="@dimen/space10"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="@dimen/dp_8"
+            android:layout_marginBottom="10dp"
+            android:layout_toRightOf="@id/iv_doctor_image"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_doctor_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="marquee"
+                android:singleLine="true"
+                android:text="Dr. Name"
+                android:textColor="@color/colorBlack"
+                android:textStyle="bold" />
+
+
+            <TextView
+                android:id="@+id/qualificationTv1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:ellipsize="marquee"
+                android:singleLine="true"
+                android:text="Ms(OBG),Felloeship in.."
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/specialityTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:ellipsize="marquee"
+                android:singleLine="true"
+                android:text="Experience"
+                android:textColor="@color/black"
+                android:textSize="12dp"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/specialityTv1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:ellipsize="marquee"
+                android:singleLine="true"
+                android:text="Orthopedic Specialist"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:ellipsize="marquee"
+                android:singleLine="true"
+                android:text="Orthopedic Specialist"
+                android:textColor="@color/red"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/experienceYearsTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:ellipsize="marquee"
+                android:singleLine="true"
+                android:text="8+ Years exp"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/qualificationsTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="marquee"
+                android:fadingEdge="horizontal"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:singleLine="true"
+                android:textColor="@color/black"
+                android:textSize="12dp"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/moreAboutDoctorTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="marquee"
+                android:fadingEdge="horizontal"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:singleLine="true"
+                android:text="..more"
+                android:textColor="@color/appcolor"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:ellipsize="marquee"
+                android:singleLine="true"
+                android:text="8+ Years exp"
+                android:textColor="@color/colorBlack"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/tv_review"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/bg_stroke"
+                android:ellipsize="marquee"
+                android:paddingLeft="@dimen/space7"
+                android:paddingTop="@dimen/space3"
+                android:paddingRight="@dimen/space7"
+                android:paddingBottom="@dimen/space3"
+                android:singleLine="true"
+                android:text="Reviews"
+                android:textColor="@color/colorBlue"
+                android:visibility="gone" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll"
+            android:layout_width="120dp"
+            android:layout_height="@dimen/dp_130"
+            android:layout_marginTop="@dimen/dp_10"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="@dimen/space5"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_gravity="center"
+                android:src="@drawable/doctors11"
+                android:visibility="visible" />
+
+            <TextView
+                android:id="@+id/workInTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:ellipsize="marquee"
+                android:singleLine="true"
+                android:text="Omninos Hospital"
+                android:textColor="@color/black"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/addressTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:drawableLeft="@drawable/ic_location"
+                android:drawablePadding="5dp"
+                android:ellipsize="marquee"
+                android:maxLines="2"
+                android:singleLine="true"
+                android:text="Mohali"
+                android:textColor="@color/black"
+                android:textSize="10sp" />
+
+            <RatingBar
+                android:id="@+id/ratingBar"
+                style="?android:attr/ratingBarStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:isIndicator="true"
+                android:numStars="5"
+                android:rating="4"
+                android:theme="@style/RatingBar" />
+
+
+            <Button
+                android:id="@+id/bt_booknow"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/button_bg"
+                android:gravity="center_vertical"
+                android:text="@string/book_now"
+                android:textSize="10sp"
+                tools:ignore="SmallSp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/line2"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <Button
+                android:id="@+id/online_fee"
+                android:layout_width="0dp"
+                android:layout_height="35dp"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/dp_5"
+                android:layout_weight="1"
+                android:background="@drawable/button_bg"
+                android:gravity="center_vertical"
+                android:text="Online Fee: 100"
+                android:textAllCaps="false"
+                android:textSize="12sp" />
+
+            <Button
+                android:id="@+id/offline_fee"
+                android:layout_width="0dp"
+                android:layout_height="35dp"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/dp_5"
+                android:layout_weight="1"
+                android:background="@drawable/button_bg"
+                android:gravity="center_vertical"
+                android:text="Offline Fee: 100"
+                android:textAllCaps="false"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+    </RelativeLayout>
+</RelativeLayout>

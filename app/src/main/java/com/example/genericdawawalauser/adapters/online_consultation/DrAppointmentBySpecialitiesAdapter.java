@@ -3,7 +3,6 @@ package com.example.genericdawawalauser.adapters.online_consultation;
 import android.content.Context;
 import android.net.Uri;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
@@ -12,13 +11,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.genericdawawalauser.R;
+import com.example.genericdawawalauser.databinding.DoctorAppointmentListBinding;
 import com.example.genericdawawalauser.databinding.DoctorListBinding;
 import com.example.genericdawawalauser.modalClass.DoctorModelDetails;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class DoctorBySpecialitiesAdapter extends RecyclerView.Adapter<DoctorBySpecialitiesAdapter.MyViewHolder> implements Filterable {
+public class DrAppointmentBySpecialitiesAdapter extends RecyclerView.Adapter<DrAppointmentBySpecialitiesAdapter.MyViewHolder> implements Filterable {
     Context context;
     OnClick onClickInterFace;
     private List<DoctorModelDetails> list;
@@ -35,7 +35,7 @@ public class DoctorBySpecialitiesAdapter extends RecyclerView.Adapter<DoctorBySp
         void bookNow(DoctorModelDetails doctorModelDetails);
     }
 
-    public DoctorBySpecialitiesAdapter(Context context, OnClick onClickInterFace, List<DoctorModelDetails> list, BookNow bookNow) {
+    public DrAppointmentBySpecialitiesAdapter(Context context, OnClick onClickInterFace, List<DoctorModelDetails> list, BookNow bookNow) {
         this.context = context;
         this.onClickInterFace = onClickInterFace;
         this.list = list;
@@ -45,7 +45,7 @@ public class DoctorBySpecialitiesAdapter extends RecyclerView.Adapter<DoctorBySp
 
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        return new MyViewHolder(DoctorListBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false));
+        return new MyViewHolder(DoctorAppointmentListBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false));
 
     }
 
@@ -65,9 +65,9 @@ public class DoctorBySpecialitiesAdapter extends RecyclerView.Adapter<DoctorBySp
             onClickInterFace.onItemClick(list.get(position));
         });
 
-        holder.binding.btBooknow.setOnClickListener(v -> {
-            bookNow.bookNow(list.get(position));
-        });
+//        holder.binding.btBooknow.setOnClickListener(v -> {
+//            bookNow.bookNow(list.get(position));
+//        });
 
     }
 
@@ -78,7 +78,7 @@ public class DoctorBySpecialitiesAdapter extends RecyclerView.Adapter<DoctorBySp
             protected FilterResults performFiltering(CharSequence constraint) {
                 List<DoctorModelDetails> filter = new ArrayList<>();
                 if (constraint == null || constraint.length() == 0) {
-                    filter.addAll(DoctorBySpecialitiesAdapter.unFilteredList);
+                    filter.addAll(DrAppointmentBySpecialitiesAdapter.unFilteredList);
                 } else {
                     String value = constraint.toString().toLowerCase().trim();
                     for (DoctorModelDetails doctorModelDetails : filteredList) {
@@ -107,9 +107,9 @@ public class DoctorBySpecialitiesAdapter extends RecyclerView.Adapter<DoctorBySp
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        DoctorListBinding binding;
+        DoctorAppointmentListBinding binding;
 
-        public MyViewHolder(DoctorListBinding itemView) {
+        public MyViewHolder(DoctorAppointmentListBinding itemView) {
             super(itemView.getRoot());
             this.binding = itemView;
         }

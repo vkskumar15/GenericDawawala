@@ -46,21 +46,17 @@ public class HomeConsultationFragment extends Fragment implements Adapter_Recycl
             requireActivity().onBackPressed();
         });
 
-        new ViewModalClass().GetDoctorSpecialitiesLiveData(getActivity()).observe(requireActivity(), new Observer<DoctorModelRoot>() {
-            @Override
-            public void onChanged(DoctorModelRoot doctorModelRoot) {
+        new ViewModalClass().GetDoctorSpecialitiesLiveData(getActivity()).observe(requireActivity(),  doctorModelRoot -> {
 
-                adapter_recycler_location.loadData(doctorModelRoot.getDetails());
+            adapter_recycler_location.loadData(doctorModelRoot.getDetails());
 
-                Adapter_Recycler_Location.unFilteredList = new ArrayList<>(doctorModelRoot.getDetails());
+            Adapter_Recycler_Location.unFilteredList = new ArrayList<>(doctorModelRoot.getDetails());
 
-            }
         });
 
     }
 
     private void searchOperation() {
-
         binding.searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {

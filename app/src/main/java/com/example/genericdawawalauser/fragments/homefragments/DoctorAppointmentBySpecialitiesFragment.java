@@ -4,39 +4,38 @@ import static com.example.genericdawawalauser.activities.SplashActivity.latitude
 import static com.example.genericdawawalauser.activities.SplashActivity.longitude;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.navigation.Navigation;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.SearchView;
 
+import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
+
 import com.example.genericdawawalauser.R;
 import com.example.genericdawawalauser.adapters.online_consultation.DoctorBySpecialitiesAdapter;
+import com.example.genericdawawalauser.adapters.online_consultation.DrAppointmentBySpecialitiesAdapter;
+import com.example.genericdawawalauser.databinding.FragmentDoctorAppointmentBySpecialitiesBinding;
 import com.example.genericdawawalauser.databinding.FragmentDoctorBySpecialitiesBinding;
 import com.example.genericdawawalauser.fragments.onlineConsult.DoctorDetailsFragment;
 import com.example.genericdawawalauser.fragments.onlineConsult.DoctorTimeSlotFragment;
 import com.example.genericdawawalauser.modalClass.DoctorModelDetails;
-import com.example.genericdawawalauser.modalClass.DoctorModelRoot;
 import com.example.genericdawawalauser.retrofit.ViewModalClass;
 import com.example.genericdawawalauser.utils.App;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class DoctorBySpecialitiesFragment extends Fragment {
-    FragmentDoctorBySpecialitiesBinding binding;
+public class DoctorAppointmentBySpecialitiesFragment extends Fragment {
+    FragmentDoctorAppointmentBySpecialitiesBinding binding;
     public static DoctorModelDetails doctorModelDetails;
-    DoctorBySpecialitiesAdapter adapter;
+    DrAppointmentBySpecialitiesAdapter adapter;
     List<DoctorModelDetails> list = new ArrayList<>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        binding = FragmentDoctorBySpecialitiesBinding.inflate(inflater, container, false);
+        binding = FragmentDoctorAppointmentBySpecialitiesBinding.inflate(inflater, container, false);
 
 
         try {
@@ -62,7 +61,7 @@ public class DoctorBySpecialitiesFragment extends Fragment {
                 doctorModelDetails.getId(), String.valueOf(latitude),
                 String.valueOf(longitude)).observe(requireActivity(), doctorModelRoot -> {
                     if (doctorModelRoot.getSuccess().equalsIgnoreCase("1")) {
-                        adapter = new DoctorBySpecialitiesAdapter(requireContext(), doctorModelDetails -> {
+                        adapter = new DrAppointmentBySpecialitiesAdapter(requireContext(), doctorModelDetails -> {
 
                             DoctorDetailsFragment.doctorModelDetails = doctorModelDetails;
                             Navigation.findNavController(binding.getRoot()).navigate(R.id.doctorDetailsFragment);

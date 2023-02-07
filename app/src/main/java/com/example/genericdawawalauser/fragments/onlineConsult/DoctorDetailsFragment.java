@@ -33,6 +33,10 @@ public class DoctorDetailsFragment extends Fragment {
 
     private void setData() {
 
+        binding.imageView.setOnClickListener(v -> {
+            requireActivity().onBackPressed();
+        });
+
         binding.doctorName.setText(doctorModelDetails.getName());
         binding.textView3.setText(doctorModelDetails.getName());
         binding.textView4.setText(doctorModelDetails.getQualificationTitle());

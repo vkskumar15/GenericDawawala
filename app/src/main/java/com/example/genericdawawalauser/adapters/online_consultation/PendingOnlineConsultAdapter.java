@@ -25,7 +25,7 @@ public class PendingOnlineConsultAdapter extends RecyclerView.Adapter<PendingOnl
     public interface Reschedule {
         void reschedule(PendingOnlineAppointmentModal.Detail detail);
 
-        void cancel(PendingOnlineAppointmentModal.Detail detail);
+        void cancel(PendingOnlineAppointmentModal.Detail detail, int pos);
     }
 
     public PendingOnlineConsultAdapter(List<PendingOnlineAppointmentModal.Detail> list, Context context, Reschedule reschedule) {
@@ -67,18 +67,27 @@ public class PendingOnlineConsultAdapter extends RecyclerView.Adapter<PendingOnl
         if (list.get(position).getCancelBy().equalsIgnoreCase("cancelled by doctor")) {
             holder.binding.startTwo.setVisibility(View.GONE);
             holder.binding.refund.setVisibility(View.VISIBLE);
+            holder.binding.start.setVisibility(View.GONE);
+
             holder.binding.refund.setText("Note: Your full amount has been refunded check your wallet");
         }
 
         if (list.get(position).getCancelBy().equalsIgnoreCase("doctor")) {
             holder.binding.startTwo.setVisibility(View.GONE);
             holder.binding.refund.setVisibility(View.VISIBLE);
+            holder.binding.start.setVisibility(View.GONE);
+
             holder.binding.refund.setText("Note: Your full amount has been refunded check your wallet");
         }
 
         if (list.get(position).getCancelBy().equalsIgnoreCase("cancelled by user")) {
             holder.binding.startTwo.setVisibility(View.GONE);
+            holder.binding.refund.setVisibility(View.VISIBLE);
+            holder.binding.start.setVisibility(View.GONE);
+            holder.binding.status.setText(list.get(position).getCancelBy());
+            holder.binding.refund.setText("Note: Your 80%  amount has been refunded check your wallet");
         }
+
 
         holder.binding.rescheduleButton.setOnClickListener(v -> {
 
@@ -87,17 +96,19 @@ public class PendingOnlineConsultAdapter extends RecyclerView.Adapter<PendingOnl
 
         holder.binding.cancelButton.setOnClickListener(v -> {
 
-            reschedule.cancel(list.get(position));
+            reschedule.cancel(list.get(position), position);
+            notifyDataSetChanged();
         });
 
         holder.binding.viewButton.setOnClickListener(v -> {
 
-            reschedule.reschedule(list.get(position));
+            //reschedule.reschedule(list.get(position));
         });
 
         holder.binding.downloadButton.setOnClickListener(v -> {
 
-            reschedule.cancel(list.get(position));
+           // reschedule.cancel(list.get(position), position);
+            notifyDataSetChanged();
         });
     }
 

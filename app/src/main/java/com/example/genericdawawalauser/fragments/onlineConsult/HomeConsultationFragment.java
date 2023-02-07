@@ -1,19 +1,11 @@
 package com.example.genericdawawalauser.fragments.onlineConsult;
 
-import android.app.Dialog;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.SearchView;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.navigation.Navigation;
@@ -32,17 +24,14 @@ import java.util.ArrayList;
 public class HomeConsultationFragment extends Fragment implements Adapter_Recycler_Location.Select {
     FragmentHomeConsultationBinding binding;
     Adapter_Recycler_Location adapter_recycler_location;
-    String problem, symptom;
-
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        this.binding = FragmentHomeConsultationBinding.inflate(inflater, container, false);
+        binding = FragmentHomeConsultationBinding.inflate(inflater, container, false);
 
 
         adapter_recycler_location = new Adapter_Recycler_Location(getContext(), new ArrayList<>(), HomeConsultationFragment.this);
         binding.recyclerLocation.setAdapter(adapter_recycler_location);
-
 
         setData();
         searchOperation();

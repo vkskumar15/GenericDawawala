@@ -193,5 +193,14 @@
         android:id="@+id/myOnlineConsultFragment"
         android:name="com.example.genericdawawalauser.fragments.profiles.MyOnlineConsultFragment"
         android:label="fragment_my_online_consult"
-        tools:layout="@layout/fragment_my_online_consult" />
+        tools:layout="@layout/fragment_my_online_consult" >
+        <action
+            android:id="@+id/action_myOnlineConsultFragment_to_doctorTimeSlotFragment2"
+            app:destination="@id/doctorTimeSlotFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/doctorTimeSlotFragment2"
+        android:name="com.example.genericdawawalauser.fragments.onlineConsult.DoctorTimeSlotFragment"
+        android:label="fragment_doctor_time_slot"
+        tools:layout="@layout/fragment_doctor_time_slot" />
 </navigation>

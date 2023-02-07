@@ -1,10 +1,14 @@
 package com.example.genericdawawalauser.retrofit;
 
+import com.example.genericdawawalauser.modalClass.ApplyCouponAppointment;
 import com.example.genericdawawalauser.modalClass.ChangePasswordModal;
 import com.example.genericdawawalauser.modalClass.DoctorModelRoot;
 import com.example.genericdawawalauser.modalClass.GenerateOrderIdModel;
 import com.example.genericdawawalauser.modalClass.PendingOnlineAppointmentModal;
+import com.example.genericdawawalauser.modalClass.ReScheduledAppointment;
 import com.example.genericdawawalauser.modalClass.RegisterModelRoot;
+import com.example.genericdawawalauser.modalClass.TimeSlotsModels.CancelOnlineAppointment;
+import com.example.genericdawawalauser.modalClass.TimeSlotsModels.OnlineAppointmentCouponModal;
 import com.example.genericdawawalauser.modalClass.TimeSlotsModels.OnlineAppointmentModal;
 import com.example.genericdawawalauser.modalClass.TimeSlotsModels.TimeSlotsModelRoot;
 import com.example.genericdawawalauser.modalClass.UniqueAPiModel;
@@ -103,7 +107,6 @@ public interface ApiInterface {
     );
 
 
-
     @FormUrlEncoded
     @POST("DoctorAppointment")
     Call<OnlineAppointmentModal> DoctorAppointment(
@@ -116,7 +119,10 @@ public interface ApiInterface {
             @Field("patient_number") String patient_number,
             @Field("healthProblem") String healthProblem,
             @Field("appointmentDate") String appointmentDate,
-            @Field("amount") String amount);
+            @Field("amount") String amount,
+            @Field("coupanVerifiedId") String coupanVerifiedId
+
+    );
 
 
     @FormUrlEncoded
@@ -125,6 +131,37 @@ public interface ApiInterface {
             @Field("userId") String userId,
             @Field("type") String type
     );
+
+
+    @FormUrlEncoded
+    @POST("appointmentCancelByUser")
+    Call<CancelOnlineAppointment> appointmentCancelByUser(
+            @Field("userId") String userId,
+            @Field("appointmentId") String appointmentId
+    );
+
+
+    @FormUrlEncoded
+    @POST("getCouponForUser")
+    Call<OnlineAppointmentCouponModal> getCouponForUser(
+            @Field("docId") String docId
+    );
+
+    @FormUrlEncoded
+    @POST("reedemCoupon")
+    Call<ApplyCouponAppointment> reedemCoupon(
+            @Field("coupon_name") String coupon_name,
+            @Field("amount") String amount,
+            @Field("userId") String userId
+    );
+
+
+    @FormUrlEncoded
+    @POST("reScheduledAppointment")
+    Call<ReScheduledAppointment> reScheduledAppointment(
+            @Field("userId") String userId,
+            @Field("appointmentDate") String appointmentDate,
+            @Field("appointmentId") String appointmentId);
 
 
 }

@@ -39,7 +39,9 @@ public class MyWalletAdapter extends RecyclerView.Adapter<MyWalletAdapter.ViewHo
         if (list.get(position).getType().equals("credit")) {
 
             holder.binding.credited.setText("Credited");
-
+            holder.binding.debitCard.setVisibility(View.GONE);
+            holder.binding.credited.setTextColor(Color.parseColor("#0daaed"));
+            holder.binding.credit.setVisibility(View.VISIBLE);
 
         } else if (list.get(position).getType().equals("debit")) {
             holder.binding.credited.setText("Debited");

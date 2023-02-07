@@ -9,6 +9,8 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.navigation.Navigation;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,9 +25,14 @@ import com.example.genericdawawalauser.modalClass.DoctorModelRoot;
 import com.example.genericdawawalauser.retrofit.ViewModalClass;
 import com.example.genericdawawalauser.utils.App;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class DoctorBySpecialitiesFragment extends Fragment {
     FragmentDoctorBySpecialitiesBinding binding;
     public static DoctorModelDetails doctorModelDetails;
+    DoctorBySpecialitiesAdapter adapter;
+    List<DoctorModelDetails> list = new ArrayList<>();
 
 
     @Override
@@ -34,13 +41,21 @@ public class DoctorBySpecialitiesFragment extends Fragment {
         binding = FragmentDoctorBySpecialitiesBinding.inflate(inflater, container, false);
 
 
-        setAdapter();
+        try {
+            setAdapter();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
 
         binding.backArrowConsultPhysician.setOnClickListener(v -> {
 
             requireActivity().onBackPressed();
 
         });
+
+        searchItem();
+
         return binding.getRoot();
     }
 
@@ -50,7 +65,7 @@ public class DoctorBySpecialitiesFragment extends Fragment {
             @Override
             public void onChanged(DoctorModelRoot doctorModelRoot) {
                 if (doctorModelRoot.getSuccess().equalsIgnoreCase("1")) {
-                    DoctorBySpecialitiesAdapter adapter = new DoctorBySpecialitiesAdapter(requireContext(), doctorModelDetails -> {
+                    adapter = new DoctorBySpecialitiesAdapter(requireContext(), doctorModelDetails -> {
 
                         DoctorDetailsFragment.doctorModelDetails = doctorModelDetails;
                         Navigation.findNavController(binding.getRoot()).navigate(R.id.doctorDetailsFragment);
@@ -66,6 +81,33 @@ public class DoctorBySpecialitiesFragment extends Fragment {
             }
         });
     }
+    private void searchItem() {
+        binding.searchItem.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
+            }
 
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                filter(s.toString());
+
+            }
+        });
+    }
+    private void filter(String text) {
+        List<DoctorModelDetails> filterList = new ArrayList<>();
+        for (DoctorModelDetails items : list) {
+            if (items.getName().toLowerCase().contains(text.toLowerCase())) {
+                filterList.add(items);
+
+            }
+        }
+        adapter.filterList(filterList);
+    }
 }

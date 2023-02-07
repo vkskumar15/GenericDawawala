@@ -45,6 +45,7 @@ public class Singleton {
     public String generalWard_Bed_hv;
     public String hospitalName_hv;
     public String icu_Bed_hv;
+    public String couponCode;
 
     /* renamed from: id */
     public String f0id;
@@ -88,6 +89,14 @@ public class Singleton {
     public String problem;
     public String fees;
     public String doctor_id;
+
+    public String getCouponCode() {
+        return couponCode;
+    }
+
+    public void setCouponCode(String couponCode) {
+        this.couponCode = couponCode;
+    }
 
     public String getFees() {
         return fees;

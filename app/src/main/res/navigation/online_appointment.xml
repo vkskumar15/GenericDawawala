@@ -51,5 +51,14 @@
         android:id="@+id/finalAppointmentFragment"
         android:name="com.example.genericdawawalauser.fragments.onlineConsult.FinalAppointmentFragment"
         android:label="fragment_final_appointment"
-        tools:layout="@layout/fragment_final_appointment" />
+        tools:layout="@layout/fragment_final_appointment" >
+        <action
+            android:id="@+id/action_finalAppointmentFragment_to_onlineAppointmentCouponFragment"
+            app:destination="@id/onlineAppointmentCouponFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/onlineAppointmentCouponFragment"
+        android:name="com.example.genericdawawalauser.fragments.onlineConsult.OnlineAppointmentCouponFragment"
+        android:label="fragment_online_appointment_coupon"
+        tools:layout="@layout/fragment_online_appointment_coupon" />
 </navigation>

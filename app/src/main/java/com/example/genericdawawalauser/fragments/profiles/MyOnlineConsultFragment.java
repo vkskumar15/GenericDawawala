@@ -6,7 +6,6 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.navigation.Navigation;
 
@@ -22,12 +21,17 @@ import com.example.genericdawawalauser.R;
 import com.example.genericdawawalauser.adapters.online_consultation.PendingOnlineConsultAdapter;
 import com.example.genericdawawalauser.databinding.FragmentMyOnlineConsultBinding;
 import com.example.genericdawawalauser.modalClass.PendingOnlineAppointmentModal;
+import com.example.genericdawawalauser.modalClass.TimeSlotsModels.CancelOnlineAppointment;
 import com.example.genericdawawalauser.retrofit.ViewModalClass;
 import com.example.genericdawawalauser.utils.CommonUtils;
 
 public class MyOnlineConsultFragment extends Fragment {
     FragmentMyOnlineConsultBinding binding;
-
+    PendingOnlineConsultAdapter adapter;
+    public static String appointmentSlot, appointmentDateToShow, appointmentDateToSend;
+    // 0 for pending appointment
+    // 1 for approved appointment
+    // 2 for history appointment
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -38,39 +42,53 @@ public class MyOnlineConsultFragment extends Fragment {
         onClickListener();
         setAdapter();
 
+
         return binding.getRoot();
 
     }
 
     private void setAdapter() {
+        new ViewModalClass().pendingOnlineAppointmentModalLiveData(requireActivity(), CommonUtils.getUserId(), "0").observe(requireActivity(), pendingOnlineAppointmentModal -> {
+            if (pendingOnlineAppointmentModal.getSuccess().equalsIgnoreCase("1")) {
+                adapter = new PendingOnlineConsultAdapter(pendingOnlineAppointmentModal.getDetails(), requireActivity(), new PendingOnlineConsultAdapter.Reschedule() {
+                    @Override
+                    public void reschedule(PendingOnlineAppointmentModal.Detail detail) {
 
-        new ViewModalClass().pendingOnlineAppointmentModalLiveData(requireActivity(), CommonUtils.getUserId(), "0").observe(requireActivity(), new Observer<PendingOnlineAppointmentModal>() {
-            @Override
-            public void onChanged(PendingOnlineAppointmentModal pendingOnlineAppointmentModal) {
-                if (pendingOnlineAppointmentModal.getSuccess().equalsIgnoreCase("1")) {
-                    PendingOnlineConsultAdapter adapter = new PendingOnlineConsultAdapter(pendingOnlineAppointmentModal.getDetails(), requireActivity(), new PendingOnlineConsultAdapter.Reschedule() {
-                        @Override
-                        public void reschedule(PendingOnlineAppointmentModal.Detail detail) {
+                        if (detail.getReScheduledCounts().equals("2"))
+                        {
+                            Toast.makeText(requireActivity(), "Now you can't ReScheduled your appointment", Toast.LENGTH_SHORT).show();
+                        }else {
+                            Fragment fragment = new Fragment();
+                            Bundle bundle = new Bundle();
+                            bundle.putString("id", detail.getDocId());
+                            bundle.putString("status", "1");
+                            bundle.putString("appointmentId", detail.getAppointmentId());
+                            bundle.putString("name", detail.getDocName());
+                            bundle.putString("image", detail.getDoctorImage());
+                            bundle.putString("amount", detail.getAmount());
+                            fragment.setArguments(bundle);
 
+                            Navigation.findNavController(binding.getRoot()).navigate(R.id.doctorTimeSlotFragment2, bundle);
                         }
 
-                        @Override
-                        public void cancel(PendingOnlineAppointmentModal.Detail detail) {
+                    }
 
-                            cancelOrder(detail);
-                        }
-                    });
-                    binding.rvVisitsUpcoming.setAdapter(adapter);
-                } else {
+                    @Override
+                    public void cancel(PendingOnlineAppointmentModal.Detail detail, int pos) {
 
-                    binding.tvNotFound.setVisibility(View.VISIBLE);
+                        cancelOrder(detail, pendingOnlineAppointmentModal, pos);
+                    }
+                });
+                binding.rvVisitsUpcoming.setAdapter(adapter);
+            } else {
+                Toast.makeText(requireActivity(), "" + pendingOnlineAppointmentModal.getMessage(), Toast.LENGTH_SHORT).show();
 
-                }
+
             }
         });
     }
 
-    private void cancelOrder(PendingOnlineAppointmentModal.Detail detail) {
+    private void cancelOrder(PendingOnlineAppointmentModal.Detail detail, PendingOnlineAppointmentModal pendingOnlineAppointmentModal, int pos) {
 
         Dialog delete_box = new Dialog(getContext());
         delete_box.setContentView(R.layout.confirm_dialog);
@@ -86,21 +104,24 @@ public class MyOnlineConsultFragment extends Fragment {
 
         delete_box.findViewById(R.id.yes_btn).setOnClickListener(v -> {
 
-//                LiveData<ResponseModel> liveData = userPartViewModel.DeleteLabPackageOrderLiveData(getActivity(), labModelDetails.getId());
-//
-//                liveData.observe(getActivity(), new Observer<ResponseModel>() {
-//                    @Override
-//                    public void onChanged(ResponseModel responseModel) {
-//
-//                        Toast.makeText(getContext(), "" + responseModel.getMessage(), Toast.LENGTH_SHORT).show();
-//
-//                        setPendingList();
-//
-//                        delete_box.dismiss();
-//
-//                    }
-//                });
-//
+            new ViewModalClass().cancelOnlineAppointmentLiveData(requireActivity(), CommonUtils.getUserId(), detail.getAppointmentId()).observe(requireActivity(), new Observer<CancelOnlineAppointment>() {
+                @Override
+                public void onChanged(CancelOnlineAppointment cancelOnlineAppointment) {
+
+                    if (cancelOnlineAppointment.getSuccess().equalsIgnoreCase("1")) {
+                        Toast.makeText(requireActivity(), "" + cancelOnlineAppointment.getMessage(), Toast.LENGTH_SHORT).show();
+
+                        pendingOnlineAppointmentModal.getDetails().remove(pos);
+
+                        delete_box.dismiss();
+
+                    } else {
+                        Toast.makeText(requireActivity(), "" + cancelOnlineAppointment.getMessage(), Toast.LENGTH_SHORT).show();
+
+                    }
+                }
+            });
+
         });
 
         delete_box.findViewById(R.id.no_btn).setOnClickListener(v -> delete_box.dismiss());
@@ -108,7 +129,6 @@ public class MyOnlineConsultFragment extends Fragment {
     }
 
     private void onClickListener() {
-
 
         binding.txtUpcomingVisits.setOnClickListener(v -> {
 
@@ -127,25 +147,22 @@ public class MyOnlineConsultFragment extends Fragment {
             setAdapter();
         });
 
-        binding.txtHistoryConsultation.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        binding.txtHistoryConsultation.setOnClickListener(v -> {
 
-                binding.recyclerViewDoctorPrescriptions.setVisibility(View.VISIBLE);
-                binding.rvVisitsUpcoming.setVisibility(View.GONE);
-                binding.rvVisitsCurrent.setVisibility(View.GONE);
+            binding.recyclerViewDoctorPrescriptions.setVisibility(View.VISIBLE);
+            binding.rvVisitsUpcoming.setVisibility(View.GONE);
+            binding.rvVisitsCurrent.setVisibility(View.GONE);
 
-                binding.txtUpcomingVisits.setTextColor(Color.BLACK);
-                binding.txtHistoryConsultation.setTextColor(Color.WHITE);
-                binding.txtCurrentVisit.setTextColor(Color.BLACK);
+            binding.txtUpcomingVisits.setTextColor(Color.BLACK);
+            binding.txtHistoryConsultation.setTextColor(Color.WHITE);
+            binding.txtCurrentVisit.setTextColor(Color.BLACK);
 
-                binding.txtUpcomingVisits.setBackgroundResource(R.drawable.bg_left_tab_upcoming_white);
-                binding.txtCurrentVisit.setBackgroundResource(R.drawable.bg_tab_current_white);
-                binding.txtHistoryConsultation.setBackgroundResource(R.drawable.bg_right_tab_read_green);
+            binding.txtUpcomingVisits.setBackgroundResource(R.drawable.bg_left_tab_upcoming_white);
+            binding.txtCurrentVisit.setBackgroundResource(R.drawable.bg_tab_current_white);
+            binding.txtHistoryConsultation.setBackgroundResource(R.drawable.bg_right_tab_read_green);
 
-                setHistoryAdapter();
+            setHistoryAdapter();
 
-            }
         });
 
 
@@ -173,22 +190,23 @@ public class MyOnlineConsultFragment extends Fragment {
     private void setHistoryAdapter() {
         new ViewModalClass().pendingOnlineAppointmentModalLiveData(requireActivity(), CommonUtils.getUserId(), "2").observe(requireActivity(), pendingOnlineAppointmentModal -> {
             if (pendingOnlineAppointmentModal.getSuccess().equalsIgnoreCase("1")) {
-                PendingOnlineConsultAdapter adapter = new PendingOnlineConsultAdapter(pendingOnlineAppointmentModal.getDetails(), requireActivity(), new PendingOnlineConsultAdapter.Reschedule() {
+                adapter = new PendingOnlineConsultAdapter(pendingOnlineAppointmentModal.getDetails(), requireActivity(), new PendingOnlineConsultAdapter.Reschedule() {
                     @Override
                     public void reschedule(PendingOnlineAppointmentModal.Detail detail) {
 
                     }
 
                     @Override
-                    public void cancel(PendingOnlineAppointmentModal.Detail detail) {
+                    public void cancel(PendingOnlineAppointmentModal.Detail detail, int pos) {
 
-                        cancelOrder(detail);
+
                     }
                 });
                 binding.recyclerViewDoctorPrescriptions.setAdapter(adapter);
-            } else {
+            } else if (pendingOnlineAppointmentModal.getSuccess().equalsIgnoreCase("0")) {
 
-                binding.tvNotFound.setVisibility(View.VISIBLE);
+
+                Toast.makeText(requireActivity(), "" + pendingOnlineAppointmentModal.getMessage(), Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -197,7 +215,6 @@ public class MyOnlineConsultFragment extends Fragment {
     }
 
     private void setApprovedAdapter() {
-
         new ViewModalClass().pendingOnlineAppointmentModalLiveData(requireActivity(), CommonUtils.getUserId(), "1").observe(requireActivity(), pendingOnlineAppointmentModal -> {
             if (pendingOnlineAppointmentModal.getSuccess().equalsIgnoreCase("1")) {
                 PendingOnlineConsultAdapter adapter = new PendingOnlineConsultAdapter(pendingOnlineAppointmentModal.getDetails(), requireActivity(), new PendingOnlineConsultAdapter.Reschedule() {
@@ -207,15 +224,15 @@ public class MyOnlineConsultFragment extends Fragment {
                     }
 
                     @Override
-                    public void cancel(PendingOnlineAppointmentModal.Detail detail) {
+                    public void cancel(PendingOnlineAppointmentModal.Detail detail, int pos) {
 
-                        cancelOrder(detail);
                     }
                 });
                 binding.rvVisitsCurrent.setAdapter(adapter);
             } else {
 
-                binding.tvNotFound.setVisibility(View.VISIBLE);
+                Toast.makeText(requireActivity(), "" + pendingOnlineAppointmentModal.getMessage(), Toast.LENGTH_SHORT).show();
+
 
             }
         });

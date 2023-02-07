@@ -8,11 +8,15 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.example.genericdawawalauser.modalClass.ApplyCouponAppointment;
 import com.example.genericdawawalauser.modalClass.ChangePasswordModal;
 import com.example.genericdawawalauser.modalClass.DoctorModelRoot;
 import com.example.genericdawawalauser.modalClass.GenerateOrderIdModel;
 import com.example.genericdawawalauser.modalClass.PendingOnlineAppointmentModal;
+import com.example.genericdawawalauser.modalClass.ReScheduledAppointment;
 import com.example.genericdawawalauser.modalClass.RegisterModelRoot;
+import com.example.genericdawawalauser.modalClass.TimeSlotsModels.CancelOnlineAppointment;
+import com.example.genericdawawalauser.modalClass.TimeSlotsModels.OnlineAppointmentCouponModal;
 import com.example.genericdawawalauser.modalClass.TimeSlotsModels.OnlineAppointmentModal;
 import com.example.genericdawawalauser.modalClass.TimeSlotsModels.TimeSlotsModelRoot;
 import com.example.genericdawawalauser.modalClass.UniqueAPiModel;
@@ -63,10 +67,10 @@ public class ViewModalClass extends ViewModel {
     public LiveData<RegisterModelRoot> registerModelRootLiveData(final Activity activity, String user, String email, String phone, String password, String reg_id, String device_id, String login_type, String latitude, String longitude, String chatId) {
         Activity activity2 = activity;
         this.registerModelRootMutableLiveData = new MutableLiveData<>();
-        CommonUtils.showProgress(activity, "Loading....");
+        CommonUtils.showProgressDialog(activity);
         this.apiInterface.registerUser(user, email, phone, password, reg_id, device_id, login_type, latitude, longitude, chatId).enqueue(new Callback<RegisterModelRoot>() {
             public void onResponse(Call<RegisterModelRoot> call, Response<RegisterModelRoot> response) {
-                CommonUtils.dismissProgress();
+                CommonUtils.dismissDialog();
                 if (response.body().getSuccess().equalsIgnoreCase("0")) {
                     Toast.makeText(activity, response.body().getMessage(), Toast.LENGTH_SHORT).show();
                 } else if (response.body() != null) {
@@ -75,7 +79,7 @@ public class ViewModalClass extends ViewModel {
             }
 
             public void onFailure(Call<RegisterModelRoot> call, Throwable t) {
-                CommonUtils.dismissProgress();
+                CommonUtils.dismissDialog();
                 Toast.makeText(activity, "" + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
@@ -85,17 +89,17 @@ public class ViewModalClass extends ViewModel {
     public LiveData<RegisterModelRoot> loginUserModelRootLiveData(Activity activity, String emailPhone, String password, String reg_id, String device_type, String device_id, String latitude, String longitude) {
         this.registerModelRootMutableLiveData2 = new MutableLiveData<>();
         Activity activity2 = activity;
-        CommonUtils.showProgress(activity, "Loading....");
+        CommonUtils.showProgressDialog(activity);
         this.apiInterface.loginUser(emailPhone, password, reg_id, device_type, device_id, latitude, longitude).enqueue(new Callback<RegisterModelRoot>() {
             public void onResponse(Call<RegisterModelRoot> call, Response<RegisterModelRoot> response) {
-                CommonUtils.dismissProgress();
+                CommonUtils.dismissDialog();
                 if (response.body() != null) {
                     ViewModalClass.this.registerModelRootMutableLiveData2.postValue(response.body());
                 }
             }
 
             public void onFailure(Call<RegisterModelRoot> call, Throwable t) {
-                CommonUtils.dismissProgress();
+                CommonUtils.dismissDialog();
                 ViewModalClass.this.registerModelRootMutableLiveData2.postValue(null);
             }
         });
@@ -104,10 +108,10 @@ public class ViewModalClass extends ViewModel {
 
     public LiveData<UpdateUserPhoneModel> updateUserPhoneModelLiveData(final Activity activity, String emailPhone) {
         this.updateUserPhoneModelMutableLiveData = new MutableLiveData<>();
-        CommonUtils.showProgress(activity, "Loading....");
+        CommonUtils.showProgressDialog(activity);
         this.apiInterface.phoneEmailVerification(emailPhone).enqueue(new Callback<UpdateUserPhoneModel>() {
             public void onResponse(Call<UpdateUserPhoneModel> call, Response<UpdateUserPhoneModel> response) {
-                CommonUtils.dismissProgress();
+                CommonUtils.dismissDialog();
                 if (response.body().getSuccess().equalsIgnoreCase("0")) {
                     Toast.makeText(activity, "" + response.body().getMessage(), Toast.LENGTH_SHORT).show();
                 } else if (response.body() != null) {
@@ -116,7 +120,7 @@ public class ViewModalClass extends ViewModel {
             }
 
             public void onFailure(Call<UpdateUserPhoneModel> call, Throwable t) {
-                CommonUtils.dismissProgress();
+                CommonUtils.dismissDialog();
                 Toast.makeText(activity, "" + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
@@ -125,10 +129,10 @@ public class ViewModalClass extends ViewModel {
 
     public LiveData<ChangePasswordModal> changePasswordModalLiveData(final Activity activity, String password) {
         this.updateUserEmailPhoneModelMutableLiveData = new MutableLiveData<>();
-        CommonUtils.showProgress(activity, "Loading....");
+        CommonUtils.showProgressDialog(activity);
         this.apiInterface.updatePhoneEmail(password).enqueue(new Callback<ChangePasswordModal>() {
             public void onResponse(Call<ChangePasswordModal> call, Response<ChangePasswordModal> response) {
-                CommonUtils.dismissProgress();
+                CommonUtils.dismissDialog();
                 if (response.body().getSuccess().equalsIgnoreCase("0")) {
                     Toast.makeText(activity, "" + response.body().getMessage(), Toast.LENGTH_SHORT).show();
                 } else if (response.body() != null) {
@@ -137,7 +141,7 @@ public class ViewModalClass extends ViewModel {
             }
 
             public void onFailure(Call<ChangePasswordModal> call, Throwable t) {
-                CommonUtils.dismissProgress();
+                CommonUtils.dismissDialog();
                 Toast.makeText(activity, "" + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
@@ -147,12 +151,12 @@ public class ViewModalClass extends ViewModel {
     public LiveData<RegisterModelRoot> updateUserDataModelRootLiveData(final Activity activity, RequestBody userId, RequestBody username, RequestBody gender, RequestBody email, RequestBody dob, RequestBody phone, RequestBody address, MultipartBody.Part image) {
         Activity activity2 = activity;
         this.updateUserDataModelRootMutableLiveData = new MutableLiveData<>();
-        CommonUtils.showProgress(activity, "Loading....");
+        CommonUtils.showProgressDialog(activity);
         this.apiInterface.updateUserData(userId, username, gender, email, dob, phone, address, image).enqueue(new Callback<RegisterModelRoot>() {
             public void onResponse(Call<RegisterModelRoot> call, Response<RegisterModelRoot> response) {
-                CommonUtils.dismissProgress();
+                CommonUtils.dismissDialog();
                 if (response.body() == null) {
-                    CommonUtils.dismissProgress();
+                    CommonUtils.dismissDialog();
                     Toast.makeText(activity, "Technical issue occurred", Toast.LENGTH_SHORT).show();
                 } else if (response.body().getSuccess().equalsIgnoreCase("1")) {
                     ViewModalClass.this.updateUserDataModelRootMutableLiveData.postValue(response.body());
@@ -173,11 +177,11 @@ public class ViewModalClass extends ViewModel {
 
     public LiveData<DoctorModelRoot> GetDoctorSpecialitiesLiveData(Activity activity) {
         GetDoctorSpecialitiesMutableLiveData = new MutableLiveData<>();
-        CommonUtils.showProgress(activity, "Loading....");
+        CommonUtils.showProgressDialog(activity);
         apiInterface.getDoctorSpecialities().enqueue(new Callback<DoctorModelRoot>() {
             @Override
             public void onResponse(@NonNull Call<DoctorModelRoot> call, Response<DoctorModelRoot> response) {
-                CommonUtils.dismissProgress();
+                CommonUtils.dismissDialog();
 
                 if (response.body() != null) {
 
@@ -201,7 +205,7 @@ public class ViewModalClass extends ViewModel {
 
             @Override
             public void onFailure(Call<DoctorModelRoot> call, Throwable t) {
-                CommonUtils.dismissProgress();
+                CommonUtils.dismissDialog();
                 Toast.makeText(activity, "" + t.getMessage(), Toast.LENGTH_SHORT).show();
 
             }
@@ -217,11 +221,11 @@ public class ViewModalClass extends ViewModel {
     public LiveData<DoctorModelRoot> getDoctorsAsPerSpecialityLiveData(Activity activity, String dr_speciality, String latitude, String longitude) {
 
         getDoctorsAsPerSpecialityMutableLiveData = new MutableLiveData<>();
-        CommonUtils.showProgress(activity, "Loading....");
+        CommonUtils.showProgressDialog(activity);
         apiInterface.getDoctorsAsPerSpeciality(dr_speciality, latitude, longitude).enqueue(new Callback<DoctorModelRoot>() {
             @Override
             public void onResponse(@NonNull Call<DoctorModelRoot> call, Response<DoctorModelRoot> response) {
-                CommonUtils.dismissProgress();
+                CommonUtils.dismissDialog();
                 if (response.body() != null) {
 
                     if (response.body().getSuccess().equals("0")) {
@@ -244,7 +248,7 @@ public class ViewModalClass extends ViewModel {
 
             @Override
             public void onFailure(Call<DoctorModelRoot> call, Throwable t) {
-                CommonUtils.dismissProgress();
+                CommonUtils.dismissDialog();
                 Toast.makeText(activity, "" + t.getMessage(), Toast.LENGTH_SHORT).show();
 
             }
@@ -287,13 +291,13 @@ public class ViewModalClass extends ViewModel {
     private MutableLiveData<WalletAmountModal> walletAmountModalMutableLiveData;
 
     public LiveData<WalletAmountModal> walletAmountModalLiveData(Activity activity, String userId) {
-        CommonUtils.showProgress(activity, "Loading....");
+        CommonUtils.showProgressDialog(activity);
         walletAmountModalMutableLiveData = new MutableLiveData<>();
 
         apiInterface.getUserWallet(userId).enqueue(new Callback<WalletAmountModal>() {
             @Override
             public void onResponse(@NonNull Call<WalletAmountModal> call, Response<WalletAmountModal> response) {
-                CommonUtils.dismissProgress();
+                CommonUtils.dismissDialog();
                 if (response.body() != null) {
                     if (response.body().getSuccess().equals("0")) {
                         Toast.makeText(activity, "" + response.body().getMessage(), Toast.LENGTH_SHORT).show();
@@ -307,7 +311,7 @@ public class ViewModalClass extends ViewModel {
 
             @Override
             public void onFailure(Call<WalletAmountModal> call, Throwable t) {
-                CommonUtils.dismissProgress();
+                CommonUtils.dismissDialog();
                 Toast.makeText(activity, "" + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
@@ -320,11 +324,11 @@ public class ViewModalClass extends ViewModel {
     public LiveData<GenerateOrderIdModel> generateOrderId(final Activity activity, String amount) {
 
         genOrderId = new MutableLiveData<>();
-        CommonUtils.showProgress(activity, "Loading....");
+        CommonUtils.showProgressDialog(activity);
         apiInterface.generateOrderId(amount).enqueue(new Callback<GenerateOrderIdModel>() {
             @Override
             public void onResponse(Call<GenerateOrderIdModel> call, Response<GenerateOrderIdModel> response) {
-                CommonUtils.dismissProgress();
+                CommonUtils.dismissDialog();
                 if (response.body() != null) {
                     genOrderId.postValue(response.body());
                 } else {
@@ -334,7 +338,7 @@ public class ViewModalClass extends ViewModel {
 
             @Override
             public void onFailure(Call<GenerateOrderIdModel> call, Throwable t) {
-                CommonUtils.dismissProgress();
+                CommonUtils.dismissDialog();
                 Toast.makeText(activity, t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
@@ -348,11 +352,11 @@ public class ViewModalClass extends ViewModel {
     public LiveData<WalletAmountModal> AddWalletAmountModalLiveData(Activity activity, String userId, String amount, String razorpay_order_id, String razorpay_payment_id, String razorpay_signature) {
 
         emergencyPaymentModalMutableLiveData = new MutableLiveData<>();
-        CommonUtils.showProgress(activity, "Loading....");
+        CommonUtils.showProgressDialog(activity);
         apiInterface.addUserWallet(userId, amount, razorpay_order_id, razorpay_payment_id, razorpay_signature).enqueue(new Callback<WalletAmountModal>() {
             @Override
             public void onResponse(@NonNull Call<WalletAmountModal> call, Response<WalletAmountModal> response) {
-                CommonUtils.dismissProgress();
+                CommonUtils.dismissDialog();
                 if (response.body() != null) {
                     emergencyPaymentModalMutableLiveData.postValue(response.body());
                 } else {
@@ -363,7 +367,7 @@ public class ViewModalClass extends ViewModel {
 
             @Override
             public void onFailure(Call<WalletAmountModal> call, Throwable t) {
-                CommonUtils.dismissProgress();
+                CommonUtils.dismissDialog();
                 emergencyPaymentModalMutableLiveData.postValue(null);
 
             }
@@ -405,14 +409,14 @@ public class ViewModalClass extends ViewModel {
     public LiveData<OnlineAppointmentModal> onlineAppointmentModalLiveData(Activity activity,
                                                                            String userId, String docId, String releation, String patient_gender,
                                                                            String patient_name, String patient_age, String patient_number, String healthProblem,
-                                                                           String appointmentDate, String amount) {
+                                                                           String appointmentDate, String amount, String coupanVerifiedId) {
 
         onlineAppointmentModalMutableLiveData = new MutableLiveData<>();
-        CommonUtils.showProgress(activity, "Loading....");
-        apiInterface.DoctorAppointment(userId, docId, releation, patient_gender, patient_name, patient_age, patient_number, healthProblem, appointmentDate, amount).enqueue(new Callback<OnlineAppointmentModal>() {
+        CommonUtils.showProgressDialog(activity);
+        apiInterface.DoctorAppointment(userId, docId, releation, patient_gender, patient_name, patient_age, patient_number, healthProblem, appointmentDate, amount, coupanVerifiedId).enqueue(new Callback<OnlineAppointmentModal>() {
             @Override
             public void onResponse(@NonNull Call<OnlineAppointmentModal> call, Response<OnlineAppointmentModal> response) {
-                CommonUtils.dismissProgress();
+                CommonUtils.dismissDialog();
                 if (response.body() != null) {
                     onlineAppointmentModalMutableLiveData.postValue(response.body());
                 } else {
@@ -422,7 +426,7 @@ public class ViewModalClass extends ViewModel {
 
             @Override
             public void onFailure(Call<OnlineAppointmentModal> call, Throwable t) {
-                CommonUtils.dismissProgress();
+                CommonUtils.dismissDialog();
                 onlineAppointmentModalMutableLiveData.postValue(null);
 
             }
@@ -435,12 +439,12 @@ public class ViewModalClass extends ViewModel {
     private MutableLiveData<PendingOnlineAppointmentModal> pendingOnlineAppointmentModalMutableLiveData;
 
     public LiveData<PendingOnlineAppointmentModal> pendingOnlineAppointmentModalLiveData(Activity activity, String userId, String type) {
-        CommonUtils.showProgress(activity, "Loading....");
+        CommonUtils.showProgressDialog(activity);
         pendingOnlineAppointmentModalMutableLiveData = new MutableLiveData<>();
         apiInterface.pendingDocAppointment(userId ,type).enqueue(new Callback<PendingOnlineAppointmentModal>() {
             @Override
             public void onResponse(@NonNull Call<PendingOnlineAppointmentModal> call, Response<PendingOnlineAppointmentModal> response) {
-                CommonUtils.dismissProgress();
+                CommonUtils.dismissDialog();
                 if (response.body() != null) {
                     pendingOnlineAppointmentModalMutableLiveData.postValue(response.body());
                 } else {
@@ -450,13 +454,128 @@ public class ViewModalClass extends ViewModel {
 
             @Override
             public void onFailure(Call<PendingOnlineAppointmentModal> call, Throwable t) {
-                CommonUtils.dismissProgress();
+                CommonUtils.dismissDialog();
                 pendingOnlineAppointmentModalMutableLiveData.postValue(null);
 
             }
         });
 
         return pendingOnlineAppointmentModalMutableLiveData;
+    }
+
+
+    private MutableLiveData<CancelOnlineAppointment> cancelOnlineAppointmentMutableLiveData;
+
+    public LiveData<CancelOnlineAppointment> cancelOnlineAppointmentLiveData(Activity activity, String userId, String appointmentId) {
+
+        CommonUtils.showProgressDialog(activity);
+        cancelOnlineAppointmentMutableLiveData = new MutableLiveData<>();
+        apiInterface.appointmentCancelByUser(userId ,appointmentId).enqueue(new Callback<CancelOnlineAppointment>() {
+            @Override
+            public void onResponse(@NonNull Call<CancelOnlineAppointment> call, Response<CancelOnlineAppointment> response) {
+                CommonUtils.dismissDialog();
+                if (response.body() != null) {
+                    cancelOnlineAppointmentMutableLiveData.postValue(response.body());
+                } else {
+                    cancelOnlineAppointmentMutableLiveData.postValue(null);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<CancelOnlineAppointment> call, Throwable t) {
+                CommonUtils.dismissDialog();
+                cancelOnlineAppointmentMutableLiveData.postValue(null);
+
+            }
+        });
+
+        return cancelOnlineAppointmentMutableLiveData;
+    }
+
+
+    private MutableLiveData<OnlineAppointmentCouponModal> onlineAppointmentCouponModalMutableLiveData;
+
+    public LiveData<OnlineAppointmentCouponModal> onlineAppointmentCouponModalLiveData(Activity activity, String docrId) {
+
+        CommonUtils.showProgressDialog(activity);
+        onlineAppointmentCouponModalMutableLiveData = new MutableLiveData<>();
+        apiInterface.getCouponForUser(docrId).enqueue(new Callback<OnlineAppointmentCouponModal>() {
+            @Override
+            public void onResponse(@NonNull Call<OnlineAppointmentCouponModal> call, Response<OnlineAppointmentCouponModal> response) {
+                CommonUtils.dismissDialog();
+                if (response.body() != null) {
+                    onlineAppointmentCouponModalMutableLiveData.postValue(response.body());
+                } else {
+                    onlineAppointmentCouponModalMutableLiveData.postValue(null);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<OnlineAppointmentCouponModal> call, Throwable t) {
+                CommonUtils.dismissDialog();
+                onlineAppointmentCouponModalMutableLiveData.postValue(null);
+
+            }
+        });
+
+        return onlineAppointmentCouponModalMutableLiveData;
+    }
+
+
+    private MutableLiveData<ApplyCouponAppointment> applyCouponAppointmentMutableLiveData;
+
+    public LiveData<ApplyCouponAppointment> applyCouponAppointmentLiveData(Activity activity, String coupon_name, String amount, String userId) {
+
+        CommonUtils.showProgressDialog(activity);
+        applyCouponAppointmentMutableLiveData = new MutableLiveData<>();
+        apiInterface.reedemCoupon(coupon_name, amount, userId).enqueue(new Callback<ApplyCouponAppointment>() {
+            @Override
+            public void onResponse(@NonNull Call<ApplyCouponAppointment> call, Response<ApplyCouponAppointment> response) {
+                CommonUtils.dismissDialog();
+                if (response.body() != null) {
+                    applyCouponAppointmentMutableLiveData.postValue(response.body());
+                } else {
+                    applyCouponAppointmentMutableLiveData.postValue(null);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ApplyCouponAppointment> call, Throwable t) {
+                CommonUtils.dismissDialog();
+                applyCouponAppointmentMutableLiveData.postValue(null);
+
+            }
+        });
+
+        return applyCouponAppointmentMutableLiveData;
+    }
+
+    private MutableLiveData<ReScheduledAppointment> reScheduledAppointment;
+
+    public LiveData<ReScheduledAppointment> reScheduledAppointmentLiveData(Activity activity, String userId, String appointmentDate, String appointmentId) {
+
+        CommonUtils.showProgressDialog(activity);
+        reScheduledAppointment = new MutableLiveData<>();
+        apiInterface.reScheduledAppointment(userId, appointmentDate, appointmentId).enqueue(new Callback<ReScheduledAppointment>() {
+            @Override
+            public void onResponse(@NonNull Call<ReScheduledAppointment> call, Response<ReScheduledAppointment> response) {
+                CommonUtils.dismissDialog();
+                if (response.body() != null) {
+                    reScheduledAppointment.postValue(response.body());
+                } else {
+                    reScheduledAppointment.postValue(null);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ReScheduledAppointment> call, Throwable t) {
+                CommonUtils.dismissDialog();
+                reScheduledAppointment.postValue(null);
+
+            }
+        });
+
+        return reScheduledAppointment;
     }
 
 }

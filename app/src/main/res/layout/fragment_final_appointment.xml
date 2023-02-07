@@ -396,7 +396,7 @@
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_80"
+                android:layout_height="@dimen/dp_90"
                 android:id="@+id/card"
                 android:layout_below="@id/card2_review"
                 android:layout_marginVertical="@dimen/space10"
@@ -415,20 +415,25 @@
                         android:layout_marginVertical="@dimen/space5">
 
                         <TextView
+                            android:id="@+id/coupon_name"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/space10"
                             android:text="Coupon Code: "
                             android:textColor="@color/black"
+                            android:textAllCaps="true"
                             android:textStyle="bold" />
 
                         <TextView
+                            android:id="@+id/btnApply"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentEnd="true"
                             android:layout_marginStart="@dimen/space10"
+                            android:padding="@dimen/space5"
                             android:layout_marginEnd="@dimen/space10"
                             android:text="Apply"
+                            android:background="@drawable/ripple"
                             android:textColor="@color/appcolor"
                             android:textStyle="bold" />
 
@@ -441,9 +446,10 @@
 
 
                     <RelativeLayout
+                        android:id="@+id/coupon_layout"
                         android:layout_width="match_parent"
+                        android:foreground="@drawable/ripple"
                         android:layout_height="@dimen/space20"
-
                         android:layout_marginVertical="@dimen/space10"
                         android:background="@drawable/ripple">
 
@@ -486,10 +492,9 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/tv_discount"
+                        android:id="@+id/discount"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-
                         android:layout_marginVertical="@dimen/dp_10"
                         android:layout_marginLeft="@dimen/dp_15"
                         android:text="Bill Summary"
@@ -545,12 +550,13 @@
                              />
 
                         <TextView
+                            android:id="@+id/tv_discount"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentEnd="true"
                             android:layout_marginStart="@dimen/space10"
                             android:layout_marginEnd="@dimen/space10"
-                            android:text="₹124"
+                            android:text="₹ 0"
                             android:textColor="@color/appcolor" />
 
                     </RelativeLayout>
@@ -571,7 +577,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/space10"
                         android:text="To be paid: "
-                        android:textSize="18sp"
+                        android:textSize="16sp"
                         android:textStyle="bold"
                         android:textColor="@color/appcolor"
                         />

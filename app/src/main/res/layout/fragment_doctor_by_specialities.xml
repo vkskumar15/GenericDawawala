@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragments.homefragments.DoctorBySpecialitiesFragment">
 
     <RelativeLayout
         android:id="@+id/relative_physician"
         android:layout_width="match_parent"
-        android:background="@color/appcolor"
         android:layout_height="wrap_content"
+        android:background="@color/appcolor"
         android:padding="15dp">
 
         <ImageView
@@ -26,11 +26,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:gravity="center"
+            android:layout_marginStart="@dimen/space10"
             android:layout_toRightOf="@id/back_arrow_consult_physician"
+            android:gravity="center"
             android:text="Consult Physician"
             android:textColor="@color/white"
-            android:layout_marginStart="@dimen/space10"
             android:textSize="@dimen/sp_14" />
 
         <ImageView
@@ -42,27 +42,28 @@
             app:tint="@color/white" />
     </RelativeLayout>
 
-    <SearchView
-        android:id="@+id/searchView"
+    <EditText
+        android:id="@+id/search_item"
         android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:layout_below="@+id/relative_physician"
-        android:layout_marginHorizontal="@dimen/dp_20"
+        android:layout_height="@dimen/dp_40"
+        android:layout_below="@id/relative_physician"
+        android:layout_centerVertical="true"
+        android:layout_marginHorizontal="@dimen/dp_10"
         android:layout_marginTop="@dimen/dp_10"
-        android:background="@drawable/bg_doctor_list"
-        android:elevation="@dimen/dp_10"
-        android:gravity="center"
-        android:inputType="text"
-        android:maxLength="15"
-        android:paddingLeft="@dimen/dp_5"
-        android:singleLine="true"
-        android:textSize="@dimen/sp_15" />
+        android:background="@drawable/btn_bg"
+        android:backgroundTint="#E3E0E0"
+        android:drawableStart="@drawable/ic_baseline_search_24"
+        android:drawableTint="#939090"
+        android:hint="@string/search"
+        android:maxLines="1"
+        android:paddingStart="@dimen/dp_10"
+        android:textColorHint="#939090" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_consult"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/searchView"
+        android:layout_below="@id/search_item"
         android:layout_marginTop="@dimen/dp_10"
         android:orientation="vertical"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"

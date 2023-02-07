@@ -28,9 +28,13 @@ import com.example.genericdawawalauser.R;
 import com.example.genericdawawalauser.adapters.online_consultation.GridViewSelectAfternoonSlotAdapter;
 import com.example.genericdawawalauser.adapters.online_consultation.GridViewSelectEveningSlotAdapter;
 import com.example.genericdawawalauser.adapters.online_consultation.GridViewSelectMorningSlotAdapter;
+import com.example.genericdawawalauser.fragments.profiles.MyOnlineConsultFragment;
 import com.example.genericdawawalauser.modalClass.DoctorModelDetails;
+import com.example.genericdawawalauser.modalClass.PendingOnlineAppointmentModal;
+import com.example.genericdawawalauser.modalClass.ReScheduledAppointment;
 import com.example.genericdawawalauser.modalClass.TimeSlotsModels.TimeSlotsModelRoot;
 import com.example.genericdawawalauser.retrofit.ViewModalClass;
+import com.example.genericdawawalauser.utils.CommonUtils;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -62,6 +66,7 @@ public class DoctorTimeSlotFragment extends Fragment implements GridViewSelectMo
     private int mYear, mDay, mMonth;
 
     String selected_date = "", dateToSend = "";
+    String docId, getDoctorId, status, appointmentId, appointmentSlot, name, image, amount;
 
     TextView doctor_name, doctorQualificationAndSpeciality, selectDate, videoCallPrice, cunsultationTxt;
 
@@ -79,6 +84,18 @@ public class DoctorTimeSlotFragment extends Fragment implements GridViewSelectMo
 
         findIds();
 
+        Bundle bundle = this.getArguments();
+        if (bundle != null) {
+
+            docId = bundle.getString("id");
+            status = bundle.getString("status");
+            appointmentId = bundle.getString("appointmentId");
+            name = bundle.getString("name");
+            image = bundle.getString("image");
+            amount = bundle.getString("amount");
+
+        }
+
         layout_morningGrid.setVisibility(View.GONE);
         layout_afterNoonGrid.setVisibility(View.GONE);
         layout_eveningGrid.setVisibility(View.GONE);
@@ -87,7 +104,13 @@ public class DoctorTimeSlotFragment extends Fragment implements GridViewSelectMo
 
         onClicks();
 
-        doctorId = doctorModelDetails.getId();
+        onClicks();
+        if (status == "1") {
+            doctorId = docId;
+        } else {
+            doctorId = doctorModelDetails.getId();
+
+        }
 
         selectDate.setText(getDateTime());
 
@@ -105,109 +128,120 @@ public class DoctorTimeSlotFragment extends Fragment implements GridViewSelectMo
     }
 
     private void onClicks() {
+        morning_arrow.setOnClickListener(v -> {
 
-        morning_arrow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+            if (mCheck == 1) {
 
-                if (mCheck == 1) {
+                if (mNum % 2 == 0) {
 
-                    if (mNum % 2 == 0) {
+                    layout_morningGrid.setVisibility(View.VISIBLE);
+                    layout_afterNoonGrid.setVisibility(View.GONE);
+                    layout_eveningGrid.setVisibility(View.GONE);
 
-                        layout_morningGrid.setVisibility(View.VISIBLE);
-                        layout_afterNoonGrid.setVisibility(View.GONE);
-                        layout_eveningGrid.setVisibility(View.GONE);
-
-                        mNum++;
-
-                    } else {
-
-                        layout_morningGrid.setVisibility(View.GONE);
-
-                        mNum++;
-
-                    }
+                    mNum++;
 
                 } else {
 
-                    Toast.makeText(getContext(), "No slots Available", Toast.LENGTH_SHORT).show();
+                    layout_morningGrid.setVisibility(View.GONE);
+
+                    mNum++;
 
                 }
 
+            } else {
+
+                Toast.makeText(getContext(), "No slots Available", Toast.LENGTH_SHORT).show();
+
             }
+
         });
+        afterNoon_arrow.setOnClickListener(v -> {
 
-        afterNoon_arrow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+            if (aCheck == 1) {
 
-                if (aCheck == 1) {
+                if (aNum % 2 == 0) {
 
-                    if (aNum % 2 == 0) {
+                    layout_afterNoonGrid.setVisibility(View.VISIBLE);
+                    layout_morningGrid.setVisibility(View.GONE);
+                    layout_eveningGrid.setVisibility(View.GONE);
 
-                        layout_afterNoonGrid.setVisibility(View.VISIBLE);
-                        layout_morningGrid.setVisibility(View.GONE);
-                        layout_eveningGrid.setVisibility(View.GONE);
-
-                        aNum++;
-
-                    } else {
-
-                        layout_afterNoonGrid.setVisibility(View.GONE);
-
-                        aNum++;
-
-                    }
+                    aNum++;
 
                 } else {
 
-                    Toast.makeText(getContext(), "No slots Available", Toast.LENGTH_SHORT).show();
+                    layout_afterNoonGrid.setVisibility(View.GONE);
+
+                    aNum++;
 
                 }
 
+            } else {
+
+                Toast.makeText(getContext(), "No slots Available", Toast.LENGTH_SHORT).show();
+
             }
+
         });
+        evening_arrow.setOnClickListener(v -> {
 
-        evening_arrow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+            if (eCheck == 1) {
 
-                if (eCheck == 1) {
+                if (eNum % 2 == 0) {
 
-                    if (eNum % 2 == 0) {
+                    layout_eveningGrid.setVisibility(View.VISIBLE);
+                    layout_afterNoonGrid.setVisibility(View.GONE);
+                    layout_morningGrid.setVisibility(View.GONE);
 
-                        layout_eveningGrid.setVisibility(View.VISIBLE);
-                        layout_afterNoonGrid.setVisibility(View.GONE);
-                        layout_morningGrid.setVisibility(View.GONE);
-
-                        eNum++;
-
-                    } else {
-
-                        layout_eveningGrid.setVisibility(View.GONE);
-
-                        eNum++;
-
-                    }
-
+                    eNum++;
 
                 } else {
 
-                    Toast.makeText(getContext(), "No slots Available", Toast.LENGTH_SHORT).show();
+                    layout_eveningGrid.setVisibility(View.GONE);
+
+                    eNum++;
 
                 }
+
+
+            } else {
+
+                Toast.makeText(getContext(), "No slots Available", Toast.LENGTH_SHORT).show();
+
             }
         });
-
         back_arrow.setOnClickListener(v -> requireActivity().onBackPressed());
 
-        button.setOnClickListener(v -> {
+        if (status == "1") {
+            button.setOnClickListener(v -> {
 
-            FinalAppointmentFragment.doctorModelDetails = doctorModelDetails;
+                Log.d("asd", appointmentSlot + " " + selected_date);
+                Log.d("asd", appointmentId);
 
-            Navigation.findNavController(v).navigate(R.id.finalAppointmentFragment);
+                new ViewModalClass().reScheduledAppointmentLiveData(requireActivity(), CommonUtils.getUserId(),
+                        appointmentSlot + " " + selected_date, appointmentId).observe(requireActivity(), new Observer<ReScheduledAppointment>() {
+                    @Override
+                    public void onChanged(ReScheduledAppointment pendingOnlineAppointmentModal) {
+                        if (pendingOnlineAppointmentModal.getSuccess().equalsIgnoreCase("1")) {
+                            requireActivity().onBackPressed();
+                            Toast.makeText(requireActivity(), "" + pendingOnlineAppointmentModal.getMessage(), Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(requireActivity(), "" + pendingOnlineAppointmentModal.getMessage(), Toast.LENGTH_SHORT).show();
 
-        });
+                        }
+                    }
+                });
+
+            });
+        } else {
+            button.setOnClickListener(v -> {
+
+                FinalAppointmentFragment.doctorModelDetails = doctorModelDetails;
+
+                Navigation.findNavController(v).navigate(R.id.finalAppointmentFragment);
+
+            });
+        }
+
 
         relativeLayout.setOnClickListener(v -> {
 
@@ -221,6 +255,12 @@ public class DoctorTimeSlotFragment extends Fragment implements GridViewSelectMo
 
     private void setData() {
 
+        if (status == "1") {
+            Glide.with(getContext()).load(Uri.parse(image)).error(R.drawable.doctor_12).into(doctorImage);
+            doctor_name.setText("Dr. " + name);
+            videoCallPrice.setText(amount);
+
+        }
         Glide.with(getContext()).load(Uri.parse(doctorModelDetails.getDoctorImage())).error(R.drawable.doctor_12).into(doctorImage);
         doctor_name.setText("Dr. " + doctorModelDetails.getName());
         String specialityAndQualification = doctorModelDetails.getQualificationTitle() + " , " + doctorModelDetails.getSpecialistTitle();
@@ -268,9 +308,17 @@ public class DoctorTimeSlotFragment extends Fragment implements GridViewSelectMo
 
     @Override
     public void onClick(String slot) {
+        if (status == "1") {
+            MyOnlineConsultFragment.appointmentSlot = slot;
+            appointmentSlot = slot;
+            button.setVisibility(View.VISIBLE);
 
-        FinalAppointmentFragment.appointmentSlot = slot;
-        button.setVisibility(View.VISIBLE);
+
+        } else {
+            FinalAppointmentFragment.appointmentSlot = slot;
+            button.setVisibility(View.VISIBLE);
+        }
+
 
     }
 
@@ -317,9 +365,19 @@ public class DoctorTimeSlotFragment extends Fragment implements GridViewSelectMo
 
             selectDate.setText(selected_date);
 
-            FinalAppointmentFragment.appointmentDateToShow = selected_date;
+            if (status == "1") {
+                MyOnlineConsultFragment.appointmentDateToShow = selected_date;
+            } else {
+                FinalAppointmentFragment.appointmentDateToShow = selected_date;
+            }
 
-            getSlots(doctorId, dateToSend);
+
+            if (status == "1") {
+                getDoctorId = docId;
+            } else {
+                getDoctorId = doctorId;
+            }
+            getSlots(getDoctorId, dateToSend);
 
         }, mYear, mMonth, mDay);
 

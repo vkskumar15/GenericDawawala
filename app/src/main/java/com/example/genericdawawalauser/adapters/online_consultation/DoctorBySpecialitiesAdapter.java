@@ -63,6 +63,13 @@ public class DoctorBySpecialitiesAdapter extends RecyclerView.Adapter<DoctorBySp
 
     }
 
+    public void filterList(List<DoctorModelDetails> filterList)
+    {
+        list = filterList;
+        notifyDataSetChanged();
+    }
+
+
     public int getItemCount() {
         return list.size();
     }

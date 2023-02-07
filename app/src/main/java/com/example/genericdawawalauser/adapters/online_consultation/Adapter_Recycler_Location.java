@@ -1,5 +1,6 @@
 package com.example.genericdawawalauser.adapters.online_consultation;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -53,7 +54,7 @@ public class Adapter_Recycler_Location extends RecyclerView.Adapter<Adapter_Recy
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, @SuppressLint("RecyclerView") int position) {
 
         holder.textView.setText(list.get(position).getSpecialty());
         Glide.with(context).load(list.get(position).getImage()).into(holder.imageView);
@@ -121,7 +122,7 @@ public class Adapter_Recycler_Location extends RecyclerView.Adapter<Adapter_Recy
             protected void publishResults(CharSequence constraint, FilterResults results) {
 
                 list.clear();
-                list.addAll((List)results.values);
+               // list.addAll((List)results.values);
                 notifyDataSetChanged();
             }
         };

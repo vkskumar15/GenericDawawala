@@ -3,9 +3,7 @@ package com.example.genericdawawalauser.modalClass;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import java.util.List;
-
-public class PendingOnlineAppointmentModal {
+public class ReScheduledAppointment {
 
     @SerializedName("success")
     @Expose
@@ -15,7 +13,7 @@ public class PendingOnlineAppointmentModal {
     private String message;
     @SerializedName("details")
     @Expose
-    private List<Detail> details;
+    private Details details;
 
     public String getSuccess() {
         return success;
@@ -33,14 +31,14 @@ public class PendingOnlineAppointmentModal {
         this.message = message;
     }
 
-    public List<Detail> getDetails() {
+    public Details getDetails() {
         return details;
     }
 
-    public void setDetails(List<Detail> details) {
+    public void setDetails(Details details) {
         this.details = details;
     }
-    public class Detail {
+    public class Details {
 
         @SerializedName("id")
         @Expose
@@ -81,55 +79,24 @@ public class PendingOnlineAppointmentModal {
         @SerializedName("status")
         @Expose
         private String status;
+        @SerializedName("cancelBy")
+        @Expose
+        private String cancelBy;
         @SerializedName("AppointmentType")
         @Expose
         private String appointmentType;
+        @SerializedName("coupanVerifiedId")
+        @Expose
+        private String coupanVerifiedId;
+        @SerializedName("reScheduledCounts")
+        @Expose
+        private String reScheduledCounts;
         @SerializedName("created")
         @Expose
         private String created;
         @SerializedName("updated")
         @Expose
         private String updated;
-        @SerializedName("transctionId")
-        @Expose
-        private String transctionId;
-        @SerializedName("type")
-        @Expose
-        private String type;
-        @SerializedName("doc_name")
-        @Expose
-        private String docName;
-        @SerializedName("language")
-        @Expose
-        private String language;
-        @SerializedName("doctorImage")
-        @Expose
-        private String doctorImage;
-
-        @SerializedName("cancelBy")
-        @Expose
-        private String cancelBy;
-
-
-        @SerializedName("reScheduledCounts")
-        @Expose
-        private String reScheduledCounts;
-
-        public String getReScheduledCounts() {
-            return reScheduledCounts;
-        }
-
-        public void setReScheduledCounts(String reScheduledCounts) {
-            this.reScheduledCounts = reScheduledCounts;
-        }
-
-        public String getCancelBy() {
-            return cancelBy;
-        }
-
-        public void setCancelBy(String cancelBy) {
-            this.cancelBy = cancelBy;
-        }
 
         public String getId() {
             return id;
@@ -235,12 +202,36 @@ public class PendingOnlineAppointmentModal {
             this.status = status;
         }
 
+        public String getCancelBy() {
+            return cancelBy;
+        }
+
+        public void setCancelBy(String cancelBy) {
+            this.cancelBy = cancelBy;
+        }
+
         public String getAppointmentType() {
             return appointmentType;
         }
 
         public void setAppointmentType(String appointmentType) {
             this.appointmentType = appointmentType;
+        }
+
+        public String getCoupanVerifiedId() {
+            return coupanVerifiedId;
+        }
+
+        public void setCoupanVerifiedId(String coupanVerifiedId) {
+            this.coupanVerifiedId = coupanVerifiedId;
+        }
+
+        public String getReScheduledCounts() {
+            return reScheduledCounts;
+        }
+
+        public void setReScheduledCounts(String reScheduledCounts) {
+            this.reScheduledCounts = reScheduledCounts;
         }
 
         public String getCreated() {
@@ -259,45 +250,6 @@ public class PendingOnlineAppointmentModal {
             this.updated = updated;
         }
 
-        public String getTransctionId() {
-            return transctionId;
-        }
-
-        public void setTransctionId(String transctionId) {
-            this.transctionId = transctionId;
-        }
-
-        public String getType() {
-            return type;
-        }
-
-        public void setType(String type) {
-            this.type = type;
-        }
-
-        public String getDocName() {
-            return docName;
-        }
-
-        public void setDocName(String docName) {
-            this.docName = docName;
-        }
-
-        public String getLanguage() {
-            return language;
-        }
-
-        public void setLanguage(String language) {
-            this.language = language;
-        }
-
-        public String getDoctorImage() {
-            return doctorImage;
-        }
-
-        public void setDoctorImage(String doctorImage) {
-            this.doctorImage = doctorImage;
-        }
-
     }
+
 }

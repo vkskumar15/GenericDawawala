@@ -11,14 +11,19 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.genericdawawalauser.R;
 import com.example.genericdawawalauser.databinding.CouponAndOfferLayoutBinding;
 import com.example.genericdawawalauser.databinding.ListPharmacyBinding;
+import com.example.genericdawawalauser.modalClass.TimeSlotsModels.OnlineAppointmentCouponModal;
+
+import java.util.List;
 
 public class CouponAndOfferAdapter extends RecyclerView.Adapter<CouponAndOfferAdapter.PharmacyListViewHolder> {
 
-    Context context ;
-    OnItemClickCallback callback ;
+    Context context;
+    private List<OnlineAppointmentCouponModal.Detail> list;
+    OnItemClickCallback callback;
 
-    public CouponAndOfferAdapter(Context context, OnItemClickCallback callback) {
+    public CouponAndOfferAdapter(Context context, List<OnlineAppointmentCouponModal.Detail> list, OnItemClickCallback callback) {
         this.context = context;
+        this.list = list;
         this.callback = callback;
     }
 
@@ -31,13 +36,20 @@ public class CouponAndOfferAdapter extends RecyclerView.Adapter<CouponAndOfferAd
     @Override
     public void onBindViewHolder(@NonNull PharmacyListViewHolder holder, int position) {
 
-        holder.bind(position);
+        holder.binding.couponName.setText(list.get(position).getCouponName());
+        holder.binding.minOrderAmount.setText("Coupon Code valued at "+list.get(position).getMinOrderAmount()+" ₹"+ " or " +list.get(position).getPercentage()+ "% at Generic Dawawala");
+        // holder.percentage.setText(list.get(position).getPercentage());
+        holder.binding.expireDate.setText(list.get(position).getExpire());
 
+        holder.binding.apply.setOnClickListener(v -> {
+
+            callback.onItemClick(list.get(position));
+        });
     }
 
     @Override
     public int getItemCount() {
-        return 10;
+        return list.size();
     }
 
     class PharmacyListViewHolder extends RecyclerView.ViewHolder {
@@ -48,20 +60,10 @@ public class CouponAndOfferAdapter extends RecyclerView.Adapter<CouponAndOfferAd
             binding = listPharmacyBinding;
         }
 
-
-        public void bind(int position) {
-            binding.getRoot().setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-
-                    callback.onItemClick(position);
-                }
-            });
-
-        }
     }
+
     public interface OnItemClickCallback {
-        void onItemClick(int position);
+        void onItemClick(OnlineAppointmentCouponModal.Detail detail);
     }
 
 }

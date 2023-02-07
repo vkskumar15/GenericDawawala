@@ -4,9 +4,14 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.ConnectivityManager;
 import android.util.Log;
 import android.view.View;
+
+import com.example.genericdawawalauser.R;
+
 import java.io.File;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -43,6 +48,29 @@ public class CommonUtils {
             progressDialog.dismiss();
         }
     }
+
+
+
+    public static void showProgressDialog(Activity activity) {
+
+        if (alertDialog!=null){
+            alertDialog.dismiss();
+        }
+
+        final AlertDialog.Builder alert = new AlertDialog.Builder(activity);
+        View mview = activity.getLayoutInflater().inflate(R.layout.dialog_progress, null);
+        alert.setView(mview);
+        alertDialog = alert.create();
+
+        alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        alertDialog.setCanceledOnTouchOutside(false);
+        alertDialog.show();
+    }
+    public static void dismissDialog() {
+//            progressBar.hideProgressBar();
+        alertDialog.dismiss();
+    }
+
 
     public static RequestBody stringToRequestBody(String s) {
         return RequestBody.create(MediaType.parse("text/plain"), s);

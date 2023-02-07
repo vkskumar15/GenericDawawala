@@ -7,8 +7,6 @@
     android:layout_height="match_parent"
     tools:context=".fragments.onlineConsult.OnlineAppointmentCouponFragment">
 
-
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/space50"
@@ -41,6 +39,7 @@
         android:layout_marginLeft="@dimen/space20"
         android:layout_marginTop="@dimen/space5"
         android:layout_marginRight="@dimen/space20"
+        android:visibility="gone"
         android:layout_marginBottom="@dimen/space5"
         android:hint="@string/enter_coupon_code"
         app:endIconMode="clear_text"
@@ -61,6 +60,7 @@
         android:layout_height="40dp"
         android:background="@drawable/btn_bg"
         android:layout_marginHorizontal="@dimen/dp_40"
+        android:visibility="gone"
         android:text="Apply"
         android:textAllCaps="true"
         android:textColor="@color/white"
@@ -69,6 +69,9 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="wrap_content"
+        android:id="@+id/recyclerView"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:orientation="vertical"
         tools:listitem="@layout/coupon_and_offer_layout"
         android:layout_height="wrap_content">
 

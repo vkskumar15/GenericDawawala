@@ -99,6 +99,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/logo"
                 android:layout_alignParentEnd="true"
+                android:foreground="@drawable/ripple"
                 android:layout_marginTop="@dimen/dp_20"
                 android:layout_marginEnd="@dimen/dp_10"
                 android:background="@drawable/bg_draw"

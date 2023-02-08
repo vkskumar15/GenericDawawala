@@ -107,14 +107,23 @@
                     android:layout_toRightOf="@id/video_icon"
                     android:textColor="@color/black"
                     android:textSize="@dimen/sp_14"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/offline_fee"
+                    android:text="\u20B9 400"
+                    android:visibility="gone"
+                    android:layout_toRightOf="@id/video_icon"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/sp_14"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/cunsultation_txt"
                     android:singleLine="true"
-                    android:text="ONLINE CUNSULTATION"
-                    android:layout_marginTop="@dimen/dp_10"
-                    android:layout_below="@id/video_icon"
+                    android:text="ONLINE CONSULTATION"
+                    android:layout_marginTop="@dimen/dp_28"
                     android:textColor="@color/black"
                     android:textSize="@dimen/sp_14"/>
 

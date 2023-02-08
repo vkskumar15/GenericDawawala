@@ -179,7 +179,7 @@
         tools:layout="@layout/fragment_healthcare_products" />
     <fragment
         android:id="@+id/personalDetailsFragment"
-        android:name="com.example.genericdawawalauser.fragments.PersonalDetailsFragment"
+        android:name="com.example.genericdawawalauser.fragments.profiles.PersonalDetailsFragment"
         android:label="PersonalDetailsFragment" >
         <action
             android:id="@+id/action_personalDetailsFragment_to_editProfileFragment"

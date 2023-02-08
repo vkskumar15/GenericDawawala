@@ -12,6 +12,7 @@ import com.example.genericdawawalauser.modalClass.ApplyCouponAppointment;
 import com.example.genericdawawalauser.modalClass.ChangePasswordModal;
 import com.example.genericdawawalauser.modalClass.DoctorModelRoot;
 import com.example.genericdawawalauser.modalClass.GenerateOrderIdModel;
+import com.example.genericdawawalauser.modalClass.HealthProblemModal;
 import com.example.genericdawawalauser.modalClass.PendingOnlineAppointmentModal;
 import com.example.genericdawawalauser.modalClass.ReScheduledAppointment;
 import com.example.genericdawawalauser.modalClass.RegisterModelRoot;
@@ -409,11 +410,13 @@ public class ViewModalClass extends ViewModel {
     public LiveData<OnlineAppointmentModal> onlineAppointmentModalLiveData(Activity activity,
                                                                            String userId, String docId, String releation, String patient_gender,
                                                                            String patient_name, String patient_age, String patient_number, String healthProblem,
-                                                                           String appointmentDate, String amount, String coupanVerifiedId) {
+                                                                           String appointmentDate, String amount,    String AppointmentType, String specialty, String coupanVerifiedId) {
 
         onlineAppointmentModalMutableLiveData = new MutableLiveData<>();
         CommonUtils.showProgressDialog(activity);
-        apiInterface.DoctorAppointment(userId, docId, releation, patient_gender, patient_name, patient_age, patient_number, healthProblem, appointmentDate, amount, coupanVerifiedId).enqueue(new Callback<OnlineAppointmentModal>() {
+        apiInterface.DoctorAppointment(userId, docId, releation, patient_gender, patient_name, patient_age, patient_number,
+                healthProblem, appointmentDate, amount, AppointmentType, specialty,
+                coupanVerifiedId).enqueue(new Callback<OnlineAppointmentModal>() {
             @Override
             public void onResponse(@NonNull Call<OnlineAppointmentModal> call, Response<OnlineAppointmentModal> response) {
                 CommonUtils.dismissDialog();
@@ -441,7 +444,7 @@ public class ViewModalClass extends ViewModel {
     public LiveData<PendingOnlineAppointmentModal> pendingOnlineAppointmentModalLiveData(Activity activity, String userId, String type) {
         CommonUtils.showProgressDialog(activity);
         pendingOnlineAppointmentModalMutableLiveData = new MutableLiveData<>();
-        apiInterface.pendingDocAppointment(userId ,type).enqueue(new Callback<PendingOnlineAppointmentModal>() {
+        apiInterface.pendingDocAppointment(userId, type).enqueue(new Callback<PendingOnlineAppointmentModal>() {
             @Override
             public void onResponse(@NonNull Call<PendingOnlineAppointmentModal> call, Response<PendingOnlineAppointmentModal> response) {
                 CommonUtils.dismissDialog();
@@ -470,7 +473,7 @@ public class ViewModalClass extends ViewModel {
 
         CommonUtils.showProgressDialog(activity);
         cancelOnlineAppointmentMutableLiveData = new MutableLiveData<>();
-        apiInterface.appointmentCancelByUser(userId ,appointmentId).enqueue(new Callback<CancelOnlineAppointment>() {
+        apiInterface.appointmentCancelByUser(userId, appointmentId).enqueue(new Callback<CancelOnlineAppointment>() {
             @Override
             public void onResponse(@NonNull Call<CancelOnlineAppointment> call, Response<CancelOnlineAppointment> response) {
                 CommonUtils.dismissDialog();
@@ -578,4 +581,46 @@ public class ViewModalClass extends ViewModel {
         return reScheduledAppointment;
     }
 
+
+    private MutableLiveData<HealthProblemModal> healthProblemModalMutableLiveData;
+
+    public LiveData<HealthProblemModal> healthProblemModalLiveData(Activity activity) {
+        healthProblemModalMutableLiveData = new MutableLiveData<>();
+        CommonUtils.showProgressDialog(activity);
+        apiInterface.getAllergies().enqueue(new Callback<HealthProblemModal>() {
+            @Override
+            public void onResponse(@NonNull Call<HealthProblemModal> call, Response<HealthProblemModal> response) {
+                CommonUtils.dismissDialog();
+
+                if (response.body() != null) {
+
+                    if (response.body().getSuccess().equals("0")) {
+
+                        Toast.makeText(activity, "" + response.body().getMessage(), Toast.LENGTH_SHORT).show();
+
+                    } else {
+
+                        healthProblemModalMutableLiveData.postValue(response.body());
+
+                    }
+
+                } else {
+
+                    Toast.makeText(activity, "Services not found", Toast.LENGTH_SHORT).show();
+
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<HealthProblemModal> call, Throwable t) {
+                CommonUtils.dismissDialog();
+                Toast.makeText(activity, "" + t.getMessage(), Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
+        return healthProblemModalMutableLiveData;
+
+    }
 }

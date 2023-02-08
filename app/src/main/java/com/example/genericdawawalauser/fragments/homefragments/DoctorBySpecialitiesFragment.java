@@ -33,6 +33,7 @@ public class DoctorBySpecialitiesFragment extends Fragment {
     DoctorBySpecialitiesAdapter adapter;
     List<DoctorModelDetails> list = new ArrayList<>();
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
@@ -41,14 +42,12 @@ public class DoctorBySpecialitiesFragment extends Fragment {
 
         try {
             setAdapter();
+
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-        binding.backArrowConsultPhysician.setOnClickListener(v -> {
 
-            requireActivity().onBackPressed();
-
-        });
+        onClicks();
 
 
         searchOperation();
@@ -57,35 +56,49 @@ public class DoctorBySpecialitiesFragment extends Fragment {
         return binding.getRoot();
     }
 
+    private void onClicks() {
+
+
+        binding.backArrowConsultPhysician.setOnClickListener(v -> {
+
+            requireActivity().onBackPressed();
+
+        });
+
+
+
+    }
+
     private void setAdapter() {
         new ViewModalClass().getDoctorsAsPerSpecialityLiveData(requireActivity(),
                 doctorModelDetails.getId(), String.valueOf(latitude),
                 String.valueOf(longitude)).observe(requireActivity(), doctorModelRoot -> {
-                    if (doctorModelRoot.getSuccess().equalsIgnoreCase("1")) {
-                        adapter = new DoctorBySpecialitiesAdapter(requireContext(), doctorModelDetails -> {
+            if (doctorModelRoot.getSuccess().equalsIgnoreCase("1")) {
+                adapter = new DoctorBySpecialitiesAdapter(requireContext(), doctorModelDetails -> {
+                    DoctorDetailsFragment.doctorModelDetails = doctorModelDetails;
+                    Navigation.findNavController(binding.getRoot()).navigate(R.id.doctorDetailsFragment);
 
-                            DoctorDetailsFragment.doctorModelDetails = doctorModelDetails;
-                            Navigation.findNavController(binding.getRoot()).navigate(R.id.doctorDetailsFragment);
-
-                        }, doctorModelRoot.getDetails(), doctorModelDetails -> {
-                            DoctorTimeSlotFragment.doctorModelDetails = doctorModelDetails;
-                            App.getSingleton().setFees(doctorModelDetails.getOnline_price());
-                            App.getSingleton().setDoctor_id(doctorModelDetails.getId());
-                            Navigation.findNavController(binding.getRoot()).navigate(R.id.doctorTimeSlotFragment);
-                        });
-                        binding.recyclerConsult.setAdapter(adapter);
-                        DoctorBySpecialitiesAdapter.unFilteredList = new ArrayList<>(list);
-
-                    }
+                }, doctorModelRoot.getDetails(), doctorModelDetails -> {
+                    DoctorTimeSlotFragment.doctorModelDetails = doctorModelDetails;
+                    App.getSingleton().setFees(doctorModelDetails.getOnline_price());
+                    App.getSingleton().setDoctor_id(doctorModelDetails.getId());
+                    Navigation.findNavController(binding.getRoot()).navigate(R.id.doctorTimeSlotFragment);
                 });
+                binding.recyclerConsult.setAdapter(adapter);
+                DoctorBySpecialitiesAdapter.unFilteredList = new ArrayList<>(list);
+
+            }
+        });
     }
 
     private void searchOperation() {
         binding.searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
+
                 return false;
             }
+
             @Override
             public boolean onQueryTextChange(String newText) {
 

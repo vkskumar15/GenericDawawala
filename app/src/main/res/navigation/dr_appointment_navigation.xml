@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/dr_appointment_navigation"
+    app:startDestination="@id/drAppointmentFragment">
+
+    <fragment
+        android:id="@+id/drAppointmentFragment"
+        android:name="com.example.genericdawawalauser.fragments.drAppointment.DrAppointmentFragment"
+        android:label="fragment_dr_appointment"
+        tools:layout="@layout/fragment_dr_appointment" >
+        <action
+            android:id="@+id/action_drAppointmentFragment_to_healthProblemFragment"
+            app:destination="@id/healthProblemFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/healthProblemFragment"
+        android:name="com.example.genericdawawalauser.fragments.drAppointment.HealthProblemFragment"
+        android:label="fragment_health_problem"
+        tools:layout="@layout/fragment_health_problem" >
+        <action
+            android:id="@+id/action_healthProblemFragment_to_specialtyFragment"
+            app:destination="@id/specialtyFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/specialtyFragment"
+        android:name="com.example.genericdawawalauser.fragments.drAppointment.SpecialtyFragment"
+        android:label="fragment_specility"
+        tools:layout="@layout/fragment_specility" >
+        <action
+            android:id="@+id/action_specialtyFragment_to_doctorAppointmentBySpecialitiesFragment"
+            app:destination="@id/doctorAppointmentBySpecialitiesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/doctorAppointmentBySpecialitiesFragment"
+        android:name="com.example.genericdawawalauser.fragments.homefragments.DoctorAppointmentBySpecialitiesFragment"
+        android:label="DoctorAppointmentBySpecialitiesFragment" >
+        <action
+            android:id="@+id/action_doctorAppointmentBySpecialitiesFragment_to_doctorDetailsFragment2"
+            app:destination="@id/doctorDetailsFragment2" />
+        <action
+            android:id="@+id/action_doctorAppointmentBySpecialitiesFragment_to_doctorTimeSlotFragment3"
+            app:destination="@id/doctorTimeSlotFragment3" />
+        <action
+            android:id="@+id/action_doctorAppointmentBySpecialitiesFragment_to_locationFragment"
+            app:destination="@id/locationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/doctorDetailsFragment2"
+        android:name="com.example.genericdawawalauser.fragments.onlineConsult.DoctorDetailsFragment"
+        android:label="fragment_doctor_details"
+        tools:layout="@layout/fragment_doctor_details" >
+        <action
+            android:id="@+id/action_doctorDetailsFragment2_to_doctorTimeSlotFragment3"
+            app:destination="@id/doctorTimeSlotFragment3" />
+    </fragment>
+    <fragment
+        android:id="@+id/doctorTimeSlotFragment3"
+        android:name="com.example.genericdawawalauser.fragments.onlineConsult.DoctorTimeSlotFragment"
+        android:label="fragment_doctor_time_slot"
+        tools:layout="@layout/fragment_doctor_time_slot" >
+        <action
+            android:id="@+id/action_doctorTimeSlotFragment3_to_finalAppointmentFragment2"
+            app:destination="@id/finalAppointmentFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/locationFragment"
+        android:name="com.example.genericdawawalauser.fragments.drAppointment.LocationFragment"
+        android:label="fragment_location"
+        tools:layout="@layout/fragment_location" />
+    <fragment
+        android:id="@+id/finalAppointmentFragment2"
+        android:name="com.example.genericdawawalauser.fragments.onlineConsult.FinalAppointmentFragment"
+        android:label="fragment_final_appointment"
+        tools:layout="@layout/fragment_final_appointment" >
+        <action
+            android:id="@+id/action_finalAppointmentFragment2_to_onlineAppointmentCouponFragment2"
+            app:destination="@id/onlineAppointmentCouponFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/onlineAppointmentCouponFragment2"
+        android:name="com.example.genericdawawalauser.fragments.onlineConsult.OnlineAppointmentCouponFragment"
+        android:label="fragment_online_appointment_coupon"
+        tools:layout="@layout/fragment_online_appointment_coupon" />
+</navigation>

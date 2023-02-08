@@ -34,6 +34,7 @@ import com.example.genericdawawalauser.modalClass.PendingOnlineAppointmentModal;
 import com.example.genericdawawalauser.modalClass.ReScheduledAppointment;
 import com.example.genericdawawalauser.modalClass.TimeSlotsModels.TimeSlotsModelRoot;
 import com.example.genericdawawalauser.retrofit.ViewModalClass;
+import com.example.genericdawawalauser.utils.App;
 import com.example.genericdawawalauser.utils.CommonUtils;
 
 import java.text.DateFormat;
@@ -61,14 +62,14 @@ public class DoctorTimeSlotFragment extends Fragment implements GridViewSelectMo
 
     int mNum = 0, aNum = 0, eNum = 0;
 
-    public static String doctorId = "";
+    public static String doctorId = "", statusNew;
 
     private int mYear, mDay, mMonth;
-
+    String onlineStatus, offlineStatus, drStatus;
     String selected_date = "", dateToSend = "";
     String docId, getDoctorId, status, appointmentId, appointmentSlot, name, image, amount;
 
-    TextView doctor_name, doctorQualificationAndSpeciality, selectDate, videoCallPrice, cunsultationTxt;
+    TextView doctor_name, doctorQualificationAndSpeciality, selectDate, videoCallPrice, cunsultationTxt, offline_fee;
 
     public static DoctorModelDetails doctorModelDetails;
 
@@ -93,8 +94,12 @@ public class DoctorTimeSlotFragment extends Fragment implements GridViewSelectMo
             name = bundle.getString("name");
             image = bundle.getString("image");
             amount = bundle.getString("amount");
+            drStatus = bundle.getString("drStatus");
+            onlineStatus = bundle.getString("online");
+            offlineStatus = bundle.getString("offline");
 
         }
+
 
         layout_morningGrid.setVisibility(View.GONE);
         layout_afterNoonGrid.setVisibility(View.GONE);
@@ -232,11 +237,33 @@ public class DoctorTimeSlotFragment extends Fragment implements GridViewSelectMo
                 });
 
             });
-        } else {
+        } else if (drStatus =="1")
+        {
             button.setOnClickListener(v -> {
 
                 FinalAppointmentFragment.doctorModelDetails = doctorModelDetails;
 
+                App.getSingleton().setOnlinePrice(doctorModelDetails.getOnline_price());
+                Navigation.findNavController(v).navigate(R.id.finalAppointmentFragment2);
+            });
+        }
+
+        else if (drStatus =="2")
+        {
+            button.setOnClickListener(v -> {
+
+                FinalAppointmentFragment.doctorModelDetails = doctorModelDetails;
+                App.getSingleton().setOfflinePrice(doctorModelDetails.getOffline_price());
+                Navigation.findNavController(v).navigate(R.id.finalAppointmentFragment2);
+            });
+        }
+
+        else {
+            button.setOnClickListener(v -> {
+
+                FinalAppointmentFragment.doctorModelDetails = doctorModelDetails;
+
+                statusNew = "0";
                 Navigation.findNavController(v).navigate(R.id.finalAppointmentFragment);
 
             });
@@ -256,9 +283,27 @@ public class DoctorTimeSlotFragment extends Fragment implements GridViewSelectMo
     private void setData() {
 
         if (status == "1") {
-            Glide.with(getContext()).load(Uri.parse(image)).error(R.drawable.doctor_12).into(doctorImage);
+            Glide.with(getContext()).load(doctorModelDetails.getDoctorImage()).error(R.drawable.doctor_12).into(doctorImage);
             doctor_name.setText("Dr. " + name);
             videoCallPrice.setText(amount);
+
+        }
+        if (drStatus == "1") {
+            Glide.with(getContext()).load(doctorModelDetails.getDoctorImage()).error(R.drawable.doctor_12).into(doctorImage);
+            doctor_name.setText("Dr. " + name);
+            cunsultationTxt.setText("ONLINE CONSULTATION");
+            offline_fee.setVisibility(View.GONE);
+            videoCallPrice.setText(doctorModelDetails.getOnline_price());
+        } else if (drStatus == "2") {
+            icon.setVisibility(View.GONE);
+
+            offline_fee.setVisibility(View.VISIBLE);
+            cunsultationTxt.setText("OFFLINE CONSULTATION");
+            Glide.with(getContext()).load(doctorModelDetails.getDoctorImage()).error(R.drawable.doctor_12).into(doctorImage);
+            doctor_name.setText("Dr. " + name);
+            videoCallPrice.setVisibility(View.GONE);
+            String price = "\u20B9 " + doctorModelDetails.getOffline_price();
+            offline_fee.setText(price);
 
         }
         Glide.with(getContext()).load(Uri.parse(doctorModelDetails.getDoctorImage())).error(R.drawable.doctor_12).into(doctorImage);
@@ -266,7 +311,6 @@ public class DoctorTimeSlotFragment extends Fragment implements GridViewSelectMo
         String specialityAndQualification = doctorModelDetails.getQualificationTitle() + " , " + doctorModelDetails.getSpecialistTitle();
         doctorQualificationAndSpeciality.setText(specialityAndQualification);
         String price = "\u20B9 " + doctorModelDetails.getOnline_price();
-
         videoCallPrice.setText(price);
 
     }
@@ -274,6 +318,7 @@ public class DoctorTimeSlotFragment extends Fragment implements GridViewSelectMo
     private void findIds() {
 
         relativeLayout = view.findViewById(R.id.relative_select_time_3);
+        offline_fee = view.findViewById(R.id.offline_fee);
 //        recyclerView= view.findViewById(R.id.recycler_time_slot);
         back_arrow = view.findViewById(R.id.back);
         button = view.findViewById(R.id.btn_continue);

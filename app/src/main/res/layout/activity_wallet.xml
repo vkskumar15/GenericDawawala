@@ -37,7 +37,7 @@
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_210"
+        android:layout_height="@dimen/dp_230"
         android:layout_marginStart="@dimen/space10"
         android:layout_marginTop="@dimen/space10"
         android:layout_marginEnd="@dimen/space10"
@@ -126,7 +126,7 @@
         android:id="@+id/txt_credit_amount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/space20"
+        android:layout_marginStart="@dimen/space10"
         android:layout_marginTop="@dimen/space20"
         android:gravity="center_horizontal"
         android:text="@string/your_transaction"
@@ -137,6 +137,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview_credited_amount"
         android:layout_width="match_parent"
+
         android:layout_height="match_parent"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 </LinearLayout>

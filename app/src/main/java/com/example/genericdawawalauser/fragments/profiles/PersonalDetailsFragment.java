@@ -1,4 +1,4 @@
-package com.example.genericdawawalauser.fragments;
+package com.example.genericdawawalauser.fragments.profiles;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

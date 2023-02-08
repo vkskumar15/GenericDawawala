@@ -42,21 +42,75 @@
             app:tint="@color/white" />
     </RelativeLayout>
 
+    <RelativeLayout
+        android:id="@+id/header_title"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_80"
+        android:layout_below="@id/relative_physician">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="center"
+            android:src="@drawable/shape"
+            app:shapeAppearanceOverlay="@style/customRoundedImageView" />
+
+        <ImageView
+            android:id="@+id/location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/space10"
+            android:src="@drawable/ic_baseline_location_on_24"
+            app:tint="@color/white" />
+
+        <TextView
+            android:id="@+id/location_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="-10dp"
+            android:layout_marginTop="@dimen/dp_10"
+            android:layout_toEndOf="@id/location"
+            android:gravity="center"
+            android:text="@string/mohali"
+            android:textColor="@color/white"
+            android:textSize="@dimen/space12"
+            app:drawableEndCompat="@drawable/baseline_keyboard_arrow_down_24"
+            app:drawableTint="@color/white"
+            tools:ignore="SpUsage" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="@dimen/space120"
+            android:layout_height="@dimen/dp_35"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="@dimen/dp_10"
+            android:layout_marginEnd="@dimen/space20"
+            android:id="@+id/filter"
+            android:background="@drawable/button_bg"
+            android:backgroundTint="@color/white"
+            android:text="@string/filters"
+            android:textAllCaps="false"
+            android:textColor="@color/appcolor"
+            android:textSize="@dimen/space12"
+            tools:ignore="SpUsage" />
+    </RelativeLayout>
+
     <SearchView
         android:id="@+id/searchView"
         android:layout_width="match_parent"
         android:layout_height="45dp"
-        android:layout_below="@+id/relative_physician"
+        android:layout_below="@+id/header_title"
         android:layout_marginHorizontal="@dimen/dp_20"
-        android:layout_marginTop="@dimen/dp_10"
+        android:layout_marginTop="-20dp"
         android:background="@drawable/bg_doctor_list"
         android:elevation="@dimen/dp_10"
         android:gravity="center"
         android:inputType="text"
         android:maxLength="15"
-        android:paddingLeft="@dimen/dp_5"
+        android:paddingStart="@dimen/dp_5"
+        android:queryHint="Search"
         android:singleLine="true"
-        android:textSize="@dimen/sp_15" />
+        android:textSize="@dimen/sp_15"
+        tools:ignore="RtlSymmetry" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_consult"

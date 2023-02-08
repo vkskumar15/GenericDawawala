@@ -213,7 +213,7 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/card2_review"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_220"
+                android:layout_height="@dimen/dp_250"
                 android:layout_below="@id/card1_review"
                 android:layout_marginBottom="@dimen/dp_10"
                 app:cardElevation="@dimen/dp_10">
@@ -371,7 +371,6 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/space10"
                             android:text="Health Problem: "
-
                             android:textColor="@color/darkgrey"
                             android:textStyle="bold" />
 
@@ -382,6 +381,31 @@
                             android:layout_marginStart="@dimen/space10"
                             android:layout_marginEnd="@dimen/space10"
                             android:id="@+id/health_problem"
+                            android:text="Health Problem: "
+                            android:textColor="@color/darkgrey" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="@dimen/space5">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/space10"
+                            android:text="speciality: "
+                            android:textColor="@color/darkgrey"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginStart="@dimen/space10"
+                            android:layout_marginEnd="@dimen/space10"
+                            android:id="@+id/specialityTv"
                             android:text="Health Problem: "
                             android:textColor="@color/darkgrey" />
 

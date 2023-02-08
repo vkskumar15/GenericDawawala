@@ -46,6 +46,7 @@ public class Singleton {
     public String hospitalName_hv;
     public String icu_Bed_hv;
     public String couponCode;
+    public String healthProblem;
 
     /* renamed from: id */
     public String f0id;
@@ -89,6 +90,41 @@ public class Singleton {
     public String problem;
     public String fees;
     public String doctor_id;
+    public String offlinePrice;
+    public String onlinePrice;
+    public String drStatus;
+
+    public String getOfflinePrice() {
+        return offlinePrice;
+    }
+
+    public void setOfflinePrice(String offlinePrice) {
+        this.offlinePrice = offlinePrice;
+    }
+
+    public String getOnlinePrice() {
+        return onlinePrice;
+    }
+
+    public void setOnlinePrice(String onlinePrice) {
+        this.onlinePrice = onlinePrice;
+    }
+
+    public String getDrStatus() {
+        return drStatus;
+    }
+
+    public void setDrStatus(String drStatus) {
+        this.drStatus = drStatus;
+    }
+
+    public String getHealthProblem() {
+        return healthProblem;
+    }
+
+    public void setHealthProblem(String healthProblem) {
+        this.healthProblem = healthProblem;
+    }
 
     public String getCouponCode() {
         return couponCode;

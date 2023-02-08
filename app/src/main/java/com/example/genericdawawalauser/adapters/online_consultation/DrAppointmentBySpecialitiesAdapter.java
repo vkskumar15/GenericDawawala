@@ -20,27 +20,32 @@ import java.util.List;
 
 public class DrAppointmentBySpecialitiesAdapter extends RecyclerView.Adapter<DrAppointmentBySpecialitiesAdapter.MyViewHolder> implements Filterable {
     Context context;
-    OnClick onClickInterFace;
+    OnLineFee onLineFee;
     private List<DoctorModelDetails> list;
-    BookNow bookNow;
+    OffLineFee offLineFee;
     private List<DoctorModelDetails> filteredList;
     public static List<DoctorModelDetails> unFilteredList;
+    OnClicks onClickInterFace;
 
+    public interface OnLineFee {
+        void onLineFee(DoctorModelDetails doctorModelDetails);
+    }
 
-    public interface OnClick {
+    public interface OnClicks {
         void onItemClick(DoctorModelDetails doctorModelDetails);
     }
 
-    public interface BookNow {
-        void bookNow(DoctorModelDetails doctorModelDetails);
+    public interface OffLineFee {
+        void offLineFee(DoctorModelDetails doctorModelDetails);
     }
 
-    public DrAppointmentBySpecialitiesAdapter(Context context, OnClick onClickInterFace, List<DoctorModelDetails> list, BookNow bookNow) {
+    public DrAppointmentBySpecialitiesAdapter(Context context, OnLineFee onLineFee, List<DoctorModelDetails> list, OffLineFee offLineFee, OnClicks onClickInterFace) {
         this.context = context;
-        this.onClickInterFace = onClickInterFace;
+        this.onLineFee = onLineFee;
         this.list = list;
         this.filteredList = list;
-        this.bookNow = bookNow;
+        this.offLineFee = offLineFee;
+        this.onClickInterFace = onClickInterFace;
     }
 
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -57,17 +62,26 @@ public class DrAppointmentBySpecialitiesAdapter extends RecyclerView.Adapter<DrA
         holder.binding.price.setText("Online Fees: ₹ " + list.get(position).getOnline_price());
         holder.binding.workInTv.setText(list.get(position).getClinic_Name());
         holder.binding.addressTv.setText(list.get(position).getAddress());
+        holder.binding.distance.setText("Distance: " + list.get(position).getDistance()+" Km");
         // holder.binding.ratingBar.setRating(Float.valueOf(list.get(position).getRating()));
         String experience = list.get(position).getWorkExp();
         holder.binding.experienceYearsTextView.setText(experience + " +");
+
+        holder.binding.onlineFee.setText("Online Fees: ₹ " + list.get(position).getOnline_price());
+
+        holder.binding.offlineFee.setText("Offline Fees: ₹ " + list.get(position).getOffline_price());
 
         holder.binding.moreAboutDoctorTextView.setOnClickListener(v -> {
             onClickInterFace.onItemClick(list.get(position));
         });
 
-//        holder.binding.btBooknow.setOnClickListener(v -> {
-//            bookNow.bookNow(list.get(position));
-//        });
+        holder.binding.offlineFee.setOnClickListener(v -> {
+            offLineFee.offLineFee(list.get(position));
+        });
+
+        holder.binding.onlineFee.setOnClickListener(v -> {
+            onLineFee.onLineFee(list.get(position));
+        });
 
     }
 
@@ -96,7 +110,7 @@ public class DrAppointmentBySpecialitiesAdapter extends RecyclerView.Adapter<DrA
             @Override
             protected void publishResults(CharSequence constraint, FilterResults results) {
                 list.clear();
-                list.addAll((List) results.values);
+                // list.addAll((List) results.values);
                 notifyDataSetChanged();
             }
         };

@@ -52,6 +52,7 @@ public class HealthProblemFragment extends Fragment implements AdapterHealthProb
             adapterHealthProblem.unFilteredList = new ArrayList<>(doctorModelRoot.getDetails());
         });
     }
+
     private void searchOperation() {
         binding.searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -71,10 +72,16 @@ public class HealthProblemFragment extends Fragment implements AdapterHealthProb
         });
 
     }
+
     @Override
     public void onClick(HealthProblemModal.Detail doctorModelDetails) {
-        // DoctorBySpecialitiesFragment.doctorModelDetails = doctorModelDetails;
-        Navigation.findNavController(binding.getRoot()).navigate(R.id.specialtyFragment);
+        if (App.getSingleton().getAppointmentStatus() == "1") {
+            Navigation.findNavController(binding.getRoot()).navigate(R.id.homeConsultationFragment);
+
+        } else {
+            Navigation.findNavController(binding.getRoot()).navigate(R.id.specialtyFragment);
+        }
+
 
         App.getSingleton().setHealthProblem(doctorModelDetails.getTitle());
 

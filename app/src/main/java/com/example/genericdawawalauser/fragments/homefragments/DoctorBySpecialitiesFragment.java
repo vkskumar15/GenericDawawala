@@ -57,15 +57,11 @@ public class DoctorBySpecialitiesFragment extends Fragment {
     }
 
     private void onClicks() {
-
-
         binding.backArrowConsultPhysician.setOnClickListener(v -> {
 
             requireActivity().onBackPressed();
 
         });
-
-
 
     }
 

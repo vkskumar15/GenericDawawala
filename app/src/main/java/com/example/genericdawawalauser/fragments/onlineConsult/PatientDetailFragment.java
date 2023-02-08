@@ -116,8 +116,9 @@ public class PatientDetailFragment extends Fragment {
                 App.getSingleton().setGender(gender);
                 App.getSingleton().setNumber(number);
                 App.getSingleton().setName(name);
+                App.getSingleton().setAppointmentStatus("1");
 
-                Navigation.findNavController(this.binding.getRoot()).navigate(R.id.homeConsultationFragment);
+                Navigation.findNavController(this.binding.getRoot()).navigate(R.id.healthProblemFragment2);
 
             }
 

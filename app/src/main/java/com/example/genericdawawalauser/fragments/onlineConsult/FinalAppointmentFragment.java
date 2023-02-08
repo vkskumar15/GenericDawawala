@@ -167,7 +167,7 @@ public class FinalAppointmentFragment extends Fragment {
                     CommonUtils.getUserId(), doctorModelDetails.getId(),
                     App.getSingleton().getRelation(), App.getSingleton().getGender(), App.getSingleton().getName(),
                     App.getSingleton().getAge(), App.getSingleton().getNumber(),
-                    App.getSingleton().getHealthProblem(), appointmentSlot + " " + appointmentDateToShow,
+                    App.getSingleton().getHealthProblem(),appointmentSlot + " " + appointmentDateToShow,
                     String.valueOf(totalAmount), appointmentType, App.getSingleton().getProblem(), coupanVerifiedId).observe(requireActivity(), onlineAppointmentModal -> {
                 if (onlineAppointmentModal.getSuccess().equalsIgnoreCase("1")) {
                     Toast.makeText(requireActivity(), "" + onlineAppointmentModal.getMessage(), Toast.LENGTH_SHORT).show();

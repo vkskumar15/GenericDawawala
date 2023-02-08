@@ -22,6 +22,7 @@ public class Singleton {
     public String PharmacyService_hv;
     public String UserType;
     public String about;
+    public String appointmentStatus;
     public String about_Hv;
     public String address;
     public String address_hv;
@@ -93,6 +94,14 @@ public class Singleton {
     public String offlinePrice;
     public String onlinePrice;
     public String drStatus;
+
+    public String getAppointmentStatus() {
+        return appointmentStatus;
+    }
+
+    public void setAppointmentStatus(String appointmentStatus) {
+        this.appointmentStatus = appointmentStatus;
+    }
 
     public String getOfflinePrice() {
         return offlinePrice;

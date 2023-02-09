@@ -67,7 +67,7 @@ public class DoctorTimeSlotFragment extends Fragment implements GridViewSelectMo
     private int mYear, mDay, mMonth;
     String onlineStatus, offlineStatus, drStatus;
     String selected_date = "", dateToSend = "";
-    String docId, getDoctorId, status, appointmentId, appointmentSlot, name, image, amount;
+    String docId, getDoctorId, status, appointmentId, appointmentSlot, name, image, amount, AppointmentType;
 
     TextView doctor_name, doctorQualificationAndSpeciality, selectDate, videoCallPrice, cunsultationTxt, offline_fee;
 
@@ -97,6 +97,7 @@ public class DoctorTimeSlotFragment extends Fragment implements GridViewSelectMo
             drStatus = bundle.getString("drStatus");
             onlineStatus = bundle.getString("online");
             offlineStatus = bundle.getString("offline");
+            AppointmentType = bundle.getString("AppointmentType");
 
         }
 
@@ -223,7 +224,7 @@ public class DoctorTimeSlotFragment extends Fragment implements GridViewSelectMo
                 Log.d("asd", appointmentId);
 
                 new ViewModalClass().reScheduledAppointmentLiveData(requireActivity(), CommonUtils.getUserId(),
-                        appointmentSlot + " " + selected_date, appointmentId).observe(requireActivity(), new Observer<ReScheduledAppointment>() {
+                        appointmentSlot + " " + selected_date, appointmentId, "1").observe(requireActivity(), new Observer<ReScheduledAppointment>() {
                     @Override
                     public void onChanged(ReScheduledAppointment pendingOnlineAppointmentModal) {
                         if (pendingOnlineAppointmentModal.getSuccess().equalsIgnoreCase("1")) {

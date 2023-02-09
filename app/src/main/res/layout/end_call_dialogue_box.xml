@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dp_10"
+        android:background="@drawable/stroke_box"
+        android:backgroundTint="@color/white"
+        android:elevation="@dimen/dp_10">
+
+        <ImageView
+            android:id="@+id/img_warning"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/dp_40"
+            android:layout_marginBottom="25dp"
+            android:src="@drawable/warning" />
+
+        <TextView
+            android:id="@+id/text_sure"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/img_warning"
+            android:layout_centerHorizontal="true"
+            android:text="@string/are_you_sure_want_to_end_call"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/text_sure"
+            android:layout_marginHorizontal="@dimen/dp_20"
+            android:layout_marginTop="@dimen/dp_20"
+            android:layout_marginBottom="@dimen/dp_5"
+            android:orientation="horizontal"
+            android:paddingBottom="@dimen/dp_5"
+            android:weightSum="2">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/no_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/button_bg"
+                android:hint="@string/keep_call"
+                android:textColorHint="@color/white"
+                android:textSize="15sp" />
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/yes_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/button_bg"
+                android:backgroundTint="@color/red"
+                android:hint="@string/end_call"
+                android:textColorHint="@color/white"
+                android:textSize="15sp" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</RelativeLayout>

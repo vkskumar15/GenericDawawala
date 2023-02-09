@@ -82,7 +82,7 @@ public class GridViewSelectMorningSlotAdapter extends BaseAdapter {
 
         } else {
 
-            textView.setBackgroundResource(R.drawable.outline_select_slot_address_unselected);
+            textView.setBackgroundResource(R.drawable.stroke_box);
             textView.setTextColor(Color.BLACK);
 
         }

@@ -213,7 +213,7 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/card2_review"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_250"
+                android:layout_height="@dimen/dp_270"
                 android:layout_below="@id/card1_review"
                 android:layout_marginBottom="@dimen/dp_10"
                 app:cardElevation="@dimen/dp_10">

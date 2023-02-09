@@ -68,7 +68,11 @@
         android:id="@+id/locationFragment"
         android:name="com.example.genericdawawalauser.fragments.drAppointment.LocationFragment"
         android:label="fragment_location"
-        tools:layout="@layout/fragment_location" />
+        tools:layout="@layout/fragment_location" >
+        <action
+            android:id="@+id/action_locationFragment_to_doctorAppointmentBySpecialitiesFragment"
+            app:destination="@id/doctorAppointmentBySpecialitiesFragment" />
+    </fragment>
     <fragment
         android:id="@+id/finalAppointmentFragment2"
         android:name="com.example.genericdawawalauser.fragments.onlineConsult.FinalAppointmentFragment"

@@ -110,7 +110,7 @@
                 app:startIconTint="@color/appcolor">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/user_name"
+                    android:id="@+id/clinic_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPersonName" />
@@ -121,7 +121,7 @@
     </com.google.android.material.card.MaterialCardView>
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_register"
+        android:id="@+id/btn_apply"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_40"
         android:background="@drawable/btn_bg"

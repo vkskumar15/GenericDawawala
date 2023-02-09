@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.SearchView;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
@@ -34,18 +35,33 @@ public class DoctorAppointmentBySpecialitiesFragment extends Fragment {
     DrAppointmentBySpecialitiesAdapter adapter;
     List<DoctorModelDetails> list = new ArrayList<>();
     String onlineStatus, offlineStatus, drStatus;
+    String specialityId, locality, clinic_name;
+    int specialityStatus;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         binding = FragmentDoctorAppointmentBySpecialitiesBinding.inflate(inflater, container, false);
 
-
-        try {
-            setAdapter();
-        } catch (Exception e) {
-            throw new RuntimeException(e);
+        Bundle bundle = this.getArguments();
+        if (bundle != null) {
+            locality = bundle.getString("locality");
+            clinic_name = bundle.getString("clinic_name");
+            specialityStatus = bundle.getInt("specialityStatus");
         }
+
+        if (specialityStatus == 12) {
+
+            filterAdapter();
+
+        } else {
+
+          setAdapter();
+
+
+        }
+
 
         binding.backArrowConsultPhysician.setOnClickListener(v -> {
 
@@ -58,82 +74,124 @@ public class DoctorAppointmentBySpecialitiesFragment extends Fragment {
             Navigation.findNavController(binding.getRoot()).navigate(R.id.locationFragment);
 
         });
+
         searchOperation();
+
 
 
         return binding.getRoot();
     }
 
-    private void setAdapter() {
-        new ViewModalClass().getDoctorsAsPerSpecialityLiveData(requireActivity(), doctorModelDetails.getId(), String.valueOf(latitude),
-                String.valueOf(longitude)).observe(requireActivity(), new Observer<DoctorModelRoot>() {
-            @Override
-            public void onChanged(DoctorModelRoot doctorModelRoot) {
+    private void filterAdapter() {
 
-                if (doctorModelRoot.getSuccess().equalsIgnoreCase("1")) {
-                    adapter = new DrAppointmentBySpecialitiesAdapter(requireContext(), new DrAppointmentBySpecialitiesAdapter.OnLineFee() {
-                        @Override
-                        public void onLineFee(DoctorModelDetails doctorModelDetails) {
+        new ViewModalClass().getFilterDoctorsAsPerSpecialityLiveData(requireActivity(), doctorModelDetails.getId(),
+                locality, clinic_name).observe(requireActivity(), doctorModelRoot -> {
+            if (doctorModelRoot.getSuccess().equalsIgnoreCase("1")) {
+                adapter = new DrAppointmentBySpecialitiesAdapter(requireContext(), doctorModelDetails -> {
+                    drStatus = "1";
+                    onlineStatus = "2";
+                    offlineStatus = "3";
 
-                            drStatus = "1";
-                            onlineStatus = "2";
-                            offlineStatus = "3";
+                    App.getSingleton().setDrStatus(drStatus);
 
-                            App.getSingleton().setDrStatus(drStatus);
+                    Fragment fragment = new Fragment();
+                    Bundle bundle = new Bundle();
+                    bundle.putString("drStatus", drStatus);
+                    bundle.putString("online", onlineStatus);
+                    bundle.putString("offline", offlineStatus);
+                    fragment.setArguments(bundle);
 
-                            Fragment fragment = new Fragment();
-                            Bundle bundle = new Bundle();
-                            bundle.putString("drStatus", drStatus);
-                            bundle.putString("online", onlineStatus);
-                            bundle.putString("offline", offlineStatus);
-                            fragment.setArguments(bundle);
-
-
+                    DoctorTimeSlotFragment.doctorModelDetails = doctorModelDetails;
+                    App.getSingleton().setFees(doctorModelDetails.getOnline_price());
+                    App.getSingleton().setDoctor_id(doctorModelDetails.getId());
+                    Navigation.findNavController(binding.getRoot()).navigate(R.id.doctorTimeSlotFragment3, bundle);
 
 
-                            DoctorTimeSlotFragment.doctorModelDetails = doctorModelDetails;
-                            App.getSingleton().setFees(doctorModelDetails.getOnline_price());
-                            App.getSingleton().setDoctor_id(doctorModelDetails.getId());
-                            Navigation.findNavController(binding.getRoot()).navigate(R.id.doctorTimeSlotFragment3, bundle);
+                }, doctorModelRoot.getDetails(), doctorModelDetails -> {
+
+                    drStatus = "2";
+                    onlineStatus = "2";
+                    offlineStatus = "3";
+                    App.getSingleton().setDrStatus(drStatus);
+
+                    Fragment fragment = new Fragment();
+                    Bundle bundle = new Bundle();
+                    bundle.putString("drStatus", drStatus);
+                    bundle.putString("online", onlineStatus);
+                    bundle.putString("offline", offlineStatus);
+                    fragment.setArguments(bundle);
+
+                    DoctorTimeSlotFragment.doctorModelDetails = doctorModelDetails;
+                    App.getSingleton().setFees(doctorModelDetails.getOnline_price());
+                    App.getSingleton().setDoctor_id(doctorModelDetails.getId());
+                    Navigation.findNavController(binding.getRoot()).navigate(R.id.doctorTimeSlotFragment3, bundle);
 
 
-                        }
-                    }, doctorModelRoot.getDetails(), new DrAppointmentBySpecialitiesAdapter.OffLineFee() {
-                        @Override
-                        public void offLineFee(DoctorModelDetails doctorModelDetails) {
-
-                            drStatus = "2";
-                            onlineStatus = "2";
-                            offlineStatus = "3";
-                            App.getSingleton().setDrStatus(drStatus);
-
-                            Fragment fragment = new Fragment();
-                            Bundle bundle = new Bundle();
-                            bundle.putString("drStatus", drStatus);
-                            bundle.putString("online", onlineStatus);
-                            bundle.putString("offline", offlineStatus);
-                            fragment.setArguments(bundle);
-
-                            DoctorTimeSlotFragment.doctorModelDetails = doctorModelDetails;
-                            App.getSingleton().setFees(doctorModelDetails.getOnline_price());
-                            App.getSingleton().setDoctor_id(doctorModelDetails.getId());
-                            Navigation.findNavController(binding.getRoot()).navigate(R.id.doctorTimeSlotFragment3, bundle);
-
-
-                        }
-                    }, new DrAppointmentBySpecialitiesAdapter.OnClicks() {
-                        @Override
-                        public void onItemClick(DoctorModelDetails doctorModelDetails) {
-                            DoctorDetailsFragment.doctorModelDetails = doctorModelDetails;
-                            Navigation.findNavController(binding.getRoot()).navigate(R.id.doctorDetailsFragment2);
-                        }
-                    });
-                    binding.recyclerConsult.setAdapter(adapter);
-                    DoctorBySpecialitiesAdapter.unFilteredList = new ArrayList<>(list);
-                }
+                }, doctorModelDetails -> {
+                    DoctorDetailsFragment.doctorModelDetails = doctorModelDetails;
+                    Navigation.findNavController(binding.getRoot()).navigate(R.id.doctorDetailsFragment2);
+                });
+                binding.recyclerConsult.setAdapter(adapter);
+                DoctorBySpecialitiesAdapter.unFilteredList = new ArrayList<>(list);
             }
         });
 
+    }
+
+    private void setAdapter() {
+
+        new ViewModalClass().getDoctorsAsPerSpecialityLiveData(requireActivity(), doctorModelDetails.getId(),String.valueOf(latitude), String.valueOf(longitude)).observe(requireActivity(), doctorModelRoot -> {
+            if (doctorModelRoot.getSuccess().equalsIgnoreCase("1")) {
+                adapter = new DrAppointmentBySpecialitiesAdapter(requireContext(), doctorModelDetails -> {
+
+                    drStatus = "1";
+                    onlineStatus = "2";
+                    offlineStatus = "3";
+
+                    App.getSingleton().setDrStatus(drStatus);
+
+                    Fragment fragment = new Fragment();
+                    Bundle bundle = new Bundle();
+                    bundle.putString("drStatus", drStatus);
+                    bundle.putString("online", onlineStatus);
+                    bundle.putString("offline", offlineStatus);
+                    fragment.setArguments(bundle);
+
+
+                    DoctorTimeSlotFragment.doctorModelDetails = doctorModelDetails;
+                    App.getSingleton().setFees(doctorModelDetails.getOnline_price());
+                    App.getSingleton().setDoctor_id(doctorModelDetails.getId());
+                    Navigation.findNavController(binding.getRoot()).navigate(R.id.doctorTimeSlotFragment3, bundle);
+
+
+                }, doctorModelRoot.getDetails(), doctorModelDetails -> {
+
+                    drStatus = "2";
+                    onlineStatus = "2";
+                    offlineStatus = "3";
+                    App.getSingleton().setDrStatus(drStatus);
+
+                    Fragment fragment = new Fragment();
+                    Bundle bundle = new Bundle();
+                    bundle.putString("drStatus", drStatus);
+                    bundle.putString("online", onlineStatus);
+                    bundle.putString("offline", offlineStatus);
+                    fragment.setArguments(bundle);
+
+                    DoctorTimeSlotFragment.doctorModelDetails = doctorModelDetails;
+                    App.getSingleton().setFees(doctorModelDetails.getOnline_price());
+                    App.getSingleton().setDoctor_id(doctorModelDetails.getId());
+                    Navigation.findNavController(binding.getRoot()).navigate(R.id.doctorTimeSlotFragment3, bundle);
+
+
+                }, doctorModelDetails -> {
+                    DoctorDetailsFragment.doctorModelDetails = doctorModelDetails;
+                    Navigation.findNavController(binding.getRoot()).navigate(R.id.doctorDetailsFragment2);
+                });
+                binding.recyclerConsult.setAdapter(adapter);
+                DoctorBySpecialitiesAdapter.unFilteredList = new ArrayList<>(list);
+            }
+        });
     }
 
     private void searchOperation() {

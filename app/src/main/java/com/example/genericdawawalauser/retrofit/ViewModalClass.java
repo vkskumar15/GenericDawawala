@@ -268,21 +268,12 @@ public class ViewModalClass extends ViewModel {
 
         CommonUtils.showProgressDialog(activity);
 
-        apiInterface.getDoctorsAsPerSpeciality(dr_speciality, common, clinic_name).enqueue(new Callback<DoctorModelRoot>() {
+        apiInterface.getFilterDoctors(dr_speciality, common, clinic_name).enqueue(new Callback<DoctorModelRoot>() {
             @Override
             public void onResponse(@NonNull Call<DoctorModelRoot> call, Response<DoctorModelRoot> response) {
                 CommonUtils.dismissDialog();
                 if (response.body() != null) {
-
-                    if (response.body().getSuccess().equals("0")) {
-
-                        Toast.makeText(activity, "" + response.body().getMessage(), Toast.LENGTH_SHORT).show();
-
-                    } else {
-
-                        getFilterDoctorsDoctorsAsPerSpecialityMutableLiveData.postValue(response.body());
-
-                    }
+                    getFilterDoctorsDoctorsAsPerSpecialityMutableLiveData.postValue(response.body());
 
                 } else {
 
@@ -514,11 +505,11 @@ public class ViewModalClass extends ViewModel {
 
     private MutableLiveData<CancelOnlineAppointment> cancelOnlineAppointmentMutableLiveData;
 
-    public LiveData<CancelOnlineAppointment> cancelOnlineAppointmentLiveData(Activity activity, String userId, String appointmentId) {
+    public LiveData<CancelOnlineAppointment> cancelOnlineAppointmentLiveData(Activity activity, String userId, String appointmentId, String AppointmentType) {
 
         CommonUtils.showProgressDialog(activity);
         cancelOnlineAppointmentMutableLiveData = new MutableLiveData<>();
-        apiInterface.appointmentCancelByUser(userId, appointmentId).enqueue(new Callback<CancelOnlineAppointment>() {
+        apiInterface.appointmentCancelByUser(userId, appointmentId, AppointmentType).enqueue(new Callback<CancelOnlineAppointment>() {
             @Override
             public void onResponse(@NonNull Call<CancelOnlineAppointment> call, Response<CancelOnlineAppointment> response) {
                 CommonUtils.dismissDialog();
@@ -600,11 +591,11 @@ public class ViewModalClass extends ViewModel {
 
     private MutableLiveData<ReScheduledAppointment> reScheduledAppointment;
 
-    public LiveData<ReScheduledAppointment> reScheduledAppointmentLiveData(Activity activity, String userId, String appointmentDate, String appointmentId) {
+    public LiveData<ReScheduledAppointment> reScheduledAppointmentLiveData(Activity activity, String userId, String appointmentDate, String appointmentId, String AppointmentType) {
 
         CommonUtils.showProgressDialog(activity);
         reScheduledAppointment = new MutableLiveData<>();
-        apiInterface.reScheduledAppointment(userId, appointmentDate, appointmentId).enqueue(new Callback<ReScheduledAppointment>() {
+        apiInterface.reScheduledAppointment(userId, appointmentDate, appointmentId, AppointmentType).enqueue(new Callback<ReScheduledAppointment>() {
             @Override
             public void onResponse(@NonNull Call<ReScheduledAppointment> call, Response<ReScheduledAppointment> response) {
                 CommonUtils.dismissDialog();

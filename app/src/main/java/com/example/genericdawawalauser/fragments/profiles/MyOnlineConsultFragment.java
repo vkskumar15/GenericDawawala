@@ -104,7 +104,7 @@ public class MyOnlineConsultFragment extends Fragment {
 
         delete_box.findViewById(R.id.yes_btn).setOnClickListener(v -> {
 
-            new ViewModalClass().cancelOnlineAppointmentLiveData(requireActivity(), CommonUtils.getUserId(), detail.getAppointmentId()).observe(requireActivity(), new Observer<CancelOnlineAppointment>() {
+            new ViewModalClass().cancelOnlineAppointmentLiveData(requireActivity(), CommonUtils.getUserId(), detail.getAppointmentId(), "1").observe(requireActivity(), new Observer<CancelOnlineAppointment>() {
                 @Override
                 public void onChanged(CancelOnlineAppointment cancelOnlineAppointment) {
 

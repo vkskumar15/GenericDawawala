@@ -95,4 +95,7 @@
     <string name="mohali">Mohali</string>
     <string name="filters">Filters</string>
     <string name="my_doctor_appointments">My Doctor Appointments</string>
+    <string name="are_you_sure_want_to_end_call">Are you sure want to end call?</string>
+    <string name="keep_call">Keep Call</string>
+    <string name="end_call">End Call</string>
 </resources>

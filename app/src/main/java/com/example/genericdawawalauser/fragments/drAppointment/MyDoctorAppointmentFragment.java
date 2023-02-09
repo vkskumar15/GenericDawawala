@@ -29,7 +29,7 @@ import com.example.genericdawawalauser.utils.CommonUtils;
 public class MyDoctorAppointmentFragment extends Fragment {
     FragmentMyDoctorAppointmentBinding binding;
     PendingOnlineConsultAdapter adapter;
-    public static String appointmentSlot, appointmentDateToShow, appointmentDateToSend;
+    public static String appointmentSlot, appointmentType, appointmentDateToShow, appointmentDateToSend;
     // 0 for pending appointment
     // 1 for approved appointment
     // 2 for history appointment
@@ -96,17 +96,21 @@ public class MyDoctorAppointmentFragment extends Fragment {
         window.setGravity(Gravity.CENTER);
         delete_box.show();
 
+        appointmentType = detail.getAppointmentType();
+
+        Toast.makeText(requireActivity(), ""+appointmentType, Toast.LENGTH_SHORT).show();
+
         TextView textView = delete_box.findViewById(R.id.text_warnin);
         textView.setVisibility(View.VISIBLE);
         textView.setText("If You want to cancel, you will be charged 20% of your total amount as a Penality.");
 
         delete_box.findViewById(R.id.yes_btn).setOnClickListener(v -> {
 
-            new ViewModalClass().cancelOnlineAppointmentLiveData(requireActivity(), CommonUtils.getUserId(), detail.getAppointmentId()).observe(requireActivity(), new Observer<CancelOnlineAppointment>() {
+            new ViewModalClass().cancelOnlineAppointmentLiveData(requireActivity(), CommonUtils.getUserId(), detail.getAppointmentId(), appointmentType).observe(requireActivity(), new Observer<CancelOnlineAppointment>() {
                 @Override
                 public void onChanged(CancelOnlineAppointment cancelOnlineAppointment) {
-
                     if (cancelOnlineAppointment.getSuccess().equalsIgnoreCase("1")) {
+
                         Toast.makeText(requireActivity(), "" + cancelOnlineAppointment.getMessage(), Toast.LENGTH_SHORT).show();
 
                         pendingOnlineAppointmentModal.getDetails().remove(pos);

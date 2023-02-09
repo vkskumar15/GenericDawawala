@@ -30,7 +30,8 @@ import retrofit2.http.Part;
 public interface ApiInterface {
     @FormUrlEncoded
     @POST("uniqueAPI")
-    Call<UniqueAPiModel> checkEmailPhone(@Field("email") String str, @Field("phone") String str2);
+    Call<UniqueAPiModel> checkEmailPhone(@Field("email") String str,
+                                         @Field("phone") String str2);
 
     @FormUrlEncoded
     @POST("userLogin")
@@ -48,7 +49,16 @@ public interface ApiInterface {
 
     @FormUrlEncoded
     @POST("register")
-    Call<RegisterModelRoot> registerUser(@Field("username") String str, @Field("email") String str2, @Field("phone") String str3, @Field("password") String str4, @Field("reg_id") String str5, @Field("device_id") String str6, @Field("login_type") String str7, @Field("latitude") String str8, @Field("longitude") String str9, @Field("chatId") String str10);
+    Call<RegisterModelRoot> registerUser(@Field("username") String str,
+                                         @Field("email") String str2,
+                                         @Field("phone") String str3,
+                                         @Field("password") String str4,
+                                         @Field("reg_id") String str5,
+                                         @Field("device_id") String str6,
+                                         @Field("login_type") String str7,
+                                         @Field("latitude") String str8,
+                                         @Field("longitude") String str9,
+                                         @Field("chatId") String str10);
 
     @FormUrlEncoded
     @POST("updatePhoneEmail")
@@ -150,7 +160,8 @@ public interface ApiInterface {
     @POST("appointmentCancelByUser")
     Call<CancelOnlineAppointment> appointmentCancelByUser(
             @Field("userId") String userId,
-            @Field("appointmentId") String appointmentId
+            @Field("appointmentId") String appointmentId,
+            @Field("AppointmentType") String AppointmentType
     );
 
 
@@ -174,7 +185,9 @@ public interface ApiInterface {
     Call<ReScheduledAppointment> reScheduledAppointment(
             @Field("userId") String userId,
             @Field("appointmentDate") String appointmentDate,
-            @Field("appointmentId") String appointmentId);
+            @Field("appointmentId") String appointmentId,
+            @Field("AppointmentType") String AppointmentType
+            );
 
     @GET("getAllergies")
     Call<HealthProblemModal> getAllergies();

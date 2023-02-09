@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.agora.AudioCallActivity">
+
+    <RelativeLayout
+        android:id="@+id/remote_video_view_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/remoteBackground">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@id/icon_padding">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/dp_120"
+                android:orientation="vertical">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/imgPatient"
+                    android:layout_width="@dimen/dp_100"
+                    android:layout_height="@dimen/dp_100"
+                    android:layout_gravity="center"
+                    android:src="@drawable/doctor_12"
+                    app:civ_border_color="@color/green"
+                    app:civ_border_width="0.1dp" />
+
+                <TextView
+                    android:id="@+id/txtPatientName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/dp_20"
+                    android:text="Vikas Kumar"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp_16"
+                    tools:ignore="HardcodedText" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/dp_10"
+                    android:drawablePadding="@dimen/dp_5"
+                    android:gravity="center"
+                    android:text="Voice Call"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp_16"
+                    app:drawableStartCompat="@drawable/ic_hd"
+                    tools:ignore="HardcodedText" />
+
+                <Chronometer
+                    android:id="@+id/chronoMeter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:textColor="@color/white" />
+
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/icon_padding"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_90"
+            android:layout_alignParentBottom="true" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/control_panel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/dp_24">
+
+        <ImageView
+            android:id="@+id/btn_call"
+            android:layout_width="@dimen/call_button_size"
+            android:layout_height="@dimen/call_button_size"
+            android:layout_centerInParent="true"
+            android:onClick="endCall"
+            android:scaleType="centerCrop"
+            android:src="@drawable/btn_endcall" />
+
+
+        <ImageView
+            android:id="@+id/btn_speaker"
+            android:layout_width="@dimen/dp_55"
+            android:layout_height="@dimen/dp_55"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/control_bottom_horizontal_margin"
+            android:layout_toEndOf="@id/btn_call"
+            android:onClick="onSpeakerClicked"
+            android:scaleType="centerCrop"
+            android:src="@drawable/btn_speaker_normal" />
+
+        <ImageView
+            android:id="@+id/btn_mute"
+            android:layout_width="@dimen/other_button_size"
+            android:layout_height="@dimen/other_button_size"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="@dimen/control_bottom_horizontal_margin"
+            android:layout_toStartOf="@id/btn_call"
+            android:onClick="onLocalAudioMuteClicked"
+            android:scaleType="centerCrop"
+            android:src="@drawable/btn_unmute" />
+
+
+    </RelativeLayout>
+</RelativeLayout>

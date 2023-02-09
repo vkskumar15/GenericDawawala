@@ -118,7 +118,7 @@ public class PatientDetailFragment extends Fragment {
                 App.getSingleton().setName(name);
                 App.getSingleton().setAppointmentStatus("1");
 
-                Navigation.findNavController(this.binding.getRoot()).navigate(R.id.healthProblemFragment2);
+                Navigation.findNavController(this.binding.getRoot()).navigate(R.id.healthProblemOnlineFragment);
 
             }
 

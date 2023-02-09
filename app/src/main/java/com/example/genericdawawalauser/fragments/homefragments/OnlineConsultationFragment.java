@@ -17,17 +17,13 @@ public class OnlineConsultationFragment extends Fragment {
     private FragmentOnlineConsultationBinding fragmentOnlineConsultationBinding = null;
 
 
-    public OnlineConsultationFragment() {
-        // Required empty public constructor
-    }
-
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         fragmentOnlineConsultationBinding = FragmentOnlineConsultationBinding.inflate(inflater, container, false);
+
         setActivityToolbarInvisible();
         setClicksOnViews();
+
         return fragmentOnlineConsultationBinding.getRoot();
     }
 

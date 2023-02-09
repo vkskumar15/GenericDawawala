@@ -13,8 +13,8 @@
             android:id="@+id/action_patientDetailFragment_to_homeConsultationFragment"
             app:destination="@id/homeConsultationFragment" />
         <action
-            android:id="@+id/action_patientDetailFragment_to_healthProblemFragment2"
-            app:destination="@id/healthProblemFragment2" />
+            android:id="@+id/action_patientDetailFragment_to_healthProblemOnlineFragment"
+            app:destination="@id/healthProblemOnlineFragment" />
     </fragment>
     <fragment
         android:id="@+id/homeConsultationFragment"
@@ -65,12 +65,12 @@
         android:label="fragment_online_appointment_coupon"
         tools:layout="@layout/fragment_online_appointment_coupon" />
     <fragment
-        android:id="@+id/healthProblemFragment2"
-        android:name="com.example.genericdawawalauser.fragments.drAppointment.HealthProblemFragment"
-        android:label="fragment_health_problem"
-        tools:layout="@layout/fragment_health_problem" >
+        android:id="@+id/healthProblemOnlineFragment"
+        android:name="com.example.genericdawawalauser.fragments.loginfragments.HealthProblemOnlineFragment"
+        android:label="fragment_health_problem_online"
+        tools:layout="@layout/fragment_health_problem_online" >
         <action
-            android:id="@+id/action_healthProblemFragment2_to_homeConsultationFragment"
+            android:id="@+id/action_healthProblemOnlineFragment_to_homeConsultationFragment"
             app:destination="@id/homeConsultationFragment" />
     </fragment>
 </navigation>

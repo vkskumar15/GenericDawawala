@@ -110,10 +110,22 @@ public class PendingOnlineAppointmentModal {
         @Expose
         private String cancelBy;
 
+        @SerializedName("address")
+        @Expose
+        private String address;
+
 
         @SerializedName("reScheduledCounts")
         @Expose
         private String reScheduledCounts;
+
+        public String getAddress() {
+            return address;
+        }
+
+        public void setAddress(String address) {
+            this.address = address;
+        }
 
         public String getReScheduledCounts() {
             return reScheduledCounts;

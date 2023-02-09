@@ -42,6 +42,10 @@ public class ProfileFragment extends Fragment {
 
             Navigation.findNavController(v).navigate(R.id.myOnlineConsultFragment);
         });
+        binding.drAppointment.setOnClickListener(v -> {
+
+            Navigation.findNavController(v).navigate(R.id.myDoctorAppointmentFragment);
+        });
 
         binding.back.setOnClickListener(v -> {
 

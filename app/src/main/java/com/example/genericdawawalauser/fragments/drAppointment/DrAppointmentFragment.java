@@ -26,6 +26,7 @@ public class DrAppointmentFragment extends Fragment {
     private RelationAdapter adapter;
     private List<RelationModal> list = new ArrayList();
     String gender, relation;
+    public static String DRSTATUS;
 
 
     @Override
@@ -106,6 +107,8 @@ public class DrAppointmentFragment extends Fragment {
                 App.getSingleton().setGender(gender);
                 App.getSingleton().setNumber(number);
                 App.getSingleton().setName(name);
+
+                DRSTATUS = "2";
 
                 Navigation.findNavController(this.binding.getRoot()).navigate(R.id.healthProblemFragment);
 

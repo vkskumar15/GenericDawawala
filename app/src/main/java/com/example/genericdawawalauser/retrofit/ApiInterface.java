@@ -70,12 +70,22 @@ public interface ApiInterface {
             @Field("longitude") String longitude
     );
 
+
+    @FormUrlEncoded
+    @POST("getFilterDoctors")
+    Call<DoctorModelRoot> getFilterDoctors(
+            @Field("dr_speciality") String dr_speciality,
+            @Field("common") String common,
+            @Field("clinic_name") String clinic_name
+    );
+
     @FormUrlEncoded
     @POST("vendorDoctorAvailabilitySlots")
     Call<TimeSlotsModelRoot> getDoctorSlots(
             @Field("availableDate") String availableDate,
             @Field("doctor_Id") String doctor_Id
     );
+
 
     @FormUrlEncoded
     @POST("getUserWallet")
@@ -168,5 +178,14 @@ public interface ApiInterface {
 
     @GET("getAllergies")
     Call<HealthProblemModal> getAllergies();
+
+
+    @FormUrlEncoded
+    @POST("otherAppointmets")
+    Call<PendingOnlineAppointmentModal> otherAppointmets(
+            @Field("userId") String userId,
+            @Field("type") String type
+    );
+
 
 }

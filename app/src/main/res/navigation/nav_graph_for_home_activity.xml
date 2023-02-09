@@ -73,6 +73,9 @@
         <action
             android:id="@+id/action_profileFragment_to_myOnlineConsultFragment"
             app:destination="@id/myOnlineConsultFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_myDoctorAppointmentFragment"
+            app:destination="@id/myDoctorAppointmentFragment" />
     </fragment>
     <fragment
         android:id="@+id/prescriptionsFragment"
@@ -203,4 +206,9 @@
         android:name="com.example.genericdawawalauser.fragments.onlineConsult.DoctorTimeSlotFragment"
         android:label="fragment_doctor_time_slot"
         tools:layout="@layout/fragment_doctor_time_slot" />
+    <fragment
+        android:id="@+id/myDoctorAppointmentFragment"
+        android:name="com.example.genericdawawalauser.fragments.drAppointment.MyDoctorAppointmentFragment"
+        android:label="fragment_my_doctor_appointment"
+        tools:layout="@layout/fragment_my_doctor_appointment" />
 </navigation>

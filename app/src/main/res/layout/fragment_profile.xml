@@ -368,6 +368,8 @@
 
                 <RelativeLayout
                     android:layout_width="match_parent"
+                    android:id="@+id/dr_appointment"
+                    android:background="@drawable/ripple"
                     android:layout_height="match_parent">
 
                     <ImageView

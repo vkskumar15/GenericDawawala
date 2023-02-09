@@ -260,6 +260,51 @@ public class ViewModalClass extends ViewModel {
     }
 
 
+    private MutableLiveData<DoctorModelRoot> getFilterDoctorsDoctorsAsPerSpecialityMutableLiveData;
+
+    public LiveData<DoctorModelRoot> getFilterDoctorsAsPerSpecialityLiveData(Activity activity, String dr_speciality, String common, String clinic_name) {
+
+        getFilterDoctorsDoctorsAsPerSpecialityMutableLiveData = new MutableLiveData<>();
+
+        CommonUtils.showProgressDialog(activity);
+
+        apiInterface.getDoctorsAsPerSpeciality(dr_speciality, common, clinic_name).enqueue(new Callback<DoctorModelRoot>() {
+            @Override
+            public void onResponse(@NonNull Call<DoctorModelRoot> call, Response<DoctorModelRoot> response) {
+                CommonUtils.dismissDialog();
+                if (response.body() != null) {
+
+                    if (response.body().getSuccess().equals("0")) {
+
+                        Toast.makeText(activity, "" + response.body().getMessage(), Toast.LENGTH_SHORT).show();
+
+                    } else {
+
+                        getFilterDoctorsDoctorsAsPerSpecialityMutableLiveData.postValue(response.body());
+
+                    }
+
+                } else {
+
+                    Toast.makeText(activity, "Technical error", Toast.LENGTH_SHORT).show();
+
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<DoctorModelRoot> call, Throwable t) {
+                CommonUtils.dismissDialog();
+                Toast.makeText(activity, "" + t.getMessage(), Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
+        return getFilterDoctorsDoctorsAsPerSpecialityMutableLiveData;
+
+    }
+
+
     public MutableLiveData<TimeSlotsModelRoot> GetDoctorSlotsMutableLiveData;
 
     public LiveData<TimeSlotsModelRoot> GetDoctorSlotsLiveData(Activity activity, String availableDate, String doctor_Id) {
@@ -410,7 +455,7 @@ public class ViewModalClass extends ViewModel {
     public LiveData<OnlineAppointmentModal> onlineAppointmentModalLiveData(Activity activity,
                                                                            String userId, String docId, String releation, String patient_gender,
                                                                            String patient_name, String patient_age, String patient_number, String healthProblem,
-                                                                           String appointmentDate, String amount,    String AppointmentType, String specialty, String coupanVerifiedId) {
+                                                                           String appointmentDate, String amount, String AppointmentType, String specialty, String coupanVerifiedId) {
 
         onlineAppointmentModalMutableLiveData = new MutableLiveData<>();
         CommonUtils.showProgressDialog(activity);
@@ -622,5 +667,33 @@ public class ViewModalClass extends ViewModel {
 
         return healthProblemModalMutableLiveData;
 
+    }
+
+
+    private MutableLiveData<PendingOnlineAppointmentModal> pendingDrAppointmentModalMutableLiveData;
+
+    public LiveData<PendingOnlineAppointmentModal> otherAppointmentsPendingOnlineAppointmentModalLiveData(Activity activity, String userId, String type) {
+        CommonUtils.showProgressDialog(activity);
+        pendingDrAppointmentModalMutableLiveData = new MutableLiveData<>();
+        apiInterface.otherAppointmets(userId, type).enqueue(new Callback<PendingOnlineAppointmentModal>() {
+            @Override
+            public void onResponse(@NonNull Call<PendingOnlineAppointmentModal> call, Response<PendingOnlineAppointmentModal> response) {
+                CommonUtils.dismissDialog();
+                if (response.body() != null) {
+                    pendingDrAppointmentModalMutableLiveData.postValue(response.body());
+                } else {
+                    pendingDrAppointmentModalMutableLiveData.postValue(null);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<PendingOnlineAppointmentModal> call, Throwable t) {
+                CommonUtils.dismissDialog();
+                pendingDrAppointmentModalMutableLiveData.postValue(null);
+
+            }
+        });
+
+        return pendingDrAppointmentModalMutableLiveData;
     }
 }

@@ -121,9 +121,8 @@
                     android:textSize="@dimen/sp_14"
                     android:textStyle="bold" />
             </RelativeLayout>
-
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/line2"
                 android:layout_below="@+id/txt_title"
@@ -131,7 +130,7 @@
                 android:orientation="vertical">
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
                     <TextView
@@ -199,8 +198,6 @@
                         android:textSize="@dimen/text12" />
                 </LinearLayout>
 
-
-
                     <TextView
                         android:id="@+id/refund"
                         android:layout_width="wrap_content"
@@ -212,24 +209,50 @@
                         android:textColor="@color/appcolor"
                         android:textSize="@dimen/text12" />
 
-
-
-
                 <TextView
                     android:id="@+id/status"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/dp_10"
                     android:layout_marginStart="@dimen/space10"
                     android:layout_marginTop="@dimen/space5"
                     android:text="Status: Pending"
+                    android:layout_marginBottom="@dimen/dp_10"
                     android:textColor="@color/red"
+
                     android:textSize="@dimen/text14"
                     android:textStyle="bold" />
 
 
-            </LinearLayout>
+                <TextView
+                    android:id="@+id/on_off_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/dp_5"
+                    android:layout_marginStart="@dimen/space10"
+                    android:text="Status: Pending"
+                    android:visibility="gone"
+                    android:textColor="@color/appcolor"
+                    android:textSize="@dimen/text14"
+                    android:textStyle="bold" />
 
+
+                <TextView
+                    android:id="@+id/address"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/dp_10"
+                    android:layout_marginStart="@dimen/space10"
+                    android:visibility="gone"
+                    android:text="Status: Pending"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_margin="@dimen/dp_5"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text14"
+                    />
+
+
+            </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
@@ -273,7 +296,6 @@
 
 
             </LinearLayout>
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
@@ -318,7 +340,6 @@
 
 
             </LinearLayout>
-
 
         </RelativeLayout>
     </com.google.android.material.card.MaterialCardView>

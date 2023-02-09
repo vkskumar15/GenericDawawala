@@ -23,8 +23,8 @@ public class PendingOnlineConsultAdapter extends RecyclerView.Adapter<PendingOnl
 
 
     public interface Reschedule {
-        void reschedule(PendingOnlineAppointmentModal.Detail detail);
 
+        void reschedule(PendingOnlineAppointmentModal.Detail detail);
         void cancel(PendingOnlineAppointmentModal.Detail detail, int pos);
     }
 
@@ -51,12 +51,27 @@ public class PendingOnlineConsultAdapter extends RecyclerView.Adapter<PendingOnl
         holder.binding.txtDateAndTime.setText(list.get(position).getHealthProblem());
         holder.binding.txtAmount.setText("₹ " + list.get(position).getAmount());
 
+        if (list.get(position).getAppointmentType().equalsIgnoreCase("2")) {
+            holder.binding.onOffStatus.setText("Online Appointment");
+            holder.binding.onOffStatus.setVisibility(View.VISIBLE);
+        }
+
+        else if (list.get(position).getAppointmentType().equalsIgnoreCase("3")) {
+            holder.binding.onOffStatus.setText("Offline Appointment");
+            holder.binding.onOffStatus.setVisibility(View.VISIBLE);
+        }
+
         if (list.get(position).getStatus().equalsIgnoreCase("1")) {
             holder.binding.start.setVisibility(View.GONE);
             holder.binding.status.setText("Status: Approved");
             holder.binding.status.setTextColor(Color.parseColor("#0daaed"));
-        }
 
+            if (list.get(position).getAppointmentType().equalsIgnoreCase("3"))
+            {
+                holder.binding.address.setVisibility(View.VISIBLE);
+                holder.binding.address.setText(list.get(position).getAddress());
+            }
+        }
 
         if (list.get(position).getStatus().equalsIgnoreCase("2")) {
             holder.binding.start.setVisibility(View.GONE);
@@ -64,6 +79,7 @@ public class PendingOnlineConsultAdapter extends RecyclerView.Adapter<PendingOnl
             holder.binding.status.setText(list.get(position).getCancelBy());
             holder.binding.status.setTextColor(Color.parseColor("#c91b20"));
         }
+
         if (list.get(position).getCancelBy().equalsIgnoreCase("cancelled by doctor")) {
             holder.binding.startTwo.setVisibility(View.GONE);
             holder.binding.refund.setVisibility(View.VISIBLE);
@@ -107,7 +123,7 @@ public class PendingOnlineConsultAdapter extends RecyclerView.Adapter<PendingOnl
 
         holder.binding.downloadButton.setOnClickListener(v -> {
 
-           // reschedule.cancel(list.get(position), position);
+            // reschedule.cancel(list.get(position), position);
             notifyDataSetChanged();
         });
     }

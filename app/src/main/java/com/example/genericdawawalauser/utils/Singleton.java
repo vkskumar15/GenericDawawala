@@ -48,6 +48,7 @@ public class Singleton {
     public String icu_Bed_hv;
     public String couponCode;
     public String healthProblem;
+    public String token;
 
     /* renamed from: id */
     public String f0id;
@@ -94,6 +95,14 @@ public class Singleton {
     public String offlinePrice;
     public String onlinePrice;
     public String drStatus;
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
 
     public String getAppointmentStatus() {
         return appointmentStatus;

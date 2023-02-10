@@ -1,15 +1,17 @@
 package com.example.genericdawawalauser.firebase;
 
+
+
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.content.ContentResolver;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.media.Ringtone;
-import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -20,12 +22,12 @@ import androidx.annotation.RequiresApi;
 import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
-import androidx.navigation.NavDeepLinkBuilder;
 
 import com.example.genericdawawalauser.R;
 import com.example.genericdawawalauser.activities.HomeActivity;
 import com.example.genericdawawalauser.activities.agora.AudioCallActivity;
 import com.example.genericdawawalauser.activities.agora.VideoCallActivity;
+import com.example.genericdawawalauser.utils.App;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
@@ -52,17 +54,27 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         super.onMessageReceived(remoteMessage);
 
 
+
+
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
 
             setBookingOreoNotification(remoteMessage.getData().get(URLBuilder.Parameter.title.toString()),
                     remoteMessage.getData().get(URLBuilder.Parameter.message.toString()),
-                    Objects.requireNonNull(remoteMessage.getData().get(URLBuilder.Parameter.type.toString())), "", bigContent);
+                    Objects.requireNonNull(remoteMessage.getData().get(URLBuilder.Parameter.type.toString())), "", bigContent,
+                    remoteMessage.getData().get(URLBuilder.Parameter.token.toString()),
+                    remoteMessage.getData().get(URLBuilder.Parameter.docImage.toString()),
+                    remoteMessage.getData().get(URLBuilder.Parameter.doctorName.toString()),
+                    remoteMessage.getData().get(URLBuilder.Parameter.docId.toString())
+                    );
 
         } else {
 
             showNotification(remoteMessage.getData().get(URLBuilder.Parameter.title.toString()),
                     remoteMessage.getData().get(URLBuilder.Parameter.message.toString()), "",
                     Objects.requireNonNull(remoteMessage.getData().get(URLBuilder.Parameter.type.toString())), "", bigContent);
+            Log.d("LOGCAT", "" + remoteMessage.getData().get(URLBuilder.Parameter.token.toString()));
+
         }
 
 
@@ -79,6 +91,14 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 PendingIntent.FLAG_IMMUTABLE);
        // defaultSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
 
+
+        NotificationCompat.Builder builders = new NotificationCompat.Builder(this).setSmallIcon(R.drawable.ic_notification).setContentTitle(title).setAutoCancel(true);
+        defaultSound = Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE + "://" + getPackageName() + R.raw.ring);
+        builders.setSound(defaultSound);
+
+        builders.setContentIntent(pendingIntent);
+        NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        manager.notify(1, builders.build());
         final NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
         Random random = new Random();
         final int m = random.nextInt(9999 - 1000) + 1000;
@@ -253,16 +273,29 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT_WATCH)
-    private void setBookingOreoNotification(String title, String message, String type, String image, String bigContent) {
+    private void setBookingOreoNotification(String title, String message, String type, String image, String bigContent, String token, String docName, String docImage, String docID) {
 
         PendingIntent pendingIntent = null;
         Intent intent = null;
         if (!type.equalsIgnoreCase("")) {
             if (type.equalsIgnoreCase(URLBuilder.Type.audio.toString())) {
                 intent = new Intent(this, AudioCallActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
                 intent.putExtra(HomeActivity.data_key, "1");
+
+                App.getSingleton().setToken(token);
+                intent.putExtra("docName", docName);
+                intent.putExtra("token", token);
+                intent.putExtra("docImage", docImage);
+                intent.putExtra("docID", docID);
+
+                Log.d("CALLINGToken","" +  token);
+                Log.d("CALLINGToken","" +  docName);
+
                 pendingIntent = PendingIntent.getActivity(this, 101,
                         intent, PendingIntent.FLAG_IMMUTABLE);
+
+
 
             } else if (type.equalsIgnoreCase(URLBuilder.Type.video.toString())) {
 
@@ -291,14 +324,14 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 //                intent.putExtra(HomeActivity.data_key, "1");
 //
 //
-////                App.getSingletone().setLiveType("");
-////
-////                intent.putExtra("channelName", channelName);
-////
-////                intent.putExtra("liveHostIds", userId);
-////                intent.putExtra("liveType", "multiLive");
-////                intent.putExtra("liveStatus", "host");
-////                intent.putExtra("token", token);
+//                App.getSingletone().setLiveType("");
+//
+//                intent.putExtra("channelName", channelName);
+//
+//                intent.putExtra("liveHostIds", userId);
+//                intent.putExtra("liveType", "multiLive");
+//                intent.putExtra("liveStatus", "host");
+//                intent.putExtra("token", token);
 ////
 ////                if(liveHostId.equalsIgnoreCase(AppConstants.USER_ID)){
 ////

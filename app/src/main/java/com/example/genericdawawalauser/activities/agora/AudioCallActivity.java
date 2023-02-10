@@ -24,11 +24,14 @@ import android.widget.Chronometer;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.genericdawawalauser.R;
 import com.example.genericdawawalauser.activities.HomeActivity;
 import com.example.genericdawawalauser.activities.MainActivity;
 import com.example.genericdawawalauser.databinding.ActivityAudioCallBinding;
 import com.example.genericdawawalauser.modalClass.RegisterModel;
+import com.example.genericdawawalauser.utils.App;
+import com.example.genericdawawalauser.utils.AppConstants;
 
 import io.agora.rtc.Constants;
 import io.agora.rtc.IRtcEngineEventHandler;
@@ -38,13 +41,13 @@ public class AudioCallActivity extends AppCompatActivity {
     private RtcEngine mRtcEngine;
     private boolean mMuted, mSpeakerOn;
     private PowerManager.WakeLock wakeLock;
-    private Chronometer chronoMeter;
     private AudioManager audioManager;
     private SensorManager mSensorManager;
     private Sensor mProximity;
-    String appId = "bbab749df10848d1af6fa75a31c3ec2e";
+    String appId = "7f7847f520a04e7784221a61a66d57b9";
     ActivityAudioCallBinding binding;
     private RegisterModel registerModel = new RegisterModel();
+    String docName, token, docImage, docID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +58,14 @@ public class AudioCallActivity extends AppCompatActivity {
         Intent intent = getIntent();
 
         registerModel.setToken(intent.getStringExtra(HomeActivity.data_key));
+
+        docName = intent.getStringExtra("docName");
+        token = App.getSingleton().getToken();
+        docImage = intent.getStringExtra("docImage");
+        docID = intent.getStringExtra("docID");
+
+        Log.d("CALLINGToken","" + App.getSingleton().getToken());
+        Log.d("CALLINGToken","" +  docName);
 
         if (registerModel != null) {
 
@@ -67,6 +78,7 @@ public class AudioCallActivity extends AppCompatActivity {
         }
 
 
+        setData();
         senseProximity();
     }
 
@@ -98,14 +110,14 @@ public class AudioCallActivity extends AppCompatActivity {
 
     }
 
-//
-//    private void setData() {
-//
+
+    private void setData() {
+
 //        Glide.with(this).load(AppConstants.userImage).placeholder(R.drawable.default_profile).into(imgPatient);
 //        txtPatientName.setText(AppConstants.userName);
-//        chronoMeter.start();
-//
-//    }
+      binding.chronoMeter.start();
+
+    }
 
 
     private void initAgoraEngineAndJoinChannel() {
@@ -188,10 +200,8 @@ public class AudioCallActivity extends AppCompatActivity {
 
     private void joinChannel() {
         initializeEngine();
-        String callToken = registerModel.getToken();
-        mRtcEngine.joinChannel(callToken, "healthKangaroo", "Extra Optional Data", 0);
-//        // Call the joinChannel method to join a channel.
-//        // The uid is not specified. The SDK will assign one automatically.
+        String callToken = "007eJxTYIhryimJfL9184E4wYvpHCsWy0gnBF/WCLl1KnwhU77zzYsKDOZp5hYm5mmmRgaJBiap5kCOkZFhohkQmaWYmidZlso/S24IZGRw3SvKwAiFID47Q3pqXmpRZjIDAwBmsx8r";
+        mRtcEngine.joinChannel(callToken, "generic", "Extra Optional Data", 0);
     }
 
     private void initializeEngine() {

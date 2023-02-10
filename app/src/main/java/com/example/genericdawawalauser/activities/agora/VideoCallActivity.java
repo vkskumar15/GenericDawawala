@@ -37,7 +37,7 @@ import io.agora.rtc.video.VideoEncoderConfiguration;
 public class VideoCallActivity extends AppCompatActivity {
     private static final String TAG = VideoCallActivity.class.getSimpleName();
     private static final int PERMISSION_REQ_ID = 22;
-    String appId = "bbab749df10848d1af6fa75a31c3ec2e";
+    String appId = "7f7847f520a04e7784221a61a66d57b9";
     private static final String[] REQUESTED_PERMISSIONS = {
             Manifest.permission.RECORD_AUDIO,
             Manifest.permission.CAMERA
@@ -208,12 +208,12 @@ public class VideoCallActivity extends AppCompatActivity {
     }
 
     private void joinChannel() {
-        String token = registerModel.getToken();
+        String token = "007eJxTYIhryimJfL9184E4wYvpHCsWy0gnBF/WCLl1KnwhU77zzYsKDOZp5hYm5mmmRgaJBiap5kCOkZFhohkQmaWYmidZlso/S24IZGRw3SvKwAiFID47Q3pqXmpRZjIDAwBmsx8r";
         if (TextUtils.isEmpty(token) || TextUtils.equals(token, "#YOUR ACCESS TOKEN#")) {
             token = null; // default, no token
         }
 
-        String channelName = "healthKangaroo";
+        String channelName = "generic";
         mRtcEngine.joinChannel(token, channelName, "Extra Optional Data", 0);
     }
 

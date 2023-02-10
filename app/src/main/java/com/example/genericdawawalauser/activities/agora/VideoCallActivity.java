@@ -38,10 +38,7 @@ public class VideoCallActivity extends AppCompatActivity {
     private static final String TAG = VideoCallActivity.class.getSimpleName();
     private static final int PERMISSION_REQ_ID = 22;
     String appId = "7f7847f520a04e7784221a61a66d57b9";
-    private static final String[] REQUESTED_PERMISSIONS = {
-            Manifest.permission.RECORD_AUDIO,
-            Manifest.permission.CAMERA
-    };
+    private static final String[] REQUESTED_PERMISSIONS = {Manifest.permission.RECORD_AUDIO, Manifest.permission.CAMERA};
     private RtcEngine mRtcEngine;
     private boolean mCallEnd;
     private boolean mMuted;

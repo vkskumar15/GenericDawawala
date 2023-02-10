@@ -62,7 +62,7 @@ public class DoctorAppointmentBySpecialitiesFragment extends Fragment {
 
         }
 
-
+        binding.typeName.setText(App.getSingleton().getProblem());
         binding.backArrowConsultPhysician.setOnClickListener(v -> {
 
             requireActivity().onBackPressed();

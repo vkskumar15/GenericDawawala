@@ -49,6 +49,7 @@ public class PendingOnlineConsultAdapter extends RecyclerView.Adapter<PendingOnl
         holder.binding.txtPatientName.setText(list.get(position).getPatientName());
         holder.binding.txtPaymentIdLab.setText(list.get(position).getTransctionId());
         holder.binding.txtDateAndTime.setText(list.get(position).getHealthProblem());
+        holder.binding.specialityTv.setText(list.get(position).getSpecialty());
         holder.binding.txtAmount.setText("₹ " + list.get(position).getAmount());
 
         if (list.get(position).getAppointmentType().equalsIgnoreCase("2")) {

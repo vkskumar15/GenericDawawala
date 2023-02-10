@@ -33,7 +33,7 @@ public class URLBuilder {
 
         // add service parameters
         modeType, courseCategory, courseLocation, courseName, CourseDescription, noOfSeats, coursePrice, courseTiming,
-        courseDate, picture, reason, userId,doctorId,doctorName,docId,docImage, id, serviceId, startDate, endDate, category, startAge, endAge, mode, instructorId, status, bookingId,
+        courseDate, picture, reason, userId,doctorId,doctorName,docId,appId,docImage, id, serviceId, startDate, endDate, category, startAge, endAge, mode, instructorId, status, bookingId,
         userMessage, instructorMessage, activeStatus, link, liveServiceId, socialId, chatID, fields, name, gender, birthday, uniqueServiceId,
         rating, product_description, accountHolderName, routingNumber, accountNumber, individualCity, individualLine1, individualLine2, individualPostalCode,
         individualState, dobDay, dobMonth, dobYear, firstName, lastName, idNumber, document, accountId, token, amount, message, toke,

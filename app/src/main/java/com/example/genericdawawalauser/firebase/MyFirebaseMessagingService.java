@@ -1,7 +1,6 @@
 package com.example.genericdawawalauser.firebase;
 
 
-
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Notification;
@@ -12,6 +11,8 @@ import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.media.MediaPlayer;
+import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -25,6 +26,7 @@ import androidx.core.app.NotificationManagerCompat;
 
 import com.example.genericdawawalauser.R;
 import com.example.genericdawawalauser.activities.HomeActivity;
+import com.example.genericdawawalauser.activities.MainActivity;
 import com.example.genericdawawalauser.activities.agora.AudioCallActivity;
 import com.example.genericdawawalauser.activities.agora.VideoCallActivity;
 import com.example.genericdawawalauser.utils.App;
@@ -37,9 +39,7 @@ import java.util.Random;
 @SuppressLint("MissingFirebaseInstanceTokenRefresh")
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
     private static final String TAG = "MyFirebaseMessagingServ";
-    public static final String NOTIFICATION_CHANNEL_ID = "10001";
     private final static String default_notification_channel_id = "default";
-    private final int NOTIFICATION_ID = 10;
     private NotificationChannel channel = null;
     private Uri defaultSound;
     private Notification notification;
@@ -53,20 +53,16 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     public void onMessageReceived(@NonNull RemoteMessage remoteMessage) {
         super.onMessageReceived(remoteMessage);
 
-
-
-
-
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-
             setBookingOreoNotification(remoteMessage.getData().get(URLBuilder.Parameter.title.toString()),
                     remoteMessage.getData().get(URLBuilder.Parameter.message.toString()),
                     Objects.requireNonNull(remoteMessage.getData().get(URLBuilder.Parameter.type.toString())), "", bigContent,
                     remoteMessage.getData().get(URLBuilder.Parameter.token.toString()),
                     remoteMessage.getData().get(URLBuilder.Parameter.docImage.toString()),
                     remoteMessage.getData().get(URLBuilder.Parameter.doctorName.toString()),
-                    remoteMessage.getData().get(URLBuilder.Parameter.docId.toString())
-                    );
+                    remoteMessage.getData().get(URLBuilder.Parameter.docId.toString()),
+                    remoteMessage.getData().get(URLBuilder.Parameter.appId.toString())
+            );
 
         } else {
 
@@ -89,19 +85,14 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         }
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 101, intent,
                 PendingIntent.FLAG_IMMUTABLE);
-       // defaultSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+        // defaultSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
 
 
-        NotificationCompat.Builder builders = new NotificationCompat.Builder(this).setSmallIcon(R.drawable.ic_notification).setContentTitle(title).setAutoCancel(true);
-        defaultSound = Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE + "://" + getPackageName() + R.raw.ring);
-        builders.setSound(defaultSound);
-
-        builders.setContentIntent(pendingIntent);
-        NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        manager.notify(1, builders.build());
         final NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
         Random random = new Random();
         final int m = random.nextInt(9999 - 1000) + 1000;
+
+
         if (!type.equalsIgnoreCase("")) {
 
             if (type.equalsIgnoreCase(URLBuilder.Type.audio.toString())) {
@@ -273,8 +264,9 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT_WATCH)
-    private void setBookingOreoNotification(String title, String message, String type, String image, String bigContent, String token, String docName, String docImage, String docID) {
-
+    private void setBookingOreoNotification(String title, String message, String type, String image,
+                                            String bigContent, String token, String docName,
+                                            String docImage, String docID, String appId) {
         PendingIntent pendingIntent = null;
         Intent intent = null;
         if (!type.equalsIgnoreCase("")) {
@@ -284,17 +276,33 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 intent.putExtra(HomeActivity.data_key, "1");
 
                 App.getSingleton().setToken(token);
+                App.getSingleton().setAppId(appId);
+                App.getSingleton().setDoctorName(docName);
+                App.getSingleton().setProfileImage(docImage);
+
                 intent.putExtra("docName", docName);
                 intent.putExtra("token", token);
                 intent.putExtra("docImage", docImage);
                 intent.putExtra("docID", docID);
 
-                Log.d("CALLINGToken","" +  token);
-                Log.d("CALLINGToken","" +  docName);
+
+                RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+                MediaPlayer mp = MediaPlayer.create(getApplicationContext(), R.raw.ring);
+                mp.start();
+                NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this, default_notification_channel_id)
+                        .setSmallIcon(R.drawable.ic_launcher_foreground)
+                        .setContentTitle("Test")
+                        .setContentText("Hello! This is my first push notification");
+                NotificationManager mNotificationManager = (NotificationManager)
+                        getSystemService(Context.NOTIFICATION_SERVICE);
+                mNotificationManager.notify((int) System.currentTimeMillis(),
+                        mBuilder.build());
+
+                Log.d("CALLINGToken", "" + token);
+                Log.d("CALLINGToken", "" + docName);
 
                 pendingIntent = PendingIntent.getActivity(this, 101,
                         intent, PendingIntent.FLAG_IMMUTABLE);
-
 
 
             } else if (type.equalsIgnoreCase(URLBuilder.Type.video.toString())) {
@@ -307,12 +315,29 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 pendingIntent = PendingIntent.getActivity(this, 101,
                         intent, PendingIntent.FLAG_IMMUTABLE);
 
-//                pendingIntent = new NavDeepLinkBuilder(this)
-//                        .setComponentName(HomeActivity.class)
-//                        .setGraph(R.navigation.home_graph)
-//                        .setDestination(R.id.chatRequests)
-//                        .setArguments(bundle)
-//                        .createPendingIntent();
+
+                App.getSingleton().setToken(token);
+                App.getSingleton().setAppId(appId);
+                App.getSingleton().setDoctorName(docName);
+                App.getSingleton().setProfileImage(docImage);
+
+                intent.putExtra("docName", docName);
+                intent.putExtra("token", token);
+                intent.putExtra("docImage", docImage);
+                intent.putExtra("docID", docID);
+
+
+                RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+                MediaPlayer mp = MediaPlayer.create(getApplicationContext(), R.raw.ring);
+                mp.start();
+                NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this, default_notification_channel_id)
+                        .setSmallIcon(R.drawable.ic_launcher_foreground)
+                        .setContentTitle("Test")
+                        .setContentText("Hello! This is my first push notification");
+                NotificationManager mNotificationManager = (NotificationManager)
+                        getSystemService(Context.NOTIFICATION_SERVICE);
+                mNotificationManager.notify((int) System.currentTimeMillis(),
+                        mBuilder.build());
 
 
             }

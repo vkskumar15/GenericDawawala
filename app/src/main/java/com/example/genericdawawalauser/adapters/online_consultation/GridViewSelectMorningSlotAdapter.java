@@ -83,7 +83,7 @@ public class GridViewSelectMorningSlotAdapter extends BaseAdapter {
         } else {
 
             textView.setBackgroundResource(R.drawable.stroke_box);
-            textView.setTextColor(Color.BLACK);
+            textView.setTextColor(Color.parseColor("#0daaed"));
 
         }
 

@@ -16,6 +16,7 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.PowerManager;
 import android.util.Log;
@@ -44,7 +45,6 @@ public class AudioCallActivity extends AppCompatActivity {
     private AudioManager audioManager;
     private SensorManager mSensorManager;
     private Sensor mProximity;
-    String appId = "7f7847f520a04e7784221a61a66d57b9";
     ActivityAudioCallBinding binding;
     private RegisterModel registerModel = new RegisterModel();
     String docName, token, docImage, docID;
@@ -56,16 +56,14 @@ public class AudioCallActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         Intent intent = getIntent();
-
         registerModel.setToken(intent.getStringExtra(HomeActivity.data_key));
-
         docName = intent.getStringExtra("docName");
         token = App.getSingleton().getToken();
         docImage = intent.getStringExtra("docImage");
         docID = intent.getStringExtra("docID");
 
-        Log.d("CALLINGToken","" + App.getSingleton().getToken());
-        Log.d("CALLINGToken","" +  docName);
+        Log.d("CALLINGToken", "" + App.getSingleton().getToken());
+        Log.d("CALLINGToken", "" + App.getSingleton().getAppId());
 
         if (registerModel != null) {
 
@@ -88,7 +86,6 @@ public class AudioCallActivity extends AppCompatActivity {
         mProximity = mSensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
         PowerManager powerManager = (PowerManager) getSystemService(POWER_SERVICE);
         wakeLock = powerManager.newWakeLock(0x00000020, getLocalClassName());
-
         SensorEventListener sens = new SensorEventListener() {
             @SuppressLint("WakelockTimeout")
             @Override
@@ -105,26 +102,18 @@ public class AudioCallActivity extends AppCompatActivity {
 
             }
         };
-
         mSensorManager.registerListener(sens, mProximity, 2 * 1000 * 1000);
 
     }
-
-
     private void setData() {
-
-//        Glide.with(this).load(AppConstants.userImage).placeholder(R.drawable.default_profile).into(imgPatient);
-//        txtPatientName.setText(AppConstants.userName);
-      binding.chronoMeter.start();
-
+        Glide.with(this).load(App.getSingleton().getProfileImage()).placeholder(R.drawable.doctor).into(binding.imgPatient);
+        binding.txtPatientName.setText(App.getSingleton().getDoctorName());
+        binding.chronoMeter.start();
     }
-
-
     private void initAgoraEngineAndJoinChannel() {
         initializeAgoraEngine();
         joinChannel();
     }
-
     public boolean checkSelfPermission(String permission, int requestCode) {
 
         if (ContextCompat.checkSelfPermission(this, permission) != PackageManager.PERMISSION_GRANTED) {
@@ -134,17 +123,13 @@ public class AudioCallActivity extends AppCompatActivity {
         }
         return true;
     }
-
     private final IRtcEngineEventHandler mRtcEventHandler = new IRtcEngineEventHandler() {
 
         @Override
         public void onUserJoined(int uid, int elapsed) {
             super.onUserJoined(uid, elapsed);
-            runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
+            runOnUiThread(() -> {
 //                    startCallimgTime();
-                }
             });
             Log.i("onUserJoined: ", "vbjhvuyvuvuhvhj");
         }
@@ -161,65 +146,49 @@ public class AudioCallActivity extends AppCompatActivity {
             });
 
         }
-
-        // Listen for the onUserOffline callback.
-        // This callback occurs when the remote user leaves the channel or drops offline.
         @Override
         public void onUserOffline(final int uid, final int reason) {
-            runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
+            runOnUiThread(() -> {
 //                    onRemoteUserLeft(uid, reason);
-                    finish();
-                }
+                finish();
             });
         }
 
-        // Listen for the onUserMuterAudio callback.
-        // This callback occurs when a remote user stops sending the audio stream.
         @Override
         public void onUserMuteAudio(final int uid, final boolean muted) {
-            runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
+            runOnUiThread(() -> {
 //                    onRemoteUserVoiceMuted(uid, muted);
-                }
             });
         }
     };
-
     private void initializeAgoraEngine() {
         try {
 
-            RtcEngine mRtcEngine = RtcEngine.create(getBaseContext(), appId, mRtcEventHandler);
+            RtcEngine mRtcEngine = RtcEngine.create(getBaseContext(), App.getSingleton().getAppId(), mRtcEventHandler);
             mRtcEngine.setChannelProfile(Constants.CHANNEL_PROFILE_COMMUNICATION);
         } catch (Exception e) {
             throw new RuntimeException("NEED TO check rtc sdk init fatal error\n" + Log.getStackTraceString(e));
         }
     }
-
     private void joinChannel() {
         initializeEngine();
-        String callToken = "007eJxTYIhryimJfL9184E4wYvpHCsWy0gnBF/WCLl1KnwhU77zzYsKDOZp5hYm5mmmRgaJBiap5kCOkZFhohkQmaWYmidZlso/S24IZGRw3SvKwAiFID47Q3pqXmpRZjIDAwBmsx8r";
+        String callToken = App.getSingleton().getToken();
         mRtcEngine.joinChannel(callToken, "generic", "Extra Optional Data", 0);
     }
-
     private void initializeEngine() {
         try {
-            mRtcEngine = RtcEngine.create(getBaseContext(), appId, mRtcEventHandler);
+            mRtcEngine = RtcEngine.create(getBaseContext(), App.getSingleton().getAppId(), mRtcEventHandler);
         } catch (Exception e) {
             Log.e("agora", Log.getStackTraceString(e));
             throw new RuntimeException("NEED TO check rtc sdk init fatal error\n" + Log.getStackTraceString(e));
         }
     }
-
     public void onLocalAudioMuteClicked(View view) {
         mMuted = !mMuted;
         mRtcEngine.muteLocalAudioStream(mMuted);
         int res = mMuted ? R.drawable.btn_mute : R.drawable.btn_unmute;
         binding.btnMute.setImageResource(res);
     }
-
     public void endCall(View view) {
         AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
         builder1.setTitle("End Call");
@@ -238,7 +207,6 @@ public class AudioCallActivity extends AppCompatActivity {
         AlertDialog alert11 = builder1.create();
         alert11.show();
     }
-
     @SuppressLint("WrongConstant")
     public void onSpeakerClicked(View view) {
         mSpeakerOn = !mSpeakerOn;
@@ -256,7 +224,6 @@ public class AudioCallActivity extends AppCompatActivity {
         }
 
     }
-
     @Override
     public void onBackPressed() {
         AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
@@ -268,6 +235,8 @@ public class AudioCallActivity extends AppCompatActivity {
             finish();
             mRtcEngine.leaveChannel();
             dialog.cancel();
+            MediaPlayer mp = MediaPlayer. create (getApplicationContext(), R.raw.ring);
+            mp.stop();
         });
 
         builder1.setNegativeButton("Dismiss", (dialog, id) -> dialog.cancel());
@@ -275,7 +244,6 @@ public class AudioCallActivity extends AppCompatActivity {
         alert11.show();
 
     }
-
     @Override
     protected void onPause() {
         super.onPause();

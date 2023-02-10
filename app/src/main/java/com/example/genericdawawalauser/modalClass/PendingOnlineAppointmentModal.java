@@ -115,6 +115,18 @@ public class PendingOnlineAppointmentModal {
         private String address;
 
 
+        @SerializedName("specialty")
+        @Expose
+        private String specialty;
+
+        public String getSpecialty() {
+            return specialty;
+        }
+
+        public void setSpecialty(String specialty) {
+            this.specialty = specialty;
+        }
+
         @SerializedName("reScheduledCounts")
         @Expose
         private String reScheduledCounts;

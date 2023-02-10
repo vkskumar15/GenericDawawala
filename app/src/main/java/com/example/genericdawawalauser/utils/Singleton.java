@@ -95,6 +95,24 @@ public class Singleton {
     public String offlinePrice;
     public String onlinePrice;
     public String drStatus;
+    public String appId;
+    public String doctorName;
+
+    public String getAppId() {
+        return appId;
+    }
+
+    public void setAppId(String appId) {
+        this.appId = appId;
+    }
+
+    public String getDoctorName() {
+        return doctorName;
+    }
+
+    public void setDoctorName(String doctorName) {
+        this.doctorName = doctorName;
+    }
 
     public String getToken() {
         return token;

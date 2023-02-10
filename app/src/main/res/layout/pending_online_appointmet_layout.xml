@@ -121,10 +121,11 @@
                     android:textSize="@dimen/sp_14"
                     android:textStyle="bold" />
             </RelativeLayout>
+
             <LinearLayout
+                android:id="@+id/line2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/line2"
                 android:layout_below="@+id/txt_title"
                 android:layout_marginTop="@dimen/space10"
                 android:orientation="vertical">
@@ -138,9 +139,9 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/space10"
                         android:text="Patient Name: "
-                        android:textStyle="bold"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/text12" />
+                        android:textSize="@dimen/text12"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/txt_patient_name"
@@ -162,9 +163,9 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/space10"
                         android:text="Transaction Id: "
-                        android:textStyle="bold"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/text12" />
+                        android:textSize="@dimen/text12"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/txt_payment_id_lab"
@@ -185,9 +186,9 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/space10"
                         android:text="Health Problem: "
-                        android:textStyle="bold"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/text12" />
+                        android:textSize="@dimen/text12"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/txt_date_and_time"
@@ -198,16 +199,39 @@
                         android:textSize="@dimen/text12" />
                 </LinearLayout>
 
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space5">
+
                     <TextView
-                        android:id="@+id/refund"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/space10"
-                        android:text="Yo"
-                        android:visibility="gone"
-                        android:textStyle="bold"
-                        android:textColor="@color/appcolor"
+                        android:text="Speciality: "
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text12"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/specialityTv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="123456789012345689"
+                        android:textColor="@color/black"
                         android:textSize="@dimen/text12" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/refund"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/space10"
+                    android:text="Yo"
+                    android:textColor="@color/appcolor"
+                    android:textSize="@dimen/text12"
+                    android:textStyle="bold"
+                    android:visibility="gone" />
 
                 <TextView
                     android:id="@+id/status"
@@ -215,8 +239,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/space10"
                     android:layout_marginTop="@dimen/space5"
-                    android:text="Status: Pending"
                     android:layout_marginBottom="@dimen/dp_10"
+                    android:text="Status: Pending"
                     android:textColor="@color/red"
 
                     android:textSize="@dimen/text14"
@@ -227,38 +251,38 @@
                     android:id="@+id/on_off_status"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/dp_5"
                     android:layout_marginStart="@dimen/space10"
+                    android:layout_marginBottom="@dimen/dp_5"
                     android:text="Status: Pending"
-                    android:visibility="gone"
                     android:textColor="@color/appcolor"
                     android:textSize="@dimen/text14"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:visibility="gone" />
 
 
                 <TextView
                     android:id="@+id/address"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/dp_10"
-                    android:layout_marginStart="@dimen/space10"
-                    android:visibility="gone"
-                    android:text="Status: Pending"
                     android:layout_gravity="center"
-                    android:gravity="center"
                     android:layout_margin="@dimen/dp_5"
+                    android:layout_marginStart="@dimen/space10"
+                    android:layout_marginBottom="@dimen/dp_10"
+                    android:gravity="center"
+                    android:text="Status: Pending"
                     android:textColor="@color/black"
                     android:textSize="@dimen/text14"
-                    />
+                    android:visibility="gone" />
 
 
             </LinearLayout>
+
             <LinearLayout
+                android:id="@+id/start"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_below="@id/line2"
                 android:layout_margin="@dimen/dp_10"
-                android:id="@+id/start"
                 android:layout_marginStart="@dimen/dp_10"
                 android:layout_marginEnd="@dimen/dp_10"
                 android:layout_marginBottom="@dimen/dp_10"
@@ -269,11 +293,11 @@
                     android:id="@+id/reschedule_button"
                     android:layout_width="0dp"
                     android:layout_height="40dp"
+                    android:layout_margin="@dimen/space5"
                     android:layout_weight="1"
                     android:background="@drawable/btn_bg"
                     android:padding="10dp"
                     android:text="Reschedule"
-                    android:layout_margin="@dimen/space5"
                     android:textAllCaps="false"
                     android:textColor="@color/white"
                     android:textSize="14sp"
@@ -283,12 +307,12 @@
                     android:id="@+id/cancel_button"
                     android:layout_width="0dp"
                     android:layout_height="40dp"
+                    android:layout_margin="@dimen/space5"
                     android:layout_weight="1"
                     android:background="@drawable/btn_bg"
-                    android:padding="10dp"
                     android:backgroundTint="@color/red"
+                    android:padding="10dp"
                     android:text="Cancel"
-                    android:layout_margin="@dimen/space5"
                     android:textAllCaps="false"
                     android:textColor="@color/white"
                     android:textSize="14sp"
@@ -296,28 +320,29 @@
 
 
             </LinearLayout>
+
             <LinearLayout
+                android:id="@+id/start_two"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_below="@id/line2"
                 android:layout_margin="@dimen/dp_10"
-                android:id="@+id/start_two"
                 android:layout_marginStart="@dimen/dp_10"
                 android:layout_marginEnd="@dimen/dp_10"
-                android:visibility="gone"
                 android:layout_marginBottom="@dimen/dp_10"
                 android:orientation="horizontal"
+                android:visibility="gone"
                 android:weightSum="2">
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/view_button"
                     android:layout_width="0dp"
                     android:layout_height="40dp"
+                    android:layout_margin="@dimen/space5"
                     android:layout_weight="1"
                     android:background="@drawable/btn_bg"
                     android:padding="10dp"
                     android:text="View Prescription"
-                    android:layout_margin="@dimen/space5"
                     android:textAllCaps="false"
                     android:textColor="@color/white"
                     android:textSize="12sp"
@@ -327,12 +352,12 @@
                     android:id="@+id/download_button"
                     android:layout_width="0dp"
                     android:layout_height="40dp"
+                    android:layout_margin="@dimen/space5"
                     android:layout_weight="1"
                     android:background="@drawable/btn_bg"
-                    android:padding="10dp"
                     android:backgroundTint="@color/red"
+                    android:padding="10dp"
                     android:text="Download Prescription"
-                    android:layout_margin="@dimen/space5"
                     android:textAllCaps="false"
                     android:textColor="@color/white"
                     android:textSize="12sp"

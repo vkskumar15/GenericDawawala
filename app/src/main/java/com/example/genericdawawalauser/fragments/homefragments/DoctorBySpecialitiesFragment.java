@@ -58,6 +58,8 @@ public class DoctorBySpecialitiesFragment extends Fragment {
 
     private void onClicks() {
 
+        binding.typeName.setText(App.getSingleton().getProblem());
+
         binding.backArrowConsultPhysician.setOnClickListener(v -> {
 
             requireActivity().onBackPressed();
@@ -102,6 +104,7 @@ public class DoctorBySpecialitiesFragment extends Fragment {
 
                 return false;
             }
+
             @Override
             public boolean onQueryTextChange(String newText) {
 

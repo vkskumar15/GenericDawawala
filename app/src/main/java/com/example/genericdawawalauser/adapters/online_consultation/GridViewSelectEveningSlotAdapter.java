@@ -76,15 +76,15 @@ public class GridViewSelectEveningSlotAdapter extends BaseAdapter {
 
         });
 
-        if (rowIndex == position) {
+        if (rowIndex == position){
 
             textView.setBackgroundResource(R.drawable.outline_select_slot_address);
             textView.setTextColor(Color.WHITE);
 
         } else {
 
-            textView.setBackgroundResource(R.drawable.outline_select_slot_address_unselected);
-            textView.setTextColor(Color.BLACK);
+            textView.setBackgroundResource(R.drawable.stroke_box);
+            textView.setTextColor(Color.parseColor("#0daaed"));
 
         }
 

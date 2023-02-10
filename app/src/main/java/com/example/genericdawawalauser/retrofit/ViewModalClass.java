@@ -662,7 +662,6 @@ public class ViewModalClass extends ViewModel {
 
 
     private MutableLiveData<PendingOnlineAppointmentModal> pendingDrAppointmentModalMutableLiveData;
-
     public LiveData<PendingOnlineAppointmentModal> otherAppointmentsPendingOnlineAppointmentModalLiveData(Activity activity, String userId, String type) {
         CommonUtils.showProgressDialog(activity);
         pendingDrAppointmentModalMutableLiveData = new MutableLiveData<>();
@@ -687,4 +686,6 @@ public class ViewModalClass extends ViewModel {
 
         return pendingDrAppointmentModalMutableLiveData;
     }
+
+
 }

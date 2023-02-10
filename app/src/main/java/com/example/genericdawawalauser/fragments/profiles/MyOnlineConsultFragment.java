@@ -57,6 +57,7 @@ public class MyOnlineConsultFragment extends Fragment {
                         if (detail.getReScheduledCounts().equals("2"))
                         {
                             Toast.makeText(requireActivity(), "Now you can't ReScheduled your appointment", Toast.LENGTH_SHORT).show();
+
                         }else {
                             Fragment fragment = new Fragment();
                             Bundle bundle = new Bundle();
@@ -65,6 +66,7 @@ public class MyOnlineConsultFragment extends Fragment {
                             bundle.putString("appointmentId", detail.getAppointmentId());
                             bundle.putString("name", detail.getDocName());
                             bundle.putString("image", detail.getDoctorImage());
+                            bundle.putString("AppointmentType", detail.getAppointmentType());
                             bundle.putString("amount", detail.getAmount());
                             fragment.setArguments(bundle);
 
@@ -81,8 +83,8 @@ public class MyOnlineConsultFragment extends Fragment {
                 });
                 binding.rvVisitsUpcoming.setAdapter(adapter);
             } else {
-                Toast.makeText(requireActivity(), "" + pendingOnlineAppointmentModal.getMessage(), Toast.LENGTH_SHORT).show();
 
+                Toast.makeText(requireActivity(), "" + pendingOnlineAppointmentModal.getMessage(), Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -97,13 +99,11 @@ public class MyOnlineConsultFragment extends Fragment {
         delete_box.setCanceledOnTouchOutside(false);
         window.setGravity(Gravity.CENTER);
         delete_box.show();
-
         TextView textView = delete_box.findViewById(R.id.text_warnin);
         textView.setVisibility(View.VISIBLE);
         textView.setText("If You want to cancel, you will be charged 20% of your total amount as a Penality.");
 
         delete_box.findViewById(R.id.yes_btn).setOnClickListener(v -> {
-
             new ViewModalClass().cancelOnlineAppointmentLiveData(requireActivity(), CommonUtils.getUserId(), detail.getAppointmentId(), "1").observe(requireActivity(), new Observer<CancelOnlineAppointment>() {
                 @Override
                 public void onChanged(CancelOnlineAppointment cancelOnlineAppointment) {
@@ -129,7 +129,6 @@ public class MyOnlineConsultFragment extends Fragment {
     }
 
     private void onClickListener() {
-
         binding.txtUpcomingVisits.setOnClickListener(v -> {
 
             binding.recyclerViewDoctorPrescriptions.setVisibility(View.GONE);
@@ -204,8 +203,6 @@ public class MyOnlineConsultFragment extends Fragment {
                 });
                 binding.recyclerViewDoctorPrescriptions.setAdapter(adapter);
             } else if (pendingOnlineAppointmentModal.getSuccess().equalsIgnoreCase("0")) {
-
-
                 Toast.makeText(requireActivity(), "" + pendingOnlineAppointmentModal.getMessage(), Toast.LENGTH_SHORT).show();
 
             }

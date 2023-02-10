@@ -62,6 +62,7 @@ public class MyDoctorAppointmentFragment extends Fragment {
                             bundle.putString("status", "1");
                             bundle.putString("appointmentId", detail.getAppointmentId());
                             bundle.putString("name", detail.getDocName());
+                            bundle.putString("AppointmentType", detail.getAppointmentType());
                             bundle.putString("image", detail.getDoctorImage());
                             bundle.putString("amount", detail.getAmount());
                             fragment.setArguments(bundle);
@@ -98,7 +99,7 @@ public class MyDoctorAppointmentFragment extends Fragment {
 
         appointmentType = detail.getAppointmentType();
 
-        Toast.makeText(requireActivity(), ""+appointmentType, Toast.LENGTH_SHORT).show();
+        Toast.makeText(requireActivity(), "" + appointmentType, Toast.LENGTH_SHORT).show();
 
         TextView textView = delete_box.findViewById(R.id.text_warnin);
         textView.setVisibility(View.VISIBLE);

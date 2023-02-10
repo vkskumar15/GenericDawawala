@@ -36,14 +36,14 @@ public class DoctorBySpecialitiesFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        binding = FragmentDoctorBySpecialitiesBinding.inflate(inflater, container, false);
 
+        binding = FragmentDoctorBySpecialitiesBinding.inflate(inflater, container, false);
 
         try {
             setAdapter();
 
         } catch (Exception e) {
+
             throw new RuntimeException(e);
         }
 
@@ -57,9 +57,17 @@ public class DoctorBySpecialitiesFragment extends Fragment {
     }
 
     private void onClicks() {
+
         binding.backArrowConsultPhysician.setOnClickListener(v -> {
 
             requireActivity().onBackPressed();
+
+        });
+
+
+        binding.imgFilter.setOnClickListener(v -> {
+
+            Navigation.findNavController(v).navigate(R.id.action_doctorBySpecialitiesFragment2_to_filterOnlineDrFragment);
 
         });
 
@@ -94,7 +102,6 @@ public class DoctorBySpecialitiesFragment extends Fragment {
 
                 return false;
             }
-
             @Override
             public boolean onQueryTextChange(String newText) {
 
@@ -103,7 +110,5 @@ public class DoctorBySpecialitiesFragment extends Fragment {
                 return false;
             }
         });
-
     }
-
 }

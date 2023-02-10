@@ -18,7 +18,7 @@ public class URLBuilder {
 
     public enum Type {
 
-        patientAdmitted, NewAdmissionCase
+        audio ,  video
 
     }
 

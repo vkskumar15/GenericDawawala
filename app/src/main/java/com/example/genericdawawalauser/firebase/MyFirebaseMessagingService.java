@@ -1,22 +1,31 @@
 package com.example.genericdawawalauser.firebase;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Bundle;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
+import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
+import androidx.navigation.NavDeepLinkBuilder;
 
 import com.example.genericdawawalauser.R;
 import com.example.genericdawawalauser.activities.HomeActivity;
+import com.example.genericdawawalauser.activities.agora.AudioCallActivity;
+import com.example.genericdawawalauser.activities.agora.VideoCallActivity;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
@@ -56,6 +65,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                     Objects.requireNonNull(remoteMessage.getData().get(URLBuilder.Parameter.type.toString())), "", bigContent);
         }
 
+
     }
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT_WATCH)
@@ -67,14 +77,14 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         }
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 101, intent,
                 PendingIntent.FLAG_IMMUTABLE);
-        defaultSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+       // defaultSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
 
         final NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
         Random random = new Random();
         final int m = random.nextInt(9999 - 1000) + 1000;
         if (!type.equalsIgnoreCase("")) {
 
-            if (type.equalsIgnoreCase(URLBuilder.Type.patientAdmitted.toString())) {
+            if (type.equalsIgnoreCase(URLBuilder.Type.audio.toString())) {
                 final Notification.Builder builder = new Notification.Builder(getApplicationContext());
                 Notification.BigTextStyle textStyle = new Notification.BigTextStyle(builder);
                 if (image.equalsIgnoreCase("")) {
@@ -144,7 +154,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
         if (!type.equalsIgnoreCase("")) {
 
-            if (type.equalsIgnoreCase(URLBuilder.Type.NewAdmissionCase.toString())) {
+            if (type.equalsIgnoreCase(URLBuilder.Type.video.toString())) {
                 final Notification.Builder builder = new Notification.Builder(getApplicationContext());
                 Notification.BigTextStyle textStyle = new Notification.BigTextStyle(builder);
                 if (image.equalsIgnoreCase("")) {
@@ -228,20 +238,132 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     public void setNotification(String title, String body) {
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "2").setSmallIcon(R.drawable.ic_notification).setContentTitle(title).setContentText(body).setAutoCancel(true);
         NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(this);
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
         notificationManagerCompat.notify(101, builder.build());
     }
 
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT_WATCH)
     private void setBookingOreoNotification(String title, String message, String type, String image, String bigContent) {
+
+        PendingIntent pendingIntent = null;
         Intent intent = null;
         if (!type.equalsIgnoreCase("")) {
+            if (type.equalsIgnoreCase(URLBuilder.Type.audio.toString())) {
+                intent = new Intent(this, AudioCallActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.putExtra(HomeActivity.data_key, "1");
+                pendingIntent = PendingIntent.getActivity(this, 101,
+                        intent, PendingIntent.FLAG_IMMUTABLE);
 
-            intent = new Intent(this, HomeActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            intent.putExtra(HomeActivity.data_key, "1");
+            } else if (type.equalsIgnoreCase(URLBuilder.Type.video.toString())) {
+
+                Bundle bundle = new Bundle();
+                bundle.putString("data_key", "1");
+
+                intent = new Intent(this, VideoCallActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.putExtra(HomeActivity.data_key, "1");
+                pendingIntent = PendingIntent.getActivity(this, 101,
+                        intent, PendingIntent.FLAG_IMMUTABLE);
+
+//                pendingIntent = new NavDeepLinkBuilder(this)
+//                        .setComponentName(HomeActivity.class)
+//                        .setGraph(R.navigation.home_graph)
+//                        .setDestination(R.id.chatRequests)
+//                        .setArguments(bundle)
+//                        .createPendingIntent();
+
+
+            }
+
+//            else if (type.equalsIgnoreCase(URLBuilder.Type.userLive.toString())) {
+//
+//
+//                intent = new Intent(this, HomeActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//                intent.putExtra(HomeActivity.data_key, "1");
+//
+//
+////                App.getSingletone().setLiveType("");
+////
+////                intent.putExtra("channelName", channelName);
+////
+////                intent.putExtra("liveHostIds", userId);
+////                intent.putExtra("liveType", "multiLive");
+////                intent.putExtra("liveStatus", "host");
+////                intent.putExtra("token", token);
+////
+////                if(liveHostId.equalsIgnoreCase(AppConstants.USER_ID)){
+////
+////                    intent.putExtra("name",name1);
+////                    intent.putExtra("userId", userId);
+////                }else{
+////                    intent.putExtra("name",foller_username);
+////                    intent.putExtra("userId", followerId);
+////                }
+////
+////                intent.putExtra("liveHostId", userId);
+////
+////                if (broadTitle != null && !broadTitle.isEmpty()) {
+////                    intent.putExtra("broadTitle", broadTitle);
+////                } else {
+////                    if(liveHostId.equalsIgnoreCase(AppConstants.USER_ID)){
+////                        intent.putExtra("broadTitle", name1);
+////                    }else{
+////                        intent.putExtra("broadTitle", foller_username);
+////                    }
+////
+////                }
+////
+////                if (liveimage.isEmpty()) {
+////
+////                    intent.putExtra("image", userProfileImage);
+////                } else {
+////                    intent.putExtra("image",liveimage);
+////                }
+////                intent.putExtra("status", "1");
+////
+////                intent.putExtra("dob", CommonUtils.ageCalcualte(dob));
+////                intent.putExtra("gender",gender);
+////
+////                intent.putExtra("userDob", CommonUtils.ageCalcualte(userDob));
+////                intent.putExtra("UserGender", UserGender);
+//
+//
+//                pendingIntent = PendingIntent.getActivity(this, 101,
+//                        intent, PendingIntent.FLAG_IMMUTABLE);
+//
+//            } else if (type.equalsIgnoreCase(URLBuilder.Type.chatNotification.toString())) {
+//
+//                Log.d("MYFIREBASE","name "+notifyBy +" id "+notifyById +" notifyByImage "+notifyByImage);
+//
+//                Bundle bundle = new Bundle();
+//                bundle.putString("data_key", "1");
+//                bundle.putString("otherUserId",notifyById);
+//                bundle.putString("otherUserImg", notifyByImage);
+//                bundle.putString("otherUserName", notifyBy);
+//                bundle.putString("notification", "1");
+//
+//
+//                pendingIntent = new NavDeepLinkBuilder(this)
+//                        .setComponentName(HomeActivity.class)
+//                        .setGraph(R.navigation.home_graph)
+//                        .setDestination(R.id.messagesFragment)
+//                        .setArguments(bundle)
+//                        .createPendingIntent();
+//
+//            }
+
+        } else {
+            Log.d("MYFIREBASESERIVE", "Type null");
         }
-        PendingIntent pendingIntent = PendingIntent.getActivity(this, 101,
-                intent, PendingIntent.FLAG_ONE_SHOT);
 
 
 // Sets an ID for the notification, so it can be updated.
@@ -251,10 +373,12 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         int importance = NotificationManager.IMPORTANCE_HIGH;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             mChannel = new NotificationChannel(CHANNEL_ID, name, importance);
+
         }
         final Notification.Builder builder = new Notification.Builder(getApplicationContext());
 // Create a notification and set the notification channel.
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+
             notification = new Notification.Builder(this)
                     .setGroup(type)
                     .setContentTitle(title)
@@ -267,7 +391,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
             if (!type.equalsIgnoreCase("")) {
 
-                if (type.equalsIgnoreCase(URLBuilder.Type.patientAdmitted.toString())) {
+                if (type.equalsIgnoreCase(URLBuilder.Type.audio.toString())) {
                     builder.setStyle(new Notification.BigTextStyle(builder)
                                     .setBigContentTitle(bigContent)
                                     .setSummaryText("Notification"))
@@ -277,21 +401,11 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                             .setChannelId(CHANNEL_ID)
                             .setContentIntent(pendingIntent)
                             .setGroup(type)
+                            .setAutoCancel(true)
                             .setSmallIcon(R.drawable.ic_notification);
-                } else {
-                    builder.setStyle(new Notification.BigTextStyle(builder)
-                                    .setBigContentTitle(bigContent)
-                                    .setSummaryText("Notification"))
-                            .setContentTitle(title)
-                            .setContentText(message)
-                            .setVibrate(new long[]{200, 200, 200, 200})
-                            .setChannelId(CHANNEL_ID)
-//                        .setContentIntent(pendingIntent)
-                            .setGroup(type)
-                            .setSmallIcon(R.drawable.ic_notification);
-                }
 
-                if (type.equalsIgnoreCase(URLBuilder.Type.NewAdmissionCase.toString())) {
+                } else if (type.equalsIgnoreCase(URLBuilder.Type.video.toString())) {
+
                     builder.setStyle(new Notification.BigTextStyle(builder)
                                     .setBigContentTitle(bigContent)
                                     .setSummaryText("Notification"))
@@ -301,21 +415,52 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                             .setChannelId(CHANNEL_ID)
                             .setContentIntent(pendingIntent)
                             .setGroup(type)
-                            .setSmallIcon(R.drawable.ic_notification);
-                } else {
-                    builder.setStyle(new Notification.BigTextStyle(builder)
-                                    .setBigContentTitle(bigContent)
-                                    .setSummaryText("Notification"))
-                            .setContentTitle(title)
-                            .setContentText(message)
-                            .setVibrate(new long[]{200, 200, 200, 200})
-                            .setChannelId(CHANNEL_ID)
-//                        .setContentIntent(pendingIntent)
-                            .setGroup(type)
+                            .setAutoCancel(true)
                             .setSmallIcon(R.drawable.ic_notification);
                 }
 
-
+//
+//                else if (type.equalsIgnoreCase(URLBuilder.Type.userLive.toString())) {
+//
+//                    builder.setStyle(new Notification.BigTextStyle(builder)
+//                                    .setBigContentTitle(bigContent)
+//                                    .setSummaryText("Notification"))
+//                            .setContentTitle(title)
+//                            .setContentText(message)
+//                            .setVibrate(new long[]{200, 200, 200, 200})
+//                            .setChannelId(CHANNEL_ID)
+//                            .setContentIntent(pendingIntent)
+//                            .setGroup(type)
+//                            .setAutoCancel(true)
+//                            .setSmallIcon(R.drawable.ic_notification);
+//                }
+//
+//                else if (type.equalsIgnoreCase(URLBuilder.Type.chatNotification.toString())) {
+//
+//                    builder.setStyle(new Notification.BigTextStyle(builder)
+//                                    .setBigContentTitle(bigContent)
+//                                    .setSummaryText("Notification"))
+//                            .setContentTitle(title)
+//                            .setContentText(message)
+//                            .setVibrate(new long[]{200, 200, 200, 200})
+//                            .setChannelId(CHANNEL_ID)
+//                            .setContentIntent(pendingIntent)
+//                            .setGroup(type)
+//                            .setAutoCancel(true)
+//                            .setSmallIcon(R.drawable.ic_notification);
+//                } else {
+//                    builder.setStyle(new Notification.BigTextStyle(builder)
+//                                    .setBigContentTitle(bigContent)
+//                                    .setSummaryText("Notification"))
+//                            .setContentTitle(title)
+//                            .setContentText(message)
+//                            .setVibrate(new long[]{200, 200, 200, 200})
+//                            .setChannelId(CHANNEL_ID)
+////                        .setContentIntent(pendingIntent)
+//                            .setGroup(type)
+//                            .setAutoCancel(true)
+//                            .setSmallIcon(R.drawable.ic_notification);
+//                }
             }
 
         }
@@ -331,7 +476,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
         if (!type.equalsIgnoreCase("")) {
 
-            if (type.equalsIgnoreCase(URLBuilder.Type.patientAdmitted.toString())) {
+            if (type.equalsIgnoreCase(URLBuilder.Type.audio.toString())) {
                 if (image.equalsIgnoreCase("")) {
                     mNotificationManager.notify(m, builder.build());
                 } else {
@@ -344,24 +489,8 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                             .setVibrate(new long[]{200, 200, 200, 200})
                             .setSmallIcon(R.drawable.ic_notification);
                 }
-            } else {
-                if (image.equalsIgnoreCase("")) {
-                    mNotificationManager.notify(m, builder.build());
-                } else {
-                    builder.setStyle(new Notification.BigTextStyle(builder)
-                                    .setBigContentTitle(message)
-                                    .setSummaryText("Notification"))
-                            .setAutoCancel(true)
-//                        .setContentIntent(pendingIntent)
-                            .setGroup(message)
-                            .setVibrate(new long[]{200, 200, 200, 200})
-                            .setSmallIcon(R.drawable.ic_notification);
+            } else if (type.equalsIgnoreCase(URLBuilder.Type.video.toString())) {
 
-                }
-            }
-
-
-            if (type.equalsIgnoreCase(URLBuilder.Type.NewAdmissionCase.toString())) {
                 if (image.equalsIgnoreCase("")) {
                     mNotificationManager.notify(m, builder.build());
                 } else {
@@ -374,28 +503,44 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                             .setVibrate(new long[]{200, 200, 200, 200})
                             .setSmallIcon(R.drawable.ic_notification);
                 }
-            } else {
-                if (image.equalsIgnoreCase("")) {
-                    mNotificationManager.notify(m, builder.build());
-                } else {
-                    builder.setStyle(new Notification.BigTextStyle(builder)
-                                    .setBigContentTitle(message)
-                                    .setSummaryText("Notification"))
-                            .setAutoCancel(true)
-//                        .setContentIntent(pendingIntent)
-                            .setGroup(message)
-                            .setVibrate(new long[]{200, 200, 200, 200})
-                            .setSmallIcon(R.drawable.ic_notification);
-
-                }
             }
+
+//            else if (type.equalsIgnoreCase(URLBuilder.Type.userLive.toString())) {
+//
+//                if (image.equalsIgnoreCase("")) {
+//                    mNotificationManager.notify(m, builder.build());
+//                } else {
+//                    builder.setStyle(new Notification.BigTextStyle(builder)
+//                                    .setBigContentTitle(message)
+//                                    .setSummaryText("Notification"))
+//                            .setAutoCancel(true)
+//                            .setContentIntent(pendingIntent)
+//                            .setGroup(message)
+//                            .setVibrate(new long[]{200, 200, 200, 200})
+//                            .setSmallIcon(R.drawable.ic_notification);
+//                }
+//            } else {
+//                if (image.equalsIgnoreCase("")) {
+//                    mNotificationManager.notify(m, builder.build());
+//                } else {
+//                    builder.setStyle(new Notification.BigTextStyle(builder)
+//                                    .setBigContentTitle(message)
+//                                    .setSummaryText("Notification"))
+//                            .setAutoCancel(true)
+////                        .setContentIntent(pendingIntent)
+//                            .setGroup(message)
+//                            .setVibrate(new long[]{200, 200, 200, 200})
+//                            .setSmallIcon(R.drawable.ic_notification);
+//
+//                }
+//            }
 
         } else {
-
             mNotificationManager.notify(m, notification);
 
         }
     }
+
 
     public class LatestFirebaseMessagingService extends FirebaseMessagingService {
 

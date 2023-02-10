@@ -57,6 +57,7 @@ public class DoctorBySpecialitiesAdapter extends RecyclerView.Adapter<DoctorBySp
         holder.binding.price.setText("Online Fees: ₹ " + list.get(position).getOnline_price());
         holder.binding.workInTv.setText(list.get(position).getClinic_Name());
         holder.binding.addressTv.setText(list.get(position).getAddress());
+        holder.binding.language.setText("Language "+list.get(position).getLanguage());
         // holder.binding.ratingBar.setRating(Float.valueOf(list.get(position).getRating()));
         String experience = list.get(position).getWorkExp();
         holder.binding.experienceYearsTextView.setText(experience + " +");
@@ -66,6 +67,7 @@ public class DoctorBySpecialitiesAdapter extends RecyclerView.Adapter<DoctorBySp
         });
 
         holder.binding.btBooknow.setOnClickListener(v -> {
+
             bookNow.bookNow(list.get(position));
         });
 

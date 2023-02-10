@@ -35,6 +35,9 @@
         <action
             android:id="@+id/action_doctorBySpecialitiesFragment2_to_doctorTimeSlotFragment"
             app:destination="@id/doctorTimeSlotFragment" />
+        <action
+            android:id="@+id/action_doctorBySpecialitiesFragment2_to_filterOnlineDrFragment"
+            app:destination="@id/filterOnlineDrFragment" />
     </fragment>
     <fragment
         android:id="@+id/doctorDetailsFragment"
@@ -73,4 +76,9 @@
             android:id="@+id/action_healthProblemOnlineFragment_to_homeConsultationFragment"
             app:destination="@id/homeConsultationFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/filterOnlineDrFragment"
+        android:name="com.example.genericdawawalauser.fragments.onlineConsult.FilterOnlineDrFragment"
+        android:label="fragment_filter_online_dr"
+        tools:layout="@layout/fragment_filter_online_dr" />
 </navigation>

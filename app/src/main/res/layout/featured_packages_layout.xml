@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_300"
+        android:layout_margin="@dimen/space3"
+        app:strokeColor="@color/red"
+        app:strokeWidth="1dp"
+        app:cardCornerRadius="@dimen/space12"
+        app:cardElevation="@dimen/space12">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="match_parent">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:background="#AFE6FF"
+                android:layout_height="@dimen/space140">
+
+                <ImageView
+                    android:id="@+id/image"
+                    android:layout_width="@dimen/dp_100"
+                    android:layout_height="@dimen/dp_60"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/doctorgroup" />
+
+                <TextView
+                    android:id="@+id/name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="@dimen/space5"
+                    android:gravity="center"
+                    android:layout_below="@id/image"
+                    android:text="@string/comprehensive_silver_full_body_checkup"
+                    android:layout_marginStart="@dimen/dp_10"
+                    android:layout_marginTop="@dimen/dp_5"
+                    android:textAlignment="center"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="12sp" />
+
+                <RelativeLayout
+                    android:layout_width="@dimen/space150"
+                    android:layout_below="@id/name"
+                    android:layout_marginTop="@dimen/dp_5"
+                    android:layout_marginEnd="@dimen/dp_10"
+                    android:backgroundTint="#FF5B60"
+                    android:background="@drawable/bg_right_tab_read_green"
+                    android:layout_height="@dimen/dp_40">
+
+                    <ImageView
+                        android:id="@+id/lab_test2"
+                        android:layout_width="@dimen/space20"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="@dimen/dp_10"
+                        android:layout_height="@dimen/space20"
+                        android:src="@drawable/laboratory" />
+
+                    <TextView
+                        android:id="@+id/text2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toEndOf="@id/lab_test2"
+                        android:layout_marginStart="@dimen/dp_10"
+                        android:layout_centerVertical="true"
+                        android:text="@string/_12_lab_tests"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        android:textSize="@dimen/dp_12"
+                       />
+                </RelativeLayout>
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_10"
+                android:text="Calcium"
+                android:layout_marginTop="@dimen/dp_10"
+                android:textColor="@color/darkgrey"
+                android:textSize="@dimen/dp_12"
+                />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_10"
+                android:text="@string/diabetes_screening_2"
+                android:layout_marginTop="@dimen/dp_5"
+                android:textColor="@color/darkgrey"
+                android:textSize="@dimen/dp_12"
+                tools:ignore="SpUsage" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_10"
+                android:text="@string/diabetes_screening_2"
+                android:layout_marginTop="@dimen/dp_5"
+                android:textColor="@color/darkgrey"
+                android:textSize="@dimen/dp_12"
+                tools:ignore="SpUsage" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_10"
+                android:text="@string/more_details"
+                android:layout_marginTop="@dimen/dp_10"
+                android:textColor="@color/red"
+                android:padding="@dimen/dp_5"
+                android:background="@drawable/ripple"
+                android:textSize="@dimen/dp_12"
+                tools:ignore="SpUsage" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:orientation="horizontal"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_10"
+                    android:text="₹ 400"
+                    android:textStyle="bold"
+                    android:textColor="@color/appcolor"
+                    android:background="@drawable/ripple"
+                    android:textSize="@dimen/dp_12"
+                    tools:ignore="SpUsage" />
+
+
+
+            </LinearLayout>
+
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/loginBtn"
+                android:layout_width="@dimen/dp_150"
+                android:layout_height="30dp"
+                android:background="@drawable/button_bg"
+                android:text="Add To Cart"
+                android:textAllCaps="false"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_marginBottom="@dimen/dp_10"
+                android:backgroundTint="#FF5B60"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+</LinearLayout>

@@ -14,6 +14,7 @@ import com.example.genericdawawalauser.adapters.labAdapter.LabCategoryAdapter;
 import com.example.genericdawawalauser.adapters.labAdapter.LabPackageAdapter;
 import com.example.genericdawawalauser.adapters.labAdapter.LabPopularCategoryAdapter;
 import com.example.genericdawawalauser.adapters.labAdapter.LabPopularTestAdapter;
+import com.example.genericdawawalauser.adapters.labAdapter.LabTestByConditionAdapter;
 import com.example.genericdawawalauser.databinding.FragmentHomeLabBinding;
 import com.example.genericdawawalauser.modalClass.SliderData;
 
@@ -36,10 +37,18 @@ public class HomeLabFragment extends Fragment {
      setPackageAdapter();
      setPopularCategoryAdapter();
      setPopularAdapter();
+     setTestByConditionAdapter();
 
 
      return binding.getRoot();
 
+    }
+
+    private void setTestByConditionAdapter() {
+        LabTestByConditionAdapter adapter = new LabTestByConditionAdapter();
+        binding.recyclerviewCondition.setAdapter(adapter);
+        binding.recyclerviewOrgans.setAdapter(adapter);
+        binding.recyclerviewHabits.setAdapter(adapter);
     }
 
     private void setPackageAdapter() {

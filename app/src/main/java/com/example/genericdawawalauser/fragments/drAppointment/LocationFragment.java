@@ -85,7 +85,7 @@ public class LocationFragment extends Fragment {
 
         binding.relativeUnder500.setOnClickListener(v -> {
 
-            price = "1";
+            price = "price_lesser";
 
             binding.txtUnder500.setTextColor(getResources().getColor(R.color.white));
             binding.relativeUnder500.setBackgroundResource(R.drawable.bg_filters_selected);
@@ -98,7 +98,7 @@ public class LocationFragment extends Fragment {
         });
         binding.relative500ormore.setOnClickListener(v -> {
 
-            price = "2";
+            price = "price_greater";
 
             binding.txtAbove500.setTextColor(getResources().getColor(R.color.white));
             binding.relative500ormore.setBackgroundResource(R.drawable.bg_filters_selected);
@@ -110,24 +110,26 @@ public class LocationFragment extends Fragment {
 
         });
         binding.relativeEnglish.setOnClickListener(v -> {
-            language = "english";
+            language = "1";
 
             binding.txtEnglish.setTextColor(getResources().getColor(R.color.white));
             binding.relativeEnglish.setBackgroundResource(R.drawable.bg_filters_selected);
 
             binding.txtHindi.setTextColor(getResources().getColor(R.color.appcolor));
             binding.relativeHindi.setBackgroundResource(R.drawable.bg_filters_un_selected);
+            DoctorAppointmentBySpecialitiesFragment.language_type = 1;
 
         });
         binding.relativeHindi.setOnClickListener(v -> {
 
-            language = "hindi";
+            language = "2";
 
             binding.txtHindi.setTextColor(getResources().getColor(R.color.white));
             binding.relativeHindi.setBackgroundResource(R.drawable.bg_filters_selected);
 
             binding.txtEnglish.setTextColor(getResources().getColor(R.color.appcolor));
             binding.relativeEnglish.setBackgroundResource(R.drawable.bg_filters_un_selected);
+            DoctorAppointmentBySpecialitiesFragment.language_type = 2;
 
         });
         binding.relativeMale.setOnClickListener(v -> {
@@ -163,7 +165,7 @@ public class LocationFragment extends Fragment {
             binding.txtOffline.setTextColor(getResources().getColor(R.color.appcolor));
             binding.relativeFilterInPerson.setBackgroundResource(R.drawable.bg_filters_un_selected);
             binding.inPersonFilter.setColorFilter(getResources().getColor(R.color.appcolor));
-            type = "online";
+            type = "1";
 
 
             DoctorAppointmentBySpecialitiesFragment.consultationType = 1;
@@ -171,7 +173,7 @@ public class LocationFragment extends Fragment {
         });
         binding.relativeFilterInPerson.setOnClickListener(v -> {
 
-            type = "offline";
+            type = "1";
             binding.txtOnline.setTextColor(getResources().getColor(R.color.appcolor));
             binding.relativeFilterOnline.setBackgroundResource(R.drawable.bg_filters_un_selected);
             binding.videoFilter.setColorFilter(getResources().getColor(R.color.appcolor));

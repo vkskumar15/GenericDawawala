@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card2"
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        android:layout_margin="@dimen/dp_10"
+        app:cardCornerRadius="@dimen/space10"
+        app:cardElevation="@dimen/space6">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/package_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_10"
+                android:layout_marginTop="@dimen/dp_10"
+                android:layout_marginEnd="@dimen/dp_10"
+                android:text="@string/mb_pack_1_generic_health_wealth_package"
+                android:textColor="@color/black"
+                android:textSize="@dimen/dp_12"
+                android:textStyle="bold"
+                tools:ignore="SpUsage" />
+
+            <RelativeLayout
+                android:id="@+id/relative"
+                android:layout_width="@dimen/space150"
+                android:layout_below="@id/package_name"
+                android:layout_marginStart="@dimen/dp_10"
+                android:layout_marginTop="@dimen/dp_10"
+                android:layout_marginEnd="@dimen/dp_10"
+                android:background="@drawable/btn_bg"
+                android:backgroundTint="#8ED5F3"
+                android:layout_marginBottom="@dimen/dp_10"
+                android:layout_height="@dimen/dp_30">
+
+                <ImageView
+                    android:id="@+id/lab_test"
+                    android:layout_width="@dimen/space20"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/dp_10"
+                    android:layout_height="@dimen/space20"
+                    android:src="@drawable/lab" />
+
+                <TextView
+                    android:id="@+id/text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toEndOf="@id/lab_test"
+                    android:layout_marginStart="@dimen/dp_10"
+                    android:layout_centerVertical="true"
+                    android:text="@string/lab_center_visit"
+                    android:textColor="@color/background_fragment_conversation"
+                    android:textSize="@dimen/dp_12"
+                    tools:ignore="SpUsage" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="@dimen/space150"
+                android:layout_below="@id/package_name"
+                android:layout_marginStart="@dimen/dp_10"
+                android:layout_marginTop="@dimen/dp_10"
+                android:layout_marginEnd="@dimen/dp_10"
+                android:layout_alignParentEnd="true"
+                android:background="@drawable/btn_bg"
+                android:backgroundTint="#8ED5F3"
+                android:layout_marginBottom="@dimen/dp_10"
+                android:layout_height="@dimen/dp_30">
+
+                <ImageView
+                    android:id="@+id/lab_test1"
+                    android:layout_width="@dimen/space20"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/dp_10"
+                    android:layout_height="@dimen/space20"
+                    android:src="@drawable/observation" />
+
+                <TextView
+                    android:id="@+id/text1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toEndOf="@id/lab_test1"
+                    android:layout_marginStart="@dimen/dp_10"
+                    android:layout_centerVertical="true"
+                    android:text="@string/radiology_included"
+                    android:textColor="@color/background_fragment_conversation"
+                    android:textSize="@dimen/dp_12"
+                    tools:ignore="SpUsage" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="@dimen/space150"
+                android:layout_below="@id/relative"
+                android:layout_marginStart="@dimen/dp_10"
+                android:layout_marginTop="@dimen/dp_5"
+                android:layout_marginEnd="@dimen/dp_10"
+                android:background="@drawable/bg_right_tab_read_green"
+                android:layout_marginBottom="@dimen/dp_10"
+                android:layout_height="@dimen/dp_30">
+
+                <ImageView
+                    android:id="@+id/lab_test2"
+                    android:layout_width="@dimen/space20"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/dp_10"
+                    android:layout_height="@dimen/space20"
+                    android:src="@drawable/laboratory" />
+
+                <TextView
+                    android:id="@+id/text2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toEndOf="@id/lab_test2"
+                    android:layout_marginStart="@dimen/dp_10"
+                    android:layout_centerVertical="true"
+                    android:text="@string/_12_lab_tests"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/dp_12"
+                    tools:ignore="SpUsage" />
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:layout_width="@dimen/space150"
+                android:layout_below="@id/relative"
+                android:layout_marginStart="@dimen/dp_10"
+                android:layout_marginTop="@dimen/dp_5"
+                android:layout_marginEnd="@dimen/dp_10"
+                android:id="@+id/relative12"
+                android:layout_alignParentEnd="true"
+                android:layout_marginBottom="@dimen/dp_10"
+                android:layout_height="@dimen/dp_30">
+
+                <ImageView
+                    android:id="@+id/lab_test3"
+                    android:layout_width="@dimen/space20"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/dp_10"
+                    android:layout_height="@dimen/space20"
+                    android:src="@drawable/baseline_support_agent_24" />
+
+                <TextView
+                    android:id="@+id/text3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toEndOf="@id/lab_test3"
+                    android:layout_marginStart="@dimen/dp_10"
+                    android:layout_centerVertical="true"
+                    android:text="@string/_2_consultations_included"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/dp_12"
+                    tools:ignore="SpUsage" />
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/tv_available"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/dp_10"
+                android:layout_marginTop="@dimen/dp_10"
+                android:layout_marginEnd="@dimen/dp_10"
+                android:layout_below="@id/relative12"
+                android:layout_marginBottom="@dimen/dp_10"
+                android:text="Available"
+                android:textColor="@color/red"
+                android:textSize="@dimen/dp_14"
+                android:textStyle="bold"
+                tools:ignore="SpUsage" />
+
+        </RelativeLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+</RelativeLayout>

@@ -9,11 +9,21 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.genericdawawalauser.R;
+import com.example.genericdawawalauser.adapters.SliderAdapter;
+import com.example.genericdawawalauser.adapters.labAdapter.LabCategoryAdapter;
+import com.example.genericdawawalauser.adapters.labAdapter.LabPackageAdapter;
+import com.example.genericdawawalauser.adapters.labAdapter.LabPopularCategoryAdapter;
+import com.example.genericdawawalauser.adapters.labAdapter.LabPopularTestAdapter;
 import com.example.genericdawawalauser.databinding.FragmentHomeLabBinding;
+import com.example.genericdawawalauser.modalClass.SliderData;
+
+import java.util.ArrayList;
 
 public class HomeLabFragment extends Fragment {
-
     FragmentHomeLabBinding binding;
+    String url1 = "https://firebasestorage.googleapis.com/v0/b/dovio-1c283.appspot.com/o/590-banner.jpg?alt=media&token=8243b376-d9bb-47d7-80f1-42d6562a78ff";
+    String url2 = "https://firebasestorage.googleapis.com/v0/b/dovio-1c283.appspot.com/o/doctor-online-on-your-laptop-online-medicine-consultation-and-diagnosis-concept-web-banner-for-medical-app-ask-doctor-online-help-and-support-2CXD1PA.jpeg?alt=media&token=2454d675-b6e2-46fc-aa85-aabd547f9a15";
+    String url3 = "https://firebasestorage.googleapis.com/v0/b/dovio-1c283.appspot.com/o/gynecologist-online-service-platform-human-anatomy-ovary-gynecologist-online-service-platform-human-anatomy-ovary-womb-197052954.jpeg?alt=media&token=f1e2b530-fcc7-44c5-912a-615ccf50d215";
 
 
     @Override
@@ -21,7 +31,52 @@ public class HomeLabFragment extends Fragment {
         // Inflate the layout for this fragment
      binding  = FragmentHomeLabBinding.inflate(inflater, container, false);
 
+     sliderImage();
+     setCategoryAdapter();
+     setPackageAdapter();
+     setPopularCategoryAdapter();
+     setPopularAdapter();
+
+
      return binding.getRoot();
 
+    }
+
+    private void setPackageAdapter() {
+
+        LabPackageAdapter adapter = new LabPackageAdapter();
+        binding.packageNameRecyclerview.setAdapter(adapter);
+    }
+
+    private void setCategoryAdapter() {
+
+        LabCategoryAdapter adapter = new LabCategoryAdapter();
+        binding.recylerView.setAdapter(adapter);
+    }
+
+
+    private void setPopularAdapter() {
+
+        LabPopularTestAdapter adapter = new LabPopularTestAdapter();
+        binding.recylerViewPopularTest.setAdapter(adapter);
+    }
+
+    private void setPopularCategoryAdapter() {
+
+        LabPopularCategoryAdapter adapter = new LabPopularCategoryAdapter();
+        binding.recylerViewPop.setAdapter(adapter);
+    }
+
+    private void sliderImage() {
+        ArrayList<SliderData> sliderDataArrayList = new ArrayList<>();
+        sliderDataArrayList.add(new SliderData(this.url1));
+        sliderDataArrayList.add(new SliderData(this.url2));
+        sliderDataArrayList.add(new SliderData(this.url3));
+        SliderAdapter adapter = new SliderAdapter(requireContext(), sliderDataArrayList);
+        binding.slider.setAutoCycleDirection(0);
+        binding.slider.setSliderAdapter(adapter);
+        binding.slider.setScrollTimeInSec(4);
+        binding.slider.setAutoCycle(true);
+        binding.slider.startAutoCycle();
     }
 }

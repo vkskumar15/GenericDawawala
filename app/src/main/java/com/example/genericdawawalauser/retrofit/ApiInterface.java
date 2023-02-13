@@ -82,7 +82,7 @@ public interface ApiInterface {
 
 
     @FormUrlEncoded
-    @POST("getFilterDoctors")
+    @POST("docFilter")
     Call<DoctorModelRoot> getFilterDoctors(
             @Field("dr_speciality") String dr_speciality,
             @Field("common") String common,

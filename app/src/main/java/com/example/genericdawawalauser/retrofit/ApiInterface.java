@@ -86,7 +86,14 @@ public interface ApiInterface {
     Call<DoctorModelRoot> getFilterDoctors(
             @Field("dr_speciality") String dr_speciality,
             @Field("common") String common,
-            @Field("clinic_name") String clinic_name
+            @Field("clinic_name") String clinic_name,
+            @Field("gender") String gender,
+            @Field("language") String language,
+            @Field("latitude") String latitude,
+            @Field("longitude") String longitude,
+            @Field("consultationType") String consultationType,
+            @Field("price") String price
+
     );
 
     @FormUrlEncoded

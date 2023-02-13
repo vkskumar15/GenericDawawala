@@ -262,13 +262,16 @@ public class ViewModalClass extends ViewModel {
 
     private MutableLiveData<DoctorModelRoot> getFilterDoctorsDoctorsAsPerSpecialityMutableLiveData;
 
-    public LiveData<DoctorModelRoot> getFilterDoctorsAsPerSpecialityLiveData(Activity activity, String dr_speciality, String common, String clinic_name) {
+    public LiveData<DoctorModelRoot> getFilterDoctorsAsPerSpecialityLiveData(Activity activity,
+                                                                             String dr_speciality, String common, String clinic_name,
+                                                                             String gender, String language, String latitude,
+                                                                             String longitude, String consultationType, String price) {
 
         getFilterDoctorsDoctorsAsPerSpecialityMutableLiveData = new MutableLiveData<>();
 
         CommonUtils.showProgressDialog(activity);
 
-        apiInterface.getFilterDoctors(dr_speciality, common, clinic_name).enqueue(new Callback<DoctorModelRoot>() {
+        apiInterface.getFilterDoctors(dr_speciality, common, clinic_name, gender, language, latitude, longitude, consultationType, price).enqueue(new Callback<DoctorModelRoot>() {
             @Override
             public void onResponse(@NonNull Call<DoctorModelRoot> call, Response<DoctorModelRoot> response) {
                 CommonUtils.dismissDialog();

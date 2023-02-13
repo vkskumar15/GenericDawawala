@@ -98,4 +98,5 @@
     <string name="are_you_sure_want_to_end_call">Are you sure want to end call?</string>
     <string name="keep_call">Keep Call</string>
     <string name="end_call">End Call</string>
+    <string name="book_lab_test">Book Lab Test</string>
 </resources>

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.homefragments.DoctorBySpecialitiesFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragments.labTest.HomeLabFragment">
 
     <RelativeLayout
         android:id="@+id/relative_physician"
@@ -27,9 +27,9 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginStart="@dimen/space10"
-            android:layout_toRightOf="@id/back_arrow_consult_physician"
+            android:layout_toEndOf="@id/back_arrow_consult_physician"
             android:gravity="center"
-            android:text="Consult Physician"
+            android:text="@string/book_lab_test"
             android:textColor="@color/white"
             android:textSize="@dimen/sp_14" />
 
@@ -37,7 +37,6 @@
             android:id="@+id/img_filter"
             android:layout_width="@dimen/dp_24"
             android:layout_height="@dimen/dp_24"
-            android:visibility="gone"
             android:layout_alignParentEnd="true"
             android:src="@drawable/ic_baseline_filter_list_24"
             app:tint="@color/white" />
@@ -79,20 +78,7 @@
             app:drawableTint="@color/white"
             tools:ignore="SpUsage" />
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:layout_width="@dimen/space120"
-            android:layout_height="@dimen/dp_35"
-            android:layout_alignParentEnd="true"
-            android:layout_marginTop="@dimen/dp_10"
-            android:layout_marginEnd="@dimen/space20"
-            android:id="@+id/filter"
-            android:background="@drawable/button_bg"
-            android:backgroundTint="@color/white"
-            android:text="@string/filters"
-            android:textAllCaps="false"
-            android:textColor="@color/appcolor"
-            android:textSize="@dimen/space12"
-            tools:ignore="SpUsage" />
+
     </RelativeLayout>
 
     <SearchView
@@ -113,14 +99,5 @@
         android:textSize="@dimen/sp_15"
         tools:ignore="RtlSymmetry" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_consult"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/searchView"
-        android:layout_marginTop="@dimen/dp_10"
-        android:orientation="vertical"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:listitem="@layout/doctor_appointment_list" />
 
 </RelativeLayout>

@@ -116,4 +116,6 @@
     <string name="comprehensive_silver_full_body_checkup">Comprehensive Silver Full Body Checkup</string>
     <string name="more_details">+More Details</string>
     <string name="diabetes_screening_2">Diabetes Screening (2)</string>
+    <string name="radiology_tests">RadioLogy Tests</string>
+    <string name="pathology_tests">Pathology Tests</string>
 </resources>

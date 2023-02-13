@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="wrap_content">
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_300"
-        android:layout_margin="@dimen/space3"
-        app:strokeColor="@color/red"
-        app:strokeWidth="1dp"
+        android:layout_height="290dp"
+        android:layout_margin="@dimen/dp_10"
         app:cardCornerRadius="@dimen/space12"
-        app:cardElevation="@dimen/space12">
+        app:cardElevation="@dimen/space12"
+        app:strokeWidth="1dp">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:orientation="vertical"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:background="#AFE6FF"
-                android:layout_height="@dimen/space140">
+                android:layout_height="@dimen/space140"
+                android:background="#AFE6FF">
 
                 <ImageView
                     android:id="@+id/image"
@@ -34,47 +34,46 @@
                     android:id="@+id/name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginBottom="@dimen/space5"
-                    android:gravity="center"
                     android:layout_below="@id/image"
-                    android:text="@string/comprehensive_silver_full_body_checkup"
+                    android:layout_gravity="center"
                     android:layout_marginStart="@dimen/dp_10"
                     android:layout_marginTop="@dimen/dp_5"
+                    android:layout_marginBottom="@dimen/space5"
+                    android:gravity="center"
+                    android:text="@string/comprehensive_silver_full_body_checkup"
                     android:textAlignment="center"
-                    android:textStyle="bold"
                     android:textColor="@color/colorBlack"
-                    android:textSize="12sp" />
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
 
                 <RelativeLayout
                     android:layout_width="@dimen/space150"
+                    android:layout_height="@dimen/dp_40"
                     android:layout_below="@id/name"
                     android:layout_marginTop="@dimen/dp_5"
                     android:layout_marginEnd="@dimen/dp_10"
-                    android:backgroundTint="#FF5B60"
                     android:background="@drawable/bg_right_tab_read_green"
-                    android:layout_height="@dimen/dp_40">
+                    android:backgroundTint="#FF5B60">
 
                     <ImageView
                         android:id="@+id/lab_test2"
                         android:layout_width="@dimen/space20"
+                        android:layout_height="@dimen/space20"
                         android:layout_centerVertical="true"
                         android:layout_marginStart="@dimen/dp_10"
-                        android:layout_height="@dimen/space20"
                         android:src="@drawable/laboratory" />
 
                     <TextView
                         android:id="@+id/text2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_toEndOf="@id/lab_test2"
-                        android:layout_marginStart="@dimen/dp_10"
                         android:layout_centerVertical="true"
+                        android:layout_marginStart="@dimen/dp_10"
+                        android:layout_toEndOf="@id/lab_test2"
                         android:text="@string/_12_lab_tests"
                         android:textColor="@color/white"
-                        android:textStyle="bold"
                         android:textSize="@dimen/dp_12"
-                       />
+                        android:textStyle="bold" />
                 </RelativeLayout>
             </RelativeLayout>
 
@@ -82,28 +81,18 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/dp_10"
+                android:layout_marginTop="@dimen/dp_5"
                 android:text="Calcium"
-                android:layout_marginTop="@dimen/dp_10"
                 android:textColor="@color/darkgrey"
-                android:textSize="@dimen/dp_12"
-                />
+                android:textSize="@dimen/dp_12" />
 
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/dp_10"
-                android:text="@string/diabetes_screening_2"
                 android:layout_marginTop="@dimen/dp_5"
-                android:textColor="@color/darkgrey"
-                android:textSize="@dimen/dp_12"
-                tools:ignore="SpUsage" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/dp_10"
                 android:text="@string/diabetes_screening_2"
-                android:layout_marginTop="@dimen/dp_5"
                 android:textColor="@color/darkgrey"
                 android:textSize="@dimen/dp_12"
                 tools:ignore="SpUsage" />
@@ -112,29 +101,39 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/dp_10"
-                android:text="@string/more_details"
-                android:layout_marginTop="@dimen/dp_10"
-                android:textColor="@color/red"
-                android:padding="@dimen/dp_5"
+                android:layout_marginTop="@dimen/dp_5"
+                android:text="@string/diabetes_screening_2"
+                android:textColor="@color/darkgrey"
+                android:textSize="@dimen/dp_12"
+                tools:ignore="SpUsage" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_10"
+                android:layout_marginTop="@dimen/dp_5"
                 android:background="@drawable/ripple"
+                android:padding="@dimen/dp_5"
+                android:text="@string/more_details"
+                android:textColor="@color/red"
                 android:textSize="@dimen/dp_12"
                 tools:ignore="SpUsage" />
+
             <LinearLayout
                 android:layout_width="wrap_content"
-                android:orientation="horizontal"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/dp_10"
-                    android:text="₹ 400"
-                    android:textStyle="bold"
-                    android:textColor="@color/appcolor"
                     android:background="@drawable/ripple"
+                    android:text="₹ 400"
+                    android:textColor="@color/appcolor"
                     android:textSize="@dimen/dp_12"
+                    android:textStyle="bold"
                     tools:ignore="SpUsage" />
-
 
 
             </LinearLayout>
@@ -144,13 +143,13 @@
                 android:id="@+id/loginBtn"
                 android:layout_width="@dimen/dp_150"
                 android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="@dimen/dp_10"
                 android:background="@drawable/button_bg"
+                android:backgroundTint="#FF5B60"
+                android:gravity="center"
                 android:text="Add To Cart"
                 android:textAllCaps="false"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:layout_marginBottom="@dimen/dp_10"
-                android:backgroundTint="#FF5B60"
                 android:textColor="@color/white"
                 android:textSize="12sp"
                 android:textStyle="bold" />
@@ -158,4 +157,5 @@
         </LinearLayout>
 
     </com.google.android.material.card.MaterialCardView>
+
 </LinearLayout>

@@ -3,6 +3,7 @@ package com.example.genericdawawalauser.fragments.labTest;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -38,10 +39,25 @@ public class HomeLabFragment extends Fragment {
      setPopularCategoryAdapter();
      setPopularAdapter();
      setTestByConditionAdapter();
+     onClicks();
 
 
      return binding.getRoot();
 
+    }
+
+    private void onClicks() {
+        binding.radiology.setOnClickListener(v -> {
+
+            Navigation.findNavController(binding.getRoot()).navigate(R.id.radioLogyLabTestFragment);
+
+        });
+
+        binding.pathology.setOnClickListener(v -> {
+
+            Navigation.findNavController(binding.getRoot()).navigate(R.id.pathologyFragment);
+
+        });
     }
 
     private void setTestByConditionAdapter() {

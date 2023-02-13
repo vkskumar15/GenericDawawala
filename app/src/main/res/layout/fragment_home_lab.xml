@@ -79,7 +79,6 @@
 
 
     </RelativeLayout>
-
     <androidx.appcompat.widget.SearchView
         android:id="@+id/searchView"
         android:layout_width="match_parent"
@@ -148,6 +147,8 @@
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
+                                android:id="@+id/pathology"
+                                android:background="@drawable/ripple"
                                 android:orientation="vertical">
 
                                 <ImageView
@@ -188,7 +189,8 @@
                             app:cardElevation="@dimen/space12">
 
                             <LinearLayout
-                                android:id="@+id/online_cunsult"
+                                android:id="@+id/radiology"
+
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:background="@drawable/ripple"

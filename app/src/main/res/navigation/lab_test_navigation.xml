@@ -9,5 +9,22 @@
         android:id="@+id/homeLabFragment"
         android:name="com.example.genericdawawalauser.fragments.labTest.HomeLabFragment"
         android:label="fragment_home_lab"
-        tools:layout="@layout/fragment_home_lab" />
+        tools:layout="@layout/fragment_home_lab" >
+        <action
+            android:id="@+id/action_homeLabFragment_to_radioLogyLabTestFragment"
+            app:destination="@id/radioLogyLabTestFragment" />
+        <action
+            android:id="@+id/action_homeLabFragment_to_pathologyFragment"
+            app:destination="@id/pathologyFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/radioLogyLabTestFragment"
+        android:name="com.example.genericdawawalauser.fragments.labTest.RadioLogyLabTestFragment"
+        android:label="fragment_radio_logy_lab_test"
+        tools:layout="@layout/fragment_radio_logy_lab_test" />
+    <fragment
+        android:id="@+id/pathologyFragment"
+        android:name="com.example.genericdawawalauser.fragments.labTest.PathologyFragment"
+        android:label="fragment_pathology"
+        tools:layout="@layout/fragment_pathology" />
 </navigation>

@@ -13,6 +13,8 @@ import com.example.genericdawawalauser.modalClass.ChangePasswordModal;
 import com.example.genericdawawalauser.modalClass.DoctorModelRoot;
 import com.example.genericdawawalauser.modalClass.GenerateOrderIdModel;
 import com.example.genericdawawalauser.modalClass.HealthProblemModal;
+import com.example.genericdawawalauser.modalClass.LabTestCategories;
+import com.example.genericdawawalauser.modalClass.MedicineDataModal;
 import com.example.genericdawawalauser.modalClass.PendingOnlineAppointmentModal;
 import com.example.genericdawawalauser.modalClass.ReScheduledAppointment;
 import com.example.genericdawawalauser.modalClass.RegisterModelRoot;
@@ -213,6 +215,42 @@ public class ViewModalClass extends ViewModel {
         });
 
         return GetDoctorSpecialitiesMutableLiveData;
+
+    }
+
+
+    private MutableLiveData<LabTestCategories> labTestCategoriesMutableLiveData;
+
+    public LiveData<LabTestCategories> labTestCategoriesLiveData(Activity activity) {
+
+        labTestCategoriesMutableLiveData = new MutableLiveData<>();
+
+        CommonUtils.showProgressDialog(activity);
+
+        apiInterface.labTestCategories().enqueue(new Callback<LabTestCategories>() {
+            @Override
+            public void onResponse(@NonNull Call<LabTestCategories> call, Response<LabTestCategories> response) {
+                CommonUtils.dismissDialog();
+                if (response.body() != null) {
+                    if (response.body().getSuccess().equals("0")) {
+                        Toast.makeText(activity, "" + response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                    } else {
+                        labTestCategoriesMutableLiveData.postValue(response.body());
+                    }
+
+                } else {
+                    Toast.makeText(activity, "Services not found", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<LabTestCategories> call, Throwable t) {
+                CommonUtils.dismissDialog();
+                Toast.makeText(activity, "" + t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        return labTestCategoriesMutableLiveData;
 
     }
 
@@ -665,6 +703,7 @@ public class ViewModalClass extends ViewModel {
 
 
     private MutableLiveData<PendingOnlineAppointmentModal> pendingDrAppointmentModalMutableLiveData;
+
     public LiveData<PendingOnlineAppointmentModal> otherAppointmentsPendingOnlineAppointmentModalLiveData(Activity activity, String userId, String type) {
         CommonUtils.showProgressDialog(activity);
         pendingDrAppointmentModalMutableLiveData = new MutableLiveData<>();
@@ -688,6 +727,35 @@ public class ViewModalClass extends ViewModel {
         });
 
         return pendingDrAppointmentModalMutableLiveData;
+    }
+
+
+    private MutableLiveData<MedicineDataModal> medicineDataModalMutableLiveData;
+
+    public LiveData<MedicineDataModal> medicineDataModalLiveData(Activity activity, String categoryId) {
+        CommonUtils.showProgressDialog(activity);
+        medicineDataModalMutableLiveData = new MutableLiveData<>();
+
+        apiInterface.labTestSubCategories(categoryId).enqueue(new Callback<MedicineDataModal>() {
+            @Override
+            public void onResponse(@NonNull Call<MedicineDataModal> call, Response<MedicineDataModal> response) {
+                CommonUtils.dismissDialog();
+                if (response.body() != null) {
+                    medicineDataModalMutableLiveData.postValue(response.body());
+                } else {
+                    medicineDataModalMutableLiveData.postValue(null);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<MedicineDataModal> call, Throwable t) {
+                CommonUtils.dismissDialog();
+                medicineDataModalMutableLiveData.postValue(null);
+
+            }
+        });
+
+        return medicineDataModalMutableLiveData;
     }
 
 

@@ -3,6 +3,7 @@ package com.example.genericdawawalauser.fragments.labTest;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
@@ -17,7 +18,10 @@ import com.example.genericdawawalauser.adapters.labAdapter.LabPopularCategoryAda
 import com.example.genericdawawalauser.adapters.labAdapter.LabPopularTestAdapter;
 import com.example.genericdawawalauser.adapters.labAdapter.LabTestByConditionAdapter;
 import com.example.genericdawawalauser.databinding.FragmentHomeLabBinding;
+import com.example.genericdawawalauser.modalClass.LabTestCategories;
+import com.example.genericdawawalauser.modalClass.MedicineDataModal;
 import com.example.genericdawawalauser.modalClass.SliderData;
+import com.example.genericdawawalauser.retrofit.ViewModalClass;
 
 import java.util.ArrayList;
 
@@ -27,17 +31,15 @@ public class HomeLabFragment extends Fragment {
     String url2 = "https://firebasestorage.googleapis.com/v0/b/dovio-1c283.appspot.com/o/doctor-online-on-your-laptop-online-medicine-consultation-and-diagnosis-concept-web-banner-for-medical-app-ask-doctor-online-help-and-support-2CXD1PA.jpeg?alt=media&token=2454d675-b6e2-46fc-aa85-aabd547f9a15";
     String url3 = "https://firebasestorage.googleapis.com/v0/b/dovio-1c283.appspot.com/o/gynecologist-online-service-platform-human-anatomy-ovary-gynecologist-online-service-platform-human-anatomy-ovary-womb-197052954.jpeg?alt=media&token=f1e2b530-fcc7-44c5-912a-615ccf50d215";
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+
      binding  = FragmentHomeLabBinding.inflate(inflater, container, false);
 
      sliderImage();
      setCategoryAdapter();
      setPackageAdapter();
      setPopularCategoryAdapter();
-     setPopularAdapter();
      setTestByConditionAdapter();
      onClicks();
 
@@ -80,16 +82,45 @@ public class HomeLabFragment extends Fragment {
     }
 
 
-    private void setPopularAdapter() {
+    private void setPopularAdapter(String id) {
+        new ViewModalClass().medicineDataModalLiveData(requireActivity(), id).observe(requireActivity(), new Observer<MedicineDataModal>() {
+            @Override
+            public void onChanged(MedicineDataModal medicineDataModal) {
+                if (medicineDataModal.getSuccess().equalsIgnoreCase("1")) {
+                    LabPopularTestAdapter adapter = new LabPopularTestAdapter(medicineDataModal.getDetails(), requireContext(), new LabPopularTestAdapter.DetailsData() {
+                        @Override
+                        public void details(MedicineDataModal.Detail detail) {
+                            Navigation.findNavController(binding.getRoot()).navigate(R.id.pathologyDetailsFragment);
 
-        LabPopularTestAdapter adapter = new LabPopularTestAdapter();
-        binding.recylerViewPopularTest.setAdapter(adapter);
+                        }
+                    }, new LabPopularTestAdapter.AddtoCart() {
+                        @Override
+                        public void addToCart(MedicineDataModal.Detail detail) {
+
+                        }
+                    });
+                    binding.recyclerviewCondition.setAdapter(adapter);
+                }
+            }
+        });
+
+
     }
 
     private void setPopularCategoryAdapter() {
+        new ViewModalClass().labTestCategoriesLiveData(requireActivity()).observe(requireActivity(), labTestCategories -> {
+            if (labTestCategories.getSuccess().equalsIgnoreCase("1"))
+            {
+                LabPopularCategoryAdapter adapter = new LabPopularCategoryAdapter(labTestCategories.getDetails(), requireContext(), new LabPopularCategoryAdapter.ClickLab() {
+                    @Override
+                    public void clickLab(LabTestCategories.Detail detail) {
 
-        LabPopularCategoryAdapter adapter = new LabPopularCategoryAdapter();
-        binding.recylerViewPop.setAdapter(adapter);
+                        setPopularAdapter(detail.getId());
+                    }
+                });
+                binding.recylerViewPop.setAdapter(adapter);
+            }
+        });
     }
 
     private void sliderImage() {

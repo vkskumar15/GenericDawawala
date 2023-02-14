@@ -25,6 +25,7 @@
             android:id="@+id/type_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
             android:layout_gravity="center"
             android:layout_marginStart="@dimen/space10"
             android:layout_toEndOf="@id/back_arrow_consult_physician"

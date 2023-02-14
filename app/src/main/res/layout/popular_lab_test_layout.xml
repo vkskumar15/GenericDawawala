@@ -15,6 +15,7 @@
             android:layout_height="match_parent">
 
             <TextView
+                android:id="@+id/med_name"
                 android:layout_width="wrap_content"
                 android:text="Vitamin D (12-OH)"
                 android:layout_centerVertical="true"
@@ -26,6 +27,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:text="₹ 123/-"
+                android:id="@+id/med_price"
                 android:layout_centerVertical="true"
                 android:layout_marginStart="@dimen/dp_10"
                 android:textStyle="bold"
@@ -34,12 +36,28 @@
                 android:textColor="@color/black"
                 android:layout_height="wrap_content"/>
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="@string/added_in_cart"
+                android:layout_marginStart="@dimen/dp_10"
+                android:layout_toStartOf="@id/add_cart"
+                android:textColor="@color/black"
+                android:background="@drawable/med_gredient"
+                android:textSize="@dimen/dp_10"
+                android:padding="@dimen/space2"
+                android:id="@+id/added_in_cart"
+                android:visibility="invisible"
+                android:layout_alignParentEnd="true"
+                android:layout_margin="@dimen/dp_5"
+                android:layout_height="wrap_content"/>
+
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/add_cart"
                 android:layout_width="@dimen/dp_60"
                 android:layout_height="@dimen/dp_30"
                 android:background="@drawable/stroke_box"
                 android:text="@string/add"
+                android:visibility="visible"
                 android:textAllCaps="true"
                 android:layout_centerVertical="true"
                 android:layout_alignParentEnd="true"
@@ -47,6 +65,19 @@
                 android:textColor="@color/appcolor"
                 android:textSize="12sp"
                 android:textStyle="bold" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:id="@+id/delete"
+                android:layout_centerVertical="true"
+                android:layout_alignParentEnd="true"
+                android:visibility="invisible"
+                android:layout_marginEnd="@dimen/dp_10"
+                android:layout_below="@id/added_in_cart"
+                android:src="@drawable/ic_baseline_delete_24"
+                android:layout_height="wrap_content"/>
+
+
         </RelativeLayout>
 
     </com.google.android.material.card.MaterialCardView>

@@ -5,6 +5,8 @@ import com.example.genericdawawalauser.modalClass.ChangePasswordModal;
 import com.example.genericdawawalauser.modalClass.DoctorModelRoot;
 import com.example.genericdawawalauser.modalClass.GenerateOrderIdModel;
 import com.example.genericdawawalauser.modalClass.HealthProblemModal;
+import com.example.genericdawawalauser.modalClass.LabTestCategories;
+import com.example.genericdawawalauser.modalClass.MedicineDataModal;
 import com.example.genericdawawalauser.modalClass.PendingOnlineAppointmentModal;
 import com.example.genericdawawalauser.modalClass.ReScheduledAppointment;
 import com.example.genericdawawalauser.modalClass.RegisterModelRoot;
@@ -71,6 +73,9 @@ public interface ApiInterface {
 
     @GET("getDoctorsSpecialistToUser")
     Call<DoctorModelRoot> getDoctorSpecialities();
+
+    @GET("LabTestCategories")
+    Call<LabTestCategories> labTestCategories();
 
     @FormUrlEncoded
     @POST("getDoctorVendorToUser")
@@ -194,7 +199,7 @@ public interface ApiInterface {
             @Field("appointmentDate") String appointmentDate,
             @Field("appointmentId") String appointmentId,
             @Field("AppointmentType") String AppointmentType
-            );
+    );
 
     @GET("getAllergies")
     Call<HealthProblemModal> getAllergies();
@@ -205,6 +210,12 @@ public interface ApiInterface {
     Call<PendingOnlineAppointmentModal> otherAppointmets(
             @Field("userId") String userId,
             @Field("type") String type
+    );
+
+    @FormUrlEncoded
+    @POST("LabTestSubCategories")
+    Call<MedicineDataModal> labTestSubCategories(
+            @Field("categoryId") String categoryId
     );
 
 

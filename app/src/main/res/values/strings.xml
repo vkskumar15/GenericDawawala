@@ -12,7 +12,7 @@
     <string name="map_key">AIzaSyD8JA1Fm0Jtqyj4kBqlUMB5MMOZkHLGkto</string>
     <string name="login">Login</string>
     <string name="forgot_password">Forgot Password</string>
-    <string name="or">OR</string>
+    <string name="or" translatable="false">OR</string>
     <string name="register">Register</string>
     <string name="profile_verified">Your profile is\nSuccessfully Verified</string>
     <string name="logout">Logout</string>
@@ -118,4 +118,11 @@
     <string name="diabetes_screening_2">Diabetes Screening (2)</string>
     <string name="radiology_tests">RadioLogy Tests</string>
     <string name="pathology_tests">Pathology Tests</string>
+    <string name="home_sample_collection">Home Sample Collection</string>
+    <string name="no_preparation">No Preparation</string>
+    <string name="about">
+</string>
+    <string name="our_lab_technician_will_collect_samples_form_home">- Our Lab Technician will collect samples form home</string>
+    <string name="qww">To determine vitamin D deficiency when calcium level is low or a person has symptoms of vitamin D deficiency such as bone malformation in children (rickets) and bone weakness, softness, or fracture in adults (osteomalacia). Before starting therapy for osteoporosis. To monitor the adequacy of treatment in patients who are receiving Vitamin D supplements, calcium, phosphorus, and/ or magnesium supplements. To diagnose/monitor problems with the parathyroid gland functioning since the parathyroid hormone (PTH) is essential for vitamin D activation. To monitor the health status of individuals with diseases that interfere with fat absorption, such as cystic fibrosis and Crohn\'s disease and in patients who have undergone gastric bypass surgery.</string>
+    <string name="added_in_cart">Added in cart</string>
 </resources>

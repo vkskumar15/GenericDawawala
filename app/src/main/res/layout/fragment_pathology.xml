@@ -47,11 +47,24 @@
         android:textSize="@dimen/sp15"
         tools:ignore="RtlSymmetry" />
 
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyler_view_pop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/space10"
+        android:layout_marginTop="@dimen/space10"
+        android:layout_marginRight="@dimen/space10"
+        android:layout_marginBottom="@dimen/space10"
+        android:orientation="horizontal"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/patient_layout" />
+
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview_condition"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/condition"
         android:layout_marginTop="@dimen/space10"
         android:orientation="vertical"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"

@@ -167,7 +167,7 @@
                 android:backgroundTint="#FF5B60"
                 android:gravity="center"
                 android:layout_marginTop="@dimen/dp_10"
-                android:text="Select Lab"
+                android:text="@string/select_lab"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:textSize="12sp"

@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.genericdawawalauser.databinding.LabDeatilsLayoutBinding;
 import com.example.genericdawawalauser.databinding.LabPackageLayoutBinding;
 import com.example.genericdawawalauser.modalClass.LabDetailsModal;
@@ -38,6 +39,9 @@ public class LabDetailsAdapter extends RecyclerView.Adapter<LabDetailsAdapter.Vi
 
     @Override
     public void onBindViewHolder(@NonNull LabDetailsAdapter.ViewHolder holder, int position) {
+
+        holder.binding.name.setText(list.get(position).getName());
+        Glide.with(context).load(list.get(position).getImage()).into(holder.binding.profileImage);
 
 
     }

@@ -128,4 +128,5 @@
     <string name="clinic_laboratory">Clinic Laboratory</string>
     <string name="calcium">Calcium</string>
     <string name="get_report_within_48_hrs">Get report within 48 hrs</string>
+    <string name="select_lab">Select Lab</string>
 </resources>

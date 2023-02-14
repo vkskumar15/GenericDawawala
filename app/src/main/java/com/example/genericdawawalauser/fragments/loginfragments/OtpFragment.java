@@ -85,7 +85,8 @@ public class OtpFragment extends Fragment {
     private void userLogin() {
 
         if (binding.otpView.getOTP().equals(otp)) {
-            new ViewModalClass().registerModelRootLiveData(requireActivity(), name, email, phone, password, token, android_id, "user", String.valueOf(SplashActivity.latitude), String.valueOf(SplashActivity.longitude), "").observe(requireActivity(), new Observer<RegisterModelRoot>() {
+            new ViewModalClass().registerModelRootLiveData(requireActivity(), name, email, phone, password, token, android_id, "user",
+                    String.valueOf(SplashActivity.latitude), String.valueOf(SplashActivity.longitude), "").observe(requireActivity(), new Observer<RegisterModelRoot>() {
                 public void onChanged(RegisterModelRoot registerModelRoot) {
                     if (registerModelRoot.getSuccess().equalsIgnoreCase("1")) {
                         App.getSharedPre().saveString(AppConstants.LOGIN_STATUS, "0");

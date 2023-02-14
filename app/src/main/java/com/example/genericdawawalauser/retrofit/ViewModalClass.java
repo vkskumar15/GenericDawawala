@@ -50,17 +50,22 @@ public class ViewModalClass extends ViewModel {
     public MutableLiveData<UpdateUserPhoneModel> updateUserPhoneModelMutableLiveData;
 
     public LiveData<UniqueAPiModel> uniqueAPiModelLiveData(final Activity activity, String email, String phone) {
+
         this.uniqueAPiModelMutableLiveData = new MutableLiveData<>();
+
         this.apiInterface.checkEmailPhone(email, phone).enqueue(new Callback<UniqueAPiModel>() {
             public void onResponse(Call<UniqueAPiModel> call, Response<UniqueAPiModel> response) {
                 if (response.body().getSuccess().equalsIgnoreCase("0")) {
                     Toast.makeText(activity, response.body().getMessage(), Toast.LENGTH_SHORT).show();
+
                 } else if (response.body() != null) {
+
                     ViewModalClass.this.uniqueAPiModelMutableLiveData.postValue(response.body());
                 }
             }
 
             public void onFailure(Call<UniqueAPiModel> call, Throwable t) {
+
                 Toast.makeText(activity, "" + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });

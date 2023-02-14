@@ -231,7 +231,7 @@
 
             <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_300"
+                android:layout_height="@dimen/dp_350"
                 android:scaleType="fitXY"
                 android:src="@drawable/image_doc" />
 

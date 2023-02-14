@@ -43,6 +43,27 @@ public class HomeLabFragment extends Fragment {
      setTestByConditionAdapter();
      onClicks();
 
+        new ViewModalClass().medicineDataModalLiveData(requireActivity(), "").observe(requireActivity(), new Observer<MedicineDataModal>() {
+            @Override
+            public void onChanged(MedicineDataModal medicineDataModal) {
+                if (medicineDataModal.getSuccess().equalsIgnoreCase("1")) {
+                    LabPopularTestAdapter adapter = new LabPopularTestAdapter(medicineDataModal.getDetails(), requireContext(), new LabPopularTestAdapter.DetailsData() {
+                        @Override
+                        public void details(MedicineDataModal.Detail detail) {
+                            Navigation.findNavController(binding.getRoot()).navigate(R.id.pathologyDetailsFragment);
+                            PathologyDetailsFragment.detail = detail;
+                        }
+                    }, new LabPopularTestAdapter.AddtoCart() {
+                        @Override
+                        public void addToCart(MedicineDataModal.Detail detail) {
+
+                        }
+                    });
+                    binding.recylerViewPopularTest.setAdapter(adapter);
+                }
+            }
+        });
+
 
      return binding.getRoot();
 

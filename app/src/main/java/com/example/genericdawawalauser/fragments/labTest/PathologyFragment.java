@@ -19,7 +19,6 @@ import com.example.genericdawawalauser.modalClass.MedicineDataModal;
 import com.example.genericdawawalauser.retrofit.ViewModalClass;
 
 public class PathologyFragment extends Fragment {
-
     FragmentPathologyBinding binding;
 
 

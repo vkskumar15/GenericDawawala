@@ -42,6 +42,7 @@
             android:src="@drawable/ic_baseline_filter_list_24"
             app:tint="@color/white" />
     </RelativeLayout>
+
     <RelativeLayout
         android:id="@+id/header_title"
         android:layout_width="match_parent"
@@ -80,6 +81,7 @@
 
 
     </RelativeLayout>
+
     <androidx.appcompat.widget.SearchView
         android:id="@+id/searchView"
         android:layout_width="match_parent"
@@ -96,8 +98,7 @@
         android:queryHint="Search"
         android:singleLine="true"
         android:textSize="@dimen/sp_15"
-        android:visibility="gone"
-        app:searchHintIcon="@color/appcolor"
+        app:searchHintIcon="@color/blueColor"
         app:searchIcon="@drawable/baseline_search_24"
         tools:ignore="RtlSymmetry" />
 
@@ -110,22 +111,20 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="#F6F4F4"
             android:orientation="vertical">
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/card"
                 android:layout_width="match_parent"
                 android:layout_height="130dp"
-                android:layout_marginStart="@dimen/space5"
                 android:layout_marginTop="@dimen/space5"
-                android:layout_marginEnd="@dimen/space5"
-                android:layout_marginBottom="@dimen/space10"
-                app:cardCornerRadius="@dimen/space20"
-                app:cardElevation="@dimen/space12">
+                android:layout_marginBottom="@dimen/space10">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:background="@color/white"
                     android:orientation="vertical">
 
                     <LinearLayout
@@ -137,18 +136,19 @@
                         android:orientation="horizontal"
                         android:weightSum="2">
 
-                        <androidx.cardview.widget.CardView
+                        <com.google.android.material.card.MaterialCardView
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_margin="@dimen/space3"
                             android:layout_weight="1"
                             app:cardCornerRadius="@dimen/space12"
-                            app:cardElevation="@dimen/space12">
+                            app:strokeColor="@color/blueColor"
+                            app:strokeWidth="@dimen/space2">
 
                             <LinearLayout
+                                android:id="@+id/pathology"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:id="@+id/pathology"
                                 android:background="@drawable/ripple"
                                 android:orientation="vertical">
 
@@ -173,21 +173,22 @@
                                     android:layout_marginBottom="@dimen/space5"
                                     android:gravity="center"
                                     android:text="@string/pathology"
-                                    android:textAllCaps="false"
                                     android:textAlignment="center"
-                                    android:textColor="@color/colorBlack"
-                                    android:textSize="12sp" />
+                                    android:textAllCaps="false"
+                                    android:textColor="@color/blueColor"
+                                    android:textSize="14sp" />
                             </LinearLayout>
-                        </androidx.cardview.widget.CardView>
+                        </com.google.android.material.card.MaterialCardView>
 
 
-                        <androidx.cardview.widget.CardView
+                        <com.google.android.material.card.MaterialCardView
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_margin="@dimen/space3"
                             android:layout_weight="1"
                             app:cardCornerRadius="@dimen/space12"
-                            app:cardElevation="@dimen/space12">
+                            app:strokeColor="@color/colorAccent"
+                            app:strokeWidth="@dimen/space2">
 
                             <LinearLayout
                                 android:id="@+id/radiology"
@@ -219,10 +220,10 @@
                                     android:gravity="center"
                                     android:text="@string/radiology"
                                     android:textAlignment="center"
-                                    android:textColor="@color/colorBlack"
-                                    android:textSize="12sp" />
+                                    android:textColor="@color/blueColor"
+                                    android:textSize="14sp" />
                             </LinearLayout>
-                        </androidx.cardview.widget.CardView>
+                        </com.google.android.material.card.MaterialCardView>
                     </LinearLayout>
 
                 </LinearLayout>
@@ -264,7 +265,8 @@
                 android:id="@+id/re_package"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dp_320"
-                android:background="@drawable/blue_green_icon_bg">
+                android:background="@drawable/blue_green_icon_bg"
+                android:backgroundTint="#D1E5FF">
 
                 <TextView
                     android:id="@+id/text"
@@ -275,7 +277,7 @@
                     android:layout_marginEnd="@dimen/dp_10"
                     android:layout_marginBottom="@dimen/dp_10"
                     android:text="@string/featured_health_check_up_npackages"
-                    android:textColor="@color/black"
+                    android:textColor="@color/blueColor"
                     android:textSize="@dimen/dp_14"
                     android:textStyle="bold"
                     tools:ignore="SpUsage" />
@@ -284,9 +286,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
-                    android:layout_margin="@dimen/dp_10"
+                    android:layout_marginStart="@dimen/dp_10"
+                    android:layout_marginTop="@dimen/dp_10"
+                    android:layout_marginEnd="@dimen/dp_10"
+                    android:layout_marginBottom="@dimen/dp_10"
                     android:text="@string/view_all"
-                    android:textColor="@color/black"
+                    android:textColor="@color/blueColor"
                     android:textSize="@dimen/dp_14"
                     android:textStyle="bold"
                     tools:ignore="SpUsage" />
@@ -321,7 +326,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="440dp"
                 android:layout_marginTop="@dimen/dp_10"
-                android:background="#F6F4F4">
+                android:background="@color/white">
 
                 <TextView
                     android:id="@+id/pop"
@@ -332,7 +337,7 @@
                     android:layout_marginEnd="@dimen/dp_10"
                     android:layout_marginBottom="@dimen/dp_10"
                     android:text="@string/book_popular_lab_test"
-                    android:textColor="@color/black"
+                    android:textColor="@color/blueColor"
                     android:textSize="@dimen/dp_14"
                     android:textStyle="bold"
                     tools:ignore="SpUsage" />
@@ -343,7 +348,7 @@
                     android:layout_alignParentEnd="true"
                     android:layout_margin="@dimen/dp_10"
                     android:text="@string/view_all"
-                    android:textColor="@color/black"
+                    android:textColor="@color/blueColor"
                     android:textSize="@dimen/dp_14"
                     android:textStyle="bold"
                     tools:ignore="SpUsage" />
@@ -382,7 +387,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dp_320"
                 android:layout_marginTop="@dimen/dp_10"
-                android:background="#F6F4F4">
+                android:background="@color/white">
 
                 <TextView
                     android:id="@+id/condition"
@@ -393,7 +398,7 @@
                     android:layout_marginEnd="@dimen/dp_10"
                     android:layout_marginBottom="@dimen/dp_10"
                     android:text="@string/test_by_conditions"
-                    android:textColor="@color/black"
+                    android:textColor="@color/blueColor"
                     android:textSize="@dimen/dp_14"
                     android:textStyle="bold"
                     tools:ignore="SpUsage" />
@@ -404,7 +409,7 @@
                     android:layout_alignParentEnd="true"
                     android:layout_margin="@dimen/dp_10"
                     android:text="@string/view_all"
-                    android:textColor="@color/black"
+                    android:textColor="@color/blueColor"
                     android:textSize="@dimen/dp_14"
                     android:textStyle="bold"
                     tools:ignore="SpUsage" />
@@ -427,7 +432,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dp_320"
                 android:layout_marginTop="@dimen/dp_10"
-                android:background="#F6F4F4">
+                android:background="@color/white">
 
                 <TextView
                     android:id="@+id/organs"
@@ -438,7 +443,7 @@
                     android:layout_marginEnd="@dimen/dp_10"
                     android:layout_marginBottom="@dimen/dp_10"
                     android:text="@string/test_by_organs"
-                    android:textColor="@color/black"
+                    android:textColor="@color/blueColor"
                     android:textSize="@dimen/dp_14"
                     android:textStyle="bold"
                     tools:ignore="SpUsage" />
@@ -449,7 +454,7 @@
                     android:layout_alignParentEnd="true"
                     android:layout_margin="@dimen/dp_10"
                     android:text="@string/view_all"
-                    android:textColor="@color/black"
+                    android:textColor="@color/blueColor"
                     android:textSize="@dimen/dp_14"
                     android:textStyle="bold"
                     tools:ignore="SpUsage" />
@@ -472,7 +477,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dp_320"
                 android:layout_marginTop="@dimen/dp_10"
-                android:background="#F6F4F4">
+                android:background="@color/white">
 
                 <TextView
                     android:id="@+id/habits"
@@ -483,7 +488,7 @@
                     android:layout_marginEnd="@dimen/dp_10"
                     android:layout_marginBottom="@dimen/dp_10"
                     android:text="Test By Habits"
-                    android:textColor="@color/black"
+                    android:textColor="@color/blueColor"
                     android:textSize="@dimen/dp_14"
                     android:textStyle="bold"
                     tools:ignore="SpUsage" />
@@ -494,7 +499,7 @@
                     android:layout_alignParentEnd="true"
                     android:layout_margin="@dimen/dp_10"
                     android:text="@string/view_all"
-                    android:textColor="@color/black"
+                    android:textColor="@color/blueColor"
                     android:textSize="@dimen/dp_14"
                     android:textStyle="bold"
                     tools:ignore="SpUsage" />

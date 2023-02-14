@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="190dp"
+        android:layout_margin="@dimen/dp_10"
+        app:cardCornerRadius="@dimen/space12"
+        app:cardElevation="@dimen/space12"
+        app:strokeWidth="1dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/profile_image"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:layout_marginStart="@dimen/dp_10"
+                    android:layout_marginTop="@dimen/dp_10"
+                    android:layout_marginEnd="@dimen/dp_10"
+                    android:layout_marginBottom="@dimen/dp_10"
+                    android:src="@drawable/laboratory"
+                    app:civ_border_color="@color/red"
+                    app:civ_border_width="2dp" />
+
+                <TextView
+                    android:id="@+id/name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="@dimen/dp_5"
+                    android:layout_marginTop="@dimen/dp_20"
+                    android:layout_toEndOf="@id/profile_image"
+                    android:gravity="center"
+                    android:text="@string/clinic_laboratory"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/email"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/name"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="@dimen/dp_5"
+                    android:layout_marginTop="@dimen/dp_5"
+                    android:layout_marginBottom="@dimen/space5"
+                    android:layout_toEndOf="@id/profile_image"
+                    android:gravity="center"
+                    android:text="ISO certified"
+                    android:textAlignment="center"
+                    android:textColor="#706E6E"
+                    android:textSize="12sp"
+                    />
+
+                <androidx.appcompat.widget.AppCompatRatingBar
+                    android:id="@+id/rating_bar_hospitals"
+                    style="@style/Widget.AppCompat.RatingBar.Small"
+                    android:layout_width="wrap_content"
+                    android:layout_toEndOf="@id/profile_image"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/email"
+                    android:layout_marginStart="@dimen/dp_5"
+                    android:numStars="5"
+                    android:rating="3"
+                    android:theme="@style/RatingBar" />
+                <RelativeLayout
+                    android:layout_width="@dimen/space150"
+                    android:layout_height="@dimen/dp_40"
+                    android:layout_below="@id/name"
+                    android:layout_marginTop="@dimen/dp_5"
+                    android:layout_marginEnd="@dimen/dp_10"
+                    android:background="@drawable/bg_right_tab_read_green"
+                    android:backgroundTint="#FF5B60"
+                    android:visibility="gone">
+
+                    <ImageView
+                        android:id="@+id/lab_test2"
+                        android:layout_width="@dimen/space20"
+                        android:layout_height="@dimen/space20"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="@dimen/dp_10"
+                        android:src="@drawable/laboratory" />
+
+                    <TextView
+                        android:id="@+id/text2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="@dimen/dp_10"
+                        android:layout_toEndOf="@id/lab_test2"
+                        android:text="@string/_12_lab_tests"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/dp_12"
+                        android:textStyle="bold" />
+                </RelativeLayout>
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true" />
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_10"
+                android:layout_marginTop="@dimen/dp_5"
+                android:text="@string/get_report_within_48_hrs"
+                android:textColor="@color/blueColor"
+                android:textSize="@dimen/dp_14"
+                tools:ignore="SpUsage" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_10"
+                    android:background="@drawable/ripple"
+                    android:text="₹ 400"
+                    android:layout_marginTop="@dimen/dp_5"
+                    android:textColor="@color/appcolor"
+                    android:textSize="@dimen/dp_14"
+                    android:textStyle="bold"
+                    tools:ignore="SpUsage" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_10"
+                    android:background="@drawable/strike_line"
+                    android:text="₹ 400"
+                    android:layout_marginTop="@dimen/dp_5"
+                    android:textColor="@color/darkgrey"
+                    android:textSize="@dimen/dp_12"
+                    tools:ignore="SpUsage" />
+
+
+
+            </LinearLayout>
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/loginBtn"
+                android:layout_width="@dimen/dp_150"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:background="@drawable/button_bg"
+                android:backgroundTint="#FF5B60"
+                android:gravity="center"
+                android:layout_marginTop="@dimen/dp_10"
+                android:text="Select Lab"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+</LinearLayout>

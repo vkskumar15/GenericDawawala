@@ -8,11 +8,13 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.example.genericdawawalauser.modalClass.AddToCartModal;
 import com.example.genericdawawalauser.modalClass.ApplyCouponAppointment;
 import com.example.genericdawawalauser.modalClass.ChangePasswordModal;
 import com.example.genericdawawalauser.modalClass.DoctorModelRoot;
 import com.example.genericdawawalauser.modalClass.GenerateOrderIdModel;
 import com.example.genericdawawalauser.modalClass.HealthProblemModal;
+import com.example.genericdawawalauser.modalClass.LabDetailsModal;
 import com.example.genericdawawalauser.modalClass.LabTestCategories;
 import com.example.genericdawawalauser.modalClass.MedicineDataModal;
 import com.example.genericdawawalauser.modalClass.PendingOnlineAppointmentModal;
@@ -305,10 +307,7 @@ public class ViewModalClass extends ViewModel {
 
     private MutableLiveData<DoctorModelRoot> getFilterDoctorsDoctorsAsPerSpecialityMutableLiveData;
 
-    public LiveData<DoctorModelRoot> getFilterDoctorsAsPerSpecialityLiveData(Activity activity,
-                                                                             String dr_speciality, String common, String clinic_name,
-                                                                             String gender, String language, String latitude,
-                                                                             String longitude, String consultationType, String price) {
+    public LiveData<DoctorModelRoot> getFilterDoctorsAsPerSpecialityLiveData(Activity activity, String dr_speciality, String common, String clinic_name, String gender, String language, String latitude, String longitude, String consultationType, String price) {
 
         getFilterDoctorsDoctorsAsPerSpecialityMutableLiveData = new MutableLiveData<>();
 
@@ -489,16 +488,11 @@ public class ViewModalClass extends ViewModel {
 
     private MutableLiveData<OnlineAppointmentModal> onlineAppointmentModalMutableLiveData;
 
-    public LiveData<OnlineAppointmentModal> onlineAppointmentModalLiveData(Activity activity,
-                                                                           String userId, String docId, String releation, String patient_gender,
-                                                                           String patient_name, String patient_age, String patient_number, String healthProblem,
-                                                                           String appointmentDate, String amount, String AppointmentType, String specialty, String coupanVerifiedId) {
+    public LiveData<OnlineAppointmentModal> onlineAppointmentModalLiveData(Activity activity, String userId, String docId, String releation, String patient_gender, String patient_name, String patient_age, String patient_number, String healthProblem, String appointmentDate, String amount, String AppointmentType, String specialty, String coupanVerifiedId) {
 
         onlineAppointmentModalMutableLiveData = new MutableLiveData<>();
         CommonUtils.showProgressDialog(activity);
-        apiInterface.DoctorAppointment(userId, docId, releation, patient_gender, patient_name, patient_age, patient_number,
-                healthProblem, appointmentDate, amount, AppointmentType, specialty,
-                coupanVerifiedId).enqueue(new Callback<OnlineAppointmentModal>() {
+        apiInterface.DoctorAppointment(userId, docId, releation, patient_gender, patient_name, patient_age, patient_number, healthProblem, appointmentDate, amount, AppointmentType, specialty, coupanVerifiedId).enqueue(new Callback<OnlineAppointmentModal>() {
             @Override
             public void onResponse(@NonNull Call<OnlineAppointmentModal> call, Response<OnlineAppointmentModal> response) {
                 CommonUtils.dismissDialog();
@@ -761,6 +755,90 @@ public class ViewModalClass extends ViewModel {
         });
 
         return medicineDataModalMutableLiveData;
+    }
+
+    private MutableLiveData<LabDetailsModal> labDetailsModalMutableLiveData;
+
+    public LiveData<LabDetailsModal> labDetailsModalLiveData(Activity activity, String categoryId) {
+        CommonUtils.showProgressDialog(activity);
+        labDetailsModalMutableLiveData = new MutableLiveData<>();
+
+        apiInterface.getLabDetails(categoryId).enqueue(new Callback<LabDetailsModal>() {
+            @Override
+            public void onResponse(@NonNull Call<LabDetailsModal> call, Response<LabDetailsModal> response) {
+                CommonUtils.dismissDialog();
+                if (response.body() != null) {
+                    labDetailsModalMutableLiveData.postValue(response.body());
+                } else {
+                    labDetailsModalMutableLiveData.postValue(null);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<LabDetailsModal> call, Throwable t) {
+                CommonUtils.dismissDialog();
+                labDetailsModalMutableLiveData.postValue(null);
+
+            }
+        });
+
+        return labDetailsModalMutableLiveData;
+    }
+
+    private MutableLiveData<AddToCartModal> addToCartModalMutableLiveData;
+
+    public LiveData<AddToCartModal> addToCartModalLiveData(Activity activity, String userId, String categoryId) {
+        CommonUtils.showProgressDialog(activity);
+        addToCartModalMutableLiveData = new MutableLiveData<>();
+
+        apiInterface.addToCartLabTest(userId, categoryId).enqueue(new Callback<AddToCartModal>() {
+            @Override
+            public void onResponse(@NonNull Call<AddToCartModal> call, Response<AddToCartModal> response) {
+                CommonUtils.dismissDialog();
+                if (response.body() != null) {
+                    addToCartModalMutableLiveData.postValue(response.body());
+                } else {
+                    addToCartModalMutableLiveData.postValue(null);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<AddToCartModal> call, Throwable t) {
+                CommonUtils.dismissDialog();
+                addToCartModalMutableLiveData.postValue(null);
+
+            }
+        });
+
+        return addToCartModalMutableLiveData;
+    }
+
+    private MutableLiveData<AddToCartModal> removeToCartModalMutableLiveData;
+
+    public LiveData<AddToCartModal> removeToCartModalLiveData(Activity activity, String userId, String categoryId) {
+        CommonUtils.showProgressDialog(activity);
+        removeToCartModalMutableLiveData = new MutableLiveData<>();
+
+        apiInterface.removeCartDetails(userId, categoryId).enqueue(new Callback<AddToCartModal>() {
+            @Override
+            public void onResponse(@NonNull Call<AddToCartModal> call, Response<AddToCartModal> response) {
+                CommonUtils.dismissDialog();
+                if (response.body() != null) {
+                    removeToCartModalMutableLiveData.postValue(response.body());
+                } else {
+                    removeToCartModalMutableLiveData.postValue(null);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<AddToCartModal> call, Throwable t) {
+                CommonUtils.dismissDialog();
+                removeToCartModalMutableLiveData.postValue(null);
+
+            }
+        });
+
+        return removeToCartModalMutableLiveData;
     }
 
 

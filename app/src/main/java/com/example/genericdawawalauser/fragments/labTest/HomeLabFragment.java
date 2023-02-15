@@ -58,6 +58,11 @@ public class HomeLabFragment extends Fragment {
                         public void addToCart(MedicineDataModal.Detail detail) {
 
                         }
+                    }, new LabPopularTestAdapter.DeletetoCart() {
+                        @Override
+                        public void deletetoCart(MedicineDataModal.Detail detail) {
+
+                        }
                     });
                     binding.recylerViewPopularTest.setAdapter(adapter);
                 }
@@ -117,6 +122,11 @@ public class HomeLabFragment extends Fragment {
                     }, new LabPopularTestAdapter.AddtoCart() {
                         @Override
                         public void addToCart(MedicineDataModal.Detail detail) {
+
+                        }
+                    }, new LabPopularTestAdapter.DeletetoCart() {
+                        @Override
+                        public void deletetoCart(MedicineDataModal.Detail detail) {
 
                         }
                     });

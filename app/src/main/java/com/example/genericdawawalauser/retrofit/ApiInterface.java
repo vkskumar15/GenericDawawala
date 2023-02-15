@@ -1,10 +1,12 @@
 package com.example.genericdawawalauser.retrofit;
 
+import com.example.genericdawawalauser.modalClass.AddToCartModal;
 import com.example.genericdawawalauser.modalClass.ApplyCouponAppointment;
 import com.example.genericdawawalauser.modalClass.ChangePasswordModal;
 import com.example.genericdawawalauser.modalClass.DoctorModelRoot;
 import com.example.genericdawawalauser.modalClass.GenerateOrderIdModel;
 import com.example.genericdawawalauser.modalClass.HealthProblemModal;
+import com.example.genericdawawalauser.modalClass.LabDetailsModal;
 import com.example.genericdawawalauser.modalClass.LabTestCategories;
 import com.example.genericdawawalauser.modalClass.MedicineDataModal;
 import com.example.genericdawawalauser.modalClass.PendingOnlineAppointmentModal;
@@ -216,6 +218,27 @@ public interface ApiInterface {
     @POST("LabTestSubCategories")
     Call<MedicineDataModal> labTestSubCategories(
             @Field("categoryId") String categoryId
+    );
+
+
+    @FormUrlEncoded
+    @POST("getLabDetails")
+    Call<LabDetailsModal> getLabDetails(
+            @Field("subCatId") String categoryId
+    );
+
+    @FormUrlEncoded
+    @POST("addToCartLabTest")
+    Call<AddToCartModal> addToCartLabTest(
+            @Field("userId") String userId,
+            @Field("labTestId") String labTestId
+    );
+
+ @FormUrlEncoded
+    @POST("removeCartDetails")
+    Call<AddToCartModal> removeCartDetails(
+            @Field("userId") String userId,
+            @Field("id") String id
     );
 
 

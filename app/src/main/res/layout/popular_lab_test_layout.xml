@@ -16,9 +16,11 @@
 
             <TextView
                 android:id="@+id/med_name"
-                android:layout_width="wrap_content"
-                android:text="Vitamin D (12-OH)"
+                android:layout_width="@dimen/dp_230"
+                android:text="@string/vitamin_d_12_oh"
                 android:layout_centerVertical="true"
+                android:layout_marginEnd="@dimen/dp_10"
+                android:ellipsize="marquee"
                 android:layout_marginStart="@dimen/dp_10"
                 android:textStyle="bold"
                 android:textColor="@color/black"
@@ -72,6 +74,7 @@
                 android:layout_centerVertical="true"
                 android:layout_alignParentEnd="true"
                 android:visibility="invisible"
+                android:padding="@dimen/dp_5"
                 android:layout_marginEnd="@dimen/dp_10"
                 android:layout_below="@id/added_in_cart"
                 android:src="@drawable/ic_baseline_delete_24"

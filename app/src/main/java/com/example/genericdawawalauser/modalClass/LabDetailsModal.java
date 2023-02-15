@@ -42,6 +42,12 @@ public class LabDetailsModal {
     }
     public class Detail {
 
+        @SerializedName("labTestId")
+        @Expose
+        private String labTestId;
+        @SerializedName("LabId")
+        @Expose
+        private String labId;
         @SerializedName("id")
         @Expose
         private String id;
@@ -75,6 +81,22 @@ public class LabDetailsModal {
         @SerializedName("updated")
         @Expose
         private String updated;
+
+        public String getLabTestId() {
+            return labTestId;
+        }
+
+        public void setLabTestId(String labTestId) {
+            this.labTestId = labTestId;
+        }
+
+        public String getLabId() {
+            return labId;
+        }
+
+        public void setLabId(String labId) {
+            this.labId = labId;
+        }
 
         public String getId() {
             return id;

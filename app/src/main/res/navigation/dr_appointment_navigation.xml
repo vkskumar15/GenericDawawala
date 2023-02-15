@@ -13,6 +13,12 @@
         <action
             android:id="@+id/action_drAppointmentFragment_to_healthProblemFragment"
             app:destination="@id/healthProblemFragment" />
+        <action
+            android:id="@+id/action_drAppointmentFragment_to_healthProblemFragment2"
+            app:destination="@id/healthProblemFragment" />
+        <action
+            android:id="@+id/action_drAppointmentFragment_to_healthProblemFragment3"
+            app:destination="@id/healthProblemFragment" />
     </fragment>
     <fragment
         android:id="@+id/healthProblemFragment"

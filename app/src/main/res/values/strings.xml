@@ -129,4 +129,6 @@
     <string name="calcium">Calcium</string>
     <string name="get_report_within_48_hrs">Get report within 48 hrs</string>
     <string name="select_lab">Select Lab</string>
+    <string name="vitamin_d_12_oh">Vitamin D (12-OH)</string>
+    <string name="add_to_cart">Cart</string>
 </resources>

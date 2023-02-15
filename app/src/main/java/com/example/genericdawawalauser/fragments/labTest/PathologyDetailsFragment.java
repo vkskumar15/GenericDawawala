@@ -13,10 +13,8 @@ import com.example.genericdawawalauser.databinding.FragmentPathologyDetailsBindi
 import com.example.genericdawawalauser.modalClass.MedicineDataModal;
 
 public class PathologyDetailsFragment extends Fragment {
-
     FragmentPathologyDetailsBinding binding;
     public static MedicineDataModal.Detail detail;
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

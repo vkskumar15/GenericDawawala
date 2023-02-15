@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:aapt="http://schemas.android.com/aapt"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -23,6 +22,8 @@
             app:tint="@color/white" />
 
         <ImageView
+            android:id="@+id/cart"
+            android:background="@drawable/ripple"
             android:layout_width="@dimen/space30"
             android:layout_height="@dimen/space30"
             android:layout_alignParentEnd="true"
@@ -34,7 +35,6 @@
             app:tint="@color/white" />
 
     </RelativeLayout>
-
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -84,7 +84,7 @@
                 android:layout_marginStart="@dimen/space10"
                 android:layout_marginTop="@dimen/space5"
                 android:layout_marginEnd="@dimen/space10"
-                android:layout_toRightOf="@id/welcome"
+                android:layout_toEndOf="@id/welcome"
                 android:src="@drawable/namaste" />
 
 
@@ -969,4 +969,6 @@
             </LinearLayout>
         </RelativeLayout>
     </androidx.core.widget.NestedScrollView>
+
+
 </RelativeLayout>

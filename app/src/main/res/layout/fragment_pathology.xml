@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,6 +8,7 @@
     tools:context=".fragments.labTest.PathologyFragment">
 
     <LinearLayout
+        android:id="@+id/header_title"
         android:layout_width="match_parent"
         android:layout_height="@dimen/space50"
         android:background="@color/appcolor"
@@ -42,6 +43,7 @@
         android:gravity="center"
         android:inputType="text"
         android:maxLength="15"
+        android:layout_below="@id/header_title"
         android:paddingStart="@dimen/space5"
         android:singleLine="true"
         android:textSize="@dimen/sp15"
@@ -54,6 +56,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/space10"
         android:layout_marginTop="@dimen/space10"
+        android:layout_below="@id/searchView"
         android:layout_marginRight="@dimen/space10"
         android:layout_marginBottom="@dimen/space10"
         android:orientation="horizontal"
@@ -65,11 +68,55 @@
         android:id="@+id/recyclerview_condition"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/recyler_view_pop"
         android:layout_marginTop="@dimen/space10"
         android:orientation="vertical"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:spanCount="1"
         tools:listitem="@layout/popular_lab_test_layout" />
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_alignParentBottom="true"
+        android:background="#EFEAEA"
+        android:layout_height="@dimen/dp_60">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_marginStart="@dimen/dp_10"
+            android:id="@+id/test"
+            android:layout_marginTop="@dimen/dp_5"
+            android:text="Tests Added"
+            android:layout_height="wrap_content"/>
 
-</LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_marginStart="@dimen/dp_10"
+            android:layout_marginTop="@dimen/dp_5"
+            android:text="2"
+            android:layout_below="@id/test"
+            android:textColor="@color/black"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            app:drawableEndCompat="@drawable/baseline_keyboard_arrow_up_24"
+            app:drawableTint="@color/grey" />
+
+
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_next"
+            android:layout_width="150dp"
+            android:layout_height="40dp"
+            android:background="@drawable/btn_bg"
+            android:text="Choose lab"
+            android:layout_alignParentEnd="true"
+            android:layout_centerInParent="true"
+            android:layout_marginEnd="@dimen/dp_10"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

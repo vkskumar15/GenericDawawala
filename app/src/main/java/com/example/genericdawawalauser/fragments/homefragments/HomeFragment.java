@@ -18,6 +18,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.genericdawawalauser.R;
+import com.example.genericdawawalauser.activities.AddToCartActivity;
 import com.example.genericdawawalauser.activities.DrAppointmentActivity;
 import com.example.genericdawawalauser.activities.LabTestActivity;
 import com.example.genericdawawalauser.activities.OnlineConsultationActivity;
@@ -61,26 +62,37 @@ public class HomeFragment extends Fragment {
 
     private void onCLicks() {
         fragmentHomeBinding.welcome.setText("Hii, " + App.getSharedPre().getString(AppConstants.USER_NAME));
+
         fragmentHomeBinding.profile.setOnClickListener(v -> {
 
             Navigation.findNavController(v).navigate(R.id.profileFragment);
         });
         fragmentHomeBinding.onlineCunsult.setOnClickListener(v -> {
+
             startActivity(new Intent(requireActivity(), OnlineConsultationActivity.class));
 
         });
         fragmentHomeBinding.wallet.setOnClickListener(v -> {
+
             startActivity(new Intent(requireActivity(), WalletActivity.class));
 
         });
 
         fragmentHomeBinding.drAppointment.setOnClickListener(v -> {
+
             startActivity(new Intent(requireActivity(), DrAppointmentActivity.class));
+
+        });
+
+        fragmentHomeBinding.cart.setOnClickListener(v -> {
+
+            startActivity(new Intent(requireActivity(), AddToCartActivity.class));
 
         });
 
 
         fragmentHomeBinding.labTest.setOnClickListener(v -> {
+
             startActivity(new Intent(requireActivity(), LabTestActivity.class));
 
         });
@@ -104,7 +116,6 @@ public class HomeFragment extends Fragment {
         fragmentHomeBinding.flashSaleRecyclerview.setAdapter(new MedicinesAdapter());
 
         fragmentHomeBinding.trendingRecyclerview.setAdapter(new MedicinesAdapter());
-
 
         fragmentHomeBinding.justLaunchedRecyclerview.setAdapter(new MedicinesAdapter());
 

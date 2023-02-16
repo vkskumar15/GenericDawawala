@@ -76,6 +76,7 @@
         tools:listitem="@layout/popular_lab_test_layout" />
 
     <RelativeLayout
+        android:id="@+id/relative"
         android:layout_width="match_parent"
         android:layout_alignParentBottom="true"
         android:background="#EFEAEA"
@@ -89,15 +90,15 @@
             android:layout_height="wrap_content"/>
 
         <TextView
+            android:id="@+id/item_count"
             android:layout_width="wrap_content"
             android:layout_marginStart="@dimen/dp_10"
             android:layout_marginTop="@dimen/dp_5"
-            android:text="2"
+            android:text="@string/_0"
             android:layout_below="@id/test"
             android:textColor="@color/black"
             android:layout_height="wrap_content"
             android:gravity="center"
-            app:drawableEndCompat="@drawable/baseline_keyboard_arrow_up_24"
             app:drawableTint="@color/grey" />
 
 

@@ -19,6 +19,9 @@
         <action
             android:id="@+id/action_homeLabFragment_to_pathologyDetailsFragment"
             app:destination="@id/pathologyDetailsFragment" />
+        <action
+            android:id="@+id/action_homeLabFragment_to_labDetailsFragment"
+            app:destination="@id/labDetailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/radioLogyLabTestFragment"
@@ -39,4 +42,13 @@
         android:name="com.example.genericdawawalauser.fragments.labTest.PathologyDetailsFragment"
         android:label="fragment_pathology_details"
         tools:layout="@layout/fragment_pathology_details" />
+    <fragment
+        android:id="@+id/labDetailsFragment"
+        android:name="com.example.genericdawawalauser.fragments.labTest.LabDetailsFragment"
+        android:label="fragment_lab_details"
+        tools:layout="@layout/fragment_lab_details" >
+        <action
+            android:id="@+id/action_labDetailsFragment_to_pathologyFragment"
+            app:destination="@id/pathologyFragment" />
+    </fragment>
 </navigation>

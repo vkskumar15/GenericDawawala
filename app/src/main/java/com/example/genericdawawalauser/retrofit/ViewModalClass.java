@@ -11,8 +11,10 @@ import androidx.lifecycle.ViewModel;
 import com.example.genericdawawalauser.modalClass.AddToCartModal;
 import com.example.genericdawawalauser.modalClass.ApplyCouponAppointment;
 import com.example.genericdawawalauser.modalClass.ChangePasswordModal;
+import com.example.genericdawawalauser.modalClass.CountCartModal;
 import com.example.genericdawawalauser.modalClass.DoctorModelRoot;
 import com.example.genericdawawalauser.modalClass.GenerateOrderIdModel;
+import com.example.genericdawawalauser.modalClass.GetLabCategoryModal;
 import com.example.genericdawawalauser.modalClass.HealthProblemModal;
 import com.example.genericdawawalauser.modalClass.LabDetailsModal;
 import com.example.genericdawawalauser.modalClass.LabTestCategories;
@@ -62,7 +64,7 @@ public class ViewModalClass extends ViewModel {
 
                 } else if (response.body() != null) {
 
-                    ViewModalClass.this.uniqueAPiModelMutableLiveData.postValue(response.body());
+                    uniqueAPiModelMutableLiveData.postValue(response.body());
                 }
             }
 
@@ -759,11 +761,11 @@ public class ViewModalClass extends ViewModel {
 
     private MutableLiveData<LabDetailsModal> labDetailsModalMutableLiveData;
 
-    public LiveData<LabDetailsModal> labDetailsModalLiveData(Activity activity, String categoryId) {
+    public LiveData<LabDetailsModal> labDetailsModalLiveData(Activity activity) {
         CommonUtils.showProgressDialog(activity);
         labDetailsModalMutableLiveData = new MutableLiveData<>();
 
-        apiInterface.getLabDetails(categoryId).enqueue(new Callback<LabDetailsModal>() {
+        apiInterface.getLabDetails().enqueue(new Callback<LabDetailsModal>() {
             @Override
             public void onResponse(@NonNull Call<LabDetailsModal> call, Response<LabDetailsModal> response) {
                 CommonUtils.dismissDialog();
@@ -839,6 +841,61 @@ public class ViewModalClass extends ViewModel {
         });
 
         return removeToCartModalMutableLiveData;
+    }
+
+
+    private MutableLiveData<CountCartModal> countCartModalMutableLiveData;
+
+    public LiveData<CountCartModal> countCartModalLiveData(Activity activity, String userId) {
+        countCartModalMutableLiveData = new MutableLiveData<>();
+
+        apiInterface.getCartCountPrice(userId).enqueue(new Callback<CountCartModal>() {
+            @Override
+            public void onResponse(@NonNull Call<CountCartModal> call, Response<CountCartModal> response) {
+                if (response.body() != null) {
+                    countCartModalMutableLiveData.postValue(response.body());
+                } else {
+                    countCartModalMutableLiveData.postValue(null);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<CountCartModal> call, Throwable t) {
+                countCartModalMutableLiveData.postValue(null);
+
+            }
+        });
+
+        return countCartModalMutableLiveData;
+    }
+
+
+    private MutableLiveData<GetLabCategoryModal> getLabCategoryModalMutableLiveData;
+
+    public LiveData<GetLabCategoryModal> getLabCategoryModalLiveData(Activity activity, String labId) {
+        getLabCategoryModalMutableLiveData = new MutableLiveData<>();
+        CommonUtils.showProgressDialog(activity);
+        apiInterface.getLabsCategories(labId).enqueue(new Callback<GetLabCategoryModal>() {
+            @Override
+            public void onResponse(@NonNull Call<GetLabCategoryModal> call, Response<GetLabCategoryModal> response) {
+                CommonUtils.dismissDialog();
+                if (response.body() != null) {
+
+                    getLabCategoryModalMutableLiveData.postValue(response.body());
+                } else {
+                    getLabCategoryModalMutableLiveData.postValue(null);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<GetLabCategoryModal> call, Throwable t) {
+                CommonUtils.dismissDialog();
+                getLabCategoryModalMutableLiveData.postValue(null);
+
+            }
+        });
+
+        return getLabCategoryModalMutableLiveData;
     }
 
 

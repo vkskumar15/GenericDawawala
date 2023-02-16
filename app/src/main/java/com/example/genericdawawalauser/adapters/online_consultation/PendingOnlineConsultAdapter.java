@@ -20,6 +20,8 @@ public class PendingOnlineConsultAdapter extends RecyclerView.Adapter<PendingOnl
     List<PendingOnlineAppointmentModal.Detail> list;
     private Context context;
     private Reschedule reschedule;
+    private DownLoad downLoad;
+    private ViewPrescription viewPrescription;
 
 
     public interface Reschedule {
@@ -27,11 +29,23 @@ public class PendingOnlineConsultAdapter extends RecyclerView.Adapter<PendingOnl
         void reschedule(PendingOnlineAppointmentModal.Detail detail);
         void cancel(PendingOnlineAppointmentModal.Detail detail, int pos);
     }
+     public interface DownLoad {
 
-    public PendingOnlineConsultAdapter(List<PendingOnlineAppointmentModal.Detail> list, Context context, Reschedule reschedule) {
+        void downLoad(PendingOnlineAppointmentModal.Detail detail);
+    }
+
+     public interface ViewPrescription {
+
+        void viewPrescription(PendingOnlineAppointmentModal.Detail detail);
+    }
+
+
+    public PendingOnlineConsultAdapter(List<PendingOnlineAppointmentModal.Detail> list, Context context, Reschedule reschedule, DownLoad downLoad, ViewPrescription viewPrescription) {
         this.list = list;
         this.context = context;
         this.reschedule = reschedule;
+        this.downLoad = downLoad;
+        this.viewPrescription = viewPrescription;
     }
 
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -74,11 +88,13 @@ public class PendingOnlineConsultAdapter extends RecyclerView.Adapter<PendingOnl
             }
         }
 
-        if (list.get(position).getStatus().equalsIgnoreCase("2")) {
+        if (list.get(position).getStatus().equalsIgnoreCase("3")) {
             holder.binding.start.setVisibility(View.GONE);
             holder.binding.startTwo.setVisibility(View.VISIBLE);
             holder.binding.status.setText(list.get(position).getCancelBy());
             holder.binding.status.setTextColor(Color.parseColor("#c91b20"));
+            holder.binding.status.setText("Appointment Completed");
+
         }
 
         if (list.get(position).getCancelBy().equalsIgnoreCase("cancelled by doctor")) {
@@ -119,12 +135,12 @@ public class PendingOnlineConsultAdapter extends RecyclerView.Adapter<PendingOnl
 
         holder.binding.viewButton.setOnClickListener(v -> {
 
-            //reschedule.reschedule(list.get(position));
+            viewPrescription.viewPrescription(list.get(position));
         });
 
         holder.binding.downloadButton.setOnClickListener(v -> {
 
-            // reschedule.cancel(list.get(position), position);
+            downLoad.downLoad(list.get(position));
             notifyDataSetChanged();
         });
     }

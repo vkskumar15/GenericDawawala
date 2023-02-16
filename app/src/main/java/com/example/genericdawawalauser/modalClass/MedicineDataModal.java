@@ -76,6 +76,18 @@ public class MedicineDataModal {
         @Expose
         private String categoryName;
 
+        @SerializedName("testPrice")
+        @Expose
+        private String testPrice;
+
+        public String getTestPrice() {
+            return testPrice;
+        }
+
+        public void setTestPrice(String testPrice) {
+            this.testPrice = testPrice;
+        }
+
         public String getId() {
             return id;
         }

@@ -7,7 +7,7 @@
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
-        android:layout_height="190dp"
+        android:layout_height="210dp"
         android:layout_margin="@dimen/dp_10"
         app:cardCornerRadius="@dimen/space12"
         app:cardElevation="@dimen/space12"
@@ -129,37 +129,28 @@
 
             <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginHorizontal="@dimen/dp_10"
                 android:orientation="horizontal">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/dp_10"
-                    android:background="@drawable/ripple"
-                    android:text="₹ 400"
-                    android:layout_marginTop="@dimen/dp_5"
-                    android:textColor="@color/appcolor"
-                    android:textSize="@dimen/dp_14"
-                    android:textStyle="bold"
-                    tools:ignore="SpUsage" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/dp_10"
-                    android:background="@drawable/strike_line"
-                    android:text="₹ 400"
+                    android:text="We are offering blood tests such as Complete Blood Count (CBC), Thyroid Function Test (T3,T4,TSH), Urine Culture, Urine Routine Examination, Vitamin D3,Blood Sugar, Liver Function Test, Lipid Profile, Renal Function Test, HbA1c and other packages available"
                     android:layout_marginTop="@dimen/dp_5"
+                    android:ellipsize="marquee"
+                    android:id="@+id/about"
+                    android:maxLength="140"
                     android:textColor="@color/darkgrey"
-                    android:textSize="@dimen/dp_12"
+                    android:textSize="@dimen/dp_10"
                     tools:ignore="SpUsage" />
 
 
 
             </LinearLayout>
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/loginBtn"
+                android:id="@+id/selectBtn"
                 android:layout_width="@dimen/dp_150"
                 android:layout_height="30dp"
                 android:layout_gravity="center"

@@ -49,6 +49,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     private String checkType = "chatNotification";
     String bigContent;
 
+
     @Override
     public void onMessageReceived(@NonNull RemoteMessage remoteMessage) {
         super.onMessageReceived(remoteMessage);
@@ -61,8 +62,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                     remoteMessage.getData().get(URLBuilder.Parameter.docImage.toString()),
                     remoteMessage.getData().get(URLBuilder.Parameter.doctorName.toString()),
                     remoteMessage.getData().get(URLBuilder.Parameter.docId.toString()),
-                    remoteMessage.getData().get(URLBuilder.Parameter.appId.toString())
-            );
+                    remoteMessage.getData().get(URLBuilder.Parameter.appId.toString()));
 
         } else {
 
@@ -76,7 +76,6 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.KITKAT_WATCH)
     private void showNotification(String title, String message, String sx, String type, String image, String bigContent) {
         Intent intent = null;
         if (!type.equalsIgnoreCase("")) {
@@ -115,8 +114,8 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 } else {
                     Notification.BigPictureStyle pictureStyle = new Notification.BigPictureStyle(builder);
                     builder.setStyle(pictureStyle
-                                    .setBigContentTitle(bigContent)
-                                    .setSummaryText("Notification"))
+                             .setBigContentTitle(bigContent)
+                             .setSummaryText("Notification"))
                             .setContentTitle(title)
                             .setAutoCancel(true)
                             .setContentIntent(pendingIntent)
@@ -250,13 +249,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "2").setSmallIcon(R.drawable.ic_notification).setContentTitle(title).setContentText(body).setAutoCancel(true);
         NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(this);
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
+
             return;
         }
         notificationManagerCompat.notify(101, builder.build());
@@ -272,7 +265,6 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         if (!type.equalsIgnoreCase("")) {
             if (type.equalsIgnoreCase(URLBuilder.Type.audio.toString())) {
                 intent = new Intent(this, AudioCallActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-
                 intent.putExtra(HomeActivity.data_key, "1");
 
                 App.getSingleton().setToken(token);
@@ -563,35 +555,6 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 }
             }
 
-//            else if (type.equalsIgnoreCase(URLBuilder.Type.userLive.toString())) {
-//
-//                if (image.equalsIgnoreCase("")) {
-//                    mNotificationManager.notify(m, builder.build());
-//                } else {
-//                    builder.setStyle(new Notification.BigTextStyle(builder)
-//                                    .setBigContentTitle(message)
-//                                    .setSummaryText("Notification"))
-//                            .setAutoCancel(true)
-//                            .setContentIntent(pendingIntent)
-//                            .setGroup(message)
-//                            .setVibrate(new long[]{200, 200, 200, 200})
-//                            .setSmallIcon(R.drawable.ic_notification);
-//                }
-//            } else {
-//                if (image.equalsIgnoreCase("")) {
-//                    mNotificationManager.notify(m, builder.build());
-//                } else {
-//                    builder.setStyle(new Notification.BigTextStyle(builder)
-//                                    .setBigContentTitle(message)
-//                                    .setSummaryText("Notification"))
-//                            .setAutoCancel(true)
-////                        .setContentIntent(pendingIntent)
-//                            .setGroup(message)
-//                            .setVibrate(new long[]{200, 200, 200, 200})
-//                            .setSmallIcon(R.drawable.ic_notification);
-//
-//                }
-//            }
 
         } else {
             mNotificationManager.notify(m, notification);

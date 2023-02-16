@@ -47,16 +47,7 @@ public class URLBuilder {
         pk_live_lnAwALpRZzaGJJFdQfvLdpoV00j4f5XY7r
     }
 
-    public enum LiveStripeKey {
 
 
-    }
 
-
-    public static class SharedPreferencesKeyName {
-        public static String SharedPreferencesKey = "sharedPreferencesKey";
-        public static String SharedPreferencesName = "fireStationSharedPreferences";
-
-
-    }
 }

@@ -1,8 +1,10 @@
 package com.example.genericdawawalauser.fragments.profiles;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -80,6 +82,16 @@ public class MyOnlineConsultFragment extends Fragment {
 
                         cancelOrder(detail, pendingOnlineAppointmentModal, pos);
                     }
+                }, new PendingOnlineConsultAdapter.DownLoad() {
+                    @Override
+                    public void downLoad(PendingOnlineAppointmentModal.Detail detail) {
+
+                    }
+                }, new PendingOnlineConsultAdapter.ViewPrescription() {
+                    @Override
+                    public void viewPrescription(PendingOnlineAppointmentModal.Detail detail) {
+
+                    }
                 });
                 binding.rvVisitsUpcoming.setAdapter(adapter);
             } else {
@@ -91,7 +103,6 @@ public class MyOnlineConsultFragment extends Fragment {
     }
 
     private void cancelOrder(PendingOnlineAppointmentModal.Detail detail, PendingOnlineAppointmentModal pendingOnlineAppointmentModal, int pos) {
-
         Dialog delete_box = new Dialog(getContext());
         delete_box.setContentView(R.layout.confirm_dialog);
         delete_box.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
@@ -134,11 +145,9 @@ public class MyOnlineConsultFragment extends Fragment {
             binding.recyclerViewDoctorPrescriptions.setVisibility(View.GONE);
             binding.rvVisitsUpcoming.setVisibility(View.VISIBLE);
             binding.rvVisitsCurrent.setVisibility(View.GONE);
-
             binding.txtUpcomingVisits.setTextColor(Color.WHITE);
             binding.txtHistoryConsultation.setTextColor(Color.BLACK);
             binding.txtCurrentVisit.setTextColor(Color.BLACK);
-
             binding.txtUpcomingVisits.setBackgroundResource(R.drawable.bg_left_tab_upcoming_green);
             binding.txtCurrentVisit.setBackgroundResource(R.drawable.bg_tab_current_white);
             binding.txtHistoryConsultation.setBackgroundResource(R.drawable.bg_right_tab_read);
@@ -200,6 +209,21 @@ public class MyOnlineConsultFragment extends Fragment {
 
 
                     }
+                }, new PendingOnlineConsultAdapter.DownLoad() {
+                    @Override
+                    public void downLoad(PendingOnlineAppointmentModal.Detail detail) {
+
+                        Intent pdfIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(detail.getPrescriptionLink()));
+                        startActivity(pdfIntent);
+                    }
+                }, new PendingOnlineConsultAdapter.ViewPrescription() {
+                    @Override
+                    public void viewPrescription(PendingOnlineAppointmentModal.Detail detail) {
+
+                        Intent intent = new Intent(requireContext(), PdfViewerActivity.class);
+                        intent.putExtra("url", detail.getPrescriptionLink());
+                        startActivity(intent);
+                    }
                 });
                 binding.recyclerViewDoctorPrescriptions.setAdapter(adapter);
             } else if (pendingOnlineAppointmentModal.getSuccess().equalsIgnoreCase("0")) {
@@ -222,6 +246,16 @@ public class MyOnlineConsultFragment extends Fragment {
 
                     @Override
                     public void cancel(PendingOnlineAppointmentModal.Detail detail, int pos) {
+
+                    }
+                }, new PendingOnlineConsultAdapter.DownLoad() {
+                    @Override
+                    public void downLoad(PendingOnlineAppointmentModal.Detail detail) {
+
+                    }
+                }, new PendingOnlineConsultAdapter.ViewPrescription() {
+                    @Override
+                    public void viewPrescription(PendingOnlineAppointmentModal.Detail detail) {
 
                     }
                 });

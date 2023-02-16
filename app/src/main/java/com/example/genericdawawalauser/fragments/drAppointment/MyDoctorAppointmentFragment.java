@@ -77,6 +77,16 @@ public class MyDoctorAppointmentFragment extends Fragment {
 
                         cancelOrder(detail, pendingOnlineAppointmentModal, pos);
                     }
+                }, new PendingOnlineConsultAdapter.DownLoad() {
+                    @Override
+                    public void downLoad(PendingOnlineAppointmentModal.Detail detail) {
+
+                    }
+                }, new PendingOnlineConsultAdapter.ViewPrescription() {
+                    @Override
+                    public void viewPrescription(PendingOnlineAppointmentModal.Detail detail) {
+
+                    }
                 });
                 binding.rvVisitsUpcoming.setAdapter(adapter);
             } else {
@@ -204,7 +214,17 @@ public class MyDoctorAppointmentFragment extends Fragment {
 
 
                     }
-                });
+                },  new PendingOnlineConsultAdapter.DownLoad() {
+                    @Override
+                    public void downLoad(PendingOnlineAppointmentModal.Detail detail) {
+
+                    }
+                }, new PendingOnlineConsultAdapter.ViewPrescription() {
+                    @Override
+                    public void viewPrescription(PendingOnlineAppointmentModal.Detail detail) {
+
+                    }
+                } );
                 binding.recyclerViewDoctorPrescriptions.setAdapter(adapter);
             } else if (pendingOnlineAppointmentModal.getSuccess().equalsIgnoreCase("0")) {
 
@@ -228,6 +248,16 @@ public class MyDoctorAppointmentFragment extends Fragment {
 
                     @Override
                     public void cancel(PendingOnlineAppointmentModal.Detail detail, int pos) {
+
+                    }
+                }, new PendingOnlineConsultAdapter.DownLoad() {
+                    @Override
+                    public void downLoad(PendingOnlineAppointmentModal.Detail detail) {
+
+                    }
+                }, new PendingOnlineConsultAdapter.ViewPrescription() {
+                    @Override
+                    public void viewPrescription(PendingOnlineAppointmentModal.Detail detail) {
 
                     }
                 });

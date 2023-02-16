@@ -41,8 +41,13 @@ public class LabDetailsAdapter extends RecyclerView.Adapter<LabDetailsAdapter.Vi
     public void onBindViewHolder(@NonNull LabDetailsAdapter.ViewHolder holder, int position) {
 
         holder.binding.name.setText(list.get(position).getName());
+        holder.binding.about.setText(list.get(position).getAbout());
         Glide.with(context).load(list.get(position).getImage()).into(holder.binding.profileImage);
 
+        holder.binding.selectBtn.setOnClickListener(v -> {
+
+            selectLab.selectLab(list.get(position));
+        });
 
     }
 

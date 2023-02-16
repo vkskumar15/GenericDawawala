@@ -119,6 +119,18 @@ public class PendingOnlineAppointmentModal {
         @Expose
         private String specialty;
 
+        @SerializedName("prescriptionLink")
+        @Expose
+        private String prescriptionLink;
+
+        public String getPrescriptionLink() {
+            return prescriptionLink;
+        }
+
+        public void setPrescriptionLink(String prescriptionLink) {
+            this.prescriptionLink = prescriptionLink;
+        }
+
         public String getSpecialty() {
             return specialty;
         }

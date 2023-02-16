@@ -55,7 +55,7 @@ public class LabPopularTestAdapter extends RecyclerView.Adapter<LabPopularTestAd
     public void onBindViewHolder(@NonNull LabPopularTestAdapter.ViewHolder holder, int position) {
 
         holder.binding.medName.setText(list.get(position).getTitle());
-        holder.binding.medPrice.setText("₹ "+list.get(position).getPrice()+"/-");
+        holder.binding.medPrice.setText("₹ "+list.get(position).getTestPrice()+"/-");
 
         holder.itemView.setOnClickListener(v -> {
 

@@ -39,7 +39,7 @@ public class HomeLabFragment extends Fragment {
      sliderImage();
      setCategoryAdapter();
      setPackageAdapter();
-   //  setPopularCategoryAdapter();
+     setPopularCategoryAdapter();
      setTestByConditionAdapter();
      onClicks();
 
@@ -83,7 +83,7 @@ public class HomeLabFragment extends Fragment {
 
         binding.pathology.setOnClickListener(v -> {
 
-            Navigation.findNavController(binding.getRoot()).navigate(R.id.labDetailsFragment);
+            Navigation.findNavController(binding.getRoot()).navigate(R.id.pathologyFragment);
 
         });
     }
@@ -138,21 +138,21 @@ public class HomeLabFragment extends Fragment {
 
     }
 
-//    private void setPopularCategoryAdapter() {
-//        new ViewModalClass().labTestCategoriesLiveData(requireActivity()).observe(requireActivity(), labTestCategories -> {
-//            if (labTestCategories.getSuccess().equalsIgnoreCase("1"))
-//            {
-//                LabPopularCategoryAdapter adapter = new LabPopularCategoryAdapter(labTestCategories.getDetails(), requireContext(), new LabPopularCategoryAdapter.ClickLab() {
-//                    @Override
-//                    public void clickLab(LabTestCategories.Detail detail) {
-//
-//                        setPopularAdapter(detail.getId());
-//                    }
-//                });
-//                binding.recylerViewPop.setAdapter(adapter);
-//            }
-//        });
-//    }
+    private void setPopularCategoryAdapter() {
+        new ViewModalClass().labTestCategoriesLiveData(requireActivity()).observe(requireActivity(), labTestCategories -> {
+            if (labTestCategories.getSuccess().equalsIgnoreCase("1"))
+            {
+                LabPopularCategoryAdapter adapter = new LabPopularCategoryAdapter(labTestCategories.getDetails(), requireContext(), new LabPopularCategoryAdapter.ClickLab() {
+                    @Override
+                    public void clickLab(LabTestCategories.Detail detail) {
+
+                        setPopularAdapter(detail.getId());
+                    }
+                });
+                binding.recylerViewPop.setAdapter(adapter);
+            }
+        });
+    }
 
     private void sliderImage() {
         ArrayList<SliderData> sliderDataArrayList = new ArrayList<>();

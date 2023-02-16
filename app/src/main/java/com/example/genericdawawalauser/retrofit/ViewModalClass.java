@@ -761,19 +761,23 @@ public class ViewModalClass extends ViewModel {
 
     private MutableLiveData<LabDetailsModal> labDetailsModalMutableLiveData;
 
-    public LiveData<LabDetailsModal> labDetailsModalLiveData(Activity activity) {
+    public LiveData<LabDetailsModal> labDetailsModalLiveData(Activity activity, String categoryId) {
+
         CommonUtils.showProgressDialog(activity);
+
         labDetailsModalMutableLiveData = new MutableLiveData<>();
 
-        apiInterface.getLabDetails().enqueue(new Callback<LabDetailsModal>() {
+        apiInterface.getLabDetails(categoryId).enqueue(new Callback<LabDetailsModal>() {
             @Override
             public void onResponse(@NonNull Call<LabDetailsModal> call, Response<LabDetailsModal> response) {
                 CommonUtils.dismissDialog();
+
                 if (response.body() != null) {
                     labDetailsModalMutableLiveData.postValue(response.body());
                 } else {
                     labDetailsModalMutableLiveData.postValue(null);
                 }
+
             }
 
             @Override

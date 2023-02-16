@@ -7,7 +7,7 @@
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
-        android:layout_height="210dp"
+        android:layout_height="220dp"
         android:layout_margin="@dimen/dp_10"
         app:cardCornerRadius="@dimen/space12"
         app:cardElevation="@dimen/space12"
@@ -121,8 +121,19 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/dp_10"
-                android:layout_marginTop="@dimen/dp_5"
                 android:text="@string/get_report_within_48_hrs"
+                android:textColor="@color/blueColor"
+                android:textSize="@dimen/dp_12"
+                tools:ignore="SpUsage" />
+
+            <TextView
+                android:id="@+id/price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_10"
+                android:layout_marginTop="@dimen/dp_5"
+                android:text="₹ 122/-"
+                android:textStyle="bold"
                 android:textColor="@color/blueColor"
                 android:textSize="@dimen/dp_14"
                 tools:ignore="SpUsage" />
@@ -133,20 +144,13 @@
                 android:layout_marginHorizontal="@dimen/dp_10"
                 android:orientation="horizontal">
 
-
-                <TextView
-                    android:layout_width="wrap_content"
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/labtestsRv"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="We are offering blood tests such as Complete Blood Count (CBC), Thyroid Function Test (T3,T4,TSH), Urine Culture, Urine Routine Examination, Vitamin D3,Blood Sugar, Liver Function Test, Lipid Profile, Renal Function Test, HbA1c and other packages available"
-                    android:layout_marginTop="@dimen/dp_5"
-                    android:ellipsize="marquee"
-                    android:id="@+id/about"
-                    android:maxLength="140"
-                    android:textColor="@color/darkgrey"
-                    android:textSize="@dimen/dp_10"
-                    tools:ignore="SpUsage" />
-
-
+                    android:orientation="horizontal"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:listitem="@layout/patient_layout" />
 
             </LinearLayout>
             <androidx.appcompat.widget.AppCompatButton

@@ -12,14 +12,17 @@ import com.example.genericdawawalauser.databinding.LabDeatilsLayoutBinding;
 import com.example.genericdawawalauser.databinding.LabPackageLayoutBinding;
 import com.example.genericdawawalauser.modalClass.LabDetailsModal;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class LabDetailsAdapter extends RecyclerView.Adapter<LabDetailsAdapter.ViewHolder> {
     List<LabDetailsModal.Detail> list;
     Context context;
     SelectLab selectLab;
+    private List<LabDetailsModal.Detail.Test> labTestLists = new ArrayList<>();
+    LabTestNameAdapter adapter;
 
-    public interface SelectLab{
+    public interface SelectLab {
 
         void selectLab(LabDetailsModal.Detail detail);
     }
@@ -35,13 +38,18 @@ public class LabDetailsAdapter extends RecyclerView.Adapter<LabDetailsAdapter.Vi
     public LabDetailsAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new LabDetailsAdapter.ViewHolder(LabDeatilsLayoutBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false));
 
+
     }
 
     @Override
     public void onBindViewHolder(@NonNull LabDetailsAdapter.ViewHolder holder, int position) {
 
+        labTestLists = list.get(position).getTests();
+        adapter = new LabTestNameAdapter(labTestLists, context);
+        holder.binding.labtestsRv.setAdapter(adapter);
+
         holder.binding.name.setText(list.get(position).getName());
-        holder.binding.about.setText(list.get(position).getAbout());
+        holder.binding.price.setText("₹ " + list.get(position).getTotalPrice() + "/-");
         Glide.with(context).load(list.get(position).getImage()).into(holder.binding.profileImage);
 
         holder.binding.selectBtn.setOnClickListener(v -> {

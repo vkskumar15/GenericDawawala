@@ -11,24 +11,24 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.genericdawawalauser.R;
 import com.example.genericdawawalauser.databinding.PatientLayoutBinding;
-import com.example.genericdawawalauser.modalClass.GetLabCategoryModal;
+import com.example.genericdawawalauser.modalClass.LabTestCategories;
 
 import java.util.List;
 
 public class LabPopularCategoryAdapter extends RecyclerView.Adapter<LabPopularCategoryAdapter.ViewHolder> {
-    List<GetLabCategoryModal.Detail> details;
+    List<LabTestCategories.Detail> details;
     private Context context;
     ClickLab clickLab;
     private int rowIndex = -1;
 
-    public LabPopularCategoryAdapter(List<GetLabCategoryModal.Detail> details, Context context, ClickLab clickLab) {
+    public LabPopularCategoryAdapter(List<LabTestCategories.Detail> details, Context context, ClickLab clickLab) {
         this.details = details;
         this.context = context;
         this.clickLab = clickLab;
     }
 
     public interface ClickLab {
-        void clickLab(GetLabCategoryModal.Detail detail);
+        void clickLab(LabTestCategories.Detail detail);
     }
 
     @NonNull
@@ -41,7 +41,7 @@ public class LabPopularCategoryAdapter extends RecyclerView.Adapter<LabPopularCa
     @Override
     public void onBindViewHolder(@NonNull LabPopularCategoryAdapter.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
 
-        holder.binding.testName.setText(details.get(position).getCategoryName());
+        holder.binding.testName.setText(details.get(position).getTitle());
 
         holder.binding.card.setOnClickListener(v -> {
             rowIndex = position;

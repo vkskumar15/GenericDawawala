@@ -36,18 +36,26 @@ public class LabDetailsModal {
     public List<Detail> getDetails() {
         return details;
     }
-
     public void setDetails(List<Detail> details) {
         this.details = details;
     }
     public class Detail {
 
-        @SerializedName("labTestId")
+        @SerializedName("userId")
         @Expose
-        private String labTestId;
+        private String userId;
+        @SerializedName("labTest_added_byLabId")
+        @Expose
+        private String labTestAddedByLabId;
         @SerializedName("LabId")
         @Expose
         private String labId;
+        @SerializedName("labTestCatId")
+        @Expose
+        private String labTestCatId;
+        @SerializedName("totalPrice")
+        @Expose
+        private String totalPrice;
         @SerializedName("id")
         @Expose
         private String id;
@@ -81,13 +89,24 @@ public class LabDetailsModal {
         @SerializedName("updated")
         @Expose
         private String updated;
+        @SerializedName("Tests")
+        @Expose
+        private List<Test> tests;
 
-        public String getLabTestId() {
-            return labTestId;
+        public String getUserId() {
+            return userId;
         }
 
-        public void setLabTestId(String labTestId) {
-            this.labTestId = labTestId;
+        public void setUserId(String userId) {
+            this.userId = userId;
+        }
+
+        public String getLabTestAddedByLabId() {
+            return labTestAddedByLabId;
+        }
+
+        public void setLabTestAddedByLabId(String labTestAddedByLabId) {
+            this.labTestAddedByLabId = labTestAddedByLabId;
         }
 
         public String getLabId() {
@@ -96,6 +115,22 @@ public class LabDetailsModal {
 
         public void setLabId(String labId) {
             this.labId = labId;
+        }
+
+        public String getLabTestCatId() {
+            return labTestCatId;
+        }
+
+        public void setLabTestCatId(String labTestCatId) {
+            this.labTestCatId = labTestCatId;
+        }
+
+        public String getTotalPrice() {
+            return totalPrice;
+        }
+
+        public void setTotalPrice(String totalPrice) {
+            this.totalPrice = totalPrice;
         }
 
         public String getId() {
@@ -186,5 +221,51 @@ public class LabDetailsModal {
             this.updated = updated;
         }
 
+        public List<Test> getTests() {
+            return tests;
+        }
+
+        public void setTests(List<Test> tests) {
+            this.tests = tests;
+        }
+        public class Test {
+
+            @SerializedName("id")
+            @Expose
+            private String id;
+            @SerializedName("labTestId")
+            @Expose
+            private String labTestId;
+            @SerializedName("test_name")
+            @Expose
+            private String testName;
+
+            public String getId() {
+                return id;
+            }
+
+            public void setId(String id) {
+                this.id = id;
+            }
+
+            public String getLabTestId() {
+                return labTestId;
+            }
+
+            public void setLabTestId(String labTestId) {
+                this.labTestId = labTestId;
+            }
+
+            public String getTestName() {
+                return testName;
+            }
+
+            public void setTestName(String testName) {
+                this.testName = testName;
+            }
+
+        }
     }
+
+
 }

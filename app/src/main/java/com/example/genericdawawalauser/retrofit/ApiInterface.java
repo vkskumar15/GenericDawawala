@@ -224,14 +224,10 @@ public interface ApiInterface {
 
 
     @FormUrlEncoded
-    @POST("getLabsAddedLabTest")
-    Call<MedicineDataModal> getLabsAddedLabTest(
-            @Field("catId") String catId
+    @POST("getCartAddTestLabs")
+    Call<LabDetailsModal> getLabDetails(
+            @Field("userId") String userId
     );
-
-
-    @GET("getLabDetails")
-    Call<LabDetailsModal> getLabDetails();
 
     @FormUrlEncoded
     @POST("addToCartLabTest")
@@ -239,7 +235,6 @@ public interface ApiInterface {
             @Field("userId") String userId,
             @Field("labTestId") String labTestId
     );
-
 
     @FormUrlEncoded
     @POST("removeCartDetails")
@@ -251,15 +246,12 @@ public interface ApiInterface {
     @FormUrlEncoded
     @POST("getCartCountPrice")
     Call<CountCartModal> getCartCountPrice(
-            @Field("userId") String userId
-    );
-
+            @Field("userId") String userId);
 
     @FormUrlEncoded
     @POST("getLabsCategories")
     Call<GetLabCategoryModal> getLabsCategories(
             @Field("labId") String labId
     );
-
 
 }

@@ -15,6 +15,7 @@ import com.example.genericdawawalauser.adapters.labAdapter.LabDetailsAdapter;
 import com.example.genericdawawalauser.databinding.FragmentLabDetailsBinding;
 import com.example.genericdawawalauser.modalClass.LabDetailsModal;
 import com.example.genericdawawalauser.retrofit.ViewModalClass;
+import com.example.genericdawawalauser.utils.CommonUtils;
 
 
 public class LabDetailsFragment extends Fragment {
@@ -22,15 +23,13 @@ public class LabDetailsFragment extends Fragment {
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
        binding = FragmentLabDetailsBinding.inflate(inflater, container, false);
-
 
        setAdapter();
 
        binding.backArrowConsultPhysician.setOnClickListener(v -> {
+
            requireActivity().onBackPressed();
        });
 
@@ -38,22 +37,17 @@ public class LabDetailsFragment extends Fragment {
     }
 
     private void setAdapter() {
-        new ViewModalClass().labDetailsModalLiveData(requireActivity()).observe(requireActivity(), new Observer<LabDetailsModal>() {
-            @Override
-            public void onChanged(LabDetailsModal labDetailsModal) {
-                if (labDetailsModal.getSuccess().equalsIgnoreCase("1"))
-                {
-                    LabDetailsAdapter adapter = new LabDetailsAdapter(labDetailsModal.getDetails(), requireContext(), new LabDetailsAdapter.SelectLab() {
-                        @Override
-                        public void selectLab(LabDetailsModal.Detail detail) {
+        new ViewModalClass().labDetailsModalLiveData(requireActivity(), CommonUtils.getUserId()).observe(requireActivity(), labDetailsModal -> {
+            if (labDetailsModal.getSuccess().equalsIgnoreCase("1")) {
+                LabDetailsAdapter adapter = new LabDetailsAdapter(labDetailsModal.getDetails(), requireContext(), new LabDetailsAdapter.SelectLab() {
+                    @Override
+                    public void selectLab(LabDetailsModal.Detail detail) {
 
-                            PathologyFragment.detail = detail;
-                            Navigation.findNavController(binding.getRoot()).navigate(R.id.pathologyFragment);
-                        }
-                    });
+                        Navigation.findNavController(binding.getRoot()).navigate(R.id.pathologyFragment);
+                    }
+                });
 
-                    binding.recyclerviewCondition.setAdapter(adapter);
-                }
+                binding.recyclerviewCondition.setAdapter(adapter);
             }
         });
     }

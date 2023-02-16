@@ -17,7 +17,6 @@ import com.example.genericdawawalauser.adapters.labAdapter.LabPopularTestAdapter
 import com.example.genericdawawalauser.databinding.FragmentPathologyBinding;
 import com.example.genericdawawalauser.modalClass.AddToCartModal;
 import com.example.genericdawawalauser.modalClass.CountCartModal;
-import com.example.genericdawawalauser.modalClass.LabDetailsModal;
 import com.example.genericdawawalauser.modalClass.LabTestCategories;
 import com.example.genericdawawalauser.modalClass.MedicineDataModal;
 import com.example.genericdawawalauser.retrofit.ViewModalClass;
@@ -25,8 +24,6 @@ import com.example.genericdawawalauser.utils.CommonUtils;
 
 public class PathologyFragment extends Fragment {
     FragmentPathologyBinding binding;
-    public static LabDetailsModal.Detail detail;
-
 
 
     @Override
@@ -34,9 +31,13 @@ public class PathologyFragment extends Fragment {
         binding = FragmentPathologyBinding.inflate(inflater, container, false);
 
         onClicks();
+
         setPopularCategoryAdapter();
-      setPopularAdapter("");
+
+        setPopularAdapter("");
         AddCartTotalItem();
+
+
 
         return binding.getRoot();
 
@@ -46,12 +47,12 @@ public class PathologyFragment extends Fragment {
         new ViewModalClass().countCartModalLiveData(requireActivity(), CommonUtils.getUserId()).observe(requireActivity(), new Observer<CountCartModal>() {
             @Override
             public void onChanged(CountCartModal countCartModal) {
-                if (countCartModal.getSuccess().equalsIgnoreCase("1")) {
-
+                if (countCartModal.getSuccess().equalsIgnoreCase("1"))
+                {
                     binding.relative.setVisibility(View.VISIBLE);
 
-                    binding.itemCount.setText(String.valueOf(countCartModal.getProductCounts() + ": Test"));
-                } else {
+                    binding.itemCount.setText(String.valueOf(countCartModal.getProductCounts()+" Test"));
+                }else {
                     binding.relative.setVisibility(View.GONE);
                 }
             }
@@ -90,13 +91,18 @@ public class PathologyFragment extends Fragment {
     }
 
     private void onClicks() {
+
         binding.back.setOnClickListener(v -> {
 
             requireActivity().onBackPressed();
 
         });
 
+        binding.btnNext.setOnClickListener(v -> {
 
+            Navigation.findNavController(binding.getRoot()).navigate(R.id.labDetailsFragment);
+
+        });
     }
 
     private void setPopularAdapter(String id) {
@@ -135,10 +141,9 @@ public class PathologyFragment extends Fragment {
     }
 
     private void setPopularCategoryAdapter() {
-        new ViewModalClass().getLabCategoryModalLiveData(requireActivity(), detail.getId()).observe(requireActivity(), labTestCategories -> {
+        new ViewModalClass().labTestCategoriesLiveData(requireActivity()).observe(requireActivity(), labTestCategories -> {
             if (labTestCategories.getSuccess().equalsIgnoreCase("1")) {
-                LabPopularCategoryAdapter adapter = new LabPopularCategoryAdapter(labTestCategories.getDetails(), requireContext(),
-                        detail -> setPopularAdapter(detail.getLabTestCatId()));
+                LabPopularCategoryAdapter adapter = new LabPopularCategoryAdapter(labTestCategories.getDetails(), requireContext(), detail -> setPopularAdapter(detail.getId()));
                 binding.recylerViewPop.setAdapter(adapter);
                 adapter.notifyDataSetChanged();
             }

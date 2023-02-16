@@ -36,6 +36,9 @@
         <action
             android:id="@+id/action_pathologyFragment_to_pathologyDetailsFragment"
             app:destination="@id/pathologyDetailsFragment" />
+        <action
+            android:id="@+id/action_pathologyFragment_to_labDetailsFragment"
+            app:destination="@id/labDetailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/pathologyDetailsFragment"

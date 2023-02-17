@@ -44,7 +44,7 @@ public class LabDetailsAdapter extends RecyclerView.Adapter<LabDetailsAdapter.Vi
     @Override
     public void onBindViewHolder(@NonNull LabDetailsAdapter.ViewHolder holder, int position) {
 
-        labTestLists = list.get(position).getTests();
+        labTestLists = list.get(position).getTest();
         adapter = new LabTestNameAdapter(labTestLists, context);
         holder.binding.labtestsRv.setAdapter(adapter);
 
@@ -55,12 +55,14 @@ public class LabDetailsAdapter extends RecyclerView.Adapter<LabDetailsAdapter.Vi
         holder.binding.selectBtn.setOnClickListener(v -> {
 
             selectLab.selectLab(list.get(position));
+
         });
 
     }
 
     @Override
     public int getItemCount() {
+
         return list.size();
     }
 

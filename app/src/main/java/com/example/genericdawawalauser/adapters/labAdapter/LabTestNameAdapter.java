@@ -6,6 +6,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.genericdawawalauser.databinding.PatientLayoutBinding;
+import com.example.genericdawawalauser.databinding.TestLayoutBinding;
 import com.example.genericdawawalauser.modalClass.LabDetailsModal;
 import java.util.List;
 
@@ -22,14 +23,14 @@ public class LabTestNameAdapter extends RecyclerView.Adapter<LabTestNameAdapter.
     @NonNull
     @Override
     public LabTestNameAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new LabTestNameAdapter.ViewHolder(PatientLayoutBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false));
+        return new LabTestNameAdapter.ViewHolder(TestLayoutBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false));
 
     }
 
     @Override
     public void onBindViewHolder(@NonNull LabTestNameAdapter.ViewHolder holder, int position) {
 
-        holder.binding.testName.setText(list.get(position).getTestName());
+        holder.binding.testName.setText(list.get(position).getTitle());
     }
 
     @Override
@@ -38,9 +39,9 @@ public class LabTestNameAdapter extends RecyclerView.Adapter<LabTestNameAdapter.
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        PatientLayoutBinding binding;
+        TestLayoutBinding binding;
 
-        public ViewHolder(@NonNull PatientLayoutBinding itemView) {
+        public ViewHolder(@NonNull TestLayoutBinding itemView) {
             super(itemView.getRoot());
 
             binding = itemView;

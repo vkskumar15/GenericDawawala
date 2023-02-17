@@ -41,21 +41,15 @@ public class LabDetailsModal {
     }
     public class Detail {
 
-        @SerializedName("userId")
-        @Expose
-        private String userId;
-        @SerializedName("labTest_added_byLabId")
-        @Expose
-        private String labTestAddedByLabId;
-        @SerializedName("LabId")
-        @Expose
-        private String labId;
-        @SerializedName("labTestCatId")
-        @Expose
-        private String labTestCatId;
         @SerializedName("totalPrice")
         @Expose
         private String totalPrice;
+        @SerializedName("LabId")
+        @Expose
+        private String labId;
+        @SerializedName("testIds")
+        @Expose
+        private String testIds;
         @SerializedName("id")
         @Expose
         private String id;
@@ -89,24 +83,16 @@ public class LabDetailsModal {
         @SerializedName("updated")
         @Expose
         private String updated;
-        @SerializedName("Tests")
+        @SerializedName("Test")
         @Expose
-        private List<Test> tests;
+        private List<Test> test;
 
-        public String getUserId() {
-            return userId;
+        public String getTotalPrice() {
+            return totalPrice;
         }
 
-        public void setUserId(String userId) {
-            this.userId = userId;
-        }
-
-        public String getLabTestAddedByLabId() {
-            return labTestAddedByLabId;
-        }
-
-        public void setLabTestAddedByLabId(String labTestAddedByLabId) {
-            this.labTestAddedByLabId = labTestAddedByLabId;
+        public void setTotalPrice(String totalPrice) {
+            this.totalPrice = totalPrice;
         }
 
         public String getLabId() {
@@ -117,20 +103,12 @@ public class LabDetailsModal {
             this.labId = labId;
         }
 
-        public String getLabTestCatId() {
-            return labTestCatId;
+        public String getTestIds() {
+            return testIds;
         }
 
-        public void setLabTestCatId(String labTestCatId) {
-            this.labTestCatId = labTestCatId;
-        }
-
-        public String getTotalPrice() {
-            return totalPrice;
-        }
-
-        public void setTotalPrice(String totalPrice) {
-            this.totalPrice = totalPrice;
+        public void setTestIds(String testIds) {
+            this.testIds = testIds;
         }
 
         public String getId() {
@@ -221,24 +199,42 @@ public class LabDetailsModal {
             this.updated = updated;
         }
 
-        public List<Test> getTests() {
-            return tests;
+        public List<Test> getTest() {
+            return test;
         }
 
-        public void setTests(List<Test> tests) {
-            this.tests = tests;
+        public void setTest(List<Test> test) {
+            this.test = test;
         }
         public class Test {
 
             @SerializedName("id")
             @Expose
             private String id;
-            @SerializedName("labTestId")
+            @SerializedName("categoryId")
             @Expose
-            private String labTestId;
-            @SerializedName("test_name")
+            private String categoryId;
+            @SerializedName("Title")
             @Expose
-            private String testName;
+            private String title;
+            @SerializedName("aboutTest")
+            @Expose
+            private String aboutTest;
+            @SerializedName("age")
+            @Expose
+            private String age;
+            @SerializedName("homeCollectionCheck")
+            @Expose
+            private String homeCollectionCheck;
+            @SerializedName("prescriptionCheck")
+            @Expose
+            private String prescriptionCheck;
+            @SerializedName("addToCart_status")
+            @Expose
+            private String addToCartStatus;
+            @SerializedName("created")
+            @Expose
+            private String created;
 
             public String getId() {
                 return id;
@@ -248,24 +244,71 @@ public class LabDetailsModal {
                 this.id = id;
             }
 
-            public String getLabTestId() {
-                return labTestId;
+            public String getCategoryId() {
+                return categoryId;
             }
 
-            public void setLabTestId(String labTestId) {
-                this.labTestId = labTestId;
+            public void setCategoryId(String categoryId) {
+                this.categoryId = categoryId;
             }
 
-            public String getTestName() {
-                return testName;
+            public String getTitle() {
+                return title;
             }
 
-            public void setTestName(String testName) {
-                this.testName = testName;
+            public void setTitle(String title) {
+                this.title = title;
+            }
+
+            public String getAboutTest() {
+                return aboutTest;
+            }
+
+            public void setAboutTest(String aboutTest) {
+                this.aboutTest = aboutTest;
+            }
+
+            public String getAge() {
+                return age;
+            }
+
+            public void setAge(String age) {
+                this.age = age;
+            }
+
+            public String getHomeCollectionCheck() {
+                return homeCollectionCheck;
+            }
+
+            public void setHomeCollectionCheck(String homeCollectionCheck) {
+                this.homeCollectionCheck = homeCollectionCheck;
+            }
+
+            public String getPrescriptionCheck() {
+                return prescriptionCheck;
+            }
+
+            public void setPrescriptionCheck(String prescriptionCheck) {
+                this.prescriptionCheck = prescriptionCheck;
+            }
+
+            public String getAddToCartStatus() {
+                return addToCartStatus;
+            }
+
+            public void setAddToCartStatus(String addToCartStatus) {
+                this.addToCartStatus = addToCartStatus;
+            }
+
+            public String getCreated() {
+                return created;
+            }
+
+            public void setCreated(String created) {
+                this.created = created;
             }
 
         }
     }
-
 
 }

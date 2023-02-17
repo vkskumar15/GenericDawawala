@@ -82,6 +82,24 @@ public class LabPopularTestAdapter extends RecyclerView.Adapter<LabPopularTestAd
             holder.binding.delete.setVisibility(View.VISIBLE);
             holder.binding.addedInCart.setVisibility(View.VISIBLE);
         }
+
+
+        if (list.get(position).getHomeCollectionCheck().equalsIgnoreCase("0")) {
+
+            holder.binding.sample.setText("Center In Visit");
+
+        } else {
+
+            holder.binding.sample.setText("Home Sample Collection");
+
+        }
+        if (list.get(position).getPrescriptionCheck().equalsIgnoreCase("0")) {
+
+            holder.binding.preparation.setText("Preparation Required");
+
+        } else {
+            holder.binding.preparation.setText("Preparation Not Required");
+        }
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.example.genericdawawalauser.retrofit;
 
+import com.example.genericdawawalauser.modalClass.AddCartLabModal;
 import com.example.genericdawawalauser.modalClass.AddToCartModal;
 import com.example.genericdawawalauser.modalClass.ApplyCouponAppointment;
 import com.example.genericdawawalauser.modalClass.ChangePasswordModal;
@@ -72,7 +73,14 @@ public interface ApiInterface {
 
     @POST("updateProfile")
     @Multipart
-    Call<RegisterModelRoot> updateUserData(@Part("userId") RequestBody requestBody, @Part("username") RequestBody requestBody2, @Part("gender") RequestBody requestBody3, @Part("email") RequestBody requestBody4, @Part("dob") RequestBody requestBody5, @Part("phone") RequestBody requestBody6, @Part("address") RequestBody requestBody7, @Part MultipartBody.Part part);
+    Call<RegisterModelRoot> updateUserData(@Part("userId") RequestBody requestBody,
+                                           @Part("username") RequestBody requestBody2,
+                                           @Part("gender") RequestBody requestBody3,
+                                           @Part("email") RequestBody requestBody4,
+                                           @Part("dob") RequestBody requestBody5,
+                                           @Part("phone") RequestBody requestBody6,
+                                           @Part("address") RequestBody requestBody7,
+                                           @Part MultipartBody.Part part);
 
 
     @GET("getDoctorsSpecialistToUser")
@@ -252,6 +260,14 @@ public interface ApiInterface {
     @POST("getLabsCategories")
     Call<GetLabCategoryModal> getLabsCategories(
             @Field("labId") String labId
+    );
+
+
+ @FormUrlEncoded
+    @POST("addToCartUser")
+    Call<AddCartLabModal> addToCartUser(
+            @Field("userId") String userId,
+            @Field("labTestId") String labTestId
     );
 
 }

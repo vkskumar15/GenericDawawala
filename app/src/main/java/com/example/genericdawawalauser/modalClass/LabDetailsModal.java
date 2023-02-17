@@ -43,9 +43,9 @@ public class LabDetailsModal {
 
     public class Detail {
 
-        @SerializedName("totalPrice")
+        @SerializedName("actualPrice")
         @Expose
-        private Integer totalPrice;
+        private String actualPrice;
         @SerializedName("LabId")
         @Expose
         private String labId;
@@ -94,16 +94,19 @@ public class LabDetailsModal {
         @SerializedName("discount")
         @Expose
         private Integer discount;
+        @SerializedName("totalPrice")
+        @Expose
+        private Integer totalPrice;
         @SerializedName("Test")
         @Expose
         private List<Test> test;
 
-        public Integer getTotalPrice() {
-            return totalPrice;
+        public String getActualPrice() {
+            return actualPrice;
         }
 
-        public void setTotalPrice(Integer totalPrice) {
-            this.totalPrice = totalPrice;
+        public void setActualPrice(String actualPrice) {
+            this.actualPrice = actualPrice;
         }
 
         public String getLabId() {
@@ -234,6 +237,14 @@ public class LabDetailsModal {
             this.discount = discount;
         }
 
+        public Integer getTotalPrice() {
+            return totalPrice;
+        }
+
+        public void setTotalPrice(Integer totalPrice) {
+            this.totalPrice = totalPrice;
+        }
+
         public List<Test> getTest() {
             return test;
         }
@@ -241,7 +252,6 @@ public class LabDetailsModal {
         public void setTest(List<Test> test) {
             this.test = test;
         }
-
         public class Test {
 
             @SerializedName("id")

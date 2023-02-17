@@ -8,6 +8,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.example.genericdawawalauser.modalClass.AddCartLabModal;
 import com.example.genericdawawalauser.modalClass.AddToCartModal;
 import com.example.genericdawawalauser.modalClass.ApplyCouponAppointment;
 import com.example.genericdawawalauser.modalClass.ChangePasswordModal;
@@ -900,6 +901,34 @@ public class ViewModalClass extends ViewModel {
         });
 
         return getLabCategoryModalMutableLiveData;
+    }
+
+    private MutableLiveData<AddCartLabModal> addCartLabModalMutableLiveData;
+
+    public LiveData<AddCartLabModal> addCartLabModalLiveData(Activity activity, String userid, String labId) {
+        addCartLabModalMutableLiveData = new MutableLiveData<>();
+        CommonUtils.showProgressDialog(activity);
+        apiInterface.addToCartUser(userid, labId).enqueue(new Callback<AddCartLabModal>() {
+            @Override
+            public void onResponse(@NonNull Call<AddCartLabModal> call, Response<AddCartLabModal> response) {
+                CommonUtils.dismissDialog();
+                if (response.body() != null) {
+
+                    addCartLabModalMutableLiveData.postValue(response.body());
+                } else {
+                    addCartLabModalMutableLiveData.postValue(null);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<AddCartLabModal> call, Throwable t) {
+                CommonUtils.dismissDialog();
+                addCartLabModalMutableLiveData.postValue(null);
+
+            }
+        });
+
+        return addCartLabModalMutableLiveData;
     }
 
 

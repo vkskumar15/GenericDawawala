@@ -61,7 +61,7 @@
                     android:layout_marginBottom="@dimen/space5"
                     android:layout_toEndOf="@id/profile_image"
                     android:gravity="center"
-                    android:text="ISO certified"
+                    android:text="@string/iso_certified"
                     android:textAlignment="center"
                     android:textColor="#706E6E"
                     android:textSize="12sp" />
@@ -172,9 +172,10 @@
                         android:layout_gravity="center"
                         android:gravity="center"
                         android:id="@+id/off"
-                        android:text="34% OFF"
+                        android:text="@string/_34_off"
                         android:textColor="@color/white"
-                        android:textSize="@dimen/dp_10" />
+                        android:textSize="@dimen/dp_10"
+                        tools:ignore="SpUsage" />
 
                 </LinearLayout>
 
@@ -187,7 +188,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/dp_10"
                 android:layout_marginTop="@dimen/dp_5"
-                android:text="Your added tests"
+                android:text="@string/your_added_tests"
                 android:textColor="@color/blueColor"
                 android:textSize="@dimen/dp_12"
                 android:textStyle="bold"

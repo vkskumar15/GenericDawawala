@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="wrap_content">
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_110"
         android:layout_margin="@dimen/dp_10"
         app:cardCornerRadius="@dimen/dp_10"
-        app:cardElevation="@dimen/dp_10"
-        android:layout_height="@dimen/dp_60">
+        app:cardElevation="@dimen/dp_10">
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -17,69 +18,125 @@
             <TextView
                 android:id="@+id/med_name"
                 android:layout_width="@dimen/dp_230"
-                android:text="@string/vitamin_d_12_oh"
-                android:layout_centerVertical="true"
+                android:maxLines="1"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_10"
+                android:layout_marginTop="@dimen/dp_15"
                 android:layout_marginEnd="@dimen/dp_10"
                 android:ellipsize="marquee"
-                android:layout_marginStart="@dimen/dp_10"
-                android:textStyle="bold"
+                android:text="@string/vitamin_d_12_oh"
                 android:textColor="@color/black"
-                android:layout_height="wrap_content"/>
+                android:textStyle="bold" />
+
+            <RelativeLayout
+                android:id="@+id/relative"
+                android:layout_width="@dimen/space140"
+                android:layout_height="@dimen/dp_25"
+                android:layout_below="@id/med_name"
+                android:layout_marginStart="@dimen/dp_10"
+                android:layout_marginTop="@dimen/dp_10"
+                android:layout_marginBottom="@dimen/dp_5"
+                android:background="@drawable/btn_bg"
+                android:backgroundTint="#8ED5F3"
+                android:gravity="center">
+
+                <ImageView
+                    android:id="@+id/lab_test1"
+                    android:layout_width="@dimen/space20"
+                    android:layout_height="@dimen/space20"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/dp_10"
+                    android:src="@drawable/baseline_home_24"
+                    android:visibility="gone"
+                    app:tint="@color/red" />
+
+                <TextView
+                    android:id="@+id/sample"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/dp_5"
+                    android:layout_toEndOf="@id/lab_test1"
+                    android:text="@string/home_sample_collection"
+                    android:textColor="@color/background_fragment_conversation"
+                    android:textSize="@dimen/dp_10" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="140dp"
+                android:layout_height="@dimen/dp_25"
+                android:layout_below="@id/relative"
+                android:layout_marginStart="@dimen/dp_10"
+                android:background="@drawable/btn_bg"
+                android:backgroundTint="#FFC0BB">
+
+
+                <TextView
+                    android:id="@+id/preparation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_marginStart="@dimen/dp_5"
+                    android:gravity="center"
+                    android:text="@string/no_preparation"
+                    android:textColor="@color/background_fragment_conversation"
+                    android:textSize="@dimen/dp_10" />
+            </RelativeLayout>
 
             <TextView
-                android:layout_width="wrap_content"
-                android:text="₹ 123/-"
                 android:id="@+id/med_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginStart="@dimen/dp_10"
-                android:textStyle="bold"
-                android:layout_toStartOf="@id/add_cart"
                 android:layout_marginEnd="@dimen/space20"
-                android:visibility="gone"
+                android:layout_toStartOf="@id/add_cart"
+                android:text="₹ 123/-"
                 android:textColor="@color/black"
-                android:layout_height="wrap_content"/>
+                android:textStyle="bold"
+                android:visibility="gone" />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:text="@string/added_in_cart"
-                android:layout_marginStart="@dimen/dp_10"
-                android:layout_toStartOf="@id/add_cart"
-                android:textColor="@color/black"
-                android:background="@drawable/med_gredient"
-                android:textSize="@dimen/dp_10"
-                android:padding="@dimen/space2"
                 android:id="@+id/added_in_cart"
-                android:visibility="invisible"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_margin="@dimen/dp_5"
-                android:layout_height="wrap_content"/>
+                android:layout_marginStart="@dimen/dp_10"
+                android:layout_toStartOf="@id/add_cart"
+                android:background="@drawable/med_gredient"
+                android:padding="@dimen/space2"
+                android:text="@string/added_in_cart"
+                android:textColor="@color/black"
+                android:textSize="@dimen/dp_10"
+                android:visibility="invisible" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/add_cart"
                 android:layout_width="@dimen/dp_120"
                 android:layout_height="@dimen/dp_30"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="@dimen/dp_10"
                 android:background="@drawable/stroke_box"
                 android:text="Select Test"
-                android:visibility="visible"
                 android:textAllCaps="false"
-                android:layout_centerVertical="true"
-                android:layout_alignParentEnd="true"
-                android:layout_marginEnd="@dimen/dp_10"
                 android:textColor="@color/appcolor"
                 android:textSize="12sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:visibility="visible" />
 
             <ImageView
-                android:layout_width="wrap_content"
                 android:id="@+id/delete"
-                android:layout_centerVertical="true"
-                android:layout_alignParentEnd="true"
-                android:visibility="invisible"
-                android:padding="@dimen/dp_5"
-                android:layout_marginEnd="@dimen/dp_10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_below="@id/added_in_cart"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="@dimen/dp_10"
+                android:padding="@dimen/dp_5"
                 android:src="@drawable/ic_baseline_delete_24"
-                android:layout_height="wrap_content"/>
+                android:visibility="invisible" />
 
 
         </RelativeLayout>

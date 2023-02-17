@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-
     tools:context=".activities.AddToCartActivity">
 
     <RelativeLayout
@@ -50,6 +49,7 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/test"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/dp_10"
@@ -269,7 +269,6 @@
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_alignParentBottom="true"
@@ -281,9 +280,6 @@
             android:layout_marginBottom="@dimen/space20"
             android:layout_height="wrap_content"
             android:layout_marginVertical="@dimen/space5">
-
-
-
             <TextView
                 android:id="@+id/paid"
                 android:layout_width="wrap_content"
@@ -325,4 +321,5 @@
         </RelativeLayout>
 
     </RelativeLayout>
+
 </RelativeLayout>

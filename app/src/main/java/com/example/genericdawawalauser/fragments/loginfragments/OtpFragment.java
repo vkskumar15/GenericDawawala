@@ -51,7 +51,6 @@ public class OtpFragment extends Fragment {
             otp = bundle.getString(AppConstants.OTP);
         }
 
-
         FirebaseMessaging.getInstance().getToken()
                 .addOnCompleteListener(task -> {
                     if (!task.isSuccessful()) {
@@ -83,31 +82,27 @@ public class OtpFragment extends Fragment {
     }
 
     private void userLogin() {
-
         if (binding.otpView.getOTP().equals(otp)) {
-            new ViewModalClass().registerModelRootLiveData(requireActivity(), name, email, phone, password, token, android_id, "user",
-                    String.valueOf(SplashActivity.latitude), String.valueOf(SplashActivity.longitude), "").observe(requireActivity(), new Observer<RegisterModelRoot>() {
-                public void onChanged(RegisterModelRoot registerModelRoot) {
-                    if (registerModelRoot.getSuccess().equalsIgnoreCase("1")) {
-                        App.getSharedPre().saveString(AppConstants.LOGIN_STATUS, "0");
+            new ViewModalClass().registerModelRootLiveData(requireActivity(), name, email, phone, password, token, android_id, "user", String.valueOf(SplashActivity.latitude), String.valueOf(SplashActivity.longitude), "").
+                    observe(requireActivity(), registerModelRoot -> {
+                        if (registerModelRoot.getSuccess().equalsIgnoreCase("1")) {
+                            App.getSharedPre().saveString(AppConstants.LOGIN_STATUS, "0");
+                            Toast.makeText(requireActivity(), "" + registerModelRoot.getMessage(), Toast.LENGTH_SHORT).show();
+                            App.getSharedPre().saveString(AppConstants.USER_ID, registerModelRoot.getDetails().getId());
+                            App.getSharedPre().saveModel(AppConstants.USER_DETAILS, registerModelRoot.getDetails());
+                            App.getSharedPre().saveString(AppConstants.USER_NAME, registerModelRoot.getDetails().getUsername());
+                            App.getSharedPre().saveString(AppConstants.USER_IMAGE, registerModelRoot.getDetails().getImage());
+                            App.getSharedPre().saveString(AppConstants.USER_EMAIL, registerModelRoot.getDetails().getEmail());
+                            App.getSharedPre().saveString(AppConstants.PHONE_NUMBER, registerModelRoot.getDetails().getPhone());
+                            App.getSharedPre().saveString(AppConstants.CHAT_ID, registerModelRoot.getDetails().getChatId());
+                            Navigation.findNavController(binding.getRoot()).navigate(R.id.profileVerifiedFragment);
+                            return;
+                        }
                         Toast.makeText(requireActivity(), "" + registerModelRoot.getMessage(), Toast.LENGTH_SHORT).show();
-                        App.getSharedPre().saveString(AppConstants.USER_ID, registerModelRoot.getDetails().getId());
-                        App.getSharedPre().saveModel(AppConstants.USER_DETAILS, registerModelRoot.getDetails());
-                        App.getSharedPre().saveString(AppConstants.USER_NAME, registerModelRoot.getDetails().getUsername());
-                        App.getSharedPre().saveString(AppConstants.USER_IMAGE, registerModelRoot.getDetails().getImage());
-                        App.getSharedPre().saveString(AppConstants.USER_EMAIL, registerModelRoot.getDetails().getEmail());
-                        App.getSharedPre().saveString(AppConstants.PHONE_NUMBER, registerModelRoot.getDetails().getPhone());
-                        App.getSharedPre().saveString(AppConstants.CHAT_ID, registerModelRoot.getDetails().getChatId());
-                        Navigation.findNavController(binding.getRoot()).navigate(R.id.profileVerifiedFragment);
-                        return;
-                    }
-                    Toast.makeText(requireActivity(), "" + registerModelRoot.getMessage(), Toast.LENGTH_SHORT).show();
-                }
-            });
+                    });
         } else {
             Toast.makeText(requireContext(), "Otp Not Match", Toast.LENGTH_SHORT).show();
         }
     }
-
 
 }

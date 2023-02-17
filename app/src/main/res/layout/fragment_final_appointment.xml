@@ -133,9 +133,9 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
-                            android:layout_marginLeft="@dimen/sp_15"
-                            android:layout_toRightOf="@id/img_video_camera"
-                            android:text="Online\nCunsultation"
+                            android:layout_marginStart="@dimen/sp_15"
+                            android:layout_toEndOf="@id/img_video_camera"
+                            android:text="Online\n Consultation"
                             android:textColor="@color/green"
                             android:textSize="12sp"
                             android:textStyle="bold" />

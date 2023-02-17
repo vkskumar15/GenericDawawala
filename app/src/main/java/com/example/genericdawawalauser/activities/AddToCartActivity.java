@@ -7,6 +7,7 @@ import android.app.Activity;
 import android.os.Bundle;
 
 import com.example.genericdawawalauser.R;
+import com.example.genericdawawalauser.adapters.labAdapter.AddToCartAdapter;
 import com.example.genericdawawalauser.databinding.ActivityAddToCartBinding;
 
 public class AddToCartActivity extends AppCompatActivity {
@@ -19,6 +20,13 @@ public class AddToCartActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         onClicks();
+        setAdapter();
+    }
+
+    private void setAdapter() {
+
+        AddToCartAdapter adapter = new AddToCartAdapter();
+        binding.recyclerView.setAdapter(adapter);
     }
 
     private void onClicks() {

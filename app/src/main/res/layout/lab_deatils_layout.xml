@@ -171,6 +171,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:gravity="center"
+                        android:id="@+id/off"
                         android:text="34% OFF"
                         android:textColor="@color/white"
                         android:textSize="@dimen/dp_10" />

@@ -36,20 +36,25 @@ public class LabDetailsModal {
     public List<Detail> getDetails() {
         return details;
     }
+
     public void setDetails(List<Detail> details) {
         this.details = details;
     }
+
     public class Detail {
 
         @SerializedName("totalPrice")
         @Expose
-        private String totalPrice;
+        private Integer totalPrice;
         @SerializedName("LabId")
         @Expose
         private String labId;
         @SerializedName("testIds")
         @Expose
         private String testIds;
+        @SerializedName("totalTests")
+        @Expose
+        private String totalTests;
         @SerializedName("id")
         @Expose
         private String id;
@@ -83,15 +88,21 @@ public class LabDetailsModal {
         @SerializedName("updated")
         @Expose
         private String updated;
+        @SerializedName("discountPrice")
+        @Expose
+        private Integer discountPrice;
+        @SerializedName("discount")
+        @Expose
+        private Integer discount;
         @SerializedName("Test")
         @Expose
         private List<Test> test;
 
-        public String getTotalPrice() {
+        public Integer getTotalPrice() {
             return totalPrice;
         }
 
-        public void setTotalPrice(String totalPrice) {
+        public void setTotalPrice(Integer totalPrice) {
             this.totalPrice = totalPrice;
         }
 
@@ -109,6 +120,14 @@ public class LabDetailsModal {
 
         public void setTestIds(String testIds) {
             this.testIds = testIds;
+        }
+
+        public String getTotalTests() {
+            return totalTests;
+        }
+
+        public void setTotalTests(String totalTests) {
+            this.totalTests = totalTests;
         }
 
         public String getId() {
@@ -199,6 +218,22 @@ public class LabDetailsModal {
             this.updated = updated;
         }
 
+        public Integer getDiscountPrice() {
+            return discountPrice;
+        }
+
+        public void setDiscountPrice(Integer discountPrice) {
+            this.discountPrice = discountPrice;
+        }
+
+        public Integer getDiscount() {
+            return discount;
+        }
+
+        public void setDiscount(Integer discount) {
+            this.discount = discount;
+        }
+
         public List<Test> getTest() {
             return test;
         }
@@ -206,6 +241,7 @@ public class LabDetailsModal {
         public void setTest(List<Test> test) {
             this.test = test;
         }
+
         public class Test {
 
             @SerializedName("id")
@@ -310,5 +346,4 @@ public class LabDetailsModal {
 
         }
     }
-
 }

@@ -11,7 +11,6 @@ import com.example.genericdawawalauser.modalClass.LabDetailsModal;
 import java.util.List;
 
 public class LabTestNameAdapter extends RecyclerView.Adapter<LabTestNameAdapter.ViewHolder> {
-
     List<LabDetailsModal.Detail.Test> list;
     private Context context;
 
@@ -46,7 +45,5 @@ public class LabTestNameAdapter extends RecyclerView.Adapter<LabTestNameAdapter.
 
             binding = itemView;
         }
-
-
     }
 }

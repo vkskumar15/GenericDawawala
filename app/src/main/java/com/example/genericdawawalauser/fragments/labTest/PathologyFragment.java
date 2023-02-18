@@ -38,7 +38,6 @@ public class PathologyFragment extends Fragment {
         AddCartTotalItem();
 
 
-
         return binding.getRoot();
 
     }
@@ -47,12 +46,11 @@ public class PathologyFragment extends Fragment {
         new ViewModalClass().countCartModalLiveData(requireActivity(), CommonUtils.getUserId()).observe(requireActivity(), new Observer<CountCartModal>() {
             @Override
             public void onChanged(CountCartModal countCartModal) {
-                if (countCartModal.getSuccess().equalsIgnoreCase("1"))
-                {
+                if (countCartModal.getSuccess().equalsIgnoreCase("1")) {
                     binding.relative.setVisibility(View.VISIBLE);
 
-                    binding.itemCount.setText(String.valueOf(countCartModal.getProductCounts()+" Test"));
-                }else {
+                    binding.itemCount.setText(String.valueOf(countCartModal.getProductCounts() + " Test"));
+                } else {
                     binding.relative.setVisibility(View.GONE);
                 }
             }

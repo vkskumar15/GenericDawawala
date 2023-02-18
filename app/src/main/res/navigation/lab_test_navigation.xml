@@ -39,6 +39,9 @@
         <action
             android:id="@+id/action_pathologyFragment_to_labDetailsFragment"
             app:destination="@id/labDetailsFragment" />
+        <action
+            android:id="@+id/action_pathologyFragment_to_addToCartActivity"
+            app:destination="@id/addToCartActivity" />
     </fragment>
     <fragment
         android:id="@+id/pathologyDetailsFragment"
@@ -54,4 +57,9 @@
             android:id="@+id/action_labDetailsFragment_to_pathologyFragment"
             app:destination="@id/pathologyFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/addToCartActivity"
+        android:name="com.example.genericdawawalauser.activities.AddToCartActivity"
+        android:label="activity_add_to_cart"
+        tools:layout="@layout/activity_add_to_cart" />
 </navigation>

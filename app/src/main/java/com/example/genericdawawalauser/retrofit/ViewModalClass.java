@@ -23,6 +23,7 @@ import com.example.genericdawawalauser.modalClass.MedicineDataModal;
 import com.example.genericdawawalauser.modalClass.PendingOnlineAppointmentModal;
 import com.example.genericdawawalauser.modalClass.ReScheduledAppointment;
 import com.example.genericdawawalauser.modalClass.RegisterModelRoot;
+import com.example.genericdawawalauser.modalClass.RemoveCartModal;
 import com.example.genericdawawalauser.modalClass.TimeSlotsModels.CancelOnlineAppointment;
 import com.example.genericdawawalauser.modalClass.TimeSlotsModels.OnlineAppointmentCouponModal;
 import com.example.genericdawawalauser.modalClass.TimeSlotsModels.OnlineAppointmentModal;
@@ -929,6 +930,35 @@ public class ViewModalClass extends ViewModel {
         });
 
         return addCartLabModalMutableLiveData;
+    }
+
+
+    private MutableLiveData<RemoveCartModal> removeCartModalMutableLiveData;
+
+    public LiveData<RemoveCartModal> removeCartModalLiveData(Activity activity, String userid, String labId) {
+        removeCartModalMutableLiveData = new MutableLiveData<>();
+        CommonUtils.showProgressDialog(activity);
+        apiInterface.removeCart(userid, labId).enqueue(new Callback<RemoveCartModal>() {
+            @Override
+            public void onResponse(@NonNull Call<RemoveCartModal> call, Response<RemoveCartModal> response) {
+                CommonUtils.dismissDialog();
+                if (response.body() != null) {
+
+                    removeCartModalMutableLiveData.postValue(response.body());
+                } else {
+                    removeCartModalMutableLiveData.postValue(null);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<RemoveCartModal> call, Throwable t) {
+                CommonUtils.dismissDialog();
+                removeCartModalMutableLiveData.postValue(null);
+
+            }
+        });
+
+        return removeCartModalMutableLiveData;
     }
 
 

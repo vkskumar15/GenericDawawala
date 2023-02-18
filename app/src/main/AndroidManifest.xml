@@ -37,9 +37,7 @@
         <activity
             android:name=".fragments.profiles.PdfViewerActivity"
             android:exported="false" />
-        <activity
-            android:name=".activities.AddToCartActivity"
-            android:exported="false" />
+
         <activity
             android:name=".activities.LabTestActivity"
             android:exported="false" />

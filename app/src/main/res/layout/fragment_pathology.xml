@@ -72,7 +72,6 @@
         android:layout_below="@id/recyler_view_pop"
         android:layout_marginTop="@dimen/space10"
         android:orientation="vertical"
-        android:layout_marginBottom="@dimen/dp_70"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:spanCount="1"
         tools:listitem="@layout/popular_lab_test_layout" />

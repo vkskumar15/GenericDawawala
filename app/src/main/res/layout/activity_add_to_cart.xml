@@ -72,6 +72,7 @@
                 android:layout_marginVertical="@dimen/dp_10"
                 android:background="@drawable/doctor_rating_background"
                 android:elevation="@dimen/dp_10"
+                android:padding="@dimen/dp_10"
                 android:orientation="vertical">
 
                 <RelativeLayout

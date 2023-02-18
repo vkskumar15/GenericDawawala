@@ -15,6 +15,7 @@ import com.example.genericdawawalauser.modalClass.MedicineDataModal;
 import com.example.genericdawawalauser.modalClass.PendingOnlineAppointmentModal;
 import com.example.genericdawawalauser.modalClass.ReScheduledAppointment;
 import com.example.genericdawawalauser.modalClass.RegisterModelRoot;
+import com.example.genericdawawalauser.modalClass.RemoveCartModal;
 import com.example.genericdawawalauser.modalClass.TimeSlotsModels.CancelOnlineAppointment;
 import com.example.genericdawawalauser.modalClass.TimeSlotsModels.OnlineAppointmentCouponModal;
 import com.example.genericdawawalauser.modalClass.TimeSlotsModels.OnlineAppointmentModal;
@@ -266,6 +267,14 @@ public interface ApiInterface {
  @FormUrlEncoded
     @POST("addToCartUser")
     Call<AddCartLabModal> addToCartUser(
+            @Field("userId") String userId,
+            @Field("labTestId") String labTestId
+    );
+
+
+ @FormUrlEncoded
+    @POST("removeCart")
+    Call<RemoveCartModal> removeCart(
             @Field("userId") String userId,
             @Field("labTestId") String labTestId
     );

@@ -9,6 +9,7 @@ import androidx.navigation.Navigation;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.genericdawawalauser.R;
 import com.example.genericdawawalauser.activities.AddToCartActivity;
@@ -42,8 +43,16 @@ public class LabDetailsFragment extends Fragment {
                     @Override
                     public void selectLab(LabDetailsModal.Detail detail) {
 
-                        Intent intent = new Intent(requireContext(), AddToCartActivity.class);
-                        startActivity(intent);
+                        Fragment fragment = new Fragment();
+                        Bundle bundle = new Bundle();
+                        bundle.putString("id", detail.getLabId());
+                        bundle.putString("amount", detail.getActualPrice());
+                        bundle.putString("discountPrice", String.valueOf(detail.getDiscountPrice()));
+                        bundle.putString("dis_per", String.valueOf(detail.getDiscount()));
+                        bundle.putString("total_amount", String.valueOf(detail.getTotalPrice()));
+                        fragment.setArguments(bundle);
+
+                        Navigation.findNavController(binding.getRoot()).navigate(R.id.addToCartActivity, bundle);
                     }
                 });
 

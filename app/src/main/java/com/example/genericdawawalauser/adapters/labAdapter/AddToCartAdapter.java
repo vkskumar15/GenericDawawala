@@ -43,6 +43,10 @@ public class AddToCartAdapter extends RecyclerView.Adapter<AddToCartAdapter.View
         holder.binding.labName.setText(list.get(position).getAboutTest());
         holder.binding.off.setText(list.get(position).getDiscount()+" %OFF");
 
+        holder.binding.delete.setOnClickListener(v -> {
+
+            discount.discount(list.get(position));
+        });
     }
 
     @Override

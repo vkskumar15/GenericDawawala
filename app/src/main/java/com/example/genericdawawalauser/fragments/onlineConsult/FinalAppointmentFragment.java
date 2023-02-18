@@ -34,7 +34,8 @@ import com.example.genericdawawalauser.utils.App;
 import com.example.genericdawawalauser.utils.CommonUtils;
 
 
-public class FinalAppointmentFragment extends Fragment {
+public class
+FinalAppointmentFragment extends Fragment {
 
     FragmentFinalAppointmentBinding binding;
     public static DoctorModelDetails doctorModelDetails;

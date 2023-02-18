@@ -4,6 +4,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
+import androidx.navigation.Navigation;
 
 import android.app.Activity;
 import android.content.DialogInterface;
@@ -20,12 +21,14 @@ import com.example.genericdawawalauser.databinding.FragmentLabDetailsBinding;
 import com.example.genericdawawalauser.modalClass.AddCartLabModal;
 import com.example.genericdawawalauser.modalClass.RemoveCartModal;
 import com.example.genericdawawalauser.retrofit.ViewModalClass;
+import com.example.genericdawawalauser.utils.App;
 import com.example.genericdawawalauser.utils.CommonUtils;
 
 public class AddToCartActivity extends Fragment {
     ActivityAddToCartBinding binding;
     String id, amount, discountPrice, dis_per, total_amount;
-
+    private static String doctorId, coupanVerifiedId, couponAmount;
+    int afterDiscount, totalAmount;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -52,9 +55,41 @@ public class AddToCartActivity extends Fragment {
     }
 
     private void setDetails() {
+        if (binding.couponName == null) {
+            binding.couponName.setText("N/A");
+
+        } else {
+
+            binding.couponName.setText("Coupon Code: " + App.getSingleton().getCouponCode());
+
+        }
+
 
         binding.totalAmount.setText(total_amount);
         binding.totalPaid.setText(total_amount);
+
+        binding.couponLayout.setOnClickListener(v -> {
+
+            Navigation.findNavController(binding.getRoot()).navigate(R.id.action_addToCartActivity_to_labCouponCodeFragment);
+        });
+
+        binding.btnApply.setOnClickListener(v -> {
+
+            new ViewModalClass().applyCouponAppointmentLiveData(requireActivity(), App.getSingleton().getCouponCode(), total_amount,
+                    CommonUtils.getUserId()).observe(requireActivity(), applyCouponAppointment -> {
+                if (applyCouponAppointment.getSuccess().equalsIgnoreCase("1")) {
+                    Toast.makeText(requireActivity(), "Coupon code Applied", Toast.LENGTH_SHORT).show();
+                    binding.totalPaid.setText("₹ " + applyCouponAppointment.getDetails().getPayAmount());
+                    binding.amount.setText("₹ " + applyCouponAppointment.getDetails().getPayAmount());
+                    binding.tvDiscount.setText("₹ " + applyCouponAppointment.getDetails().getDiscountPrice());
+                    binding.btnApply.setText("Applied");
+                    coupanVerifiedId = applyCouponAppointment.getDetails().getVerifiedId();
+                    afterDiscount = Integer.parseInt(applyCouponAppointment.getDetails().getPayAmount());
+                } else {
+                    Toast.makeText(requireActivity(), "" + applyCouponAppointment.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            });
+        });
     }
 
     private void setAdapter() {

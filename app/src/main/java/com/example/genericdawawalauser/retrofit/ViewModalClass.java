@@ -936,8 +936,9 @@ public class ViewModalClass extends ViewModel {
     private MutableLiveData<RemoveCartModal> removeCartModalMutableLiveData;
 
     public LiveData<RemoveCartModal> removeCartModalLiveData(Activity activity, String userid, String labId) {
-        removeCartModalMutableLiveData = new MutableLiveData<>();
         CommonUtils.showProgressDialog(activity);
+        removeCartModalMutableLiveData = new MutableLiveData<>();
+
         apiInterface.removeCart(userid, labId).enqueue(new Callback<RemoveCartModal>() {
             @Override
             public void onResponse(@NonNull Call<RemoveCartModal> call, Response<RemoveCartModal> response) {
@@ -959,6 +960,64 @@ public class ViewModalClass extends ViewModel {
         });
 
         return removeCartModalMutableLiveData;
+    }
+
+    private MutableLiveData<OnlineAppointmentCouponModal> getLabModalMutableLiveData;
+
+    public LiveData<OnlineAppointmentCouponModal> getLabCouponModalLiveData(Activity activity,  String labId) {
+        CommonUtils.showProgressDialog(activity);
+        getLabModalMutableLiveData = new MutableLiveData<>();
+
+        apiInterface.getLabCoupon(labId).enqueue(new Callback<OnlineAppointmentCouponModal>() {
+            @Override
+            public void onResponse(@NonNull Call<OnlineAppointmentCouponModal> call, Response<OnlineAppointmentCouponModal> response) {
+                CommonUtils.dismissDialog();
+                if (response.body() != null) {
+
+                    getLabModalMutableLiveData.postValue(response.body());
+                } else {
+                    getLabModalMutableLiveData.postValue(null);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<OnlineAppointmentCouponModal> call, Throwable t) {
+                CommonUtils.dismissDialog();
+                getLabModalMutableLiveData.postValue(null);
+
+            }
+        });
+
+        return getLabModalMutableLiveData;
+    }
+
+
+    private MutableLiveData<ApplyCouponAppointment> labApplyCouponAppointmentMutableLiveData;
+
+    public LiveData<ApplyCouponAppointment> labCouponAppointmentLiveData(Activity activity, String coupon_name, String amount, String userId) {
+
+        CommonUtils.showProgressDialog(activity);
+        labApplyCouponAppointmentMutableLiveData = new MutableLiveData<>();
+        apiInterface.reedemCouponLabVendor(coupon_name, amount, userId).enqueue(new Callback<ApplyCouponAppointment>() {
+            @Override
+            public void onResponse(@NonNull Call<ApplyCouponAppointment> call, Response<ApplyCouponAppointment> response) {
+                CommonUtils.dismissDialog();
+                if (response.body() != null) {
+                    labApplyCouponAppointmentMutableLiveData.postValue(response.body());
+                } else {
+                    labApplyCouponAppointmentMutableLiveData.postValue(null);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ApplyCouponAppointment> call, Throwable t) {
+                CommonUtils.dismissDialog();
+                labApplyCouponAppointmentMutableLiveData.postValue(null);
+
+            }
+        });
+
+        return labApplyCouponAppointmentMutableLiveData;
     }
 
 

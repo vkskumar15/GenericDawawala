@@ -69,12 +69,12 @@
         android:textStyle="bold" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="wrap_content"
         android:id="@+id/recyclerView"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
-        tools:listitem="@layout/coupon_and_offer_layout"
-        android:layout_height="wrap_content">
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/coupon_and_offer_layout">
 
     </androidx.recyclerview.widget.RecyclerView>
 

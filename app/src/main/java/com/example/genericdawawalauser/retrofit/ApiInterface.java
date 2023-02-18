@@ -279,4 +279,20 @@ public interface ApiInterface {
             @Field("labTestId") String labTestId
     );
 
+ @FormUrlEncoded
+    @POST("getLabCoupon")
+    Call<OnlineAppointmentCouponModal> getLabCoupon(
+            @Field("labId") String labId
+    );
+
+
+
+    @FormUrlEncoded
+    @POST("reedemCouponLabVendor")
+    Call<ApplyCouponAppointment> reedemCouponLabVendor(
+            @Field("coupon_name") String coupon_name,
+            @Field("amount") String amount,
+            @Field("userId") String userId
+    );
+
 }

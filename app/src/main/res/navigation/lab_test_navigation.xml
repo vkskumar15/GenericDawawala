@@ -61,5 +61,14 @@
         android:id="@+id/addToCartActivity"
         android:name="com.example.genericdawawalauser.activities.AddToCartActivity"
         android:label="activity_add_to_cart"
-        tools:layout="@layout/activity_add_to_cart" />
+        tools:layout="@layout/activity_add_to_cart" >
+        <action
+            android:id="@+id/action_addToCartActivity_to_labCouponCodeFragment"
+            app:destination="@id/labCouponCodeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/labCouponCodeFragment"
+        android:name="com.example.genericdawawalauser.fragments.labTest.LabCouponCodeFragment"
+        android:label="fragment_lab_coupon_code"
+        tools:layout="@layout/fragment_lab_coupon_code" />
 </navigation>

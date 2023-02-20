@@ -35,8 +35,8 @@ public class AddPatientFragment extends Fragment {
         binding = FragmentAddPatientBinding.inflate(inflater, container, false);
 
         setAdapter();
-        onClicks();
 
+        onClicks();
 
         this.list.add(new RelationModal("Myself"));
         this.list.add(new RelationModal("Wife"));

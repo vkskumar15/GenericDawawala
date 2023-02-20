@@ -65,10 +65,27 @@
         <action
             android:id="@+id/action_addToCartActivity_to_labCouponCodeFragment"
             app:destination="@id/labCouponCodeFragment" />
+        <action
+            android:id="@+id/action_addToCartActivity_to_getPatientFragment"
+            app:destination="@id/getPatientFragment" />
     </fragment>
     <fragment
         android:id="@+id/labCouponCodeFragment"
         android:name="com.example.genericdawawalauser.fragments.labTest.LabCouponCodeFragment"
         android:label="fragment_lab_coupon_code"
         tools:layout="@layout/fragment_lab_coupon_code" />
+    <fragment
+        android:id="@+id/getPatientFragment"
+        android:name="com.example.genericdawawalauser.fragments.labTest.GetPatientFragment"
+        android:label="fragment_get_patitent"
+        tools:layout="@layout/fragment_get_patitent" >
+        <action
+            android:id="@+id/action_getPatientFragment_to_addPatientFragment"
+            app:destination="@id/addPatientFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addPatientFragment"
+        android:name="com.example.genericdawawalauser.fragments.labTest.AddPatientFragment"
+        android:label="fragment_add_patient"
+        tools:layout="@layout/fragment_add_patient" />
 </navigation>

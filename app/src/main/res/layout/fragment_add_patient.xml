@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context=".fragments.labTest.AddPatientFragment">
 
@@ -41,26 +41,6 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/card5"
-                android:layout_width="match_parent"
-                android:layout_height="150dp"
-                android:layout_below="@+id/card4"
-                android:layout_marginStart="@dimen/space10"
-                android:layout_marginLeft="@dimen/space20"
-                android:layout_marginTop="@dimen/space10"
-                android:layout_marginEnd="@dimen/space10"
-                android:layout_marginRight="@dimen/space20"
-                android:layout_marginBottom="@dimen/space10"
-                app:cardCornerRadius="@dimen/space10"
-                app:cardElevation="@dimen/space6">
-
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/banner" />
-            </com.google.android.material.card.MaterialCardView>
 
             <TextView
                 android:layout_width="wrap_content"

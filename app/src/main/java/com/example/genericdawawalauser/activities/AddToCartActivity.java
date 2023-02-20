@@ -68,7 +68,7 @@ public class AddToCartActivity extends Fragment {
         });
 
         binding.btnApply.setOnClickListener(v -> {
-            new ViewModalClass().applyCouponAppointmentLiveData(requireActivity(), App.getSingleton().getCouponCode(), total_amount,
+            new ViewModalClass().labCouponAppointmentLiveData(requireActivity(), App.getSingleton().getCouponCode(), total_amount,
                     CommonUtils.getUserId()).observe(requireActivity(), applyCouponAppointment -> {
                 if (applyCouponAppointment.getSuccess().equalsIgnoreCase("1")) {
                     Toast.makeText(requireActivity(), "Coupon code Applied", Toast.LENGTH_SHORT).show();
@@ -119,6 +119,11 @@ public class AddToCartActivity extends Fragment {
     }
 
     private void onClicks() {
+
+        binding.bookNow.setOnClickListener(view -> {
+
+            Navigation.findNavController(view).navigate(R.id.getPatientFragment);
+        });
 
         binding.backArrowConsultPhysician.setOnClickListener(v -> {
 

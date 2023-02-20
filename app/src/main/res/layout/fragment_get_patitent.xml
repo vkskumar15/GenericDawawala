@@ -66,6 +66,6 @@
         android:orientation="vertical"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:spanCount="1"
-        tools:listitem="@layout/popular_lab_test_layout" />
+        tools:listitem="@layout/add_patient_details" />
 
 </LinearLayout>

@@ -9,6 +9,7 @@ import com.example.genericdawawalauser.modalClass.CountCartModal;
 import com.example.genericdawawalauser.modalClass.DoctorModelRoot;
 import com.example.genericdawawalauser.modalClass.GenerateOrderIdModel;
 import com.example.genericdawawalauser.modalClass.GetLabCategoryModal;
+import com.example.genericdawawalauser.modalClass.GetPatientAddress;
 import com.example.genericdawawalauser.modalClass.HealthProblemModal;
 import com.example.genericdawawalauser.modalClass.LabDetailsModal;
 import com.example.genericdawawalauser.modalClass.LabTestCategories;
@@ -307,5 +308,12 @@ public interface ApiInterface {
             @Field("city") String city,
             @Field("fullAddress") String fullAddress,
             @Field("roadName") String roadName);
+
+    @FormUrlEncoded
+    @POST("getMyAddress")
+    Call<GetPatientAddress> getMyAddress(
+            @Field("userId") String userId
+    );
+
 
 }

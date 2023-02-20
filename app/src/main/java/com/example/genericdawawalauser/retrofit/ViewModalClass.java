@@ -9,6 +9,7 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.genericdawawalauser.modalClass.AddCartLabModal;
+import com.example.genericdawawalauser.modalClass.AddPatientDetails;
 import com.example.genericdawawalauser.modalClass.AddToCartModal;
 import com.example.genericdawawalauser.modalClass.ApplyCouponAppointment;
 import com.example.genericdawawalauser.modalClass.ChangePasswordModal;
@@ -16,6 +17,7 @@ import com.example.genericdawawalauser.modalClass.CountCartModal;
 import com.example.genericdawawalauser.modalClass.DoctorModelRoot;
 import com.example.genericdawawalauser.modalClass.GenerateOrderIdModel;
 import com.example.genericdawawalauser.modalClass.GetLabCategoryModal;
+import com.example.genericdawawalauser.modalClass.GetPatientAddress;
 import com.example.genericdawawalauser.modalClass.HealthProblemModal;
 import com.example.genericdawawalauser.modalClass.LabDetailsModal;
 import com.example.genericdawawalauser.modalClass.LabTestCategories;
@@ -1018,6 +1020,63 @@ public class ViewModalClass extends ViewModel {
         });
 
         return labApplyCouponAppointmentMutableLiveData;
+    }
+
+    private MutableLiveData<AddPatientDetails> addPatientDetailsMutableLiveData;
+
+    public LiveData<AddPatientDetails> addPatientDetailsLiveData(Activity activity, String userId, String name, String phone, String pincode, String state, String city, String fullAddress, String roadName) {
+
+        CommonUtils.showProgressDialog(activity);
+        addPatientDetailsMutableLiveData = new MutableLiveData<>();
+        apiInterface.userDetails(userId, name, phone, pincode, state, city, fullAddress, roadName).enqueue(new Callback<AddPatientDetails>() {
+            @Override
+            public void onResponse(@NonNull Call<AddPatientDetails> call, Response<AddPatientDetails> response) {
+                CommonUtils.dismissDialog();
+                if (response.body() != null) {
+                    addPatientDetailsMutableLiveData.postValue(response.body());
+                } else {
+                    addPatientDetailsMutableLiveData.postValue(null);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<AddPatientDetails> call, Throwable t) {
+                CommonUtils.dismissDialog();
+                addPatientDetailsMutableLiveData.postValue(null);
+
+            }
+        });
+
+        return addPatientDetailsMutableLiveData;
+    }
+
+
+private MutableLiveData<GetPatientAddress> getPatientDetailsMutableLiveData;
+
+    public LiveData<GetPatientAddress> getPatientDetailsLiveData(Activity activity, String userId) {
+
+        CommonUtils.showProgressDialog(activity);
+        getPatientDetailsMutableLiveData = new MutableLiveData<>();
+        apiInterface.getMyAddress(userId).enqueue(new Callback<GetPatientAddress>() {
+            @Override
+            public void onResponse(@NonNull Call<GetPatientAddress> call, Response<GetPatientAddress> response) {
+                CommonUtils.dismissDialog();
+                if (response.body() != null) {
+                    getPatientDetailsMutableLiveData.postValue(response.body());
+                } else {
+                    getPatientDetailsMutableLiveData.postValue(null);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<GetPatientAddress> call, Throwable t) {
+                CommonUtils.dismissDialog();
+                getPatientDetailsMutableLiveData.postValue(null);
+
+            }
+        });
+
+        return getPatientDetailsMutableLiveData;
     }
 
 

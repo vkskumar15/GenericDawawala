@@ -140,4 +140,6 @@
     <string name="_34_off">34% OFF</string>
     <string name="your_added_tests">Your added tests</string>
     <string name="iso_certified">ISO certified</string>
+    <string name="add_patient_address">Add Patient Address</string>
+    <string name="locality_area_name">locality, area name</string>
 </resources>

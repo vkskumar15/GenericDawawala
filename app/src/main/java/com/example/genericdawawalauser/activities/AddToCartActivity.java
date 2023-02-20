@@ -55,12 +55,12 @@ public class AddToCartActivity extends Fragment {
     private void setDetails() {
 
 
-            binding.couponName.setText("Coupon Code: " +App.getSingleton().getCouponCode());
-
+        binding.couponName.setText("Coupon Code: " + App.getSingleton().getCouponCode());
 
 
         binding.totalAmount.setText(total_amount);
         binding.totalPaid.setText(total_amount);
+        binding.paid.setText(total_amount);
 
         binding.couponLayout.setOnClickListener(v -> {
 

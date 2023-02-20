@@ -40,8 +40,8 @@
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_below="@+id/relative_physician"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_below="@+id/relative_physician">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -59,11 +59,11 @@
             </TextView>
 
             <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="265dp"
-                android:id="@+id/recyclerView"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 android:orientation="vertical"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 tools:listitem="@layout/cart_item" />
 
             <LinearLayout
@@ -72,8 +72,8 @@
                 android:layout_marginVertical="@dimen/dp_10"
                 android:background="@drawable/doctor_rating_background"
                 android:elevation="@dimen/dp_10"
-                android:padding="@dimen/dp_10"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:padding="@dimen/dp_10">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -257,64 +257,64 @@
                     </RelativeLayout>
 
 
-
-
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
             <TextView
                 android:layout_width="wrap_content"
-                android:text="@string/terms"
+                android:layout_height="wrap_content"
                 android:layout_margin="@dimen/dp_5"
-                android:layout_height="wrap_content" />
+                android:text="@string/terms" />
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
+
     <RelativeLayout
         android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_60"
         android:layout_alignParentBottom="true"
-        android:background="@color/white"
         android:layout_marginTop="@dimen/space10"
-        android:layout_height="@dimen/dp_60">
+        android:background="@color/white">
+
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_marginBottom="@dimen/space20"
             android:layout_height="wrap_content"
-            android:layout_marginVertical="@dimen/space5">
+            android:layout_marginVertical="@dimen/space5"
+            android:layout_marginBottom="@dimen/space20">
+
             <TextView
                 android:id="@+id/paid"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/space10"
                 android:text="To be paid"
-                android:textSize="12sp"
-                android:textStyle="bold"
                 android:textColor="@color/darkgrey"
-                />
+                android:textSize="12sp"
+                android:textStyle="bold" />
 
 
             <TextView
-                android:layout_below="@id/paid"
+                android:id="@+id/amount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/paid"
                 android:layout_marginStart="@dimen/space10"
                 android:layout_marginEnd="@dimen/space10"
                 android:text="₹124"
-                android:textStyle="bold"
-                android:id="@+id/amount"
+                android:textColor="@color/appcolor"
                 android:textSize="@dimen/dp_18"
-                android:textColor="@color/appcolor" />
+                android:textStyle="bold" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/book_now"
                 android:layout_width="@dimen/dp_180"
                 android:layout_height="40dp"
+                android:layout_alignParentEnd="true"
                 android:layout_marginEnd="@dimen/space10"
                 android:layout_marginBottom="2dp"
-                android:layout_alignParentEnd="true"
                 android:background="@drawable/btn_bg"
                 android:padding="10dp"
-                android:text="Book Appointment"
+                android:text="Add Patient"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:textSize="16sp"

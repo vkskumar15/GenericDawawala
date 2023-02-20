@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".fragments.labTest.AddAddressFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space50"
+        android:background="@color/appcolor"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="@dimen/space10"
+            android:src="@drawable/ic_baseline_arrow_back_24"
+            app:tint="@color/white" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="@dimen/space20"
+            android:text="@string/add_patient_address"
+            android:textColor="@color/white" />
+    </LinearLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginLeft="@dimen/space20"
+        android:layout_marginTop="@dimen/space5"
+        android:layout_marginRight="@dimen/space20"
+        android:layout_marginBottom="@dimen/space5"
+        android:hint="Name"
+        app:endIconMode="clear_text"
+        app:startIconDrawable="@drawable/ic_baseline_account_circle_24"
+        app:startIconTint="@color/appcolor">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginLeft="@dimen/space20"
+        android:layout_marginTop="@dimen/space5"
+        android:layout_marginRight="@dimen/space20"
+        android:layout_marginBottom="@dimen/space5"
+        android:hint="Mobile Number"
+        app:endIconMode="clear_text"
+        app:startIconDrawable="@drawable/ic_phone_digital_communication_tool"
+        app:startIconTint="@color/appcolor">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="phone" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginLeft="@dimen/space20"
+        android:layout_marginTop="@dimen/space5"
+        android:layout_marginRight="@dimen/space20"
+        android:layout_marginBottom="@dimen/space5"
+        android:hint="Pin Code"
+        app:endIconMode="clear_text"
+        app:startIconDrawable="@drawable/baseline_pin_24"
+        app:startIconTint="@color/appcolor">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/pin_code"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="phone" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginLeft="@dimen/space20"
+        android:layout_marginTop="@dimen/space5"
+        android:layout_marginRight="@dimen/space20"
+        android:layout_marginBottom="@dimen/space5"
+        android:hint="State"
+        app:endIconMode="clear_text"
+        app:startIconDrawable="@drawable/ic_location"
+        app:startIconTint="@color/appcolor">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/state"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginLeft="@dimen/space20"
+        android:layout_marginTop="@dimen/space5"
+        android:layout_marginRight="@dimen/space20"
+        android:layout_marginBottom="@dimen/space5"
+        android:hint="City"
+        app:endIconMode="clear_text"
+        app:startIconDrawable="@drawable/baseline_location_city_24"
+        app:startIconTint="@color/appcolor">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/city"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginLeft="@dimen/space20"
+        android:layout_marginTop="@dimen/space5"
+        android:layout_marginRight="@dimen/space20"
+        android:layout_marginBottom="@dimen/space5"
+        android:hint="Full Address"
+        app:endIconMode="clear_text"
+        app:startIconDrawable="@drawable/ic_baseline_location_on_24"
+        app:startIconTint="@color/appcolor">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/full_address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginLeft="@dimen/space20"
+        android:layout_marginTop="@dimen/space5"
+        android:layout_marginRight="@dimen/space20"
+        android:layout_marginBottom="@dimen/space5"
+        android:hint="@string/locality_area_name"
+        app:endIconMode="clear_text"
+        app:startIconDrawable="@drawable/baseline_add_road_24"
+        app:startIconTint="@color/appcolor">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/locality"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_next"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/space20"
+        android:layout_marginTop="@dimen/space20"
+        android:layout_marginRight="@dimen/space20"
+        android:layout_marginBottom="@dimen/space20"
+        android:background="@drawable/btn_bg"
+        android:padding="10dp"
+        android:text="Add Address"
+        android:textAllCaps="true"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+</LinearLayout>

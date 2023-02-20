@@ -47,13 +47,10 @@ public class LabCouponCodeFragment extends Fragment {
                 Toast.makeText(requireActivity(), ""+onlineAppointmentCouponModal.getMessage(), Toast.LENGTH_SHORT).show();
 
                 CouponAndOfferAdapter adapter = new CouponAndOfferAdapter(requireActivity(),
-                        onlineAppointmentCouponModal.getDetails(), new CouponAndOfferAdapter.OnItemClickCallback() {
-                    @Override
-                    public void onItemClick(OnlineAppointmentCouponModal.Detail detail) {
-                        App.getSingleton().setCouponCode(detail.getCouponName());
-                        requireActivity().onBackPressed();
-                    }
-                });
+                        onlineAppointmentCouponModal.getDetails(),                    detail -> {
+                            App.getSingleton().setCouponCode(detail.getCouponName());
+                            requireActivity().onBackPressed();
+                        });
 
                 binding.recyclerView.setAdapter(adapter);
             }else

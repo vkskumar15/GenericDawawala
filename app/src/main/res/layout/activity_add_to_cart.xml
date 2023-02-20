@@ -85,7 +85,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/space10"
-                        android:text="Coupon Code: "
+                        android:text="Coupon Code:"
                         android:textAllCaps="true"
                         android:textColor="@color/black"
                         android:textStyle="bold" />

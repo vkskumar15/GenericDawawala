@@ -36,7 +36,6 @@ import com.example.genericdawawalauser.utils.CommonUtils;
 
 public class
 FinalAppointmentFragment extends Fragment {
-
     FragmentFinalAppointmentBinding binding;
     public static DoctorModelDetails doctorModelDetails;
     public static String appointmentSlot, appointmentDateToShow, appointmentDateToSend;
@@ -45,8 +44,7 @@ FinalAppointmentFragment extends Fragment {
     int afterDiscount, totalAmount;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         binding = FragmentFinalAppointmentBinding.inflate(inflater, container, false);
 

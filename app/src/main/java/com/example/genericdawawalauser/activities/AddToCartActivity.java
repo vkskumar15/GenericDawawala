@@ -34,9 +34,7 @@ public class AddToCartActivity extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = ActivityAddToCartBinding.inflate(inflater, container, false);
 
-
         onClicks();
-
 
         Bundle bundle = this.getArguments();
         if (bundle != null) {
@@ -55,14 +53,10 @@ public class AddToCartActivity extends Fragment {
     }
 
     private void setDetails() {
-        if (binding.couponName == null) {
-            binding.couponName.setText("N/A");
 
-        } else {
 
-            binding.couponName.setText("Coupon Code: " + App.getSingleton().getCouponCode());
+            binding.couponName.setText("Coupon Code: " +App.getSingleton().getCouponCode());
 
-        }
 
 
         binding.totalAmount.setText(total_amount);
@@ -74,7 +68,6 @@ public class AddToCartActivity extends Fragment {
         });
 
         binding.btnApply.setOnClickListener(v -> {
-
             new ViewModalClass().applyCouponAppointmentLiveData(requireActivity(), App.getSingleton().getCouponCode(), total_amount,
                     CommonUtils.getUserId()).observe(requireActivity(), applyCouponAppointment -> {
                 if (applyCouponAppointment.getSuccess().equalsIgnoreCase("1")) {
@@ -93,52 +86,32 @@ public class AddToCartActivity extends Fragment {
     }
 
     private void setAdapter() {
-        new ViewModalClass().addCartLabModalLiveData(getActivity(), CommonUtils.getUserId(), "2").observe(getActivity(), new Observer<AddCartLabModal>() {
-            @Override
-            public void onChanged(AddCartLabModal addCartLabModal) {
-                if (addCartLabModal.getSuccess().equalsIgnoreCase("1")) {
-                    binding.test.setText("Pathology test: " + addCartLabModal.getDetails().size());
-                    AddToCartAdapter adapter = new AddToCartAdapter(addCartLabModal.getDetails(), getActivity(), new AddToCartAdapter.TotalDiscount() {
-                        @Override
-                        public void discount(AddCartLabModal.Detail detail) {
-                            new AlertDialog.Builder(getActivity())
-                                    .setTitle("Remove Cart")
-                                    .setMessage("Are you sure you want to remove this item?")
-                                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                                        public void onClick(DialogInterface dialog, int which) {
+        new ViewModalClass().addCartLabModalLiveData(getActivity(), CommonUtils.getUserId(), "2").observe(getActivity(), addCartLabModal -> {
+            if (addCartLabModal.getSuccess().equalsIgnoreCase("1")) {
+                binding.test.setText("Pathology test: " + addCartLabModal.getDetails().size());
+                AddToCartAdapter adapter = new AddToCartAdapter(addCartLabModal.getDetails(), getActivity(), detail -> new AlertDialog.Builder(getActivity())
+                        .setTitle("Remove Cart")
+                        .setMessage("Are you sure you want to remove this item?")
+                        .setPositiveButton(android.R.string.yes, (dialog, which) ->
+                                new ViewModalClass().removeCartModalLiveData(getActivity(),
+                                        CommonUtils.getUserId(), id).observe(getActivity(), removeCartModal -> {
+                                    if (removeCartModal.getSuccess().equalsIgnoreCase("1")) {
+                                        Toast.makeText(getActivity(), "" + removeCartModal.getMessage(), Toast.LENGTH_SHORT).show();
 
-                                            new ViewModalClass().removeCartModalLiveData(getActivity(), CommonUtils.getUserId(), id).observe(getActivity(), new Observer<RemoveCartModal>() {
-                                                @Override
-                                                public void onChanged(RemoveCartModal removeCartModal) {
-                                                    if (removeCartModal.getSuccess().equalsIgnoreCase("1")) {
-                                                        Toast.makeText(getActivity(), "" + removeCartModal.getDetails(), Toast.LENGTH_SHORT).show();
+                                        setAdapter();
 
-                                                        setAdapter();
+                                    } else {
+                                        Toast.makeText(getActivity(), "" + removeCartModal.getMessage(), Toast.LENGTH_SHORT).show();
 
-                                                    } else {
-                                                        Toast.makeText(getActivity(), "" + removeCartModal.getDetails(), Toast.LENGTH_SHORT).show();
+                                    }
+                                }))
 
-                                                    }
-                                                }
-                                            });
-
-                                        }
-                                    })
-
-                                    .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialog, int which) {
-                                            dialog.dismiss();
-                                        }
-                                    })
-                                    .setIcon(android.R.drawable.ic_dialog_alert)
-                                    .show();
-                        }
-                    });
-                    binding.recyclerView.setAdapter(adapter);
-                } else {
-                    Toast.makeText(getActivity(), "" + addCartLabModal.getMessage(), Toast.LENGTH_SHORT).show();
-                }
+                        .setNegativeButton(android.R.string.no, (dialog, which) -> dialog.dismiss())
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .show());
+                binding.recyclerView.setAdapter(adapter);
+            } else {
+                Toast.makeText(getActivity(), "" + addCartLabModal.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
 

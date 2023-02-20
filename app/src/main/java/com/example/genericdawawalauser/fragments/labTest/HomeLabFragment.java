@@ -156,7 +156,8 @@ public class HomeLabFragment extends Fragment {
 
     private void sliderImage() {
         ArrayList<SliderData> sliderDataArrayList = new ArrayList<>();
-        sliderDataArrayList.add(new SliderData(this.url1));
+        sliderDataArrayList.add(new SliderData(this.
+                url1));
         sliderDataArrayList.add(new SliderData(this.url2));
         sliderDataArrayList.add(new SliderData(this.url3));
         SliderAdapter adapter = new SliderAdapter(requireContext(), sliderDataArrayList);

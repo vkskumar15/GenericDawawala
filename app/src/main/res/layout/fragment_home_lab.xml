@@ -89,7 +89,7 @@
         android:layout_below="@+id/header_title"
         android:layout_marginHorizontal="@dimen/dp_20"
         android:layout_marginTop="-20dp"
-        android:background="@drawable/bg_doctor_list"
+        android:background="@drawable/search_bg"
         android:elevation="@dimen/dp_10"
         android:gravity="center"
         android:inputType="text"
@@ -266,7 +266,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dp_320"
                 android:background="@drawable/blue_green_icon_bg"
-                android:backgroundTint="#D1E5FF">
+                android:backgroundTint="#E8F2FF">
 
                 <TextView
                     android:id="@+id/text"

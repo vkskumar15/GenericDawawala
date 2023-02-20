@@ -1,6 +1,7 @@
 package com.example.genericdawawalauser.retrofit;
 
 import com.example.genericdawawalauser.modalClass.AddCartLabModal;
+import com.example.genericdawawalauser.modalClass.AddFamilyMember;
 import com.example.genericdawawalauser.modalClass.AddPatientDetails;
 import com.example.genericdawawalauser.modalClass.AddToCartModal;
 import com.example.genericdawawalauser.modalClass.ApplyCouponAppointment;
@@ -315,5 +316,20 @@ public interface ApiInterface {
             @Field("userId") String userId
     );
 
+
+ @FormUrlEncoded
+    @POST("getFamilyMember")
+    Call<GetPatientAddress> getFamilyMember(
+            @Field("userId") String userId);
+
+    @FormUrlEncoded
+    @POST("addFamilyMember")
+    Call<AddFamilyMember> addFamilyMember(
+            @Field("userId") String userId,
+            @Field("name") String name,
+            @Field("phone") String phone,
+            @Field("gender") String gender,
+            @Field("age") String age,
+            @Field("relation") String relation);
 
 }

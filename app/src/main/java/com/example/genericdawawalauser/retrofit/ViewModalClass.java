@@ -9,6 +9,7 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.genericdawawalauser.modalClass.AddCartLabModal;
+import com.example.genericdawawalauser.modalClass.AddFamilyMember;
 import com.example.genericdawawalauser.modalClass.AddPatientDetails;
 import com.example.genericdawawalauser.modalClass.AddToCartModal;
 import com.example.genericdawawalauser.modalClass.ApplyCouponAppointment;
@@ -1079,5 +1080,35 @@ private MutableLiveData<GetPatientAddress> getPatientDetailsMutableLiveData;
         return getPatientDetailsMutableLiveData;
     }
 
+
+
+
+    private MutableLiveData<AddFamilyMember> addFamilyMemberMutableLiveData;
+
+    public LiveData<AddFamilyMember> addFamilyMemberLiveData(Activity activity, String userId, String name, String phone, String gender, String age, String relation) {
+
+        CommonUtils.showProgressDialog(activity);
+        addFamilyMemberMutableLiveData = new MutableLiveData<>();
+        apiInterface.addFamilyMember(userId, name, phone, gender, age, relation).enqueue(new Callback<AddFamilyMember>() {
+            @Override
+            public void onResponse(@NonNull Call<AddFamilyMember> call, Response<AddFamilyMember> response) {
+                CommonUtils.dismissDialog();
+                if (response.body() != null) {
+                    addFamilyMemberMutableLiveData.postValue(response.body());
+                } else {
+                    addFamilyMemberMutableLiveData.postValue(null);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<AddFamilyMember> call, Throwable t) {
+                CommonUtils.dismissDialog();
+                addFamilyMemberMutableLiveData.postValue(null);
+
+            }
+        });
+
+        return addFamilyMemberMutableLiveData;
+    }
 
 }

@@ -40,7 +40,7 @@ public class GetPatientFragment extends Fragment {
     }
 
     private void setAdapter() {
-        AddPatientsAdapter addPatientsAdapter = new AddPatientsAdapter();
-        binding.recyclerviewCondition.setAdapter(addPatientsAdapter);
+//        AddPatientsAdapter addPatientsAdapter = new AddPatientsAdapter();
+//        binding.recyclerviewCondition.setAdapter(addPatientsAdapter);
     }
 }

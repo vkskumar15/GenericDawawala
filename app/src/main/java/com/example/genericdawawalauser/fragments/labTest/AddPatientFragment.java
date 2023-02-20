@@ -4,6 +4,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
@@ -14,9 +15,12 @@ import android.widget.Toast;
 import com.example.genericdawawalauser.R;
 import com.example.genericdawawalauser.adapters.RelationAdapter;
 import com.example.genericdawawalauser.databinding.FragmentAddPatientBinding;
+import com.example.genericdawawalauser.modalClass.AddFamilyMember;
 import com.example.genericdawawalauser.modalClass.RelationModal;
+import com.example.genericdawawalauser.retrofit.ViewModalClass;
 import com.example.genericdawawalauser.utils.App;
 import com.example.genericdawawalauser.utils.AppConstants;
+import com.example.genericdawawalauser.utils.CommonUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -107,6 +111,21 @@ public class AddPatientFragment extends Fragment {
                 App.getSingleton().setNumber(number);
                 App.getSingleton().setName(name);
                 App.getSingleton().setAppointmentStatus("1");
+
+                new ViewModalClass().addFamilyMemberLiveData(requireActivity(), CommonUtils.getUserId(), name,number, gender, age, relation).observe(requireActivity(), new Observer<AddFamilyMember>() {
+                    @Override
+                    public void onChanged(AddFamilyMember addFamilyMember) {
+                        if (addFamilyMember.getSuccess().equalsIgnoreCase("1"))
+                        {
+                            requireActivity().onBackPressed();
+
+                            Toast.makeText(requireActivity(), ""+addFamilyMember.getMessage(), Toast.LENGTH_SHORT).show();
+                        }else {
+                            Toast.makeText(requireActivity(), ""+addFamilyMember.getMessage(), Toast.LENGTH_SHORT).show();
+
+                        }
+                    }
+                });
 
             }
 

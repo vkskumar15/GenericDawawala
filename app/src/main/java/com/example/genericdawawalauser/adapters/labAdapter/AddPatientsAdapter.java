@@ -20,6 +20,7 @@ public class AddPatientsAdapter extends RecyclerView.Adapter<AddPatientsAdapter.
     SelectPatient selectPatient;
 
     public  interface SelectPatient{
+
         void selectPatient(GetPatientAddress.Detail detail);
     }
 

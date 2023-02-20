@@ -971,6 +971,7 @@ public class ViewModalClass extends ViewModel {
         CommonUtils.showProgressDialog(activity);
         getLabModalMutableLiveData = new MutableLiveData<>();
 
+
         apiInterface.getLabCoupon(labId).enqueue(new Callback<OnlineAppointmentCouponModal>() {
             @Override
             public void onResponse(@NonNull Call<OnlineAppointmentCouponModal> call, Response<OnlineAppointmentCouponModal> response) {

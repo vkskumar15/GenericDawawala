@@ -312,6 +312,19 @@ public interface ApiInterface {
             @Field("roadName") String roadName);
 
     @FormUrlEncoded
+    @POST("editUserDetails")
+    Call<AddPatientDetails> editUserDetails(
+            @Field("id") String id,
+            @Field("userId") String userId,
+            @Field("name") String name,
+            @Field("phone") String phone,
+            @Field("pincode") String pincode,
+            @Field("state") String state,
+            @Field("city") String city,
+            @Field("fullAddress") String fullAddress,
+            @Field("roadName") String roadName);
+
+    @FormUrlEncoded
     @POST("getMyAddress")
     Call<GetPatientAddress> getMyAddress(
             @Field("userId") String userId

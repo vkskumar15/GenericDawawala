@@ -22,6 +22,7 @@ import com.example.genericdawawalauser.utils.CommonUtils;
 
 public class GetPatientAddressFragment extends Fragment {
     FragmentGetPatientAddressBinding binding;
+    public static String PATIENT_ADDRESS;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -44,6 +45,7 @@ public class GetPatientAddressFragment extends Fragment {
                 if (getPatientAddress.getSuccess().equalsIgnoreCase("1")) {
                     GetUserAddressAdapter adapter = new GetUserAddressAdapter(getPatientAddress.getDetails(), requireContext(), new GetUserAddressAdapter.SelectPatient() {
                         @Override
+
                         public void selectPatient(GetPatientAddress.Detail detail) {
                             new AlertDialog.Builder(getActivity())
                                     .setTitle("Remove Address")
@@ -69,6 +71,15 @@ public class GetPatientAddressFragment extends Fragment {
                         @Override
                         public void editData(GetPatientAddress.Detail detail) {
 
+                            AddAddressFragment.detail=detail;
+                            PATIENT_ADDRESS="1";
+                            Navigation.findNavController(binding.getRoot()).navigate(R.id.addAddressFragment);
+                        }
+
+                        @Override
+                        public void select(GetPatientAddress.Detail detail) {
+
+                            Toast.makeText(requireContext(), ""+detail.getId(), Toast.LENGTH_SHORT).show();
                         }
                     });
 

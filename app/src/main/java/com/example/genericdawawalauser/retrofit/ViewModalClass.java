@@ -1053,6 +1053,34 @@ public class ViewModalClass extends ViewModel {
         return addPatientDetailsMutableLiveData;
     }
 
+    private MutableLiveData<AddPatientDetails> editPatientDetailsMutableLiveData;
+
+    public LiveData<AddPatientDetails> editPatientDetailsLiveData(Activity activity, String id, String userId, String name, String phone, String pincode, String state, String city, String fullAddress, String roadName) {
+
+        CommonUtils.showProgressDialog(activity);
+        editPatientDetailsMutableLiveData = new MutableLiveData<>();
+        apiInterface.editUserDetails(id,userId, name, phone, pincode, state, city, fullAddress, roadName).enqueue(new Callback<AddPatientDetails>() {
+            @Override
+            public void onResponse(@NonNull Call<AddPatientDetails> call, Response<AddPatientDetails> response) {
+                CommonUtils.dismissDialog();
+                if (response.body() != null) {
+                    editPatientDetailsMutableLiveData.postValue(response.body());
+                } else {
+                    editPatientDetailsMutableLiveData.postValue(null);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<AddPatientDetails> call, Throwable t) {
+                CommonUtils.dismissDialog();
+                editPatientDetailsMutableLiveData.postValue(null);
+
+            }
+        });
+
+        return editPatientDetailsMutableLiveData;
+    }
+
 
 private MutableLiveData<GetPatientAddress> getPatientDetailsMutableLiveData;
 

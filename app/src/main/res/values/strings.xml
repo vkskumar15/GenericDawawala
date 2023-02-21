@@ -142,4 +142,5 @@
     <string name="iso_certified">ISO certified</string>
     <string name="add_patient_address">Add Patient Address</string>
     <string name="locality_area_name">locality, area name</string>
+    <string name="select_time_slot">Select Time Slot</string>
 </resources>

@@ -17,11 +17,13 @@ import com.example.genericdawawalauser.adapters.labAdapter.FamilyMemberAdapter;
 import com.example.genericdawawalauser.databinding.FragmentGetPatitentBinding;
 import com.example.genericdawawalauser.modalClass.GetFamilyMemberModal;
 import com.example.genericdawawalauser.retrofit.ViewModalClass;
+import com.example.genericdawawalauser.utils.App;
 import com.example.genericdawawalauser.utils.CommonUtils;
 
 
 public class GetPatientFragment extends Fragment {
     FragmentGetPatitentBinding binding;
+    String checkID, uncheckID;
 
 
     @Override
@@ -45,6 +47,8 @@ public class GetPatientFragment extends Fragment {
         });
 
         binding.btnNext.setOnClickListener(view -> {
+
+            Toast.makeText(requireContext(), ""+App.getSingleton().getCheckUser(), Toast.LENGTH_SHORT).show();
 
             Navigation.findNavController(view).navigate(R.id.getPatientAddressFragment);
         });
@@ -101,6 +105,22 @@ public class GetPatientFragment extends Fragment {
                             fragment.setArguments(bundle);
 
                             Navigation.findNavController(binding.getRoot()).navigate(R.id.addPatientFragment, bundle);
+                        }
+
+                        @Override
+                        public void onCheck(String id) {
+
+                            checkID = id;
+                            App.getSingleton().setCheckUser(checkID);
+
+                        }
+
+                        @Override
+                        public void onUnCheck(String id) {
+                            checkID = id;
+                            App.getSingleton().setCheckUser(checkID);
+
+
                         }
                     });
                     binding.recyclerviewCondition.setAdapter(addPatientsAdapter);

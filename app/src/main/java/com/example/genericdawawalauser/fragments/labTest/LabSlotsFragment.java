@@ -1,4 +1,4 @@
-package com.example.genericdawawalauser.fragments.onlineConsult;
+package com.example.genericdawawalauser.fragments.labTest;
 
 import static android.content.ContentValues.TAG;
 
@@ -28,9 +28,10 @@ import com.example.genericdawawalauser.R;
 import com.example.genericdawawalauser.adapters.online_consultation.GridViewSelectAfternoonSlotAdapter;
 import com.example.genericdawawalauser.adapters.online_consultation.GridViewSelectEveningSlotAdapter;
 import com.example.genericdawawalauser.adapters.online_consultation.GridViewSelectMorningSlotAdapter;
+import com.example.genericdawawalauser.fragments.onlineConsult.DoctorTimeSlotFragment;
+import com.example.genericdawawalauser.fragments.onlineConsult.FinalAppointmentFragment;
 import com.example.genericdawawalauser.fragments.profiles.MyOnlineConsultFragment;
 import com.example.genericdawawalauser.modalClass.DoctorModelDetails;
-import com.example.genericdawawalauser.modalClass.PendingOnlineAppointmentModal;
 import com.example.genericdawawalauser.modalClass.ReScheduledAppointment;
 import com.example.genericdawawalauser.modalClass.TimeSlotsModels.TimeSlotsModelRoot;
 import com.example.genericdawawalauser.retrofit.ViewModalClass;
@@ -42,12 +43,8 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-import javax.microedition.khronos.opengles.GL;
-
-
-public class DoctorTimeSlotFragment extends Fragment implements GridViewSelectMorningSlotAdapter.Select,
+public class LabSlotsFragment extends Fragment implements GridViewSelectMorningSlotAdapter.Select,
         GridViewSelectAfternoonSlotAdapter.Select, GridViewSelectEveningSlotAdapter.Select {
-
     private View view;
     RelativeLayout relativeLayout;
 
@@ -78,11 +75,11 @@ public class DoctorTimeSlotFragment extends Fragment implements GridViewSelectMo
     GridViewSelectAfternoonSlotAdapter gridViewSelectAfternoonSlotAdapter;
     GridViewSelectEveningSlotAdapter gridViewSelectEveningSlotAdapter;
 
-
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        view = inflater.inflate(R.layout.fragment_doctor_time_slot, container, false);
+        view = inflater.inflate(R.layout.fragment_lab_slots, container, false);
 
         findIds();
 
@@ -112,12 +109,12 @@ public class DoctorTimeSlotFragment extends Fragment implements GridViewSelectMo
         onClicks();
 
         onClicks();
-        if (status == "1") {
-            doctorId = docId;
-        } else {
-            doctorId = doctorModelDetails.getId();
-
-        }
+//        if (status == "1") {
+//            doctorId = docId;
+//        } else {
+//            doctorId = doctorModelDetails.getId();
+//
+//        }
 
         selectDate.setText(getDateTime());
 
@@ -239,8 +236,7 @@ public class DoctorTimeSlotFragment extends Fragment implements GridViewSelectMo
                 });
 
             });
-        } else if (drStatus =="1")
-        {
+        } else if (drStatus == "1") {
             button.setOnClickListener(v -> {
 
                 FinalAppointmentFragment.doctorModelDetails = doctorModelDetails;
@@ -248,19 +244,14 @@ public class DoctorTimeSlotFragment extends Fragment implements GridViewSelectMo
                 App.getSingleton().setOnlinePrice(doctorModelDetails.getOnline_price());
                 Navigation.findNavController(v).navigate(R.id.finalAppointmentFragment2);
             });
-        }
-
-        else if (drStatus =="2")
-        {
+        } else if (drStatus == "2") {
             button.setOnClickListener(v -> {
 
                 FinalAppointmentFragment.doctorModelDetails = doctorModelDetails;
                 App.getSingleton().setOfflinePrice(doctorModelDetails.getOffline_price());
                 Navigation.findNavController(v).navigate(R.id.finalAppointmentFragment2);
             });
-        }
-
-        else {
+        } else {
             button.setOnClickListener(v -> {
 
                 FinalAppointmentFragment.doctorModelDetails = doctorModelDetails;
@@ -412,18 +403,14 @@ public class DoctorTimeSlotFragment extends Fragment implements GridViewSelectMo
 
             selectDate.setText(selected_date);
 
-            if (status == "1") {
-                MyOnlineConsultFragment.appointmentDateToShow = selected_date;
-            } else {
-                FinalAppointmentFragment.appointmentDateToShow = selected_date;
-            }
 
 
-            if (status == "1") {
-                getDoctorId = docId;
-            } else {
-                getDoctorId = doctorId;
-            }
+
+//            if (status == "1") {
+//                getDoctorId = docId;
+//            } else {
+//                getDoctorId = doctorId;
+//            }
             getSlots(getDoctorId, dateToSend);
 
         }, mYear, mMonth, mDay);
@@ -445,7 +432,7 @@ public class DoctorTimeSlotFragment extends Fragment implements GridViewSelectMo
 
 //            Toast.makeText(getContext(), "id and date is :- "+id+" , "+date, Toast.LENGTH_SHORT).show();
 
-            new ViewModalClass().GetDoctorSlotsLiveData(getActivity(), date, id).observe(getActivity(), new Observer<TimeSlotsModelRoot>() {
+            new ViewModalClass().getlabAvailabilityTimeSlot(getActivity(),"2", date).observe(getActivity(), new Observer<TimeSlotsModelRoot>() {
                 @Override
                 public void onChanged(TimeSlotsModelRoot timeSlotsModelRoot) {
 
@@ -465,7 +452,7 @@ public class DoctorTimeSlotFragment extends Fragment implements GridViewSelectMo
                             mCheck = 1;
 
 
-                            gridViewSelectMorningSlotAdapter = new GridViewSelectMorningSlotAdapter(getContext(), timeSlotsModelRoot.getDetails().getMorning_slots(), DoctorTimeSlotFragment.this);
+                            gridViewSelectMorningSlotAdapter = new GridViewSelectMorningSlotAdapter(getContext(), timeSlotsModelRoot.getDetails().getMorning_slots(), LabSlotsFragment.this);
                             gridViewMorning.setAdapter(gridViewSelectMorningSlotAdapter);
 
                         }
@@ -474,7 +461,7 @@ public class DoctorTimeSlotFragment extends Fragment implements GridViewSelectMo
 
                             aCheck = 1;
 
-                            gridViewSelectAfternoonSlotAdapter = new GridViewSelectAfternoonSlotAdapter(getContext(), timeSlotsModelRoot.getDetails().getAfternoon_slots(), DoctorTimeSlotFragment.this);
+                            gridViewSelectAfternoonSlotAdapter = new GridViewSelectAfternoonSlotAdapter(getContext(), timeSlotsModelRoot.getDetails().getAfternoon_slots(), LabSlotsFragment.this);
                             gridViewAfternoon.setAdapter(gridViewSelectAfternoonSlotAdapter);
 
                         }
@@ -483,7 +470,7 @@ public class DoctorTimeSlotFragment extends Fragment implements GridViewSelectMo
 
                             eCheck = 1;
 
-                            gridViewSelectEveningSlotAdapter = new GridViewSelectEveningSlotAdapter(getContext(), timeSlotsModelRoot.getDetails().getEvening_slots(), DoctorTimeSlotFragment.this);
+                            gridViewSelectEveningSlotAdapter = new GridViewSelectEveningSlotAdapter(getContext(), timeSlotsModelRoot.getDetails().getEvening_slots(), LabSlotsFragment.this);
                             gridViewEvening.setAdapter(gridViewSelectEveningSlotAdapter);
 
                         }

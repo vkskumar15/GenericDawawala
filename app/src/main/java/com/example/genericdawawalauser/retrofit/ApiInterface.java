@@ -127,6 +127,14 @@ public interface ApiInterface {
 
 
     @FormUrlEncoded
+    @POST("getlabAvailabilityTimeSlots")
+    Call<TimeSlotsModelRoot> getlabAvailabilityTimeSlots(
+            @Field("labId") String labId,
+            @Field("availableDate") String availableDate
+    );
+
+
+    @FormUrlEncoded
     @POST("getUserWallet")
     Call<WalletAmountModal> getUserWallet(
             @Field("userId") String userId
@@ -366,5 +374,7 @@ public interface ApiInterface {
             @Field("gender") String gender,
             @Field("age") String age,
             @Field("relation") String relation);
+
+
 
 }

@@ -378,6 +378,35 @@ public class ViewModalClass extends ViewModel {
     }
 
 
+    public MutableLiveData<TimeSlotsModelRoot> getlabAvailabilityTimeSlots;
+
+    public LiveData<TimeSlotsModelRoot> getlabAvailabilityTimeSlot(Activity activity,String doctor_Id, String availableDate) {
+
+        getlabAvailabilityTimeSlots = new MutableLiveData<>();
+
+        apiInterface.getlabAvailabilityTimeSlots(availableDate, doctor_Id).enqueue(new Callback<TimeSlotsModelRoot>() {
+            @Override
+            public void onResponse(@NonNull Call<TimeSlotsModelRoot> call, Response<TimeSlotsModelRoot> response) {
+                if (response.body() != null) {
+                    if (response.body().getSuccess().equals("0")) {
+                        Toast.makeText(activity, "" + response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                    } else {
+                        getlabAvailabilityTimeSlots.postValue(response.body());
+                    }
+                } else {
+                    Toast.makeText(activity, "Technical error", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<TimeSlotsModelRoot> call, Throwable t) {
+                Toast.makeText(activity, "" + t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+        return getlabAvailabilityTimeSlots;
+    }
+
+
     private MutableLiveData<WalletAmountModal> walletAmountModalMutableLiveData;
 
     public LiveData<WalletAmountModal> walletAmountModalLiveData(Activity activity, String userId) {

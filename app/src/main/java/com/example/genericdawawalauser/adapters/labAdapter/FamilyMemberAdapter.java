@@ -23,6 +23,8 @@ public class FamilyMemberAdapter extends RecyclerView.Adapter<FamilyMemberAdapte
 
         void selectPatient(GetFamilyMemberModal.Detail detail);
         void editData(GetFamilyMemberModal.Detail detail);
+         void onCheck(String id);
+         void onUnCheck(String id);
     }
 
     public FamilyMemberAdapter(List<GetFamilyMemberModal.Detail> list, Context context, SelectPatient delete) {
@@ -44,6 +46,7 @@ public class FamilyMemberAdapter extends RecyclerView.Adapter<FamilyMemberAdapte
         holder.binding.txtName.setText(list.get(position).getName());
         holder.binding.txtAddres.setText(list.get(position).getGender());
         holder.binding.txtPhoneNo.setText(list.get(position).getRelation());
+
         holder.binding.linearLayRemoveAddress.setOnClickListener(v -> {
 
             delete.selectPatient(list.get(position));
@@ -52,6 +55,19 @@ public class FamilyMemberAdapter extends RecyclerView.Adapter<FamilyMemberAdapte
         holder.binding.linearLayEditAddress.setOnClickListener(v -> {
 
             delete.editData(list.get(position));
+        });
+
+        holder.binding.checkBox.setOnClickListener(view -> {
+
+            if (holder.binding.checkBox.isChecked()) {
+
+                delete.onCheck(list.get(holder.getAdapterPosition()).getId());
+
+            } else {
+
+                delete.onUnCheck(list.get(holder.getAdapterPosition()).getId());
+
+            }
         });
     }
 

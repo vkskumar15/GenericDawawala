@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -9,6 +9,7 @@
 
 
     <LinearLayout
+        android:id="@+id/relative"
         android:layout_width="match_parent"
         android:layout_height="@dimen/space50"
         android:background="@color/appcolor"
@@ -35,6 +36,8 @@
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_margin="@dimen/dp_10"
+        android:id="@+id/card"
+        android:layout_below="@id/relative"
         app:cardElevation="@dimen/dp_10"
         app:cardCornerRadius="@dimen/dp_10"
         android:layout_height="@dimen/dp_50">
@@ -64,11 +67,28 @@
         android:id="@+id/recyclerview_condition"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/card"
         android:layout_marginTop="@dimen/space10"
         android:orientation="vertical"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:spanCount="1"
         tools:listitem="@layout/addresses_layout" />
 
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_next"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="@dimen/space20"
+        android:layout_marginTop="@dimen/space20"
+        android:layout_marginRight="@dimen/space20"
+        android:layout_marginBottom="@dimen/space20"
+        android:background="@drawable/btn_bg"
+        android:text="@string/select_time_slot"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        android:textStyle="bold" />
 
-</LinearLayout>
+
+</RelativeLayout>

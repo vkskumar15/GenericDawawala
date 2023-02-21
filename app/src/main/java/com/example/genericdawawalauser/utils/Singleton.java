@@ -19,6 +19,7 @@ public class Singleton {
     private String IDServices;
     private String LicenseName;
     private String LicensePhoto;
+    private String checkUser;
     public String PharmacyService_hv;
     public String UserType;
     public String about;
@@ -97,6 +98,14 @@ public class Singleton {
     public String drStatus;
     public String appId;
     public String doctorName;
+
+    public String getCheckUser() {
+        return checkUser;
+    }
+
+    public void setCheckUser(String checkUser) {
+        this.checkUser = checkUser;
+    }
 
     public String getAppId() {
         return appId;

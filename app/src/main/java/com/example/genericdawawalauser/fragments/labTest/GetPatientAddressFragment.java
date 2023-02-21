@@ -97,5 +97,11 @@ public class GetPatientAddressFragment extends Fragment {
 
         });
 
+        binding.btnNext.setOnClickListener(v -> {
+
+           // Navigation.findNavController(binding.getRoot()).navigate(R.id.labSlotsFragment);
+
+        });
+
     }
 }

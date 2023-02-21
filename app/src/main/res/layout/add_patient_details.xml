@@ -79,6 +79,7 @@
                 android:id="@+id/linear_lay_remove_address"
                 android:layout_weight="1"
                 android:backgroundTint="#FB8689"
+                android:foreground="@drawable/ripple"
                 android:layout_marginEnd="@dimen/dp_5"
                 android:background="@drawable/cv_grey_strock">
 

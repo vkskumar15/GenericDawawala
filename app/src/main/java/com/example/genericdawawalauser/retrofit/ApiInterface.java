@@ -9,6 +9,7 @@ import com.example.genericdawawalauser.modalClass.ChangePasswordModal;
 import com.example.genericdawawalauser.modalClass.CountCartModal;
 import com.example.genericdawawalauser.modalClass.DoctorModelRoot;
 import com.example.genericdawawalauser.modalClass.GenerateOrderIdModel;
+import com.example.genericdawawalauser.modalClass.GetFamilyMemberModal;
 import com.example.genericdawawalauser.modalClass.GetLabCategoryModal;
 import com.example.genericdawawalauser.modalClass.GetPatientAddress;
 import com.example.genericdawawalauser.modalClass.HealthProblemModal;
@@ -319,12 +320,28 @@ public interface ApiInterface {
 
  @FormUrlEncoded
     @POST("getFamilyMember")
-    Call<GetPatientAddress> getFamilyMember(
+    Call<GetFamilyMemberModal> getFamilyMember(
             @Field("userId") String userId);
 
     @FormUrlEncoded
     @POST("addFamilyMember")
     Call<AddFamilyMember> addFamilyMember(
+            @Field("userId") String userId,
+            @Field("name") String name,
+            @Field("phone") String phone,
+            @Field("gender") String gender,
+            @Field("age") String age,
+            @Field("relation") String relation);
+
+    @FormUrlEncoded
+    @POST("deleteFamilyMember")
+    Call<GetFamilyMemberModal> deleteFamilyMember(
+            @Field("id") String id);
+
+    @FormUrlEncoded
+    @POST("editFamilyMember")
+    Call<AddFamilyMember> editFamilyMember(
+            @Field("id") String id,
             @Field("userId") String userId,
             @Field("name") String name,
             @Field("phone") String phone,

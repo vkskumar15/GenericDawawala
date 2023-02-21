@@ -17,6 +17,7 @@ import com.example.genericdawawalauser.modalClass.ChangePasswordModal;
 import com.example.genericdawawalauser.modalClass.CountCartModal;
 import com.example.genericdawawalauser.modalClass.DoctorModelRoot;
 import com.example.genericdawawalauser.modalClass.GenerateOrderIdModel;
+import com.example.genericdawawalauser.modalClass.GetFamilyMemberModal;
 import com.example.genericdawawalauser.modalClass.GetLabCategoryModal;
 import com.example.genericdawawalauser.modalClass.GetPatientAddress;
 import com.example.genericdawawalauser.modalClass.HealthProblemModal;
@@ -1112,4 +1113,88 @@ private MutableLiveData<GetPatientAddress> getPatientDetailsMutableLiveData;
         return addFamilyMemberMutableLiveData;
     }
 
+
+    private MutableLiveData<GetFamilyMemberModal> getFamilyMemberModalMutableLiveData;
+
+    public LiveData<GetFamilyMemberModal> getFamilyMemberModalLiveData(Activity activity, String userId) {
+
+        CommonUtils.showProgressDialog(activity);
+        getFamilyMemberModalMutableLiveData = new MutableLiveData<>();
+        apiInterface.getFamilyMember(userId).enqueue(new Callback<GetFamilyMemberModal>() {
+            @Override
+            public void onResponse(@NonNull Call<GetFamilyMemberModal> call, Response<GetFamilyMemberModal> response) {
+                CommonUtils.dismissDialog();
+                if (response.body() != null) {
+                    getFamilyMemberModalMutableLiveData.postValue(response.body());
+                } else {
+                    getFamilyMemberModalMutableLiveData.postValue(null);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<GetFamilyMemberModal> call, Throwable t) {
+                CommonUtils.dismissDialog();
+                getFamilyMemberModalMutableLiveData.postValue(null);
+
+            }
+        });
+
+        return getFamilyMemberModalMutableLiveData;
+    }
+
+    private MutableLiveData<GetFamilyMemberModal> deleteFamilyMemberModalMutableLiveData;
+
+    public LiveData<GetFamilyMemberModal> deleteFamilyMemberModalLiveData(Activity activity, String userId) {
+
+        CommonUtils.showProgressDialog(activity);
+        deleteFamilyMemberModalMutableLiveData = new MutableLiveData<>();
+        apiInterface.deleteFamilyMember(userId).enqueue(new Callback<GetFamilyMemberModal>() {
+            @Override
+            public void onResponse(@NonNull Call<GetFamilyMemberModal> call, Response<GetFamilyMemberModal> response) {
+                CommonUtils.dismissDialog();
+                if (response.body() != null) {
+                    deleteFamilyMemberModalMutableLiveData.postValue(response.body());
+                } else {
+                    deleteFamilyMemberModalMutableLiveData.postValue(null);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<GetFamilyMemberModal> call, Throwable t) {
+                CommonUtils.dismissDialog();
+                deleteFamilyMemberModalMutableLiveData.postValue(null);
+
+            }
+        });
+
+        return deleteFamilyMemberModalMutableLiveData;
+    }
+
+    private MutableLiveData<AddFamilyMember> editFamilyMemberMutableLiveData;
+
+    public LiveData<AddFamilyMember> editFamilyMemberLiveData(Activity activity, String id, String userId, String name, String phone, String gender, String age, String relation) {
+
+        CommonUtils.showProgressDialog(activity);
+        editFamilyMemberMutableLiveData = new MutableLiveData<>();
+        apiInterface.editFamilyMember(id,userId, name, phone, gender, age, relation).enqueue(new Callback<AddFamilyMember>() {
+            @Override
+            public void onResponse(@NonNull Call<AddFamilyMember> call, Response<AddFamilyMember> response) {
+                CommonUtils.dismissDialog();
+                if (response.body() != null) {
+                    editFamilyMemberMutableLiveData.postValue(response.body());
+                } else {
+                    editFamilyMemberMutableLiveData.postValue(null);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<AddFamilyMember> call, Throwable t) {
+                CommonUtils.dismissDialog();
+                editFamilyMemberMutableLiveData.postValue(null);
+
+            }
+        });
+
+        return editFamilyMemberMutableLiveData;
+    }
 }

@@ -43,6 +43,7 @@
             android:layout_width="match_parent"
             android:background="@drawable/ripple"
             android:id="@+id/add_patient"
+            android:foreground="@drawable/ripple"
             android:layout_height="match_parent">
 
             <TextView
@@ -50,7 +51,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:text="+ Add New Address"
-                android:textAllCaps="true"
+                android:textAllCaps="false"
                 android:textColor="@color/red"
                 android:textSize="@dimen/dp_16"
                 android:textStyle="bold" />

@@ -82,10 +82,27 @@
         <action
             android:id="@+id/action_getPatientFragment_to_addPatientFragment"
             app:destination="@id/addPatientFragment" />
+        <action
+            android:id="@+id/action_getPatientFragment_to_getPatientAddressFragment"
+            app:destination="@id/getPatientAddressFragment" />
     </fragment>
     <fragment
         android:id="@+id/addPatientFragment"
         android:name="com.example.genericdawawalauser.fragments.labTest.AddPatientFragment"
         android:label="fragment_add_patient"
         tools:layout="@layout/fragment_add_patient" />
+    <fragment
+        android:id="@+id/addAddressFragment"
+        android:name="com.example.genericdawawalauser.fragments.labTest.AddAddressFragment"
+        android:label="fragment_add_address"
+        tools:layout="@layout/fragment_add_address" />
+    <fragment
+        android:id="@+id/getPatientAddressFragment"
+        android:name="com.example.genericdawawalauser.fragments.labTest.GetPatientAddressFragment"
+        android:label="fragment_get_patient_address"
+        tools:layout="@layout/fragment_get_patient_address" >
+        <action
+            android:id="@+id/action_getPatientAddressFragment_to_addAddressFragment"
+            app:destination="@id/addAddressFragment" />
+    </fragment>
 </navigation>

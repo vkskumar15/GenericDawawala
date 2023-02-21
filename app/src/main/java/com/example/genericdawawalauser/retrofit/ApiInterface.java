@@ -339,6 +339,11 @@ public interface ApiInterface {
             @Field("id") String id);
 
     @FormUrlEncoded
+    @POST("deleteUserAddress")
+    Call<GetPatientAddress> deleteUserAddress(
+            @Field("id") String id);
+
+    @FormUrlEncoded
     @POST("editFamilyMember")
     Call<AddFamilyMember> editFamilyMember(
             @Field("id") String id,

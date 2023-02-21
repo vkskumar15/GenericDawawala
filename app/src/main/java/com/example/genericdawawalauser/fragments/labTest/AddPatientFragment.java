@@ -67,18 +67,16 @@ public class AddPatientFragment extends Fragment {
         this.list.add(new RelationModal("Other"));
 
 
-
         setAdapter();
 
-        if (status=="1")
-        {
+        if (status == "1") {
             editData();
 
 
             binding.age.setText(age);
             binding.number.setText(number);
             binding.name.setText(name);
-        }else {
+        } else {
             binding.number.setText(App.getSharedPre().getString(AppConstants.PHONE_NUMBER));
             binding.name.setText(App.getSharedPre().getString(AppConstants.USER_NAME));
 
@@ -86,15 +84,30 @@ public class AddPatientFragment extends Fragment {
         }
 
 
-
-
-
-
-
         return this.binding.getRoot();
     }
 
     private void editData() {
+        binding.btnNext.setOnClickListener(v -> {
+            String age = binding.age.getText().toString();
+            String number = binding.number.getText().toString();
+            String name = binding.name.getText().toString();
+
+            new ViewModalClass().editFamilyMemberLiveData(requireActivity(), id, CommonUtils.getUserId(), name, number, gender, age, relation).observe(requireActivity(), new Observer<AddFamilyMember>() {
+                @Override
+                public void onChanged(AddFamilyMember addFamilyMember) {
+                    if (addFamilyMember.getSuccess().equalsIgnoreCase("1")) {
+                        requireActivity().onBackPressed();
+                        Toast.makeText(requireActivity(), "" + addFamilyMember.getMessage(), Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(requireActivity(), "" + addFamilyMember.getMessage(), Toast.LENGTH_SHORT).show();
+
+                    }
+                }
+            });
+
+        });
+
 
     }
 
@@ -166,7 +179,6 @@ public class AddPatientFragment extends Fragment {
             binding.male.setBackgroundColor(Color.parseColor("#FFFFFFFF"));
 
         });
-
 
 
         this.binding.back.setOnClickListener(view -> {

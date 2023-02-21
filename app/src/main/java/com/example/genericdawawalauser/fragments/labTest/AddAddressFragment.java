@@ -72,9 +72,9 @@ public class AddAddressFragment extends Fragment {
                     public void onChanged(AddPatientDetails addPatientDetails) {
                         if (addPatientDetails.getSuccess().equalsIgnoreCase("1")) {
                             requireActivity().onBackPressed();
-                            Toast.makeText(requireActivity(), "" + addPatientDetails.getSuccess(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(requireActivity(), "" + addPatientDetails.getMessage(), Toast.LENGTH_SHORT).show();
                         } else {
-                            Toast.makeText(requireActivity(), "" + addPatientDetails.getSuccess(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(requireActivity(), "" + addPatientDetails.getMessage(), Toast.LENGTH_SHORT).show();
 
                         }
                     }

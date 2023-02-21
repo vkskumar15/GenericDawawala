@@ -1197,4 +1197,32 @@ private MutableLiveData<GetPatientAddress> getPatientDetailsMutableLiveData;
 
         return editFamilyMemberMutableLiveData;
     }
+
+    private MutableLiveData<GetPatientAddress> deleteUserAddressModalMutableLiveData;
+
+    public LiveData<GetPatientAddress> deleteUserAddressModalLiveData(Activity activity, String userId) {
+
+        CommonUtils.showProgressDialog(activity);
+        deleteUserAddressModalMutableLiveData = new MutableLiveData<>();
+        apiInterface.deleteUserAddress(userId).enqueue(new Callback<GetPatientAddress>() {
+            @Override
+            public void onResponse(@NonNull Call<GetPatientAddress> call, Response<GetPatientAddress> response) {
+                CommonUtils.dismissDialog();
+                if (response.body() != null) {
+                    deleteUserAddressModalMutableLiveData.postValue(response.body());
+                } else {
+                    deleteUserAddressModalMutableLiveData.postValue(null);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<GetPatientAddress> call, Throwable t) {
+                CommonUtils.dismissDialog();
+                deleteUserAddressModalMutableLiveData.postValue(null);
+
+            }
+        });
+
+        return deleteUserAddressModalMutableLiveData;
+    }
 }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -10,6 +10,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/space50"
+        android:id="@+id/header_title"
         android:background="@color/appcolor"
         android:orientation="horizontal">
 
@@ -34,7 +35,9 @@
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_margin="@dimen/dp_10"
+        android:layout_below="@+id/header_title"
         app:cardElevation="@dimen/dp_10"
+        android:id="@+id/add"
         app:cardCornerRadius="@dimen/dp_10"
         android:layout_height="@dimen/dp_50">
 
@@ -61,11 +64,27 @@
         android:id="@+id/recyclerview_condition"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/recyler_view_pop"
+        android:layout_below="@id/add"
         android:layout_marginTop="@dimen/space10"
         android:orientation="vertical"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:spanCount="1"
         tools:listitem="@layout/add_patient_details" />
 
-</LinearLayout>
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_next"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="@dimen/space20"
+        android:layout_marginTop="@dimen/space20"
+        android:layout_marginRight="@dimen/space20"
+        android:layout_marginBottom="@dimen/space20"
+        android:background="@drawable/btn_bg"
+        android:text="Add Address"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        android:textStyle="bold" />
+
+</RelativeLayout>

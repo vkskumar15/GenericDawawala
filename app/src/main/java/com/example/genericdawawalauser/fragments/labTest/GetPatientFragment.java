@@ -44,6 +44,11 @@ public class GetPatientFragment extends Fragment {
             Navigation.findNavController(view).navigate(R.id.addPatientFragment);
         });
 
+        binding.btnNext.setOnClickListener(view -> {
+
+            Navigation.findNavController(view).navigate(R.id.getPatientAddressFragment);
+        });
+
         binding.back.setOnClickListener(view -> {
 
             requireActivity().onBackPressed();
@@ -62,7 +67,7 @@ public class GetPatientFragment extends Fragment {
                         public void selectPatient(GetFamilyMemberModal.Detail detail) {
 
                             new AlertDialog.Builder(getActivity())
-                                    .setTitle("Remove Cart")
+                                    .setTitle("Remove Details")
                                     .setMessage("Are you sure you want to remove this item?")
                                     .setPositiveButton(android.R.string.yes, (dialog, which) ->
                                             new ViewModalClass().deleteFamilyMemberModalLiveData(getActivity(), detail.getId()).observe(getActivity(), removeCartModal -> {

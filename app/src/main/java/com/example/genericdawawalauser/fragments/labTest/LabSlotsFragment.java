@@ -404,14 +404,7 @@ public class LabSlotsFragment extends Fragment implements GridViewSelectMorningS
             selectDate.setText(selected_date);
 
 
-
-
-//            if (status == "1") {
-//                getDoctorId = docId;
-//            } else {
-//                getDoctorId = doctorId;
-//            }
-            getSlots(getDoctorId, dateToSend);
+            getSlots(App.getSingleton().getLabId(), dateToSend);
 
         }, mYear, mMonth, mDay);
 
@@ -423,6 +416,8 @@ public class LabSlotsFragment extends Fragment implements GridViewSelectMorningS
     }
 
     public void getSlots(String id, String date) {
+
+        Toast.makeText(requireActivity(), ""+id+" "+date, Toast.LENGTH_SHORT).show();
 
         if (!(id.equals("") && date.equals(""))) {
 

@@ -11,6 +11,8 @@ import com.example.genericdawawalauser.databinding.HomeHealthcareItemsBinding;
 import com.example.genericdawawalauser.databinding.SlideBinding;
 
 public class AdapterHomeHealthCare extends RecyclerView.Adapter<AdapterHomeHealthCare.MyViewHolder> {
+
+
     @NonNull
     @Override
     public AdapterHomeHealthCare.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {

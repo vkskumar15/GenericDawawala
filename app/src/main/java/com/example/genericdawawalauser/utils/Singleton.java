@@ -98,6 +98,51 @@ public class Singleton {
     public String drStatus;
     public String appId;
     public String doctorName;
+    public String labId;
+    public String total_amount;
+    public String patient_details;
+    public String total_patient;
+    public String patient_address;
+
+    public String getTotal_patient() {
+        return total_patient;
+    }
+
+    public void setTotal_patient(String total_patient) {
+        this.total_patient = total_patient;
+    }
+
+    public String getLabId() {
+        return labId;
+    }
+
+    public void setLabId(String labId) {
+        this.labId = labId;
+    }
+
+    public String getTotal_amount() {
+        return total_amount;
+    }
+
+    public void setTotal_amount(String total_amount) {
+        this.total_amount = total_amount;
+    }
+
+    public String getPatient_details() {
+        return patient_details;
+    }
+
+    public void setPatient_details(String patient_details) {
+        this.patient_details = patient_details;
+    }
+
+    public String getPatient_address() {
+        return patient_address;
+    }
+
+    public void setPatient_address(String patient_address) {
+        this.patient_address = patient_address;
+    }
 
     public String getCheckUser() {
         return checkUser;

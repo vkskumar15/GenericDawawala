@@ -122,8 +122,7 @@ public interface ApiInterface {
     @POST("vendorDoctorAvailabilitySlots")
     Call<TimeSlotsModelRoot> getDoctorSlots(
             @Field("availableDate") String availableDate,
-            @Field("doctor_Id") String doctor_Id
-    );
+            @Field("doctor_Id") String doctor_Id);
 
 
     @FormUrlEncoded
@@ -240,9 +239,7 @@ public interface ApiInterface {
     @FormUrlEncoded
     @POST("LabTestSubCategories")
     Call<MedicineDataModal> labTestSubCategories(
-            @Field("categoryId") String categoryId
-    );
-
+            @Field("categoryId") String categoryId);
 
     @FormUrlEncoded
     @POST("getCartAddTestLabs")

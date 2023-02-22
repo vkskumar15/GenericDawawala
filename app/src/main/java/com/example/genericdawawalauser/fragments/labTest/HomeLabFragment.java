@@ -9,6 +9,7 @@ import androidx.navigation.Navigation;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.genericdawawalauser.R;
 import com.example.genericdawawalauser.adapters.SliderAdapter;
@@ -43,31 +44,39 @@ public class HomeLabFragment extends Fragment {
      setTestByConditionAdapter();
      onClicks();
 
-        new ViewModalClass().medicineDataModalLiveData(requireActivity(), "").observe(requireActivity(), new Observer<MedicineDataModal>() {
-            @Override
-            public void onChanged(MedicineDataModal medicineDataModal) {
-                if (medicineDataModal.getSuccess().equalsIgnoreCase("1")) {
-                    LabPopularTestAdapter adapter = new LabPopularTestAdapter(medicineDataModal.getDetails(), requireContext(), new LabPopularTestAdapter.DetailsData() {
-                        @Override
-                        public void details(MedicineDataModal.Detail detail) {
-                            Navigation.findNavController(binding.getRoot()).navigate(R.id.pathologyDetailsFragment);
-                            PathologyDetailsFragment.detail = detail;
-                        }
-                    }, new LabPopularTestAdapter.AddtoCart() {
-                        @Override
-                        public void addToCart(MedicineDataModal.Detail detail) {
+     try {
+         new ViewModalClass().medicineDataModalLiveData(requireActivity(), "").observe(requireActivity(), new Observer<MedicineDataModal>() {
+             @Override
+             public void onChanged(MedicineDataModal medicineDataModal) {
+                 if (medicineDataModal.getSuccess().equalsIgnoreCase("1")) {
+                     LabPopularTestAdapter adapter = new LabPopularTestAdapter(medicineDataModal.getDetails(), requireContext(), new LabPopularTestAdapter.DetailsData() {
+                         @Override
+                         public void details(MedicineDataModal.Detail detail) {
+                             Navigation.findNavController(binding.getRoot()).navigate(R.id.pathologyDetailsFragment);
+                             PathologyDetailsFragment.detail = detail;
+                         }
+                     }, new LabPopularTestAdapter.AddtoCart() {
+                         @Override
+                         public void addToCart(MedicineDataModal.Detail detail) {
 
-                        }
-                    }, new LabPopularTestAdapter.DeletetoCart() {
-                        @Override
-                        public void deletetoCart(MedicineDataModal.Detail detail) {
+                         }
+                     }, new LabPopularTestAdapter.DeletetoCart() {
+                         @Override
+                         public void deletetoCart(MedicineDataModal.Detail detail) {
 
-                        }
-                    });
-                    binding.recylerViewPopularTest.setAdapter(adapter);
-                }
-            }
-        });
+                         }
+                     });
+                     binding.recylerViewPopularTest.setAdapter(adapter);
+                 }
+             }
+         });
+
+     } catch (Exception e) {
+         throw new RuntimeException(e);
+
+
+     }
+
 
 
      return binding.getRoot();

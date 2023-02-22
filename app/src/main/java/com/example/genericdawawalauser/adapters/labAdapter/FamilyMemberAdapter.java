@@ -1,8 +1,10 @@
 package com.example.genericdawawalauser.adapters.labAdapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -19,12 +21,15 @@ public class FamilyMemberAdapter extends RecyclerView.Adapter<FamilyMemberAdapte
     private Context context;
     SelectPatient delete;
 
-    public  interface SelectPatient{
+    public interface SelectPatient {
 
         void selectPatient(GetFamilyMemberModal.Detail detail);
+
         void editData(GetFamilyMemberModal.Detail detail);
-         void onCheck(String id);
-         void onUnCheck(String id);
+
+        void onCheck(String id);
+
+        void onUnCheck(String id);
     }
 
     public FamilyMemberAdapter(List<GetFamilyMemberModal.Detail> list, Context context, SelectPatient delete) {
@@ -41,11 +46,12 @@ public class FamilyMemberAdapter extends RecyclerView.Adapter<FamilyMemberAdapte
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, @SuppressLint("RecyclerView") int position) {
 
         holder.binding.txtName.setText(list.get(position).getName());
         holder.binding.txtAddres.setText(list.get(position).getGender());
         holder.binding.txtPhoneNo.setText(list.get(position).getRelation());
+
 
         holder.binding.linearLayRemoveAddress.setOnClickListener(v -> {
 

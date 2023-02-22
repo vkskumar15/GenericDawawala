@@ -17,6 +17,7 @@ import com.example.genericdawawalauser.adapters.labAdapter.GetUserAddressAdapter
 import com.example.genericdawawalauser.databinding.FragmentGetPatientAddressBinding;
 import com.example.genericdawawalauser.modalClass.GetPatientAddress;
 import com.example.genericdawawalauser.retrofit.ViewModalClass;
+import com.example.genericdawawalauser.utils.App;
 import com.example.genericdawawalauser.utils.CommonUtils;
 
 
@@ -79,7 +80,7 @@ public class GetPatientAddressFragment extends Fragment {
                         @Override
                         public void select(GetPatientAddress.Detail detail) {
 
-                            Toast.makeText(requireContext(), ""+detail.getId(), Toast.LENGTH_SHORT).show();
+                            App.getSingleton().setPatient_address(detail.getId());
                         }
                     });
 
@@ -99,7 +100,7 @@ public class GetPatientAddressFragment extends Fragment {
 
         binding.btnNext.setOnClickListener(v -> {
 
-           // Navigation.findNavController(binding.getRoot()).navigate(R.id.labSlotsFragment);
+       Navigation.findNavController(binding.getRoot()).navigate(R.id.labSlotsFragment);
 
         });
 

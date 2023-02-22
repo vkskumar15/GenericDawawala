@@ -17,6 +17,7 @@ import com.example.genericdawawalauser.adapters.labAdapter.LabDetailsAdapter;
 import com.example.genericdawawalauser.databinding.FragmentLabDetailsBinding;
 import com.example.genericdawawalauser.modalClass.LabDetailsModal;
 import com.example.genericdawawalauser.retrofit.ViewModalClass;
+import com.example.genericdawawalauser.utils.App;
 import com.example.genericdawawalauser.utils.CommonUtils;
 
 public class LabDetailsFragment extends Fragment {
@@ -51,6 +52,8 @@ public class LabDetailsFragment extends Fragment {
                         bundle.putString("dis_per", String.valueOf(detail.getDiscount()));
                         bundle.putString("total_amount", String.valueOf(detail.getTotalPrice()));
                         fragment.setArguments(bundle);
+
+                        App.getSingleton().setLabId(detail.getLabId());
 
                         Navigation.findNavController(binding.getRoot()).navigate(R.id.addToCartActivity, bundle);
                     }

@@ -58,9 +58,9 @@ public class AddToCartActivity extends Fragment {
         binding.couponName.setText("Coupon Code: " + App.getSingleton().getCouponCode());
 
 
-        binding.totalAmount.setText(total_amount);
-        binding.totalPaid.setText(total_amount);
-        binding.paid.setText(total_amount);
+        binding.totalAmount.setText("₹ " + total_amount);
+        binding.totalPaid.setText("₹ " + total_amount);
+        binding.amount.setText("₹ " + total_amount);
 
         binding.couponLayout.setOnClickListener(v -> {
 
@@ -86,7 +86,7 @@ public class AddToCartActivity extends Fragment {
     }
 
     private void setAdapter() {
-        new ViewModalClass().addCartLabModalLiveData(getActivity(), CommonUtils.getUserId(), "2").observe(getActivity(), addCartLabModal -> {
+        new ViewModalClass().addCartLabModalLiveData(getActivity(), CommonUtils.getUserId(), id).observe(getActivity(), addCartLabModal -> {
             if (addCartLabModal.getSuccess().equalsIgnoreCase("1")) {
                 binding.test.setText("Pathology test: " + addCartLabModal.getDetails().size());
                 AddToCartAdapter adapter = new AddToCartAdapter(addCartLabModal.getDetails(), getActivity(), detail -> new AlertDialog.Builder(getActivity())
@@ -121,8 +121,18 @@ public class AddToCartActivity extends Fragment {
     private void onClicks() {
 
         binding.bookNow.setOnClickListener(view -> {
+            if (afterDiscount > 0) {
+                totalAmount = afterDiscount;
 
+                }else {
+
+                totalAmount = Integer.parseInt(total_amount);
+
+            }
+
+            App.getSingleton().setTotal_amount(String.valueOf(totalAmount));
             Navigation.findNavController(view).navigate(R.id.getPatientFragment);
+
         });
 
         binding.backArrowConsultPhysician.setOnClickListener(v -> {

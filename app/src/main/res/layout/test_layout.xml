@@ -26,8 +26,8 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:text="myself"
-                android:textSize="@dimen/dp_10"
-                android:textColor="@color/appcolor" />
+                android:textColor="@color/appcolor"
+                android:textSize="@dimen/dp_10" />
         </RelativeLayout>
     </com.google.android.material.card.MaterialCardView>
 </RelativeLayout>

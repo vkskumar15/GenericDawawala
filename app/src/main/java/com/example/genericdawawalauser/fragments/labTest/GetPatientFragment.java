@@ -20,10 +20,14 @@ import com.example.genericdawawalauser.retrofit.ViewModalClass;
 import com.example.genericdawawalauser.utils.App;
 import com.example.genericdawawalauser.utils.CommonUtils;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class GetPatientFragment extends Fragment {
     FragmentGetPatitentBinding binding;
     String checkID, uncheckID;
+    private List<String> catget = new ArrayList<>();
 
 
     @Override
@@ -47,8 +51,10 @@ public class GetPatientFragment extends Fragment {
         });
 
         binding.btnNext.setOnClickListener(view -> {
+            getIds();
 
-            Toast.makeText(requireContext(), ""+App.getSingleton().getCheckUser(), Toast.LENGTH_SHORT).show();
+            App.getSingleton().setPatient_details(checkID);
+            App.getSingleton().setTotal_patient(String.valueOf(catget.size()));
 
             Navigation.findNavController(view).navigate(R.id.getPatientAddressFragment);
         });
@@ -69,7 +75,6 @@ public class GetPatientFragment extends Fragment {
                     FamilyMemberAdapter addPatientsAdapter = new FamilyMemberAdapter(getFamilyMemberModal.getDetails(), requireActivity(), new FamilyMemberAdapter.SelectPatient() {
                         @Override
                         public void selectPatient(GetFamilyMemberModal.Detail detail) {
-
                             new AlertDialog.Builder(getActivity())
                                     .setTitle("Remove Details")
                                     .setMessage("Are you sure you want to remove this item?")
@@ -110,15 +115,17 @@ public class GetPatientFragment extends Fragment {
                         @Override
                         public void onCheck(String id) {
 
-                            checkID = id;
-                            App.getSingleton().setCheckUser(checkID);
+                            catget.add(id);
+
+                            getIds();
 
                         }
 
                         @Override
                         public void onUnCheck(String id) {
-                            checkID = id;
-                            App.getSingleton().setCheckUser(checkID);
+                            catget.remove(id);
+
+                            getIds();
 
 
                         }
@@ -131,5 +138,18 @@ public class GetPatientFragment extends Fragment {
             }
         });
 
+
+    }
+
+    public void getIds() {
+        if (catget.size() > 0) {
+            StringBuilder sb = new StringBuilder();
+            for (String s : catget) {
+                sb.append(s).append(",");
+            }
+            checkID = sb.deleteCharAt(sb.length() - 1).toString();
+
+
+        }
     }
 }

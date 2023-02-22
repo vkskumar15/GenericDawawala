@@ -81,6 +81,7 @@ public class GetPatientAddressFragment extends Fragment {
                         public void select(GetPatientAddress.Detail detail) {
 
                             App.getSingleton().setPatient_address(detail.getId());
+                            App.getSingleton().setPatient_address_details(detail.getName()+" "+detail.getFullAddress()+" "+detail.getPhone());
                         }
                     });
 
@@ -100,7 +101,12 @@ public class GetPatientAddressFragment extends Fragment {
 
         binding.btnNext.setOnClickListener(v -> {
 
-       Navigation.findNavController(binding.getRoot()).navigate(R.id.labSlotsFragment);
+            if (App.getSingleton().getPatient_address()==null){
+
+                Toast.makeText(requireContext(), "Please Select Address", Toast.LENGTH_SHORT).show();
+            }else {
+                Navigation.findNavController(binding.getRoot()).navigate(R.id.labSlotsFragment);
+            }
 
         });
 

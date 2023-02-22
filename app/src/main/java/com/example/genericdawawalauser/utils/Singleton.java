@@ -103,6 +103,15 @@ public class Singleton {
     public String patient_details;
     public String total_patient;
     public String patient_address;
+    public String patient_address_details;
+
+    public String getPatient_address_details() {
+        return patient_address_details;
+    }
+
+    public void setPatient_address_details(String patient_address_details) {
+        this.patient_address_details = patient_address_details;
+    }
 
     public String getTotal_patient() {
         return total_patient;

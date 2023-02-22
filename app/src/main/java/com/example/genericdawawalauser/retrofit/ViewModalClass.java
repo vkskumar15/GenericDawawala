@@ -384,7 +384,7 @@ public class ViewModalClass extends ViewModel {
 
         getlabAvailabilityTimeSlots = new MutableLiveData<>();
 
-        apiInterface.getlabAvailabilityTimeSlots(availableDate, doctor_Id).enqueue(new Callback<TimeSlotsModelRoot>() {
+        apiInterface.getlabAvailabilityTimeSlots(doctor_Id,availableDate).enqueue(new Callback<TimeSlotsModelRoot>() {
             @Override
             public void onResponse(@NonNull Call<TimeSlotsModelRoot> call, Response<TimeSlotsModelRoot> response) {
                 if (response.body() != null) {

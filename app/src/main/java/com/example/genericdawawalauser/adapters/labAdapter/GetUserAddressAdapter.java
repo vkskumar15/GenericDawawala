@@ -5,6 +5,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -52,6 +53,7 @@ public class GetUserAddressAdapter extends RecyclerView.Adapter<GetUserAddressAd
         holder.binding.txtPhoneNo.setText(list.get(position).getPhone());
 
 
+
         holder.binding.linearLayRemoveAddress.setOnClickListener(v -> {
 
             delete.selectPatient(list.get(position));
@@ -64,32 +66,34 @@ public class GetUserAddressAdapter extends RecyclerView.Adapter<GetUserAddressAd
 
         holder.binding.radioButton.setChecked(false);
 
-        holder.binding.radioButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+            holder.binding.radioButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
 
-                row_index = position;
+                    row_index = position;
 
-                delete.select(list.get(position));
+                    delete.select(list.get(position));
 
-                notifyDataSetChanged();
+                    notifyDataSetChanged();
+
+                }
+            });
+
+            if (row_index == 0) {
+
+                holder.binding.radioButton.setChecked(false);
+
+            } else if (row_index == position) {
+
+                holder.binding.radioButton.setChecked(true);
+
+            } else {
+
+                holder.binding.radioButton.setChecked(false);
 
             }
-        });
 
-        if (row_index == 0) {
 
-            holder.binding.radioButton.setChecked(false);
-
-        } else if (row_index == position) {
-
-            holder.binding.radioButton.setChecked(true);
-
-        } else {
-
-            holder.binding.radioButton.setChecked(false);
-
-        }
     }
 
     @Override

@@ -29,7 +29,6 @@ public class GetPatientFragment extends Fragment {
     String checkID, uncheckID;
     private List<String> catget = new ArrayList<>();
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -53,10 +52,16 @@ public class GetPatientFragment extends Fragment {
         binding.btnNext.setOnClickListener(view -> {
             getIds();
 
-            App.getSingleton().setPatient_details(checkID);
-            App.getSingleton().setTotal_patient(String.valueOf(catget.size()));
+            if (App.getSingleton().getPatient_details()==null)
+            {
 
-            Navigation.findNavController(view).navigate(R.id.getPatientAddressFragment);
+            }else {
+                App.getSingleton().setPatient_details(checkID);
+                App.getSingleton().setTotal_patient(String.valueOf(catget.size()));
+
+                Navigation.findNavController(view).navigate(R.id.getPatientAddressFragment);
+            }
+
         });
 
         binding.back.setOnClickListener(view -> {
@@ -66,75 +71,69 @@ public class GetPatientFragment extends Fragment {
     }
 
     private void setAdapter() {
-        new ViewModalClass().getFamilyMemberModalLiveData(requireActivity(), CommonUtils.getUserId()).observe(requireActivity(), new Observer<GetFamilyMemberModal>() {
-            @Override
-            public void onChanged(GetFamilyMemberModal getFamilyMemberModal) {
+        new ViewModalClass().getFamilyMemberModalLiveData(requireActivity(), CommonUtils.getUserId()).observe(requireActivity(), getFamilyMemberModal -> {
+            if (getFamilyMemberModal.getSuccess().equalsIgnoreCase("1")) {
+                Toast.makeText(requireActivity(), "" + getFamilyMemberModal.getMessage(), Toast.LENGTH_SHORT).show();
+                FamilyMemberAdapter addPatientsAdapter = new FamilyMemberAdapter(getFamilyMemberModal.getDetails(), requireActivity(), new FamilyMemberAdapter.SelectPatient() {
+                    @Override
+                    public void selectPatient(GetFamilyMemberModal.Detail detail) {
+                        new AlertDialog.Builder(getActivity())
+                                .setTitle("Remove Details")
+                                .setMessage("Are you sure you want to remove this item?")
+                                .setPositiveButton(android.R.string.yes, (dialog, which) ->
+                                        new ViewModalClass().deleteFamilyMemberModalLiveData(getActivity(), detail.getId()).observe(getActivity(), removeCartModal -> {
+                                            if (removeCartModal.getSuccess().equalsIgnoreCase("1")) {
+                                                Toast.makeText(getActivity(), "" + removeCartModal.getMessage(), Toast.LENGTH_SHORT).show();
 
-                if (getFamilyMemberModal.getSuccess().equalsIgnoreCase("1")) {
-                    Toast.makeText(requireActivity(), "" + getFamilyMemberModal.getMessage(), Toast.LENGTH_SHORT).show();
-                    FamilyMemberAdapter addPatientsAdapter = new FamilyMemberAdapter(getFamilyMemberModal.getDetails(), requireActivity(), new FamilyMemberAdapter.SelectPatient() {
-                        @Override
-                        public void selectPatient(GetFamilyMemberModal.Detail detail) {
-                            new AlertDialog.Builder(getActivity())
-                                    .setTitle("Remove Details")
-                                    .setMessage("Are you sure you want to remove this item?")
-                                    .setPositiveButton(android.R.string.yes, (dialog, which) ->
-                                            new ViewModalClass().deleteFamilyMemberModalLiveData(getActivity(), detail.getId()).observe(getActivity(), removeCartModal -> {
-                                                if (removeCartModal.getSuccess().equalsIgnoreCase("1")) {
-                                                    Toast.makeText(getActivity(), "" + removeCartModal.getMessage(), Toast.LENGTH_SHORT).show();
+                                                setAdapter();
 
-                                                    setAdapter();
+                                            } else {
+                                                Toast.makeText(getActivity(), "" + removeCartModal.getMessage(), Toast.LENGTH_SHORT).show();
 
-                                                } else {
-                                                    Toast.makeText(getActivity(), "" + removeCartModal.getMessage(), Toast.LENGTH_SHORT).show();
+                                            }
+                                        }))
 
-                                                }
-                                            }))
+                                .setNegativeButton(android.R.string.no, (dialog, which) -> dialog.dismiss())
+                                .setIcon(android.R.drawable.ic_dialog_alert)
+                                .show();
 
-                                    .setNegativeButton(android.R.string.no, (dialog, which) -> dialog.dismiss())
-                                    .setIcon(android.R.drawable.ic_dialog_alert)
-                                    .show();
+                    }
 
-                        }
+                    @Override
+                    public void editData(GetFamilyMemberModal.Detail detail) {
 
-                        @Override
-                        public void editData(GetFamilyMemberModal.Detail detail) {
+                        Fragment fragment = new Fragment();
+                        Bundle bundle = new Bundle();
+                        bundle.putString("id", detail.getId());
+                        bundle.putString("age", detail.getAge());
+                        bundle.putString("number", detail.getPhone());
+                        bundle.putString("name", detail.getName());
+                        bundle.putString("status", "1");
+                        fragment.setArguments(bundle);
 
-                            Fragment fragment = new Fragment();
-                            Bundle bundle = new Bundle();
-                            bundle.putString("id", detail.getId());
-                            bundle.putString("age", detail.getAge());
-                            bundle.putString("number", detail.getPhone());
-                            bundle.putString("name", detail.getName());
-                            bundle.putString("status", "1");
-                            fragment.setArguments(bundle);
+                        Navigation.findNavController(binding.getRoot()).navigate(R.id.addPatientFragment, bundle);
+                    }
 
-                            Navigation.findNavController(binding.getRoot()).navigate(R.id.addPatientFragment, bundle);
-                        }
+                    @Override
+                    public void onCheck(String id) {
 
-                        @Override
-                        public void onCheck(String id) {
+                        catget.add(id);
 
-                            catget.add(id);
+                        getIds();
 
-                            getIds();
+                    }
 
-                        }
+                    @Override
+                    public void onUnCheck(String id) {
+                        catget.remove(id);
 
-                        @Override
-                        public void onUnCheck(String id) {
-                            catget.remove(id);
+                        getIds();
+                    }
+                });
+                binding.recyclerviewCondition.setAdapter(addPatientsAdapter);
+            } else {
+                Toast.makeText(requireActivity(), "" + getFamilyMemberModal.getMessage(), Toast.LENGTH_SHORT).show();
 
-                            getIds();
-
-
-                        }
-                    });
-                    binding.recyclerviewCondition.setAdapter(addPatientsAdapter);
-                } else {
-                    Toast.makeText(requireActivity(), "" + getFamilyMemberModal.getMessage(), Toast.LENGTH_SHORT).show();
-
-                }
             }
         });
 
@@ -148,8 +147,6 @@ public class GetPatientFragment extends Fragment {
                 sb.append(s).append(",");
             }
             checkID = sb.deleteCharAt(sb.length() - 1).toString();
-
-
         }
     }
 }

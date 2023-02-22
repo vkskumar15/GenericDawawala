@@ -417,8 +417,6 @@ public class LabSlotsFragment extends Fragment implements GridViewSelectMorningS
 
     public void getSlots(String id, String date) {
 
-        Toast.makeText(requireActivity(), ""+id+" "+date, Toast.LENGTH_SHORT).show();
-
         if (!(id.equals("") && date.equals(""))) {
 
             Log.d(TAG, "getSlots: " + id);
@@ -427,7 +425,7 @@ public class LabSlotsFragment extends Fragment implements GridViewSelectMorningS
 
 //            Toast.makeText(getContext(), "id and date is :- "+id+" , "+date, Toast.LENGTH_SHORT).show();
 
-            new ViewModalClass().getlabAvailabilityTimeSlot(getActivity(),"2", date).observe(getActivity(), new Observer<TimeSlotsModelRoot>() {
+            new ViewModalClass().getlabAvailabilityTimeSlot(getActivity(),id, date).observe(getActivity(), new Observer<TimeSlotsModelRoot>() {
                 @Override
                 public void onChanged(TimeSlotsModelRoot timeSlotsModelRoot) {
 

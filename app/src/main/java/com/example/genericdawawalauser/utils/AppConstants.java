@@ -19,4 +19,5 @@ public class AppConstants {
     public static final String USER_NAME = "user name";
     public static final String USER_PHONE_NUMBER = " user phone Number";
     public static final String USER_RATING = "user rating";
+    public static final String TOTAL_TEST = "test";
 }

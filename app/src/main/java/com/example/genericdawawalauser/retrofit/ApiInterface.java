@@ -372,6 +372,19 @@ public interface ApiInterface {
             @Field("age") String age,
             @Field("relation") String relation);
 
+    @FormUrlEncoded
+    @POST("labTestAppointments")
+    Call<AddFamilyMember> labTestAppointments(
+            @Field("labId") String labId,
+            @Field("userId") String userId,
+            @Field("patient_id") String patient_id,
+            @Field("amount") String amount,
+            @Field("address") String address,
+            @Field("date") String date,
+            @Field("walkInCheck") String walkInCheck,
+            @Field("homeCollectionCheck") String homeCollectionCheck,
+            @Field("labTestId") String labTestId);
+
 
 
 }

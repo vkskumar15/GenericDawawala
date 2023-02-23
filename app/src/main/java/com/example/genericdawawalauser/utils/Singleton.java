@@ -109,6 +109,15 @@ public class Singleton {
     public String total_patient;
     public String patient_address;
     public String patient_address_details;
+    public String cart_total_id;
+
+    public String getCart_total_id() {
+        return cart_total_id;
+    }
+
+    public void setCart_total_id(String cart_total_id) {
+        this.cart_total_id = cart_total_id;
+    }
 
     public List<GetPatientAddress> addressArrayList = new ArrayList<GetPatientAddress>();;
 

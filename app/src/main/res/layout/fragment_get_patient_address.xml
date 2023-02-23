@@ -7,7 +7,6 @@
     android:layout_height="match_parent"
     tools:context=".fragments.labTest.GetPatientAddressFragment">
 
-
     <LinearLayout
         android:id="@+id/relative"
         android:layout_width="match_parent"

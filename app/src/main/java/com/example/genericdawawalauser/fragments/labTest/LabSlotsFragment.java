@@ -215,52 +215,12 @@ public class LabSlotsFragment extends Fragment implements GridViewSelectMorningS
         });
         back_arrow.setOnClickListener(v -> requireActivity().onBackPressed());
 
-        if (status == "1") {
+
             button.setOnClickListener(v -> {
 
-                Log.d("asd", appointmentSlot + " " + selected_date);
-                Log.d("asd", appointmentId);
-
-                new ViewModalClass().reScheduledAppointmentLiveData(requireActivity(), CommonUtils.getUserId(),
-                        appointmentSlot + " " + selected_date, appointmentId, "1").observe(requireActivity(), new Observer<ReScheduledAppointment>() {
-                    @Override
-                    public void onChanged(ReScheduledAppointment pendingOnlineAppointmentModal) {
-                        if (pendingOnlineAppointmentModal.getSuccess().equalsIgnoreCase("1")) {
-                            requireActivity().onBackPressed();
-                            Toast.makeText(requireActivity(), "" + pendingOnlineAppointmentModal.getMessage(), Toast.LENGTH_SHORT).show();
-                        } else {
-                            Toast.makeText(requireActivity(), "" + pendingOnlineAppointmentModal.getMessage(), Toast.LENGTH_SHORT).show();
-
-                        }
-                    }
-                });
-
+               Navigation.findNavController(v).navigate(R.id.labOrderFragment);
             });
-        } else if (drStatus == "1") {
-            button.setOnClickListener(v -> {
 
-                FinalAppointmentFragment.doctorModelDetails = doctorModelDetails;
-
-                App.getSingleton().setOnlinePrice(doctorModelDetails.getOnline_price());
-                Navigation.findNavController(v).navigate(R.id.finalAppointmentFragment2);
-            });
-        } else if (drStatus == "2") {
-            button.setOnClickListener(v -> {
-
-                FinalAppointmentFragment.doctorModelDetails = doctorModelDetails;
-                App.getSingleton().setOfflinePrice(doctorModelDetails.getOffline_price());
-                Navigation.findNavController(v).navigate(R.id.finalAppointmentFragment2);
-            });
-        } else {
-            button.setOnClickListener(v -> {
-
-                FinalAppointmentFragment.doctorModelDetails = doctorModelDetails;
-
-                statusNew = "0";
-                Navigation.findNavController(v).navigate(R.id.finalAppointmentFragment);
-
-            });
-        }
 
 
         relativeLayout.setOnClickListener(v -> {

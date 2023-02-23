@@ -112,5 +112,14 @@
         android:id="@+id/labSlotsFragment"
         android:name="com.example.genericdawawalauser.fragments.labTest.LabSlotsFragment"
         android:label="fragment_lab_slots"
-        tools:layout="@layout/fragment_lab_slots" />
+        tools:layout="@layout/fragment_lab_slots" >
+        <action
+            android:id="@+id/action_labSlotsFragment_to_labOrderFragment"
+            app:destination="@id/labOrderFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/labOrderFragment"
+        android:name="com.example.genericdawawalauser.fragments.labTest.LabOrderFragment"
+        android:label="fragment_lab_order"
+        tools:layout="@layout/fragment_lab_order" />
 </navigation>

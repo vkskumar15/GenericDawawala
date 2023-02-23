@@ -27,7 +27,6 @@ public class GetPatientAddressFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         binding = FragmentGetPatientAddressBinding.inflate(inflater, container, false);
 
 
@@ -46,7 +45,6 @@ public class GetPatientAddressFragment extends Fragment {
                 if (getPatientAddress.getSuccess().equalsIgnoreCase("1")) {
                     GetUserAddressAdapter adapter = new GetUserAddressAdapter(getPatientAddress.getDetails(), requireContext(), new GetUserAddressAdapter.SelectPatient() {
                         @Override
-
                         public void selectPatient(GetPatientAddress.Detail detail) {
                             new AlertDialog.Builder(getActivity())
                                     .setTitle("Remove Address")
@@ -101,12 +99,9 @@ public class GetPatientAddressFragment extends Fragment {
 
         binding.btnNext.setOnClickListener(v -> {
 
-            if (App.getSingleton().getPatient_address()==null){
 
-                Toast.makeText(requireContext(), "Please Select Address", Toast.LENGTH_SHORT).show();
-            }else {
                 Navigation.findNavController(binding.getRoot()).navigate(R.id.labSlotsFragment);
-            }
+
 
         });
 

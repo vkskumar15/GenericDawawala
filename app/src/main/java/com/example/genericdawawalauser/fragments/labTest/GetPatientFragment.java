@@ -50,17 +50,12 @@ public class GetPatientFragment extends Fragment {
         });
 
         binding.btnNext.setOnClickListener(view -> {
-            getIds();
 
-            if (App.getSingleton().getPatient_details()==null)
-            {
-
-            }else {
+                getIds();
                 App.getSingleton().setPatient_details(checkID);
                 App.getSingleton().setTotal_patient(String.valueOf(catget.size()));
 
                 Navigation.findNavController(view).navigate(R.id.getPatientAddressFragment);
-            }
 
         });
 

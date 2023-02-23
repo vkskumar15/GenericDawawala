@@ -16,7 +16,7 @@ import com.example.genericdawawalauser.utils.App;
 
 public class LabOrderFragment extends Fragment {
     FragmentLabOrderBinding binding;
-    String quantity, total_price, total_patient;
+    String quantity, total_price, total_patient, labId;
     int price;
     public static String appointmentSlot, appointmentDateToShow, appointmentDateToSend;
 
@@ -36,9 +36,9 @@ public class LabOrderFragment extends Fragment {
 
         total_patient = App.getSingleton().getTotal_patient();
         total_price = App.getSingleton().getTotal_amount();
-        binding.timeSlot.setText(appointmentSlot + " " + appointmentDateToShow);
+        binding.timeSlot.setText(appointmentSlot + ", " + appointmentDateToShow);
 
-        price = Integer.parseInt(total_price)*Integer.parseInt(total_patient);
+        price = Integer.parseInt(total_price) * Integer.parseInt(total_patient);
         binding.address.setText(App.getSingleton().getPatient_address_details());
     }
 }

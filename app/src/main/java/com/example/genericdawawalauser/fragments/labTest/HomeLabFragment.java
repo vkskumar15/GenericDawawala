@@ -9,7 +9,6 @@ import androidx.navigation.Navigation;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.example.genericdawawalauser.R;
 import com.example.genericdawawalauser.adapters.SliderAdapter;
@@ -55,16 +54,10 @@ public class HomeLabFragment extends Fragment {
                              Navigation.findNavController(binding.getRoot()).navigate(R.id.pathologyDetailsFragment);
                              PathologyDetailsFragment.detail = detail;
                          }
-                     }, new LabPopularTestAdapter.AddtoCart() {
-                         @Override
-                         public void addToCart(MedicineDataModal.Detail detail) {
+                     }, detail -> {
 
-                         }
-                     }, new LabPopularTestAdapter.DeletetoCart() {
-                         @Override
-                         public void deletetoCart(MedicineDataModal.Detail detail) {
+                     }, detail -> {
 
-                         }
                      });
                      binding.recylerViewPopularTest.setAdapter(adapter);
                  }
@@ -76,8 +69,6 @@ public class HomeLabFragment extends Fragment {
 
 
      }
-
-
 
      return binding.getRoot();
 

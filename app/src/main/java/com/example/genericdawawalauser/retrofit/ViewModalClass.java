@@ -21,6 +21,7 @@ import com.example.genericdawawalauser.modalClass.GetFamilyMemberModal;
 import com.example.genericdawawalauser.modalClass.GetLabCategoryModal;
 import com.example.genericdawawalauser.modalClass.GetPatientAddress;
 import com.example.genericdawawalauser.modalClass.HealthProblemModal;
+import com.example.genericdawawalauser.modalClass.LabBookModal;
 import com.example.genericdawawalauser.modalClass.LabDetailsModal;
 import com.example.genericdawawalauser.modalClass.LabTestCategories;
 import com.example.genericdawawalauser.modalClass.MedicineDataModal;
@@ -380,11 +381,11 @@ public class ViewModalClass extends ViewModel {
 
     public MutableLiveData<TimeSlotsModelRoot> getlabAvailabilityTimeSlots;
 
-    public LiveData<TimeSlotsModelRoot> getlabAvailabilityTimeSlot(Activity activity,String doctor_Id, String availableDate) {
+    public LiveData<TimeSlotsModelRoot> getlabAvailabilityTimeSlot(Activity activity, String doctor_Id, String availableDate) {
 
         getlabAvailabilityTimeSlots = new MutableLiveData<>();
 
-        apiInterface.getlabAvailabilityTimeSlots(doctor_Id,availableDate).enqueue(new Callback<TimeSlotsModelRoot>() {
+        apiInterface.getlabAvailabilityTimeSlots(doctor_Id, availableDate).enqueue(new Callback<TimeSlotsModelRoot>() {
             @Override
             public void onResponse(@NonNull Call<TimeSlotsModelRoot> call, Response<TimeSlotsModelRoot> response) {
                 if (response.body() != null) {
@@ -997,7 +998,7 @@ public class ViewModalClass extends ViewModel {
 
     private MutableLiveData<OnlineAppointmentCouponModal> getLabModalMutableLiveData;
 
-    public LiveData<OnlineAppointmentCouponModal> getLabCouponModalLiveData(Activity activity,  String labId) {
+    public LiveData<OnlineAppointmentCouponModal> getLabCouponModalLiveData(Activity activity, String labId) {
         CommonUtils.showProgressDialog(activity);
         getLabModalMutableLiveData = new MutableLiveData<>();
 
@@ -1088,7 +1089,7 @@ public class ViewModalClass extends ViewModel {
 
         CommonUtils.showProgressDialog(activity);
         editPatientDetailsMutableLiveData = new MutableLiveData<>();
-        apiInterface.editUserDetails(id,userId, name, phone, pincode, state, city, fullAddress, roadName).enqueue(new Callback<AddPatientDetails>() {
+        apiInterface.editUserDetails(id, userId, name, phone, pincode, state, city, fullAddress, roadName).enqueue(new Callback<AddPatientDetails>() {
             @Override
             public void onResponse(@NonNull Call<AddPatientDetails> call, Response<AddPatientDetails> response) {
                 CommonUtils.dismissDialog();
@@ -1111,7 +1112,7 @@ public class ViewModalClass extends ViewModel {
     }
 
 
-private MutableLiveData<GetPatientAddress> getPatientDetailsMutableLiveData;
+    private MutableLiveData<GetPatientAddress> getPatientDetailsMutableLiveData;
 
     public LiveData<GetPatientAddress> getPatientDetailsLiveData(Activity activity, String userId) {
 
@@ -1138,8 +1139,6 @@ private MutableLiveData<GetPatientAddress> getPatientDetailsMutableLiveData;
 
         return getPatientDetailsMutableLiveData;
     }
-
-
 
 
     private MutableLiveData<AddFamilyMember> addFamilyMemberMutableLiveData;
@@ -1233,7 +1232,7 @@ private MutableLiveData<GetPatientAddress> getPatientDetailsMutableLiveData;
 
         CommonUtils.showProgressDialog(activity);
         editFamilyMemberMutableLiveData = new MutableLiveData<>();
-        apiInterface.editFamilyMember(id,userId, name, phone, gender, age, relation).enqueue(new Callback<AddFamilyMember>() {
+        apiInterface.editFamilyMember(id, userId, name, phone, gender, age, relation).enqueue(new Callback<AddFamilyMember>() {
             @Override
             public void onResponse(@NonNull Call<AddFamilyMember> call, Response<AddFamilyMember> response) {
                 CommonUtils.dismissDialog();
@@ -1281,5 +1280,39 @@ private MutableLiveData<GetPatientAddress> getPatientDetailsMutableLiveData;
         });
 
         return deleteUserAddressModalMutableLiveData;
+    }
+
+
+    private MutableLiveData<LabBookModal> labBookModalMutableLiveData;
+
+    public LiveData<LabBookModal> labBookModalLiveData(Activity activity, String labId,
+                                                       String userId, String patient_id,
+                                                       String amount, String address,
+                                                       String date, String time_slot,
+                                                       String homeCollection, String labTestId) {
+
+        CommonUtils.showProgressDialog(activity);
+
+        labBookModalMutableLiveData = new MutableLiveData<>();
+        apiInterface.labTestAppointments(labId, userId, patient_id, amount, address, date, time_slot, homeCollection, labTestId).enqueue(new Callback<LabBookModal>() {
+            @Override
+            public void onResponse(@NonNull Call<LabBookModal> call, Response<LabBookModal> response) {
+                CommonUtils.dismissDialog();
+                if (response.body() != null) {
+                    labBookModalMutableLiveData.postValue(response.body());
+                } else {
+                    labBookModalMutableLiveData.postValue(null);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<LabBookModal> call, Throwable t) {
+                CommonUtils.dismissDialog();
+                labBookModalMutableLiveData.postValue(null);
+
+            }
+        });
+
+        return labBookModalMutableLiveData;
     }
 }

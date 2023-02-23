@@ -13,6 +13,7 @@ import com.example.genericdawawalauser.modalClass.GetFamilyMemberModal;
 import com.example.genericdawawalauser.modalClass.GetLabCategoryModal;
 import com.example.genericdawawalauser.modalClass.GetPatientAddress;
 import com.example.genericdawawalauser.modalClass.HealthProblemModal;
+import com.example.genericdawawalauser.modalClass.LabBookModal;
 import com.example.genericdawawalauser.modalClass.LabDetailsModal;
 import com.example.genericdawawalauser.modalClass.LabTestCategories;
 import com.example.genericdawawalauser.modalClass.MedicineDataModal;
@@ -374,15 +375,15 @@ public interface ApiInterface {
 
     @FormUrlEncoded
     @POST("labTestAppointments")
-    Call<AddFamilyMember> labTestAppointments(
+    Call<LabBookModal> labTestAppointments(
             @Field("labId") String labId,
             @Field("userId") String userId,
             @Field("patient_id") String patient_id,
             @Field("amount") String amount,
             @Field("address") String address,
             @Field("date") String date,
-            @Field("walkInCheck") String walkInCheck,
-            @Field("homeCollectionCheck") String homeCollectionCheck,
+            @Field("time_slot") String time_slot,
+            @Field("homeCollection") String homeCollectionCheck,
             @Field("labTestId") String labTestId);
 
 

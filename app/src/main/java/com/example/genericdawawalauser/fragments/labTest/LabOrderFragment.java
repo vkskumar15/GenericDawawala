@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +15,7 @@ import com.example.genericdawawalauser.R;
 import com.example.genericdawawalauser.adapters.labAdapter.AddToCartAdapter;
 import com.example.genericdawawalauser.adapters.labAdapter.LabTestOrderAdapter;
 import com.example.genericdawawalauser.databinding.FragmentLabOrderBinding;
+import com.example.genericdawawalauser.modalClass.LabBookModal;
 import com.example.genericdawawalauser.retrofit.ViewModalClass;
 import com.example.genericdawawalauser.utils.App;
 import com.example.genericdawawalauser.utils.AppConstants;
@@ -61,14 +63,30 @@ public class LabOrderFragment extends Fragment {
         binding.totalPaid.setText("₹"+price);
         binding.amount.setText("₹"+price);
 
+        binding.bookNow.setOnClickListener(view -> {
+
+            new  ViewModalClass().labBookModalLiveData(requireActivity(), labId, CommonUtils.getUserId(), total_patient_id, String.valueOf(price), address_id, appointmentDateToShow, appointmentSlot, "1",cart_total_item).observe(requireActivity(), new Observer<LabBookModal>() {
+                @Override
+                public void onChanged(LabBookModal labBookModal) {
+                    if (labBookModal.getSuccess().equalsIgnoreCase("1"))
+                    {
+                        Toast.makeText(requireActivity(), ""+labBookModal.getMessage(), Toast.LENGTH_SHORT).show();
+                    }else {
+                        Toast.makeText(requireActivity(), ""+labBookModal.getMessage(), Toast.LENGTH_SHORT).show();
+
+                    }
+                }
+            });
+        });
+
+
+
     }
 
     private void setAdapter() {
         new ViewModalClass().addCartLabModalLiveData(getActivity(), CommonUtils.getUserId(), labId).observe(getActivity(),
                 addCartLabModal -> {
             if (addCartLabModal.getSuccess().equalsIgnoreCase("1")) {
-
-
                 LabTestOrderAdapter adapter = new LabTestOrderAdapter(addCartLabModal.getDetails(), getActivity());
                 binding.recyclerView.setAdapter(adapter);
 

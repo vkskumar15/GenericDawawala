@@ -1,13 +1,9 @@
 package com.example.genericdawawalauser.activities;
 
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.navigation.Navigation;
 
-import android.app.Activity;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,9 +13,6 @@ import android.widget.Toast;
 import com.example.genericdawawalauser.R;
 import com.example.genericdawawalauser.adapters.labAdapter.AddToCartAdapter;
 import com.example.genericdawawalauser.databinding.ActivityAddToCartBinding;
-import com.example.genericdawawalauser.databinding.FragmentLabDetailsBinding;
-import com.example.genericdawawalauser.modalClass.AddCartLabModal;
-import com.example.genericdawawalauser.modalClass.RemoveCartModal;
 import com.example.genericdawawalauser.retrofit.ViewModalClass;
 import com.example.genericdawawalauser.utils.App;
 import com.example.genericdawawalauser.utils.CommonUtils;
@@ -53,11 +46,7 @@ public class AddToCartActivity extends Fragment {
     }
 
     private void setDetails() {
-
-
         binding.couponName.setText("Coupon Code: " + App.getSingleton().getCouponCode());
-
-
         binding.totalAmount.setText("₹ " + total_amount);
         binding.totalPaid.setText("₹ " + total_amount);
         binding.amount.setText("₹ " + total_amount);
@@ -68,8 +57,7 @@ public class AddToCartActivity extends Fragment {
         });
 
         binding.btnApply.setOnClickListener(v -> {
-            new ViewModalClass().labCouponAppointmentLiveData(requireActivity(), App.getSingleton().getCouponCode(), total_amount,
-                    CommonUtils.getUserId()).observe(requireActivity(), applyCouponAppointment -> {
+            new ViewModalClass().labCouponAppointmentLiveData(requireActivity(), App.getSingleton().getCouponCode(), total_amount, CommonUtils.getUserId()).observe(requireActivity(), applyCouponAppointment -> {
                 if (applyCouponAppointment.getSuccess().equalsIgnoreCase("1")) {
                     Toast.makeText(requireActivity(), "Coupon code Applied", Toast.LENGTH_SHORT).show();
                     binding.totalPaid.setText("₹ " + applyCouponAppointment.getDetails().getPayAmount());
@@ -89,26 +77,19 @@ public class AddToCartActivity extends Fragment {
         new ViewModalClass().addCartLabModalLiveData(getActivity(), CommonUtils.getUserId(), id).observe(getActivity(), addCartLabModal -> {
             if (addCartLabModal.getSuccess().equalsIgnoreCase("1")) {
                 binding.test.setText("Pathology test: " + addCartLabModal.getDetails().size());
-                AddToCartAdapter adapter = new AddToCartAdapter(addCartLabModal.getDetails(), getActivity(), detail -> new AlertDialog.Builder(getActivity())
-                        .setTitle("Remove Cart")
-                        .setMessage("Are you sure you want to remove this item?")
-                        .setPositiveButton(android.R.string.yes, (dialog, which) ->
-                                new ViewModalClass().removeCartModalLiveData(getActivity(),
-                                        CommonUtils.getUserId(), id).observe(getActivity(), removeCartModal -> {
-                                    if (removeCartModal.getSuccess().equalsIgnoreCase("1")) {
-                                        Toast.makeText(getActivity(), "" + removeCartModal.getMessage(), Toast.LENGTH_SHORT).show();
+                AddToCartAdapter adapter = new AddToCartAdapter(addCartLabModal.getDetails(), getActivity(), detail -> new AlertDialog.Builder(getActivity()).setTitle("Remove Cart").setMessage("Are you sure you want to remove this item?").setPositiveButton(android.R.string.yes, (dialog, which) -> new ViewModalClass().removeCartModalLiveData(getActivity(), CommonUtils.getUserId(), id).observe(getActivity(), removeCartModal -> {
+                            if (removeCartModal.getSuccess().equalsIgnoreCase("1")) {
+                                Toast.makeText(getActivity(), "" + removeCartModal.getMessage(), Toast.LENGTH_SHORT).show();
 
-                                        setAdapter();
+                                setAdapter();
 
-                                    } else {
-                                        Toast.makeText(getActivity(), "" + removeCartModal.getMessage(), Toast.LENGTH_SHORT).show();
+                            } else {
+                                Toast.makeText(getActivity(), "" + removeCartModal.getMessage(), Toast.LENGTH_SHORT).show();
 
-                                    }
-                                }))
+                            }
+                        }))
 
-                        .setNegativeButton(android.R.string.no, (dialog, which) -> dialog.dismiss())
-                        .setIcon(android.R.drawable.ic_dialog_alert)
-                        .show());
+                        .setNegativeButton(android.R.string.no, (dialog, which) -> dialog.dismiss()).setIcon(android.R.drawable.ic_dialog_alert).show());
                 binding.recyclerView.setAdapter(adapter);
             } else {
                 Toast.makeText(getActivity(), "" + addCartLabModal.getMessage(), Toast.LENGTH_SHORT).show();
@@ -124,7 +105,7 @@ public class AddToCartActivity extends Fragment {
             if (afterDiscount > 0) {
                 totalAmount = afterDiscount;
 
-                }else {
+            } else {
 
                 totalAmount = Integer.parseInt(total_amount);
 

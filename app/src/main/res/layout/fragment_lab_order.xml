@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".fragments.labTest.LabOrderFragment">
 
     <LinearLayout
+        android:id="@+id/header_title"
         android:layout_width="match_parent"
         android:layout_height="@dimen/space50"
-        android:id="@+id/header_title"
         android:background="@color/appcolor"
         android:orientation="horizontal">
 
@@ -34,40 +34,40 @@
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:fillViewport="true"
+        android:layout_height="match_parent"
         android:layout_below="@id/header_title"
-        android:layout_height="match_parent">
+        android:fillViewport="true">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:orientation="vertical"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/doctrName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/sample_collection_details"
                 android:layout_margin="@dimen/dp_10"
+                android:text="@string/sample_collection_details"
                 android:textColor="@color/appcolor"
                 android:textSize="@dimen/sp_16" />
 
             <androidx.cardview.widget.CardView
-                app:cardElevation="@dimen/dp_5"
-                app:cardCornerRadius="@dimen/dp_5"
                 android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_240"
                 android:layout_margin="@dimen/dp_10"
-                android:layout_height="@dimen/dp_240">
+                app:cardCornerRadius="@dimen/dp_5"
+                app:cardElevation="@dimen/dp_5">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
                     <LinearLayout
-                        android:layout_width="match_parent"
-                        android:orientation="horizontal"
                         android:id="@+id/txt"
-                        android:layout_height="@dimen/dp_70">
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dp_70"
+                        android:orientation="horizontal">
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -81,24 +81,24 @@
                         <TextView
                             android:id="@+id/patient_details"
                             android:layout_width="wrap_content"
-                            android:text="Patient: "
+                            android:layout_height="wrap_content"
                             android:layout_margin="@dimen/dp_10"
-                            android:layout_height="wrap_content" />
+                            android:text="Patient: " />
                     </LinearLayout>
 
                     <View
-                        android:layout_width="match_parent"
-                        android:layout_below="@id/txt"
-                        android:background="@color/grey"
                         android:id="@+id/view"
-                        android:layout_height="@dimen/space1" />
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/space1"
+                        android:layout_below="@id/txt"
+                        android:background="@color/grey" />
 
                     <LinearLayout
-                        android:layout_width="match_parent"
-                        android:orientation="horizontal"
                         android:id="@+id/txt1"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dp_70"
                         android:layout_below="@id/view"
-                        android:layout_height="@dimen/dp_70">
+                        android:orientation="horizontal">
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -107,29 +107,29 @@
                             android:layout_marginTop="@dimen/dp_10"
                             android:layout_marginEnd="@dimen/dp_10"
                             android:layout_marginBottom="@dimen/dp_10"
-                            android:text="@string/patient" />
+                            android:text="Address: " />
 
                         <TextView
                             android:id="@+id/address"
                             android:layout_width="wrap_content"
-                            android:text="Patient: "
+                            android:layout_height="wrap_content"
                             android:layout_margin="@dimen/dp_10"
-                            android:layout_height="wrap_content" />
+                            android:text="Patient: " />
                     </LinearLayout>
 
                     <View
-                        android:layout_width="match_parent"
-                        android:layout_below="@id/txt1"
-                        android:background="@color/grey"
                         android:id="@+id/view2"
-                        android:layout_height="@dimen/space1" />
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/space1"
+                        android:layout_below="@id/txt1"
+                        android:background="@color/grey" />
 
                     <LinearLayout
-                        android:layout_width="match_parent"
-                        android:orientation="horizontal"
                         android:id="@+id/txt2"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dp_70"
                         android:layout_below="@id/view2"
-                        android:layout_height="@dimen/dp_70">
+                        android:orientation="horizontal">
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -138,35 +138,35 @@
                             android:layout_marginTop="@dimen/dp_10"
                             android:layout_marginEnd="@dimen/dp_10"
                             android:layout_marginBottom="@dimen/dp_10"
-                            android:text="Address: " />
+                            android:text="Time Slots: " />
 
                         <TextView
                             android:id="@+id/time_slot"
                             android:layout_width="wrap_content"
-                            android:text="Patient: "
+                            android:layout_height="wrap_content"
                             android:layout_margin="@dimen/dp_10"
-                            android:layout_height="wrap_content" />
+                            android:text="Patient: " />
                     </LinearLayout>
 
                     <View
                         android:layout_width="match_parent"
+                        android:layout_height="@dimen/space1"
                         android:layout_below="@id/txt1"
-                        android:background="@color/grey"
-                        android:layout_height="@dimen/space1" />
+                        android:background="@color/grey" />
 
                     <RelativeLayout
                         android:layout_width="match_parent"
-                        android:background="#ABE3FD"
+                        android:layout_height="@dimen/space30"
                         android:layout_alignParentBottom="true"
-                        android:layout_height="@dimen/space30">
+                        android:background="#ABE3FD">
 
                         <TextView
                             android:layout_width="wrap_content"
-                            android:text="No Special preparation required"
+                            android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
                             android:layout_marginStart="@dimen/dp_10"
+                            android:text="No Special preparation required"
                             android:textSize="@dimen/space12"
-                            android:layout_height="wrap_content"
                             tools:ignore="SpUsage" />
 
                     </RelativeLayout>
@@ -179,17 +179,17 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Pathology test (2)"
                 android:layout_margin="@dimen/dp_10"
+                android:text="Pathology test (2)"
                 android:textColor="@color/appcolor"
                 android:textSize="@dimen/sp_16" />
 
             <androidx.cardview.widget.CardView
-                app:cardElevation="@dimen/dp_5"
-                app:cardCornerRadius="@dimen/dp_5"
                 android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_240"
                 android:layout_margin="@dimen/dp_10"
-                android:layout_height="@dimen/dp_240">
+                app:cardCornerRadius="@dimen/dp_5"
+                app:cardElevation="@dimen/dp_5">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -329,9 +329,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/dp_5"
                 android:layout_marginTop="@dimen/dp_10"
                 android:layout_marginBottom="@dimen/dp_50"
-                android:layout_marginHorizontal="@dimen/dp_5"
                 android:text="@string/terms" />
 
         </LinearLayout>
@@ -341,9 +341,8 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
         android:layout_alignParentBottom="true"
-        >
+        android:background="@color/white">
 
         <TextView
             android:id="@+id/paid"

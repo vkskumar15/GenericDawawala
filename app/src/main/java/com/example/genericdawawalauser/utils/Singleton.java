@@ -1,5 +1,10 @@
 package com.example.genericdawawalauser.utils;
 
+import com.example.genericdawawalauser.modalClass.GetPatientAddress;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class Singleton {
     public String DocAddress;
     public String age;
@@ -104,6 +109,16 @@ public class Singleton {
     public String total_patient;
     public String patient_address;
     public String patient_address_details;
+
+    public List<GetPatientAddress> addressArrayList = new ArrayList<GetPatientAddress>();;
+
+    public List<GetPatientAddress> getAddressArrayList() {
+        return addressArrayList;
+    }
+
+    public void setAddressArrayList(List<GetPatientAddress> addressArrayList) {
+        this.addressArrayList = addressArrayList;
+    }
 
     public String getPatient_address_details() {
         return patient_address_details;

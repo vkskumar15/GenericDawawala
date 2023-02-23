@@ -29,10 +29,8 @@ public class GetPatientAddressFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentGetPatientAddressBinding.inflate(inflater, container, false);
 
-
         onClick();
         setAdapter();
-
 
         return binding.getRoot();
 
@@ -69,9 +67,8 @@ public class GetPatientAddressFragment extends Fragment {
 
                         @Override
                         public void editData(GetPatientAddress.Detail detail) {
-
-                            AddAddressFragment.detail=detail;
-                            PATIENT_ADDRESS="1";
+                            AddAddressFragment.detail = detail;
+                            PATIENT_ADDRESS = "1";
                             Navigation.findNavController(binding.getRoot()).navigate(R.id.addAddressFragment);
                         }
 
@@ -79,7 +76,7 @@ public class GetPatientAddressFragment extends Fragment {
                         public void select(GetPatientAddress.Detail detail) {
 
                             App.getSingleton().setPatient_address(detail.getId());
-                            App.getSingleton().setPatient_address_details(detail.getName()+" "+detail.getFullAddress()+" "+detail.getPhone());
+                            App.getSingleton().setPatient_address_details(detail.getName()+ ", " + detail.getFullAddress() + ", " + detail.getPhone());
                         }
                     });
 
@@ -100,7 +97,7 @@ public class GetPatientAddressFragment extends Fragment {
         binding.btnNext.setOnClickListener(v -> {
 
 
-                Navigation.findNavController(binding.getRoot()).navigate(R.id.labSlotsFragment);
+            Navigation.findNavController(binding.getRoot()).navigate(R.id.labSlotsFragment);
 
 
         });

@@ -28,15 +28,12 @@ import com.example.genericdawawalauser.R;
 import com.example.genericdawawalauser.adapters.online_consultation.GridViewSelectAfternoonSlotAdapter;
 import com.example.genericdawawalauser.adapters.online_consultation.GridViewSelectEveningSlotAdapter;
 import com.example.genericdawawalauser.adapters.online_consultation.GridViewSelectMorningSlotAdapter;
-import com.example.genericdawawalauser.fragments.onlineConsult.DoctorTimeSlotFragment;
 import com.example.genericdawawalauser.fragments.onlineConsult.FinalAppointmentFragment;
 import com.example.genericdawawalauser.fragments.profiles.MyOnlineConsultFragment;
 import com.example.genericdawawalauser.modalClass.DoctorModelDetails;
-import com.example.genericdawawalauser.modalClass.ReScheduledAppointment;
 import com.example.genericdawawalauser.modalClass.TimeSlotsModels.TimeSlotsModelRoot;
 import com.example.genericdawawalauser.retrofit.ViewModalClass;
 import com.example.genericdawawalauser.utils.App;
-import com.example.genericdawawalauser.utils.CommonUtils;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -110,6 +107,7 @@ public class LabSlotsFragment extends Fragment implements GridViewSelectMorningS
 
         onClicks();
 //        if (status == "1") {
+//        if (status == "1") {
 //            doctorId = docId;
 //        } else {
 //            doctorId = doctorModelDetails.getId();
@@ -118,8 +116,8 @@ public class LabSlotsFragment extends Fragment implements GridViewSelectMorningS
 
         selectDate.setText(getDateTime());
 
-        FinalAppointmentFragment.appointmentDateToSend = getDateTimeToSend();
-        FinalAppointmentFragment.appointmentDateToShow = getDateTime();
+        LabOrderFragment.appointmentDateToSend = getDateTimeToSend();
+        LabOrderFragment.appointmentDateToShow = getDateTime();
 
 
         if (doctorModelDetails != null) {
@@ -313,7 +311,7 @@ public class LabSlotsFragment extends Fragment implements GridViewSelectMorningS
 
 
         } else {
-            FinalAppointmentFragment.appointmentSlot = slot;
+            LabOrderFragment.appointmentSlot = slot;
             button.setVisibility(View.VISIBLE);
         }
 
@@ -356,7 +354,7 @@ public class LabSlotsFragment extends Fragment implements GridViewSelectMorningS
 
             dateToSend = mdy;
 
-            FinalAppointmentFragment.appointmentDateToSend = dateToSend;
+            LabOrderFragment.appointmentDateToSend = dateToSend;
             SimpleDateFormat dmyFormat2 = new SimpleDateFormat("dd-MMM-yyyy");
             String mdy2 = dmyFormat2.format(myDate);
             selected_date = mdy2;

@@ -53,7 +53,6 @@ public class GetUserAddressAdapter extends RecyclerView.Adapter<GetUserAddressAd
         holder.binding.txtPhoneNo.setText(list.get(position).getPhone());
 
 
-
         holder.binding.linearLayRemoveAddress.setOnClickListener(v -> {
 
             delete.selectPatient(list.get(position));

@@ -50,12 +50,15 @@ public class GetPatientFragment extends Fragment {
         });
 
         binding.btnNext.setOnClickListener(view -> {
-
+            if (checkID!=null){
                 getIds();
                 App.getSingleton().setPatient_details(checkID);
                 App.getSingleton().setTotal_patient(String.valueOf(catget.size()));
 
                 Navigation.findNavController(view).navigate(R.id.getPatientAddressFragment);
+            }else {
+                Toast.makeText(requireActivity(), "Please Select Patient", Toast.LENGTH_SHORT).show();
+            }
 
         });
 
@@ -72,6 +75,7 @@ public class GetPatientFragment extends Fragment {
                 FamilyMemberAdapter addPatientsAdapter = new FamilyMemberAdapter(getFamilyMemberModal.getDetails(), requireActivity(), new FamilyMemberAdapter.SelectPatient() {
                     @Override
                     public void selectPatient(GetFamilyMemberModal.Detail detail) {
+
                         new AlertDialog.Builder(getActivity())
                                 .setTitle("Remove Details")
                                 .setMessage("Are you sure you want to remove this item?")

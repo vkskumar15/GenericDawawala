@@ -146,4 +146,5 @@
     <string name="sample_collection_details">Sample Collection details</string>
     <string name="patient">Patient:</string>
     <string name="pay_amount">Pay Amount</string>
+    <string name="find_health_concern_tests_packages">Find Health Concern Tests/Packages</string>
 </resources>

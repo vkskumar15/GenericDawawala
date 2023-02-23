@@ -13,7 +13,7 @@ import android.widget.Toast;
 
 import com.example.genericdawawalauser.R;
 import com.example.genericdawawalauser.adapters.SliderAdapter;
-import com.example.genericdawawalauser.adapters.labAdapter.LabCategoryAdapter;
+import com.example.genericdawawalauser.adapters.labAdapter. LabCategoryAdapter;
 import com.example.genericdawawalauser.adapters.labAdapter.LabPackageAdapter;
 import com.example.genericdawawalauser.adapters.labAdapter.LabPopularCategoryAdapter;
 import com.example.genericdawawalauser.adapters.labAdapter.LabPopularTestAdapter;
@@ -86,7 +86,7 @@ public class HomeLabFragment extends Fragment {
     private void onClicks() {
         binding.radiology.setOnClickListener(v -> {
 
-            Navigation.findNavController(binding.getRoot()).navigate(R.id.radioLogyLabTestFragment);
+            Navigation.findNavController(binding.getRoot()).navigate(R.id.radiologyTestFragment);
 
         });
 

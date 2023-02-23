@@ -1,17 +1,25 @@
 package com.example.genericdawawalauser.fragments.labTest;
 
+import android.app.Dialog;
+import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.genericdawawalauser.R;
+import com.example.genericdawawalauser.activities.HomeActivity;
 import com.example.genericdawawalauser.adapters.labAdapter.AddToCartAdapter;
 import com.example.genericdawawalauser.adapters.labAdapter.LabTestOrderAdapter;
 import com.example.genericdawawalauser.databinding.FragmentLabOrderBinding;
@@ -71,6 +79,8 @@ public class LabOrderFragment extends Fragment {
                     if (labBookModal.getSuccess().equalsIgnoreCase("1"))
                     {
                         Toast.makeText(requireActivity(), ""+labBookModal.getMessage(), Toast.LENGTH_SHORT).show();
+                        confirmationPopUp();
+
                     }else {
                         Toast.makeText(requireActivity(), ""+labBookModal.getMessage(), Toast.LENGTH_SHORT).show();
 
@@ -80,6 +90,32 @@ public class LabOrderFragment extends Fragment {
         });
 
 
+
+
+    }
+
+
+    private void confirmationPopUp() {
+
+        Dialog order_confirmation_box = new Dialog(requireActivity());
+        order_confirmation_box.setContentView(R.layout.order_confirmation_dialogue_box);
+        order_confirmation_box.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        Window window = order_confirmation_box.getWindow();
+        order_confirmation_box.setCanceledOnTouchOutside(false);
+        order_confirmation_box.setCancelable(false);
+        window.setGravity(Gravity.CENTER);
+        order_confirmation_box.show();
+
+        TextView text_sure = order_confirmation_box.findViewById(R.id.text_sure);
+        text_sure.setText("Your Lab Test Booked successfully");
+
+        order_confirmation_box.findViewById(R.id.ok_btn).setOnClickListener(view -> {
+
+            Intent intent = new Intent(requireActivity(), HomeActivity.class);
+            startActivity(intent);
+
+
+        });
 
     }
 

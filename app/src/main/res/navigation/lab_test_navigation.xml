@@ -127,7 +127,7 @@
         tools:layout="@layout/fragment_lab_order" />
     <fragment
         android:id="@+id/radiologyTestFragment"
-        android:name="com.example.genericdawawalauser.fragments.RadiologyTestFragment"
+        android:name="com.example.genericdawawalauser.fragments.labTest.RadiologyTestFragment"
         android:label="fragment_radiology_test"
         tools:layout="@layout/fragment_radiology_test" />
 </navigation>

@@ -18,6 +18,7 @@ import com.example.genericdawawalauser.modalClass.LabDetailsModal;
 import com.example.genericdawawalauser.modalClass.LabTestCategories;
 import com.example.genericdawawalauser.modalClass.MedicineDataModal;
 import com.example.genericdawawalauser.modalClass.PendingOnlineAppointmentModal;
+import com.example.genericdawawalauser.modalClass.RadiologyCategoryModal;
 import com.example.genericdawawalauser.modalClass.ReScheduledAppointment;
 import com.example.genericdawawalauser.modalClass.RegisterModelRoot;
 import com.example.genericdawawalauser.modalClass.RemoveCartModal;
@@ -91,6 +92,9 @@ public interface ApiInterface {
 
     @GET("getDoctorsSpecialistToUser")
     Call<DoctorModelRoot> getDoctorSpecialities();
+
+    @GET("radioCategory")
+    Call<RadiologyCategoryModal> radioCategory();
 
     @GET("LabTestCategories")
     Call<LabTestCategories> labTestCategories();

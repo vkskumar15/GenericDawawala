@@ -129,5 +129,22 @@
         android:id="@+id/radiologyTestFragment"
         android:name="com.example.genericdawawalauser.fragments.labTest.RadiologyTestFragment"
         android:label="fragment_radiology_test"
-        tools:layout="@layout/fragment_radiology_test" />
+        tools:layout="@layout/fragment_radiology_test" >
+        <action
+            android:id="@+id/action_radiologyTestFragment_to_radiologyDetailsFragment"
+            app:destination="@id/radiologyDetailsFragment" />
+        <action
+            android:id="@+id/action_radiologyTestFragment_to_radiologyPackageFragment"
+            app:destination="@id/radiologyPackageFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/radiologyDetailsFragment"
+        android:name="com.example.genericdawawalauser.fragments.labTest.RadiologyDetailsFragment"
+        android:label="fragment_radiology_details"
+        tools:layout="@layout/fragment_radiology_details" />
+    <fragment
+        android:id="@+id/radiologyPackageFragment"
+        android:name="com.example.genericdawawalauser.fragments.labTest.RadiologyPackageFragment"
+        android:label="fragment_radiology_package"
+        tools:layout="@layout/fragment_radiology_package" />
 </navigation>

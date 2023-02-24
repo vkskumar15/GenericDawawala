@@ -37,7 +37,6 @@ public class HomeLabFragment extends Fragment {
 
         sliderImage();
         setCategoryAdapter();
-        setPackageAdapter();
         setPopularCategoryAdapter();
         setTestByConditionAdapter();
         onClicks();
@@ -93,11 +92,11 @@ public class HomeLabFragment extends Fragment {
         binding.recyclerviewHabits.setAdapter(adapter);
     }
 
-    private void setPackageAdapter() {
-
-        LabPackageAdapter adapter = new LabPackageAdapter();
-        binding.packageNameRecyclerview.setAdapter(adapter);
-    }
+//    private void setPackageAdapter() {
+//
+//        LabPackageAdapter adapter = new LabPackageAdapter();
+//        binding.packageNameRecyclerview.setAdapter(adapter);
+//    }
 
     private void setCategoryAdapter() {
 

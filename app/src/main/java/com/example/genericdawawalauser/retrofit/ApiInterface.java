@@ -19,6 +19,7 @@ import com.example.genericdawawalauser.modalClass.LabTestCategories;
 import com.example.genericdawawalauser.modalClass.MedicineDataModal;
 import com.example.genericdawawalauser.modalClass.PendingOnlineAppointmentModal;
 import com.example.genericdawawalauser.modalClass.RadiologyCategoryModal;
+import com.example.genericdawawalauser.modalClass.RadiologyPackageTestModal;
 import com.example.genericdawawalauser.modalClass.ReScheduledAppointment;
 import com.example.genericdawawalauser.modalClass.RegisterModelRoot;
 import com.example.genericdawawalauser.modalClass.RemoveCartModal;
@@ -391,5 +392,6 @@ public interface ApiInterface {
             @Field("labTestId") String labTestId);
 
 
-
+    @GET("getAllTestPackages")
+    Call<RadiologyPackageTestModal> getAllTestPackages();
 }

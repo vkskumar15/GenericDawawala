@@ -35,6 +35,7 @@
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_above="@id/relation"
         android:layout_below="@id/header_title"
         android:fillViewport="true">
 
@@ -48,7 +49,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/dp_10"
-                android:text=" MB Pack 1- \n Generic Heath \n wealth package"
+                android:text="@string/mb_pack_1_n_generic_heath_n_wealth_package"
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 android:textStyle="bold" />
@@ -57,6 +58,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp_5"
+                android:visibility="gone"
                 android:orientation="horizontal">
 
                 <TextView
@@ -90,8 +92,9 @@
             <LinearLayout
                 android:layout_width="@dimen/dp_70"
                 android:layout_height="@dimen/space30"
-                android:layout_marginTop="@dimen/dp_30"
                 android:layout_marginStart="@dimen/dp_10"
+                android:layout_marginTop="@dimen/dp_30"
+                android:visibility="gone"
                 android:background="@drawable/go_to_cart"
                 android:gravity="center">
 
@@ -113,8 +116,8 @@
                 android:id="@+id/relative"
                 android:layout_width="@dimen/space160"
                 android:layout_height="@dimen/dp_30"
-                android:layout_marginStart="@dimen/dp_10"
                 android:layout_gravity="center"
+                android:layout_marginStart="@dimen/dp_10"
                 android:layout_marginTop="@dimen/dp_10"
                 android:layout_marginEnd="@dimen/dp_10"
                 android:layout_marginBottom="@dimen/dp_10"
@@ -136,7 +139,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginStart="@dimen/dp_5"
                     android:layout_toEndOf="@id/lab_test1"
-                    android:text="@string/home_sample_collection"
+                    android:text="@string/lab_center_visit"
                     android:textColor="@color/background_fragment_conversation"
                     android:textSize="@dimen/dp_10"
                     tools:ignore="SpUsage" />
@@ -226,18 +229,45 @@
 
             </LinearLayout>
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dp_10"
+                android:text="Tests Name"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@id/total_test"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dp_5"
+                android:text=""
+                android:textColor="@color/black"
+                android:textSize="14sp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/category_name_recyclerview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space10"
+                android:orientation="vertical"
+                app:spanCount="1"
+                android:layout_gravity="center"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                tools:listitem="@layout/radiology_test_layout" />
+
+
 
         </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_60"
+        android:id="@+id/relation"
         android:layout_alignParentBottom="true"
         android:layout_marginTop="@dimen/space10"
         android:background="@color/white">
@@ -254,6 +284,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/space10"
                 android:text="To be paid"
+                android:visibility="gone"
                 android:textColor="@color/darkgrey"
                 android:textSize="12sp"
                 android:textStyle="bold" />
@@ -266,6 +297,7 @@
                 android:layout_below="@id/paid"
                 android:layout_marginStart="@dimen/space10"
                 android:layout_marginEnd="@dimen/space10"
+                android:visibility="gone"
                 android:text="₹124"
                 android:textColor="@color/appcolor"
                 android:textSize="@dimen/dp_18"
@@ -275,12 +307,9 @@
                 android:id="@+id/book_now"
                 android:layout_width="@dimen/dp_180"
                 android:layout_height="40dp"
-                android:layout_alignParentEnd="true"
-                android:layout_marginEnd="@dimen/space10"
-                android:layout_marginBottom="2dp"
+                android:layout_centerInParent="true"
                 android:background="@drawable/btn_bg"
-                android:padding="10dp"
-                android:text="Add to cart"
+                android:text="Select Lab"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:textSize="16sp"
@@ -288,6 +317,5 @@
         </RelativeLayout>
 
     </RelativeLayout>
-
 
 </RelativeLayout>

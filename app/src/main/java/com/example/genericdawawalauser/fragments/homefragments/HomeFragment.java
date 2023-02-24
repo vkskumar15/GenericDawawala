@@ -2,37 +2,23 @@ package com.example.genericdawawalauser.fragments.homefragments;
 
 import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager2.widget.CompositePageTransformer;
-import androidx.viewpager2.widget.MarginPageTransformer;
-import androidx.viewpager2.widget.ViewPager2;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
-
 import com.example.genericdawawalauser.R;
 import com.example.genericdawawalauser.activities.AddToCartActivity;
 import com.example.genericdawawalauser.activities.DrAppointmentActivity;
 import com.example.genericdawawalauser.activities.LabTestActivity;
 import com.example.genericdawawalauser.activities.OnlineConsultationActivity;
 import com.example.genericdawawalauser.activities.WalletActivity;
-import com.example.genericdawawalauser.adapters.ImageSliderAdapter;
 import com.example.genericdawawalauser.adapters.MedicinesAdapter;
-import com.example.genericdawawalauser.adapters.PharmacyListAdapter;
 import com.example.genericdawawalauser.adapters.SliderAdapter;
 import com.example.genericdawawalauser.databinding.FragmentHomeBinding;
 import com.example.genericdawawalauser.modalClass.SliderData;
-import com.example.genericdawawalauser.pojo.SliderPojo;
 import com.example.genericdawawalauser.utils.App;
 import com.example.genericdawawalauser.utils.AppConstants;
-import com.example.genericdawawalauser.utils.CommonUtils;
 
 import java.util.ArrayList;
 
@@ -45,16 +31,13 @@ public class HomeFragment extends Fragment {
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         fragmentHomeBinding = FragmentHomeBinding.inflate(inflater, container, false);
 
         sliderImage();
-
         onCLicks();
         setRecyclerViews();
-
 
         return fragmentHomeBinding.getRoot();
     }

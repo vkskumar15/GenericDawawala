@@ -27,6 +27,7 @@ import com.example.genericdawawalauser.modalClass.LabTestCategories;
 import com.example.genericdawawalauser.modalClass.MedicineDataModal;
 import com.example.genericdawawalauser.modalClass.PendingOnlineAppointmentModal;
 import com.example.genericdawawalauser.modalClass.RadiologyCategoryModal;
+import com.example.genericdawawalauser.modalClass.RadiologyPackageTestModal;
 import com.example.genericdawawalauser.modalClass.ReScheduledAppointment;
 import com.example.genericdawawalauser.modalClass.RegisterModelRoot;
 import com.example.genericdawawalauser.modalClass.RemoveCartModal;
@@ -1360,4 +1361,35 @@ public class ViewModalClass extends ViewModel {
         return radiologyCategoryModalMutableLiveData;
 
     }
+
+
+    private MutableLiveData<RadiologyPackageTestModal> radiologyPackageTestModalMutableLiveData;
+
+    public LiveData<RadiologyPackageTestModal> radiologyPackageTestModalLiveData(Activity activity) {
+        radiologyPackageTestModalMutableLiveData = new MutableLiveData<>();
+        CommonUtils.showProgressDialog(activity);
+        apiInterface.getAllTestPackages().enqueue(new Callback<RadiologyPackageTestModal>() {
+            @Override
+            public void onResponse(@NonNull Call<RadiologyPackageTestModal> call, Response<RadiologyPackageTestModal> response) {
+                CommonUtils.dismissDialog();
+                if (response.body() != null) {
+                    if (response.body().getSuccess().equals("0")) {
+                        Toast.makeText(activity, "" + response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                    } else {
+                        radiologyPackageTestModalMutableLiveData.postValue(response.body());
+                    }
+                } else {
+                    Toast.makeText(activity, "Services not found", Toast.LENGTH_SHORT).show();
+                }
+            }
+            @Override
+            public void onFailure(Call<RadiologyPackageTestModal> call, Throwable t) {
+                CommonUtils.dismissDialog();
+                Toast.makeText(activity, "" + t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+        return radiologyPackageTestModalMutableLiveData;
+    }
+
+
 }

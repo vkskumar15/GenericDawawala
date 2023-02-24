@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 
 import com.example.genericdawawalauser.R;
 import com.example.genericdawawalauser.adapters.SliderAdapter;
-import com.example.genericdawawalauser.adapters.labAdapter. LabCategoryAdapter;
+import com.example.genericdawawalauser.adapters.labAdapter.LabCategoryAdapter;
 import com.example.genericdawawalauser.adapters.labAdapter.LabPackageAdapter;
 import com.example.genericdawawalauser.adapters.labAdapter.LabPopularCategoryAdapter;
 import com.example.genericdawawalauser.adapters.labAdapter.LabPopularTestAdapter;
@@ -33,44 +33,42 @@ public class HomeLabFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        binding = FragmentHomeLabBinding.inflate(inflater, container, false);
 
-     binding  = FragmentHomeLabBinding.inflate(inflater, container, false);
+        sliderImage();
+        setCategoryAdapter();
+        setPackageAdapter();
+        setPopularCategoryAdapter();
+        setTestByConditionAdapter();
+        onClicks();
 
-     sliderImage();
-     setCategoryAdapter();
-     setPackageAdapter();
-     setPopularCategoryAdapter();
-     setTestByConditionAdapter();
-     onClicks();
+        try {
+            new ViewModalClass().medicineDataModalLiveData(requireActivity(), "").observe(requireActivity(), new Observer<MedicineDataModal>() {
+                @Override
+                public void onChanged(MedicineDataModal medicineDataModal) {
+                    if (medicineDataModal.getSuccess().equalsIgnoreCase("1")) {
+                        LabPopularTestAdapter adapter = new LabPopularTestAdapter(medicineDataModal.getDetails(), requireContext(), new LabPopularTestAdapter.DetailsData() {
+                            @Override
+                            public void details(MedicineDataModal.Detail detail) {
+                                Navigation.findNavController(binding.getRoot()).navigate(R.id.pathologyDetailsFragment);
+                                PathologyDetailsFragment.detail = detail;
+                            }
+                        }, detail -> {
 
-     try {
-         new ViewModalClass().medicineDataModalLiveData(requireActivity(), "").observe(requireActivity(), new Observer<MedicineDataModal>() {
-             @Override
-             public void onChanged(MedicineDataModal medicineDataModal) {
-                 if (medicineDataModal.getSuccess().equalsIgnoreCase("1")) {
-                     LabPopularTestAdapter adapter = new LabPopularTestAdapter(medicineDataModal.getDetails(), requireContext(), new LabPopularTestAdapter.DetailsData() {
-                         @Override
-                         public void details(MedicineDataModal.Detail detail) {
-                             Navigation.findNavController(binding.getRoot()).navigate(R.id.pathologyDetailsFragment);
-                             PathologyDetailsFragment.detail = detail;
-                         }
-                     }, detail -> {
+                        }, detail -> {
 
-                     }, detail -> {
+                        });
+                        binding.recylerViewPopularTest.setAdapter(adapter);
+                    }
+                }
+            });
 
-                     });
-                     binding.recylerViewPopularTest.setAdapter(adapter);
-                 }
-             }
-         });
+        } catch (Exception e) {
+            throw new RuntimeException(e);
 
-     } catch (Exception e) {
-         throw new RuntimeException(e);
+        }
 
-
-     }
-
-     return binding.getRoot();
+        return binding.getRoot();
 
     }
 
@@ -117,18 +115,13 @@ public class HomeLabFragment extends Fragment {
                         @Override
                         public void details(MedicineDataModal.Detail detail) {
                             Navigation.findNavController(binding.getRoot()).navigate(R.id.pathologyDetailsFragment);
-
                         }
-                    }, new LabPopularTestAdapter.AddtoCart() {
-                        @Override
-                        public void addToCart(MedicineDataModal.Detail detail) {
+                    }, detail -> {
 
-                        }
-                    }, new LabPopularTestAdapter.DeletetoCart() {
-                        @Override
-                        public void deletetoCart(MedicineDataModal.Detail detail) {
 
-                        }
+                    }, detail -> {
+
+
                     });
                     binding.recyclerviewCondition.setAdapter(adapter);
                 }
@@ -140,8 +133,7 @@ public class HomeLabFragment extends Fragment {
 
     private void setPopularCategoryAdapter() {
         new ViewModalClass().labTestCategoriesLiveData(requireActivity()).observe(requireActivity(), labTestCategories -> {
-            if (labTestCategories.getSuccess().equalsIgnoreCase("1"))
-            {
+            if (labTestCategories.getSuccess().equalsIgnoreCase("1")) {
                 LabPopularCategoryAdapter adapter = new LabPopularCategoryAdapter(labTestCategories.getDetails(), requireContext(), new LabPopularCategoryAdapter.ClickLab() {
                     @Override
                     public void clickLab(LabTestCategories.Detail detail) {
@@ -156,8 +148,7 @@ public class HomeLabFragment extends Fragment {
 
     private void sliderImage() {
         ArrayList<SliderData> sliderDataArrayList = new ArrayList<>();
-        sliderDataArrayList.add(new SliderData(this.
-                url1));
+        sliderDataArrayList.add(new SliderData(this.url1));
         sliderDataArrayList.add(new SliderData(this.url2));
         sliderDataArrayList.add(new SliderData(this.url3));
         SliderAdapter adapter = new SliderAdapter(requireContext(), sliderDataArrayList);

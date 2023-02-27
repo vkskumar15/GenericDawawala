@@ -57,7 +57,6 @@ public class AddToCartActivity extends Fragment {
         });
 
         binding.btnApply.setOnClickListener(v -> {
-
             new ViewModalClass().labCouponAppointmentLiveData(requireActivity(), App.getSingleton().getCouponCode(), total_amount, CommonUtils.getUserId()).observe(requireActivity(), applyCouponAppointment -> {
                 if (applyCouponAppointment.getSuccess().equalsIgnoreCase("1")) {
                     Toast.makeText(requireActivity(), "Coupon code Applied", Toast.LENGTH_SHORT).show();

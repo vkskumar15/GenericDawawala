@@ -410,7 +410,6 @@ public interface ApiInterface {
     @POST("addToCartLabTestPackage")
     Call<AddToCartPackageModal> addToCartLabTestPackage(
             @Field("userId") String userId,
-            @Field("packageId") String packageId
+            @Field("packageId") String packageId);
 
-    );
 }

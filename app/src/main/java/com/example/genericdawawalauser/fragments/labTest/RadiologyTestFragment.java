@@ -28,7 +28,8 @@ import java.util.List;
 
 public class RadiologyTestFragment extends Fragment {
     FragmentRadiologyTestBinding binding;
-    ArrayList<RadiologyPackageTestModal> list = new ArrayList<>();
+    int price = 100, old;
+
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -42,6 +43,8 @@ public class RadiologyTestFragment extends Fragment {
             requireActivity().onBackPressed();
 
         });
+
+
 
 
         binding.viewAll.setOnClickListener(view -> {

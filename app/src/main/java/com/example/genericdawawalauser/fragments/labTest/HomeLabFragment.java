@@ -13,7 +13,6 @@ import android.view.ViewGroup;
 import com.example.genericdawawalauser.R;
 import com.example.genericdawawalauser.adapters.SliderAdapter;
 import com.example.genericdawawalauser.adapters.labAdapter.LabCategoryAdapter;
-import com.example.genericdawawalauser.adapters.labAdapter.LabPackageAdapter;
 import com.example.genericdawawalauser.adapters.labAdapter.LabPopularCategoryAdapter;
 import com.example.genericdawawalauser.adapters.labAdapter.LabPopularTestAdapter;
 import com.example.genericdawawalauser.adapters.labAdapter.LabTestByConditionAdapter;
@@ -37,36 +36,8 @@ public class HomeLabFragment extends Fragment {
 
         sliderImage();
         setCategoryAdapter();
-        setPopularCategoryAdapter();
         setTestByConditionAdapter();
         onClicks();
-
-        try {
-            new ViewModalClass().medicineDataModalLiveData(requireActivity(), "").observe(requireActivity(), new Observer<MedicineDataModal>() {
-                @Override
-                public void onChanged(MedicineDataModal medicineDataModal) {
-                    if (medicineDataModal.getSuccess().equalsIgnoreCase("1")) {
-                        LabPopularTestAdapter adapter = new LabPopularTestAdapter(medicineDataModal.getDetails(), requireContext(), new LabPopularTestAdapter.DetailsData() {
-                            @Override
-                            public void details(MedicineDataModal.Detail detail) {
-                                Navigation.findNavController(binding.getRoot()).navigate(R.id.pathologyDetailsFragment);
-                                PathologyDetailsFragment.detail = detail;
-                            }
-                        }, detail -> {
-
-                        }, detail -> {
-
-                        });
-                        binding.recylerViewPopularTest.setAdapter(adapter);
-                    }
-                }
-            });
-
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-
-        }
-
         return binding.getRoot();
 
     }
@@ -91,12 +62,6 @@ public class HomeLabFragment extends Fragment {
         binding.recyclerviewOrgans.setAdapter(adapter);
         binding.recyclerviewHabits.setAdapter(adapter);
     }
-
-//    private void setPackageAdapter() {
-//
-//        LabPackageAdapter adapter = new LabPackageAdapter();
-//        binding.packageNameRecyclerview.setAdapter(adapter);
-//    }
 
     private void setCategoryAdapter() {
 
@@ -124,23 +89,6 @@ public class HomeLabFragment extends Fragment {
                     });
                     binding.recyclerviewCondition.setAdapter(adapter);
                 }
-            }
-        });
-
-
-    }
-
-    private void setPopularCategoryAdapter() {
-        new ViewModalClass().labTestCategoriesLiveData(requireActivity()).observe(requireActivity(), labTestCategories -> {
-            if (labTestCategories.getSuccess().equalsIgnoreCase("1")) {
-                LabPopularCategoryAdapter adapter = new LabPopularCategoryAdapter(labTestCategories.getDetails(), requireContext(), new LabPopularCategoryAdapter.ClickLab() {
-                    @Override
-                    public void clickLab(LabTestCategories.Detail detail) {
-
-                        setPopularAdapter(detail.getId());
-                    }
-                });
-                binding.recylerViewPop.setAdapter(adapter);
             }
         });
     }

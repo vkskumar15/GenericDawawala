@@ -12,6 +12,7 @@ import com.example.genericdawawalauser.modalClass.AddCartLabModal;
 import com.example.genericdawawalauser.modalClass.AddFamilyMember;
 import com.example.genericdawawalauser.modalClass.AddPatientDetails;
 import com.example.genericdawawalauser.modalClass.AddToCartModal;
+import com.example.genericdawawalauser.modalClass.AddToCartPackageModal;
 import com.example.genericdawawalauser.modalClass.ApplyCouponAppointment;
 import com.example.genericdawawalauser.modalClass.ChangePasswordModal;
 import com.example.genericdawawalauser.modalClass.CountCartModal;
@@ -23,6 +24,7 @@ import com.example.genericdawawalauser.modalClass.GetPatientAddress;
 import com.example.genericdawawalauser.modalClass.HealthProblemModal;
 import com.example.genericdawawalauser.modalClass.LabBookModal;
 import com.example.genericdawawalauser.modalClass.LabDetailsModal;
+import com.example.genericdawawalauser.modalClass.LabPackageDetailsModal;
 import com.example.genericdawawalauser.modalClass.LabTestCategories;
 import com.example.genericdawawalauser.modalClass.MedicineDataModal;
 import com.example.genericdawawalauser.modalClass.PendingOnlineAppointmentModal;
@@ -1319,8 +1321,7 @@ public class ViewModalClass extends ViewModel {
     }
 
 
-
-    private MutableLiveData<RadiologyCategoryModal>radiologyCategoryModalMutableLiveData;
+    private MutableLiveData<RadiologyCategoryModal> radiologyCategoryModalMutableLiveData;
 
     public LiveData<RadiologyCategoryModal> radiologyCategoryModalLiveData(Activity activity) {
         radiologyCategoryModalMutableLiveData = new MutableLiveData<>();
@@ -1365,10 +1366,10 @@ public class ViewModalClass extends ViewModel {
 
     private MutableLiveData<RadiologyPackageTestModal> radiologyPackageTestModalMutableLiveData;
 
-    public LiveData<RadiologyPackageTestModal> radiologyPackageTestModalLiveData(Activity activity) {
+    public LiveData<RadiologyPackageTestModal> radiologyPackageTestModalLiveData(Activity activity, String userId) {
         radiologyPackageTestModalMutableLiveData = new MutableLiveData<>();
         CommonUtils.showProgressDialog(activity);
-        apiInterface.getAllTestPackages().enqueue(new Callback<RadiologyPackageTestModal>() {
+        apiInterface.getAllTestPackages(userId).enqueue(new Callback<RadiologyPackageTestModal>() {
             @Override
             public void onResponse(@NonNull Call<RadiologyPackageTestModal> call, Response<RadiologyPackageTestModal> response) {
                 CommonUtils.dismissDialog();
@@ -1382,6 +1383,7 @@ public class ViewModalClass extends ViewModel {
                     Toast.makeText(activity, "Services not found", Toast.LENGTH_SHORT).show();
                 }
             }
+
             @Override
             public void onFailure(Call<RadiologyPackageTestModal> call, Throwable t) {
                 CommonUtils.dismissDialog();
@@ -1392,4 +1394,60 @@ public class ViewModalClass extends ViewModel {
     }
 
 
+    private MutableLiveData<LabPackageDetailsModal> labPackageDetailsModalMutableLiveData;
+
+    public LiveData<LabPackageDetailsModal> labPackageDetailsModalLiveData(Activity activity, String userId) {
+
+        CommonUtils.showProgressDialog(activity);
+        labPackageDetailsModalMutableLiveData = new MutableLiveData<>();
+        apiInterface.labAddedPackage(userId).enqueue(new Callback<LabPackageDetailsModal>() {
+            @Override
+            public void onResponse(@NonNull Call<LabPackageDetailsModal> call, Response<LabPackageDetailsModal> response) {
+                CommonUtils.dismissDialog();
+                if (response.body() != null) {
+                    labPackageDetailsModalMutableLiveData.postValue(response.body());
+                } else {
+                    labPackageDetailsModalMutableLiveData.postValue(null);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<LabPackageDetailsModal> call, Throwable t) {
+                CommonUtils.dismissDialog();
+                labPackageDetailsModalMutableLiveData.postValue(null);
+
+            }
+        });
+
+        return labPackageDetailsModalMutableLiveData;
+    }
+
+
+    private MutableLiveData<AddToCartPackageModal> addToCartPackageModalMutableLiveData;
+
+    public LiveData<AddToCartPackageModal> addToCartPackageModalLiveData(Activity activity, String userId, String packageId) {
+
+        CommonUtils.showProgressDialog(activity);
+        addToCartPackageModalMutableLiveData = new MutableLiveData<>();
+        apiInterface.addToCartLabTestPackage(userId, packageId).enqueue(new Callback<AddToCartPackageModal>() {
+            @Override
+            public void onResponse(@NonNull Call<AddToCartPackageModal> call, Response<AddToCartPackageModal> response) {
+                CommonUtils.dismissDialog();
+                if (response.body() != null) {
+                    addToCartPackageModalMutableLiveData.postValue(response.body());
+                } else {
+                    addToCartPackageModalMutableLiveData.postValue(null);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<AddToCartPackageModal> call, Throwable t) {
+                CommonUtils.dismissDialog();
+                addToCartPackageModalMutableLiveData.postValue(null);
+
+            }
+        });
+
+        return addToCartPackageModalMutableLiveData;
+    }
 }

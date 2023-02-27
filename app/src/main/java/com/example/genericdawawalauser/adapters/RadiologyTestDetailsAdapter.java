@@ -36,6 +36,7 @@ public class RadiologyTestDetailsAdapter extends RecyclerView.Adapter<RadiologyT
     public void onBindViewHolder(@NonNull MedicineViewHolder holder, int position) {
 
         holder.binding.testName.setText(list.get(position).getTestname());
+        holder.binding.testCount.setText(String.format("%d: ", position + 1));
 
     }
 

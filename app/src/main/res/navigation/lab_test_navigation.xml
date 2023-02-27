@@ -136,15 +136,42 @@
         <action
             android:id="@+id/action_radiologyTestFragment_to_radiologyPackageFragment"
             app:destination="@id/radiologyPackageFragment" />
+        <action
+            android:id="@+id/action_radiologyTestFragment_to_featuredPackageFragment"
+            app:destination="@id/featuredPackageFragment" />
+        <action
+            android:id="@+id/action_radiologyTestFragment_to_labPackagesFragment"
+            app:destination="@id/labPackagesFragment" />
     </fragment>
     <fragment
         android:id="@+id/radiologyDetailsFragment"
         android:name="com.example.genericdawawalauser.fragments.labTest.RadiologyDetailsFragment"
         android:label="fragment_radiology_details"
-        tools:layout="@layout/fragment_radiology_details" />
+        tools:layout="@layout/fragment_radiology_details" >
+        <action
+            android:id="@+id/action_radiologyDetailsFragment_to_labPackagesFragment"
+            app:destination="@id/labPackagesFragment" />
+    </fragment>
     <fragment
         android:id="@+id/radiologyPackageFragment"
         android:name="com.example.genericdawawalauser.fragments.labTest.RadiologyPackageFragment"
         android:label="fragment_radiology_package"
         tools:layout="@layout/fragment_radiology_package" />
+    <fragment
+        android:id="@+id/labPackagesFragment"
+        android:name="com.example.genericdawawalauser.fragments.labTest.LabPackagesFragment"
+        android:label="fragment_lab_packages"
+        tools:layout="@layout/fragment_lab_packages" />
+    <fragment
+        android:id="@+id/featuredPackageFragment"
+        android:name="com.example.genericdawawalauser.fragments.labTest.FeaturedPackageFragment"
+        android:label="fragment_featured_package"
+        tools:layout="@layout/fragment_featured_package" >
+        <action
+            android:id="@+id/action_featuredPackageFragment_to_radiologyDetailsFragment"
+            app:destination="@id/radiologyDetailsFragment" />
+        <action
+            android:id="@+id/action_featuredPackageFragment_to_labPackagesFragment"
+            app:destination="@id/labPackagesFragment" />
+    </fragment>
 </navigation>

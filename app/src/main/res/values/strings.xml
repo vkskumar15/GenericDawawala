@@ -148,4 +148,5 @@
     <string name="pay_amount">Pay Amount</string>
     <string name="find_health_concern_tests_packages">Find Health Concern Tests/Packages</string>
     <string name="mb_pack_1_n_generic_heath_n_wealth_package">MB Pack 1- \n Generic Heath \n wealth package</string>
+    <string name="select_labs">Select Labs</string>
 </resources>

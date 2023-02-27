@@ -7,7 +7,7 @@
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
-        android:layout_height="240dp"
+        android:layout_height="wrap_content"
         android:layout_margin="@dimen/dp_5"
         app:cardCornerRadius="@dimen/space12"
         app:cardElevation="@dimen/space12"
@@ -184,6 +184,7 @@
 
 
             <TextView
+                android:id="@+id/tests"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/dp_10"
@@ -220,6 +221,7 @@
                 android:backgroundTint="#FF5B60"
                 android:gravity="center"
                 android:text="@string/select_lab"
+                android:layout_marginBottom="@dimen/dp_10"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:textSize="12sp"

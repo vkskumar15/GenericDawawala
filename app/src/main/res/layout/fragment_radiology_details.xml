@@ -54,12 +54,21 @@
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
+            <TextView
+                android:id="@id/about_test"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dp_5"
+                android:text=""
+                android:textColor="@color/black"
+                android:textSize="14sp" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp_5"
-                android:visibility="gone"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:visibility="gone">
 
                 <TextView
                     android:id="@+id/price"
@@ -94,9 +103,9 @@
                 android:layout_height="@dimen/space30"
                 android:layout_marginStart="@dimen/dp_10"
                 android:layout_marginTop="@dimen/dp_30"
-                android:visibility="gone"
                 android:background="@drawable/go_to_cart"
-                android:gravity="center">
+                android:gravity="center"
+                android:visibility="gone">
 
                 <TextView
                     android:id="@+id/off"
@@ -250,14 +259,14 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/category_name_recyclerview"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
                 android:layout_marginTop="@dimen/space10"
                 android:orientation="vertical"
-                app:spanCount="1"
-                android:layout_gravity="center"
+                android:padding="@dimen/dp_5"
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:spanCount="1"
                 tools:listitem="@layout/radiology_test_layout" />
-
 
 
         </LinearLayout>
@@ -265,9 +274,10 @@
     </androidx.core.widget.NestedScrollView>
 
     <RelativeLayout
+        android:id="@+id/relation"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_60"
-        android:id="@+id/relation"
+        android:visibility="gone"
         android:layout_alignParentBottom="true"
         android:layout_marginTop="@dimen/space10"
         android:background="@color/white">
@@ -284,10 +294,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/space10"
                 android:text="To be paid"
-                android:visibility="gone"
                 android:textColor="@color/darkgrey"
                 android:textSize="12sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:visibility="gone" />
 
 
             <TextView
@@ -297,16 +307,29 @@
                 android:layout_below="@id/paid"
                 android:layout_marginStart="@dimen/space10"
                 android:layout_marginEnd="@dimen/space10"
-                android:visibility="gone"
                 android:text="₹124"
                 android:textColor="@color/appcolor"
                 android:textSize="@dimen/dp_18"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:visibility="gone" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/book_now"
                 android:layout_width="@dimen/dp_180"
                 android:layout_height="40dp"
+                android:layout_centerInParent="true"
+                android:background="@drawable/btn_bg"
+                android:text="Add To Cart"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/selectBtn"
+                android:layout_width="@dimen/dp_180"
+                android:layout_height="40dp"
+                android:visibility="gone"
                 android:layout_centerInParent="true"
                 android:background="@drawable/btn_bg"
                 android:text="Select Lab"

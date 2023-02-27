@@ -2,6 +2,7 @@ package com.example.genericdawawalauser.adapters.labAdapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -20,6 +21,9 @@ public class LabPackageAdapter extends RecyclerView.Adapter<LabPackageAdapter.Vi
     public interface SelectPackage
     {
         void selectPackage(RadiologyPackageTestModal.Detail detail);
+        void addToCart(RadiologyPackageTestModal.Detail detail);
+        void selectLab(RadiologyPackageTestModal.Detail detail);
+
     }
     public LabPackageAdapter(List<RadiologyPackageTestModal.Detail> list, Context context, SelectPackage selectPackage) {
         this.list = list;
@@ -43,6 +47,27 @@ public class LabPackageAdapter extends RecyclerView.Adapter<LabPackageAdapter.Vi
 
             selectPackage.selectPackage(list.get(position));
         });
+
+        holder.binding.bookNow.setOnClickListener(view -> {
+
+            selectPackage.addToCart(list.get(position));
+        });
+
+        holder.binding.selectBtn.setOnClickListener(view -> {
+
+            selectPackage.selectLab(list.get(position));
+        });
+
+
+        if (list.get(position).getCartStatus() == true) {
+            holder.binding.bookNow.setVisibility(View.GONE);
+            holder.binding.selectBtn.setVisibility(View.VISIBLE);
+        }else {
+            holder. binding.bookNow.setVisibility(View.VISIBLE);
+            holder. binding.selectBtn.setVisibility(View.GONE);
+        }
+
+
     }
 
     @Override

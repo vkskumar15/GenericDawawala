@@ -57,6 +57,7 @@ public class AddToCartActivity extends Fragment {
         });
 
         binding.btnApply.setOnClickListener(v -> {
+
             new ViewModalClass().labCouponAppointmentLiveData(requireActivity(), App.getSingleton().getCouponCode(), total_amount, CommonUtils.getUserId()).observe(requireActivity(), applyCouponAppointment -> {
                 if (applyCouponAppointment.getSuccess().equalsIgnoreCase("1")) {
                     Toast.makeText(requireActivity(), "Coupon code Applied", Toast.LENGTH_SHORT).show();
@@ -77,7 +78,14 @@ public class AddToCartActivity extends Fragment {
         new ViewModalClass().addCartLabModalLiveData(getActivity(), CommonUtils.getUserId(), id).observe(getActivity(), addCartLabModal -> {
             if (addCartLabModal.getSuccess().equalsIgnoreCase("1")) {
                 binding.test.setText("Pathology test: " + addCartLabModal.getDetails().size());
-                AddToCartAdapter adapter = new AddToCartAdapter(addCartLabModal.getDetails(), getActivity(), detail -> new AlertDialog.Builder(getActivity()).setTitle("Remove Cart").setMessage("Are you sure you want to remove this item?").setPositiveButton(android.R.string.yes, (dialog, which) -> new ViewModalClass().removeCartModalLiveData(getActivity(), CommonUtils.getUserId(), id).observe(getActivity(), removeCartModal -> {
+                AddToCartAdapter adapter = new AddToCartAdapter(addCartLabModal.getDetails(), getActivity(),
+                        detail -> new AlertDialog.Builder(getActivity()).
+                                setTitle("Remove Cart").
+                                setMessage("Are you sure you want to remove this item?")
+                                .setPositiveButton(android.R.string.yes, (dialog, which) -> new
+                                        ViewModalClass().removeCartModalLiveData(getActivity(),
+                                        CommonUtils.getUserId(), id).observe(getActivity(),
+                                        removeCartModal -> {
                             if (removeCartModal.getSuccess().equalsIgnoreCase("1")) {
                                 Toast.makeText(getActivity(), "" + removeCartModal.getMessage(), Toast.LENGTH_SHORT).show();
 
@@ -100,15 +108,11 @@ public class AddToCartActivity extends Fragment {
     }
 
     private void onClicks() {
-
         binding.bookNow.setOnClickListener(view -> {
             if (afterDiscount > 0) {
                 totalAmount = afterDiscount;
-
             } else {
-
                 totalAmount = Integer.parseInt(total_amount);
-
             }
 
             App.getSingleton().setTotal_amount(String.valueOf(totalAmount));

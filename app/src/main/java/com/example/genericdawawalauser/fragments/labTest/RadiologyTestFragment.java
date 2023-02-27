@@ -1,6 +1,5 @@
 package com.example.genericdawawalauser.fragments.labTest;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.view.LayoutInflater;
@@ -17,15 +16,19 @@ import com.example.genericdawawalauser.R;
 import com.example.genericdawawalauser.adapters.labAdapter.LabPackageAdapter;
 import com.example.genericdawawalauser.adapters.labAdapter.RadiologyCategoryAdapter;
 import com.example.genericdawawalauser.databinding.FragmentRadiologyTestBinding;
+import com.example.genericdawawalauser.modalClass.AddToCartPackageModal;
 import com.example.genericdawawalauser.modalClass.RadiologyCategoryModal;
 import com.example.genericdawawalauser.modalClass.RadiologyPackageTestModal;
 import com.example.genericdawawalauser.retrofit.ViewModalClass;
+import com.example.genericdawawalauser.utils.CommonUtils;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class RadiologyTestFragment extends Fragment {
     FragmentRadiologyTestBinding binding;
+    ArrayList<RadiologyPackageTestModal> list = new ArrayList<>();
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -39,6 +42,14 @@ public class RadiologyTestFragment extends Fragment {
             requireActivity().onBackPressed();
 
         });
+
+
+        binding.viewAll.setOnClickListener(view -> {
+
+            Navigation.findNavController(view).navigate(R.id.featuredPackageFragment);
+
+        });
+
 
         return binding.getRoot();
 
@@ -64,22 +75,43 @@ public class RadiologyTestFragment extends Fragment {
 
     }
 
-    private void setPackageAdapter() {
-        new ViewModalClass().radiologyPackageTestModalLiveData(requireActivity()).observe(requireActivity(), new Observer<RadiologyPackageTestModal>() {
-            @Override
-            public void onChanged(RadiologyPackageTestModal radiologyPackageTestModal) {
-                if (radiologyPackageTestModal.getSuccess().equalsIgnoreCase("1")) {
-                    LabPackageAdapter adapter = new LabPackageAdapter(radiologyPackageTestModal.getDetails(), requireContext(), new LabPackageAdapter.SelectPackage() {
-                        @Override
-                        public void selectPackage(RadiologyPackageTestModal.Detail detail) {
-                            RadiologyDetailsFragment.detail = detail;
-                            Navigation.findNavController(binding.getRoot()).navigate(R.id.radiologyDetailsFragment);
-                        }
-                    });
-                    binding.packageNameRecyclerview.setAdapter(adapter);
-                }
-            }
-        });
+    public void setPackageAdapter() {
+        new ViewModalClass().radiologyPackageTestModalLiveData(requireActivity(), CommonUtils.getUserId()).observe(requireActivity(),
+                radiologyPackageTestModal -> {
+                    if (radiologyPackageTestModal.getSuccess().equalsIgnoreCase("1")) {
+                        LabPackageAdapter adapter = new LabPackageAdapter(radiologyPackageTestModal.getDetails(), requireContext(), new LabPackageAdapter.SelectPackage() {
+                            @Override
+                            public void selectPackage(RadiologyPackageTestModal.Detail detail) {
+                                RadiologyDetailsFragment.detail = detail;
+                                Navigation.findNavController(binding.getRoot()).navigate(R.id.radiologyDetailsFragment);
+                            }
+
+                            @Override
+                            public void addToCart(RadiologyPackageTestModal.Detail detail) {
+
+                                new ViewModalClass().addToCartPackageModalLiveData(requireActivity(), CommonUtils.getUserId(), detail.getId()).observe(requireActivity(), new Observer<AddToCartPackageModal>() {
+                                    @Override
+                                    public void onChanged(AddToCartPackageModal addToCartPackageModal) {
+                                        if (addToCartPackageModal.getSuccess().equalsIgnoreCase("1")) {
+
+                                            Toast.makeText(requireContext(), "" + addToCartPackageModal.getMessage(), Toast.LENGTH_SHORT).show();
+                                        } else {
+                                            Toast.makeText(requireContext(), "" + addToCartPackageModal.getMessage(), Toast.LENGTH_SHORT).show();
+
+                                        }
+                                    }
+                                });
+                            }
+
+                            @Override
+                            public void selectLab(RadiologyPackageTestModal.Detail detail) {
+
+                                Navigation.findNavController(binding.getRoot()).navigate(R.id.labPackagesFragment);
+                            }
+                        });
+                        binding.packageNameRecyclerview.setAdapter(adapter);
+                    }
+                });
 
     }
 }

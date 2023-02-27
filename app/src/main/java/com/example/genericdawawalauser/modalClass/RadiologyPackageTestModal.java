@@ -69,9 +69,35 @@ public class RadiologyPackageTestModal {
         @SerializedName("totalTests")
         @Expose
         private Integer totalTests;
+
+        @SerializedName("prescription")
+        @Expose
+        private String  prescription;
+
         @SerializedName("tests")
+
         @Expose
         private List<Test> tests;
+
+        @SerializedName("cart_status")
+        @Expose
+        private Boolean cartStatus;
+
+        public Boolean getCartStatus() {
+            return cartStatus;
+        }
+
+        public void setCartStatus(Boolean cartStatus) {
+            this.cartStatus = cartStatus;
+        }
+
+        public String getPrescription() {
+            return prescription;
+        }
+
+        public void setPrescription(String prescription) {
+            this.prescription = prescription;
+        }
 
         public String getId() {
             return id;

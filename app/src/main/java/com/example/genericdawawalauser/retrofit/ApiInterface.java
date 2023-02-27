@@ -4,6 +4,7 @@ import com.example.genericdawawalauser.modalClass.AddCartLabModal;
 import com.example.genericdawawalauser.modalClass.AddFamilyMember;
 import com.example.genericdawawalauser.modalClass.AddPatientDetails;
 import com.example.genericdawawalauser.modalClass.AddToCartModal;
+import com.example.genericdawawalauser.modalClass.AddToCartPackageModal;
 import com.example.genericdawawalauser.modalClass.ApplyCouponAppointment;
 import com.example.genericdawawalauser.modalClass.ChangePasswordModal;
 import com.example.genericdawawalauser.modalClass.CountCartModal;
@@ -15,6 +16,7 @@ import com.example.genericdawawalauser.modalClass.GetPatientAddress;
 import com.example.genericdawawalauser.modalClass.HealthProblemModal;
 import com.example.genericdawawalauser.modalClass.LabBookModal;
 import com.example.genericdawawalauser.modalClass.LabDetailsModal;
+import com.example.genericdawawalauser.modalClass.LabPackageDetailsModal;
 import com.example.genericdawawalauser.modalClass.LabTestCategories;
 import com.example.genericdawawalauser.modalClass.MedicineDataModal;
 import com.example.genericdawawalauser.modalClass.PendingOnlineAppointmentModal;
@@ -392,6 +394,23 @@ public interface ApiInterface {
             @Field("labTestId") String labTestId);
 
 
-    @GET("getAllTestPackages")
-    Call<RadiologyPackageTestModal> getAllTestPackages();
+    @FormUrlEncoded
+    @POST("getAllTestPackages")
+    Call<RadiologyPackageTestModal> getAllTestPackages(
+            @Field("userId") String userId
+    );
+
+    @FormUrlEncoded
+    @POST("labAddedPackage")
+    Call<LabPackageDetailsModal> labAddedPackage(
+            @Field("packageId") String packageId);
+
+
+    @FormUrlEncoded
+    @POST("addToCartLabTestPackage")
+    Call<AddToCartPackageModal> addToCartLabTestPackage(
+            @Field("userId") String userId,
+            @Field("packageId") String packageId
+
+    );
 }

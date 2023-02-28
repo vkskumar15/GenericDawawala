@@ -5,10 +5,12 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.SearchView;
+
 import com.example.genericdawawalauser.R;
 import com.example.genericdawawalauser.adapters.online_consultation.AdapterHealthProblem;
 import com.example.genericdawawalauser.databinding.FragmentHealthProblemBinding;
@@ -71,9 +73,7 @@ public class HealthProblemFragment extends Fragment implements AdapterHealthProb
     @Override
     public void onClick(HealthProblemModal.Detail doctorModelDetails) {
 
-
-
-            Navigation.findNavController(binding.getRoot()).navigate(R.id.specialtyFragment);
+        Navigation.findNavController(binding.getRoot()).navigate(R.id.specialtyFragment);
 
 
         App.getSingleton().setHealthProblem(doctorModelDetails.getTitle());

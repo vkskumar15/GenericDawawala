@@ -30,6 +30,7 @@ public class MyDoctorAppointmentFragment extends Fragment {
     FragmentMyDoctorAppointmentBinding binding;
     PendingOnlineConsultAdapter adapter;
     public static String appointmentSlot, appointmentType, appointmentDateToShow, appointmentDateToSend;
+
     // 0 for pending appointment
     // 1 for approved appointment
     // 2 for history appointment
@@ -52,7 +53,6 @@ public class MyDoctorAppointmentFragment extends Fragment {
                 adapter = new PendingOnlineConsultAdapter(pendingOnlineAppointmentModal.getDetails(), requireActivity(), new PendingOnlineConsultAdapter.Reschedule() {
                     @Override
                     public void reschedule(PendingOnlineAppointmentModal.Detail detail) {
-
                         if (detail.getReScheduledCounts().equals("2")) {
                             Toast.makeText(requireActivity(), "Now you can't ReScheduled your appointment", Toast.LENGTH_SHORT).show();
                         } else {

@@ -47,7 +47,6 @@ public class WalletActivity extends AppCompatActivity implements PaymentResultWi
         setContentView(binding.getRoot());
 
 
-
         getWalletAmount();
         onClicks();
 
@@ -55,7 +54,8 @@ public class WalletActivity extends AppCompatActivity implements PaymentResultWi
     }
 
     private void getWalletAmount() {
-        new ViewModalClass().walletAmountModalLiveData(WalletActivity.this, CommonUtils.getUserId()).observe(WalletActivity.this, new Observer<WalletAmountModal>() {
+        new ViewModalClass().walletAmountModalLiveData(WalletActivity.this,
+                CommonUtils.getUserId()).observe(WalletActivity.this, new Observer<WalletAmountModal>() {
             @Override
             public void onChanged(WalletAmountModal walletAmountModal) {
                 if (walletAmountModal.getSuccess().equalsIgnoreCase("1")) {
@@ -133,12 +133,11 @@ public class WalletActivity extends AppCompatActivity implements PaymentResultWi
     private void setAdapter() {
         new ViewModalClass().walletHistoryModalLiveData(WalletActivity.this, CommonUtils.getUserId()).observe(WalletActivity.this,
                 walletHistoryModal -> {
-                    if (walletHistoryModal.getSuccess().equalsIgnoreCase("1"))
-                    {
-                       MyWalletAdapter adapter = new MyWalletAdapter(WalletActivity.this, walletHistoryModal.getDetails());
-                       binding.recyclerviewCreditedAmount.setAdapter(adapter);
-                    }else {
-                        Toast.makeText(WalletActivity.this, ""+walletHistoryModal.getMessage(), Toast.LENGTH_SHORT).show();
+                    if (walletHistoryModal.getSuccess().equalsIgnoreCase("1")) {
+                        MyWalletAdapter adapter = new MyWalletAdapter(WalletActivity.this, walletHistoryModal.getDetails());
+                        binding.recyclerviewCreditedAmount.setAdapter(adapter);
+                    } else {
+                        Toast.makeText(WalletActivity.this, "" + walletHistoryModal.getMessage(), Toast.LENGTH_SHORT).show();
 
                     }
                 });
@@ -176,8 +175,8 @@ public class WalletActivity extends AppCompatActivity implements PaymentResultWi
                 if (walletAmountModal.getSuccess().equalsIgnoreCase("1")) {
 
                     confirmationPopUp();
-                }else {
-                    Toast.makeText(WalletActivity.this, ""+walletAmountModal.getMessage(), Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(WalletActivity.this, "" + walletAmountModal.getMessage(), Toast.LENGTH_SHORT).show();
 
                 }
             }

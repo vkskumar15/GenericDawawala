@@ -110,6 +110,24 @@ public class Singleton {
     public String patient_address;
     public String patient_address_details;
     public String cart_total_id;
+    public String lab_name;
+    public String lab_about;
+
+    public String getLab_name() {
+        return lab_name;
+    }
+
+    public void setLab_name(String lab_name) {
+        this.lab_name = lab_name;
+    }
+
+    public String getLab_about() {
+        return lab_about;
+    }
+
+    public void setLab_about(String lab_about) {
+        this.lab_about = lab_about;
+    }
 
     public String getCart_total_id() {
         return cart_total_id;

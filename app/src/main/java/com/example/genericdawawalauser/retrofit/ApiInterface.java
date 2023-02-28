@@ -13,6 +13,7 @@ import com.example.genericdawawalauser.modalClass.GenerateOrderIdModel;
 import com.example.genericdawawalauser.modalClass.GetFamilyMemberModal;
 import com.example.genericdawawalauser.modalClass.GetLabCategoryModal;
 import com.example.genericdawawalauser.modalClass.GetPatientAddress;
+import com.example.genericdawawalauser.modalClass.GetUserLabModal;
 import com.example.genericdawawalauser.modalClass.HealthProblemModal;
 import com.example.genericdawawalauser.modalClass.LabBookModal;
 import com.example.genericdawawalauser.modalClass.LabDetailsModal;
@@ -281,7 +282,7 @@ public interface ApiInterface {
     );
 
 
- @FormUrlEncoded
+    @FormUrlEncoded
     @POST("addToCartUser")
     Call<AddCartLabModal> addToCartUser(
             @Field("userId") String userId,
@@ -289,19 +290,34 @@ public interface ApiInterface {
     );
 
 
- @FormUrlEncoded
+    @FormUrlEncoded
+    @POST("addedToCartPackages")
+    Call<AddCartLabModal> addedToCartPackages(
+            @Field("userId") String userId,
+            @Field("labId") String labTestId
+    );
+
+
+    @FormUrlEncoded
     @POST("removeCart")
     Call<RemoveCartModal> removeCart(
             @Field("userId") String userId,
             @Field("labTestId") String labTestId
     );
 
- @FormUrlEncoded
+
+    @FormUrlEncoded
+    @POST("removeCartPackage")
+    Call<RemoveCartModal> removeCartPackage(
+            @Field("userId") String userId,
+            @Field("packageId") String packageId
+    );
+
+    @FormUrlEncoded
     @POST("getLabCoupon")
     Call<OnlineAppointmentCouponModal> getLabCoupon(
             @Field("labId") String labId
     );
-
 
 
     @FormUrlEncoded
@@ -344,7 +360,7 @@ public interface ApiInterface {
     );
 
 
- @FormUrlEncoded
+    @FormUrlEncoded
     @POST("getFamilyMember")
     Call<GetFamilyMemberModal> getFamilyMember(
             @Field("userId") String userId);
@@ -401,9 +417,9 @@ public interface ApiInterface {
     );
 
     @FormUrlEncoded
-    @POST("labAddedPackage")
-    Call<LabPackageDetailsModal> labAddedPackage(
-            @Field("packageId") String packageId);
+    @POST("getCartPackage")
+    Call<GetUserLabModal> labAddedPackage(
+            @Field("userId") String userId);
 
 
     @FormUrlEncoded

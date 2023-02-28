@@ -161,7 +161,17 @@
         android:id="@+id/labPackagesFragment"
         android:name="com.example.genericdawawalauser.fragments.labTest.LabPackagesFragment"
         android:label="fragment_lab_packages"
-        tools:layout="@layout/fragment_lab_packages" />
+        tools:layout="@layout/fragment_lab_packages" >
+        <action
+            android:id="@+id/action_labPackagesFragment_to_getPatientFragment"
+            app:destination="@id/getPatientFragment" />
+        <action
+            android:id="@+id/action_labPackagesFragment_to_addPackageCartFragment"
+            app:destination="@id/addPackageCartFragment" />
+        <action
+            android:id="@+id/action_labPackagesFragment_to_addPackageCartFragment2"
+            app:destination="@id/addPackageCartFragment" />
+    </fragment>
     <fragment
         android:id="@+id/featuredPackageFragment"
         android:name="com.example.genericdawawalauser.fragments.labTest.FeaturedPackageFragment"
@@ -173,5 +183,23 @@
         <action
             android:id="@+id/action_featuredPackageFragment_to_labPackagesFragment"
             app:destination="@id/labPackagesFragment" />
+        <action
+            android:id="@+id/action_featuredPackageFragment_to_labSlotsFragment"
+            app:destination="@id/labSlotsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addPackageCartFragment"
+        android:name="com.example.genericdawawalauser.fragments.labTest.AddPackageCartFragment"
+        android:label="fragment_add_package_cart"
+        tools:layout="@layout/fragment_add_package_cart" >
+        <action
+            android:id="@+id/action_addPackageCartFragment_to_labCouponCodeFragment"
+            app:destination="@id/labCouponCodeFragment" />
+        <action
+            android:id="@+id/action_addPackageCartFragment_to_getPatientFragment"
+            app:destination="@id/getPatientFragment" />
+        <action
+            android:id="@+id/action_addPackageCartFragment_to_getPatientFragment2"
+            app:destination="@id/getPatientFragment" />
     </fragment>
 </navigation>

@@ -80,6 +80,9 @@ public class LabSlotsFragment extends Fragment implements GridViewSelectMorningS
 
         findIds();
 
+        doctor_name.setText(App.getSingleton().getLab_name());
+        doctorQualificationAndSpeciality.setText(App.getSingleton().getLab_about());
+
         Bundle bundle = this.getArguments();
         if (bundle != null) {
 
@@ -232,6 +235,7 @@ public class LabSlotsFragment extends Fragment implements GridViewSelectMorningS
     }
 
     private void setData() {
+
 
         if (status == "1") {
             Glide.with(getContext()).load(doctorModelDetails.getDoctorImage()).error(R.drawable.doctor_12).into(doctorImage);

@@ -41,7 +41,7 @@ public class LabCouponCodeFragment extends Fragment {
 
     private void setAdapter() {
 
-        new ViewModalClass().getLabCouponModalLiveData(requireActivity(), "2").observe(requireActivity(), onlineAppointmentCouponModal -> {
+        new ViewModalClass().getLabCouponModalLiveData(requireActivity(), App.getSingleton().getLabId()).observe(requireActivity(), onlineAppointmentCouponModal -> {
             if (onlineAppointmentCouponModal.getSuccess().equalsIgnoreCase("1"))
             {
                 Toast.makeText(requireActivity(), ""+onlineAppointmentCouponModal.getMessage(), Toast.LENGTH_SHORT).show();

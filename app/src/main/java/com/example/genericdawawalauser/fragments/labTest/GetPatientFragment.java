@@ -27,12 +27,19 @@ public class GetPatientFragment extends Fragment {
     FragmentGetPatitentBinding binding;
     String checkID, uncheckID;
     private List<String> catget = new ArrayList<>();
+    String labPackageStatus;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         binding = FragmentGetPatitentBinding.inflate(inflater, container, false);
+
+        Bundle bundle = this.getArguments();
+        if (bundle != null) {
+            labPackageStatus = bundle.getString("labPackageStatus");
+        }
 
 
         setAdapter();
@@ -43,19 +50,29 @@ public class GetPatientFragment extends Fragment {
     }
 
     private void onClicks() {
+        binding.btnNext.setText("Select time slot");
+
         binding.addPatient.setOnClickListener(view -> {
 
             Navigation.findNavController(view).navigate(R.id.addPatientFragment);
         });
 
         binding.btnNext.setOnClickListener(view -> {
-            if (checkID!=null){
+            if (checkID != null) {
                 getIds();
-                App.getSingleton().setPatient_details(checkID);
-                App.getSingleton().setTotal_patient(String.valueOf(catget.size()));
+                if (labPackageStatus == "1") {
+                    App.getSingleton().setPatient_details(checkID);
+                    App.getSingleton().setTotal_patient(String.valueOf(catget.size()));
+                    Navigation.findNavController(view).navigate(R.id.labSlotsFragment);
 
-                Navigation.findNavController(view).navigate(R.id.getPatientAddressFragment);
-            }else {
+                } else {
+                    App.getSingleton().setPatient_details(checkID);
+                    App.getSingleton().setTotal_patient(String.valueOf(catget.size()));
+
+                    Navigation.findNavController(view).navigate(R.id.getPatientAddressFragment);
+                }
+
+            } else {
                 Toast.makeText(requireActivity(), "Please Select Patient", Toast.LENGTH_SHORT).show();
             }
 
@@ -74,7 +91,6 @@ public class GetPatientFragment extends Fragment {
                 FamilyMemberAdapter addPatientsAdapter = new FamilyMemberAdapter(getFamilyMemberModal.getDetails(), requireActivity(), new FamilyMemberAdapter.SelectPatient() {
                     @Override
                     public void selectPatient(GetFamilyMemberModal.Detail detail) {
-
                         new AlertDialog.Builder(getActivity())
                                 .setTitle("Remove Details")
                                 .setMessage("Are you sure you want to remove this item?")
@@ -86,6 +102,7 @@ public class GetPatientFragment extends Fragment {
                                                 setAdapter();
 
                                             } else {
+
                                                 Toast.makeText(getActivity(), "" + removeCartModal.getMessage(), Toast.LENGTH_SHORT).show();
 
                                             }

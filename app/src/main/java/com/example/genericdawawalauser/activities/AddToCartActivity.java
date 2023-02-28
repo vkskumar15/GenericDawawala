@@ -38,6 +38,7 @@ public class AddToCartActivity extends Fragment {
             total_amount = bundle.getString("total_amount");
         }
 
+
         setDetails();
         setAdapter();
 
@@ -52,6 +53,8 @@ public class AddToCartActivity extends Fragment {
         binding.amount.setText("₹ " + total_amount);
 
         binding.couponLayout.setOnClickListener(v -> {
+
+
 
             Navigation.findNavController(binding.getRoot()).navigate(R.id.action_addToCartActivity_to_labCouponCodeFragment);
         });

@@ -21,6 +21,7 @@ import com.example.genericdawawalauser.modalClass.GenerateOrderIdModel;
 import com.example.genericdawawalauser.modalClass.GetFamilyMemberModal;
 import com.example.genericdawawalauser.modalClass.GetLabCategoryModal;
 import com.example.genericdawawalauser.modalClass.GetPatientAddress;
+import com.example.genericdawawalauser.modalClass.GetUserLabModal;
 import com.example.genericdawawalauser.modalClass.HealthProblemModal;
 import com.example.genericdawawalauser.modalClass.LabBookModal;
 import com.example.genericdawawalauser.modalClass.LabDetailsModal;
@@ -971,6 +972,35 @@ public class ViewModalClass extends ViewModel {
     }
 
 
+    private MutableLiveData<AddCartLabModal> addedToCartPackagesCartLabModalMutableLiveData;
+
+    public LiveData<AddCartLabModal> addCartPackageLabModalLiveData(Activity activity, String userid, String labId) {
+        addedToCartPackagesCartLabModalMutableLiveData = new MutableLiveData<>();
+        CommonUtils.showProgressDialog(activity);
+        apiInterface.addedToCartPackages(userid, labId).enqueue(new Callback<AddCartLabModal>() {
+            @Override
+            public void onResponse(@NonNull Call<AddCartLabModal> call, Response<AddCartLabModal> response) {
+                CommonUtils.dismissDialog();
+                if (response.body() != null) {
+
+                    addedToCartPackagesCartLabModalMutableLiveData.postValue(response.body());
+                } else {
+                    addedToCartPackagesCartLabModalMutableLiveData.postValue(null);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<AddCartLabModal> call, Throwable t) {
+                CommonUtils.dismissDialog();
+                addedToCartPackagesCartLabModalMutableLiveData.postValue(null);
+
+            }
+        });
+
+        return addedToCartPackagesCartLabModalMutableLiveData;
+    }
+
+
     private MutableLiveData<RemoveCartModal> removeCartModalMutableLiveData;
 
     public LiveData<RemoveCartModal> removeCartModalLiveData(Activity activity, String userid, String labId) {
@@ -999,6 +1029,42 @@ public class ViewModalClass extends ViewModel {
 
         return removeCartModalMutableLiveData;
     }
+
+
+
+
+
+    private MutableLiveData<RemoveCartModal> removeCartPackageModalMutableLiveData;
+
+    public LiveData<RemoveCartModal> removeCartPackageModalLiveData(Activity activity, String userid, String labId) {
+        CommonUtils.showProgressDialog(activity);
+        removeCartPackageModalMutableLiveData = new MutableLiveData<>();
+
+        apiInterface.removeCart(userid, labId).enqueue(new Callback<RemoveCartModal>() {
+            @Override
+            public void onResponse(@NonNull Call<RemoveCartModal> call, Response<RemoveCartModal> response) {
+                CommonUtils.dismissDialog();
+                if (response.body() != null) {
+
+                    removeCartPackageModalMutableLiveData.postValue(response.body());
+                } else {
+                    removeCartPackageModalMutableLiveData.postValue(null);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<RemoveCartModal> call, Throwable t) {
+                CommonUtils.dismissDialog();
+                removeCartPackageModalMutableLiveData.postValue(null);
+
+            }
+        });
+
+        return removeCartPackageModalMutableLiveData;
+    }
+
+
+
 
     private MutableLiveData<OnlineAppointmentCouponModal> getLabModalMutableLiveData;
 
@@ -1394,15 +1460,15 @@ public class ViewModalClass extends ViewModel {
     }
 
 
-    private MutableLiveData<LabPackageDetailsModal> labPackageDetailsModalMutableLiveData;
+    private MutableLiveData<GetUserLabModal> labPackageDetailsModalMutableLiveData;
 
-    public LiveData<LabPackageDetailsModal> labPackageDetailsModalLiveData(Activity activity, String userId) {
+    public LiveData<GetUserLabModal> labPackageDetailsModalLiveData(Activity activity, String userId) {
 
         CommonUtils.showProgressDialog(activity);
         labPackageDetailsModalMutableLiveData = new MutableLiveData<>();
-        apiInterface.labAddedPackage(userId).enqueue(new Callback<LabPackageDetailsModal>() {
+        apiInterface.labAddedPackage(userId).enqueue(new Callback<GetUserLabModal>() {
             @Override
-            public void onResponse(@NonNull Call<LabPackageDetailsModal> call, Response<LabPackageDetailsModal> response) {
+            public void onResponse(@NonNull Call<GetUserLabModal> call, Response<GetUserLabModal> response) {
                 CommonUtils.dismissDialog();
                 if (response.body() != null) {
                     labPackageDetailsModalMutableLiveData.postValue(response.body());
@@ -1412,7 +1478,7 @@ public class ViewModalClass extends ViewModel {
             }
 
             @Override
-            public void onFailure(Call<LabPackageDetailsModal> call, Throwable t) {
+            public void onFailure(Call<GetUserLabModal> call, Throwable t) {
                 CommonUtils.dismissDialog();
                 labPackageDetailsModalMutableLiveData.postValue(null);
 

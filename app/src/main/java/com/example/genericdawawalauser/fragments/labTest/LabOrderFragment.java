@@ -35,7 +35,7 @@ import java.util.List;
 
 public class LabOrderFragment extends Fragment {
     FragmentLabOrderBinding binding;
-    String quantity, total_price, total_patient, labId, total_patient_id, cart_total_item, address_id;
+    String imagePath, total_price, total_patient, labId, total_patient_id, cart_total_item, address_id;
     int price;
     public static String appointmentSlot, appointmentDateToShow, appointmentDateToSend;
 
@@ -72,8 +72,19 @@ public class LabOrderFragment extends Fragment {
         binding.amount.setText("₹"+price);
 
         binding.bookNow.setOnClickListener(view -> {
-
-            new  ViewModalClass().labBookModalLiveData(requireActivity(), labId, CommonUtils.getUserId(), total_patient_id, String.valueOf(price), address_id, appointmentDateToShow, appointmentSlot, "1",cart_total_item).observe(requireActivity(), new Observer<LabBookModal>() {
+            new  ViewModalClass().labBookModalLiveData(requireActivity(),
+                    CommonUtils.stringToRequestBody(labId),
+                    CommonUtils.stringToRequestBody(CommonUtils.getUserId()),
+                    CommonUtils.stringToRequestBody(total_patient_id),
+                    CommonUtils.stringToRequestBody("1"),
+                    CommonUtils.imageToMultiPart("",imagePath),
+                    CommonUtils.stringToRequestBody(String.valueOf(price)),
+                    CommonUtils.stringToRequestBody(address_id),
+                    CommonUtils.stringToRequestBody(appointmentDateToShow),
+                    CommonUtils.stringToRequestBody(appointmentSlot),
+                    CommonUtils.stringToRequestBody("1"),
+                    CommonUtils.stringToRequestBody(cart_total_item)
+            ).observe(requireActivity(), new Observer<LabBookModal>() {
                 @Override
                 public void onChanged(LabBookModal labBookModal) {
                     if (labBookModal.getSuccess().equalsIgnoreCase("1"))

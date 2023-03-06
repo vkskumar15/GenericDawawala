@@ -1,33 +1,44 @@
 package com.example.genericdawawalauser.modalClass;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
 
-public class UniqueAPiModel implements Serializable {
-    public String message;
-    public String otp;
-    public String success;
+public class UniqueAPiModel {
+
+    @SerializedName("success")
+    @Expose
+    private String success;
+    @SerializedName("message")
+    @Expose
+    private String message;
+    @SerializedName("otp")
+    @Expose
+    private String otp;
 
     public String getSuccess() {
-        return this.success;
+        return success;
     }
 
-    public void setSuccess(String success2) {
-        this.success = success2;
+    public void setSuccess(String success) {
+        this.success = success;
     }
 
     public String getMessage() {
-        return this.message;
+        return message;
     }
 
-    public void setMessage(String message2) {
-        this.message = message2;
+    public void setMessage(String message) {
+        this.message = message;
     }
 
     public String getOtp() {
-        return this.otp;
+        return otp;
     }
 
-    public void setOtp(String otp2) {
-        this.otp = otp2;
+    public void setOtp(String otp) {
+        this.otp = otp;
     }
+
 }

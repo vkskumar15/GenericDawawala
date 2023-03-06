@@ -51,30 +51,21 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class ViewModalClass extends ViewModel {
-    ApiInterface apiInterface = ((ApiInterface) BaseUrlRetrofit.getRetrofit().create(ApiInterface.class));
-    /* access modifiers changed from: private */
-    public MutableLiveData<RegisterModelRoot> registerModelRootMutableLiveData;
-    /* access modifiers changed from: private */
-    public MutableLiveData<RegisterModelRoot> registerModelRootMutableLiveData2;
-    /* access modifiers changed from: private */
-    public MutableLiveData<UniqueAPiModel> uniqueAPiModelMutableLiveData;
-    /* access modifiers changed from: private */
-    public MutableLiveData<RegisterModelRoot> updateUserDataModelRootMutableLiveData;
-    /* access modifiers changed from: private */
-    public MutableLiveData<ChangePasswordModal> updateUserEmailPhoneModelMutableLiveData;
-    /* access modifiers changed from: private */
-    public MutableLiveData<UpdateUserPhoneModel> updateUserPhoneModelMutableLiveData;
+    ApiInterface apiInterface = BaseUrlRetrofit.getRetrofit().create(ApiInterface.class);
+     private MutableLiveData<RegisterModelRoot> registerModelRootMutableLiveData;
+     private MutableLiveData<RegisterModelRoot> registerModelRootMutableLiveData2;
+     private MutableLiveData<UniqueAPiModel> uniqueAPiModelMutableLiveData;
+     private MutableLiveData<RegisterModelRoot> updateUserDataModelRootMutableLiveData;
+     private MutableLiveData<ChangePasswordModal> updateUserEmailPhoneModelMutableLiveData;
+     private MutableLiveData<UpdateUserPhoneModel> updateUserPhoneModelMutableLiveData;
 
-    public LiveData<UniqueAPiModel> uniqueAPiModelLiveData(final Activity activity, String email, String phone) {
+     public LiveData<UniqueAPiModel> uniqueAPiModelLiveData(final Activity activity, String email, String phone) {
 
-        this.uniqueAPiModelMutableLiveData = new MutableLiveData<>();
+         uniqueAPiModelMutableLiveData = new MutableLiveData<>();
 
-        this.apiInterface.checkEmailPhone(email, phone).enqueue(new Callback<UniqueAPiModel>() {
+        apiInterface.checkEmailPhone(email, phone).enqueue(new Callback<UniqueAPiModel>() {
             public void onResponse(Call<UniqueAPiModel> call, Response<UniqueAPiModel> response) {
-                if (response.body().getSuccess().equalsIgnoreCase("0")) {
-                    Toast.makeText(activity, response.body().getMessage(), Toast.LENGTH_SHORT).show();
-
-                } else if (response.body() != null) {
+                 if (response.body() != null) {
 
                     uniqueAPiModelMutableLiveData.postValue(response.body());
                 }
@@ -85,14 +76,14 @@ public class ViewModalClass extends ViewModel {
                 Toast.makeText(activity, "" + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
-        return this.uniqueAPiModelMutableLiveData;
+        return  uniqueAPiModelMutableLiveData;
     }
 
     public LiveData<RegisterModelRoot> registerModelRootLiveData(final Activity activity, String user, String email, String phone, String password, String reg_id, String device_id, String login_type, String latitude, String longitude, String chatId) {
         Activity activity2 = activity;
-        this.registerModelRootMutableLiveData = new MutableLiveData<>();
+         registerModelRootMutableLiveData = new MutableLiveData<>();
         CommonUtils.showProgressDialog(activity);
-        this.apiInterface.registerUser(user, email, phone, password, reg_id, device_id, login_type, latitude, longitude, chatId).enqueue(new Callback<RegisterModelRoot>() {
+         apiInterface.registerUser(user, email, phone, password, reg_id, device_id, login_type, latitude, longitude, chatId).enqueue(new Callback<RegisterModelRoot>() {
             public void onResponse(Call<RegisterModelRoot> call, Response<RegisterModelRoot> response) {
                 CommonUtils.dismissDialog();
                 if (response.body().getSuccess().equalsIgnoreCase("0")) {
@@ -1355,16 +1346,19 @@ public class ViewModalClass extends ViewModel {
 
     private MutableLiveData<LabBookModal> labBookModalMutableLiveData;
 
-    public LiveData<LabBookModal> labBookModalLiveData(Activity activity, String labId,
-                                                       String userId, String patient_id,
-                                                       String amount, String address,
-                                                       String date, String time_slot,
-                                                       String homeCollection, String labTestId) {
+    public LiveData<LabBookModal> labBookModalLiveData(Activity activity, RequestBody labId,
+                                                       RequestBody userId, RequestBody patient_id,
+                                                       RequestBody type, MultipartBody.Part image,
+                                                       RequestBody amount, RequestBody address,
+                                                       RequestBody date, RequestBody time_slot,
+                                                       RequestBody homeCollection, RequestBody labTestId) {
 
         CommonUtils.showProgressDialog(activity);
 
         labBookModalMutableLiveData = new MutableLiveData<>();
-        apiInterface.labTestAppointments(labId, userId, patient_id, amount, address, date, time_slot, homeCollection, labTestId).enqueue(new Callback<LabBookModal>() {
+        apiInterface.labTestAppointments(labId, userId, patient_id,
+                 type, image, amount,
+                address, date, time_slot, homeCollection, labTestId).enqueue(new Callback<LabBookModal>() {
             @Override
             public void onResponse(@NonNull Call<LabBookModal> call, Response<LabBookModal> response) {
                 CommonUtils.dismissDialog();

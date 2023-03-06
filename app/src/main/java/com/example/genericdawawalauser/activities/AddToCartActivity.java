@@ -55,7 +55,6 @@ public class AddToCartActivity extends Fragment {
         binding.couponLayout.setOnClickListener(v -> {
 
 
-
             Navigation.findNavController(binding.getRoot()).navigate(R.id.action_addToCartActivity_to_labCouponCodeFragment);
         });
 
@@ -88,18 +87,18 @@ public class AddToCartActivity extends Fragment {
                                         ViewModalClass().removeCartModalLiveData(getActivity(),
                                         CommonUtils.getUserId(), id).observe(getActivity(),
                                         removeCartModal -> {
-                            if (removeCartModal.getSuccess().equalsIgnoreCase("1")) {
-                                Toast.makeText(getActivity(), "" + removeCartModal.getMessage(), Toast.LENGTH_SHORT).show();
+                                            if (removeCartModal.getSuccess().equalsIgnoreCase("1")) {
+                                                Toast.makeText(getActivity(), "" + removeCartModal.getMessage(), Toast.LENGTH_SHORT).show();
 
-                                setAdapter();
+                                                setAdapter();
 
-                            } else {
-                                Toast.makeText(getActivity(), "" + removeCartModal.getMessage(), Toast.LENGTH_SHORT).show();
+                                            } else {
+                                                Toast.makeText(getActivity(), "" + removeCartModal.getMessage(), Toast.LENGTH_SHORT).show();
 
-                            }
-                        }))
+                                            }
+                                        }))
 
-                        .setNegativeButton(android.R.string.no, (dialog, which) -> dialog.dismiss()).setIcon(android.R.drawable.ic_dialog_alert).show());
+                                .setNegativeButton(android.R.string.no, (dialog, which) -> dialog.dismiss()).setIcon(android.R.drawable.ic_dialog_alert).show());
                 binding.recyclerView.setAdapter(adapter);
             } else {
                 Toast.makeText(getActivity(), "" + addCartLabModal.getMessage(), Toast.LENGTH_SHORT).show();

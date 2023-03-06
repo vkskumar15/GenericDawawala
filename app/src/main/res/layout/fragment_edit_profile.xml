@@ -226,7 +226,6 @@
                 android:layout_marginRight="@dimen/space20"
                 android:layout_marginBottom="2dp"
                 android:background="@drawable/btn_bg"
-                android:fontFamily="@font/nunito"
                 android:padding="10dp"
                 android:text="Update Profile"
                 android:textAllCaps="false"

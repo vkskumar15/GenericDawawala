@@ -73,24 +73,22 @@ public class RegisterFragment extends Fragment {
         } else if (!binding.switchAccept.isOn()) {
             Toast.makeText(getContext(), "Please accept terms and conditions of health kangaroo", Toast.LENGTH_SHORT).show();
         } else {
-            new ViewModalClass().uniqueAPiModelLiveData(requireActivity(), str_email, str_phone).observe(requireActivity(), new Observer<UniqueAPiModel>() {
-                public void onChanged(UniqueAPiModel uniqueAPiModel) {
-                    if (uniqueAPiModel.getSuccess().equalsIgnoreCase("1")) {
-                        Toast.makeText(requireActivity(), "" + uniqueAPiModel.getMessage(), Toast.LENGTH_SHORT).show();
-                        Toast.makeText(requireActivity(), "" + uniqueAPiModel.getOtp(), Toast.LENGTH_SHORT).show();
-                        Fragment fragment = new Fragment();
-                        Bundle bundle = new Bundle();
-                        bundle.putString("name", str_user);
-                        bundle.putString("email", str_email);
-                        bundle.putString("phone", str_phone);
-                        bundle.putString("password", str_password);
-                        bundle.putString(AppConstants.OTP, uniqueAPiModel.getOtp());
-                        fragment.setArguments(bundle);
-                        Navigation.findNavController(binding.getRoot()).navigate(R.id.otpFragment, bundle);
-                        return;
-                    }
+            new ViewModalClass().uniqueAPiModelLiveData(requireActivity(), str_email, str_phone).observe(requireActivity(), uniqueAPiModel -> {
+                if (uniqueAPiModel.getSuccess().equalsIgnoreCase("1")) {
                     Toast.makeText(requireActivity(), "" + uniqueAPiModel.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(requireActivity(), "" + uniqueAPiModel.getOtp(), Toast.LENGTH_SHORT).show();
+                    Fragment fragment = new Fragment();
+                    Bundle bundle = new Bundle();
+                    bundle.putString("name", str_user);
+                    bundle.putString("email", str_email);
+                    bundle.putString("phone", str_phone);
+                    bundle.putString("password", str_password);
+                    bundle.putString(AppConstants.OTP, uniqueAPiModel.getOtp());
+                    fragment.setArguments(bundle);
+                    Navigation.findNavController(binding.getRoot()).navigate(R.id.otpFragment, bundle);
+                    return;
                 }
+                Toast.makeText(requireActivity(), "" + uniqueAPiModel.getMessage(), Toast.LENGTH_SHORT).show();
             });
         }
     }

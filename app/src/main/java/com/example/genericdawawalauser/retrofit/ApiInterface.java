@@ -396,18 +396,24 @@ public interface ApiInterface {
             @Field("age") String age,
             @Field("relation") String relation);
 
-    @FormUrlEncoded
+
+
+    @Multipart
     @POST("labTestAppointments")
     Call<LabBookModal> labTestAppointments(
-            @Field("labId") String labId,
-            @Field("userId") String userId,
-            @Field("patient_id") String patient_id,
-            @Field("amount") String amount,
-            @Field("address") String address,
-            @Field("date") String date,
-            @Field("time_slot") String time_slot,
-            @Field("homeCollection") String homeCollectionCheck,
-            @Field("labTestId") String labTestId);
+            @Part("labId") RequestBody labId,
+            @Part("userId") RequestBody userId,
+            @Part("patient_id") RequestBody patient_id,
+            @Part("type") RequestBody type,
+            @Part MultipartBody.Part prescription,
+            @Part("amount") RequestBody amount,
+            @Part("address") RequestBody address,
+            @Part("date") RequestBody date,
+            @Part("time_slot") RequestBody time_slot,
+            @Part("homeCollection") RequestBody homeCollectionCheck,
+            @Part("labTestId") RequestBody labTestId
+
+    );
 
 
     @FormUrlEncoded

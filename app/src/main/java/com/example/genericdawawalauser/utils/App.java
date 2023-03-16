@@ -3,7 +3,8 @@ package com.example.genericdawawalauser.utils;
 import android.app.Application;
 import android.content.Context;
 
-public class App extends Application {
+public class
+App extends Application {
     private static Context context;
     private static SharedPre sharedPre;
     private static SingleModel singleTonModel;
@@ -21,9 +22,7 @@ public class App extends Application {
         return sharedPre;
     }
 
-    public static SingleModel getSingleTonModel() {
-        return singleTonModel;
-    }
+
 
     public static Singleton getSingleton() {
         return singleton;

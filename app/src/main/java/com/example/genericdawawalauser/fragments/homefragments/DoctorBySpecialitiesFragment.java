@@ -84,7 +84,8 @@ public class DoctorBySpecialitiesFragment extends Fragment {
                     DoctorDetailsFragment.doctorModelDetails = doctorModelDetails;
                     Navigation.findNavController(binding.getRoot()).navigate(R.id.doctorDetailsFragment);
 
-                }, doctorModelRoot.getDetails(), doctorModelDetails -> {
+                },
+                        doctorModelRoot.getDetails(), doctorModelDetails -> {
                     DoctorTimeSlotFragment.doctorModelDetails = doctorModelDetails;
                     App.getSingleton().setFees(doctorModelDetails.getOnline_price());
                     App.getSingleton().setDoctor_id(doctorModelDetails.getId());

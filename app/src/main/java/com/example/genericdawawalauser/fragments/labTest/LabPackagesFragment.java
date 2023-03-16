@@ -24,7 +24,6 @@ import com.example.genericdawawalauser.utils.CommonUtils;
 public class LabPackagesFragment extends Fragment {
     FragmentLabPackagesBinding binding;
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentLabPackagesBinding.inflate(inflater, container, false);
@@ -57,6 +56,7 @@ public class LabPackagesFragment extends Fragment {
                             bundle.putString("dis_per", String.valueOf(detail.getDiscount()));
                             bundle.putString("total_amount", String.valueOf(detail.getTotalPrice()));
                             fragment.setArguments(bundle);
+                            App.getSingleton().setHomeCollectionCheck("2");
 
                             Navigation.findNavController(binding.getRoot()).navigate(R.id.addPackageCartFragment, bundle);
                         }

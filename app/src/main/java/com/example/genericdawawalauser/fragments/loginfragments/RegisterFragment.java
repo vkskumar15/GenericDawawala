@@ -40,12 +40,17 @@ public class RegisterFragment extends Fragment {
 
 
     private void setClicksOnViews() {
+
         binding.tvSignin.setOnClickListener(view -> {
             Navigation.findNavController(view).navigate(R.id.loginFragment);
         });
+
         binding.btnRegister.setOnClickListener(view -> {
+
             registerUser();
+
         });
+
     }
 
     private void registerUser() {

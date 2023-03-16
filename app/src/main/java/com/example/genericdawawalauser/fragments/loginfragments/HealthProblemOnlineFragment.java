@@ -27,8 +27,9 @@ public class HealthProblemOnlineFragment extends Fragment implements AdapterHeal
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         binding = FragmentHealthProblemOnlineBinding.inflate(inflater, container, false);
-        adapterHealthProblem = new AdapterHealthProblem(getContext(), new ArrayList<>(), HealthProblemOnlineFragment.this);
 
+        adapterHealthProblem = new AdapterHealthProblem(getContext(), new ArrayList<>(),
+                HealthProblemOnlineFragment.this);
         binding.recyclerLocation.setAdapter(adapterHealthProblem);
 
         setData();

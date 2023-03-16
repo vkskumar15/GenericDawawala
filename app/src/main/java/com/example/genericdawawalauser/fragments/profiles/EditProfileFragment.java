@@ -107,6 +107,7 @@ public class EditProfileFragment extends Fragment {
                 CommonUtils.stringToRequestBody(binding.dob.getText().toString()),
                 CommonUtils.stringToRequestBody(binding.phoneNo.getText().toString()),
                 CommonUtils.stringToRequestBody(binding.address.getText().toString()),
+
                 CommonUtils.imageToMultiPart("image", imgPhotosPath)).observe(requireActivity(), registerModelRoot -> {
             if (registerModelRoot.getSuccess().equalsIgnoreCase("1")) {
 

@@ -23,7 +23,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AdapterHealthProblem extends RecyclerView.Adapter<AdapterHealthProblem.ViewHolder> implements Filterable {
-
     Context context;
     Select select;
     List<HealthProblemModal.Detail> list;
@@ -79,12 +78,9 @@ public class AdapterHealthProblem extends RecyclerView.Adapter<AdapterHealthProb
 
     @Override
     public Filter getFilter() {
-
         return new Filter() {
             @Override
             protected FilterResults performFiltering(CharSequence constraint) {
-
-
                 List<HealthProblemModal.Detail> filter = new ArrayList<>();
 
                 if (constraint == null || constraint.length() == 0) {
@@ -103,10 +99,8 @@ public class AdapterHealthProblem extends RecyclerView.Adapter<AdapterHealthProb
                         if (doctorModelDetails.getTitle().toLowerCase().contains(value)) {
 
                             filter.add(doctorModelDetails);
-
                         }
                     }
-
                 }
 
                 FilterResults filterResults = new FilterResults();
@@ -118,7 +112,7 @@ public class AdapterHealthProblem extends RecyclerView.Adapter<AdapterHealthProb
             protected void publishResults(CharSequence constraint, FilterResults results) {
 
                 list.clear();
-                // list.addAll((List)results.values);
+                list.addAll((List)results.values);
                 notifyDataSetChanged();
             }
         };
@@ -142,7 +136,7 @@ public class AdapterHealthProblem extends RecyclerView.Adapter<AdapterHealthProb
 
     public interface Select {
 
-        public void onClick(HealthProblemModal.Detail doctorModelDetails);
+         void onClick(HealthProblemModal.Detail doctorModelDetails);
 
     }
 

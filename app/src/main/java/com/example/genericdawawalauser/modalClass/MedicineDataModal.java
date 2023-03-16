@@ -80,6 +80,7 @@ public class MedicineDataModal {
         @Expose
         private String testPrice;
 
+
         public String getTestPrice() {
             return testPrice;
         }

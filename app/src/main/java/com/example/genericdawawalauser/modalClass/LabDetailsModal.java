@@ -85,9 +85,16 @@ public class LabDetailsModal {
         @SerializedName("created")
         @Expose
         private String created;
+
         @SerializedName("updated")
         @Expose
         private String updated;
+        
+        @SerializedName("PrescriptionCheck")
+        @Expose
+        private String PrescriptionCheck;
+
+
         @SerializedName("discountPrice")
         @Expose
         private Integer discountPrice;
@@ -100,6 +107,14 @@ public class LabDetailsModal {
         @SerializedName("Test")
         @Expose
         private List<Test> test;
+
+        public String getPrescriptionCheck() {
+            return PrescriptionCheck;
+        }
+
+        public void setPrescriptionCheck(String PrescriptionCheck) {
+            this.PrescriptionCheck = PrescriptionCheck;
+        }
 
         public String getActualPrice() {
             return actualPrice;
@@ -252,6 +267,7 @@ public class LabDetailsModal {
         public void setTest(List<Test> test) {
             this.test = test;
         }
+
         public class Test {
 
             @SerializedName("id")
@@ -272,9 +288,9 @@ public class LabDetailsModal {
             @SerializedName("homeCollectionCheck")
             @Expose
             private String homeCollectionCheck;
-            @SerializedName("prescriptionCheck")
+            @SerializedName("PrescriptionCheck")
             @Expose
-            private String prescriptionCheck;
+            private String PrescriptionCheck;
             @SerializedName("addToCart_status")
             @Expose
             private String addToCartStatus;
@@ -331,11 +347,11 @@ public class LabDetailsModal {
             }
 
             public String getPrescriptionCheck() {
-                return prescriptionCheck;
+                return PrescriptionCheck;
             }
 
-            public void setPrescriptionCheck(String prescriptionCheck) {
-                this.prescriptionCheck = prescriptionCheck;
+            public void setPrescriptionCheck(String PrescriptionCheck) {
+                this.PrescriptionCheck = PrescriptionCheck;
             }
 
             public String getAddToCartStatus() {

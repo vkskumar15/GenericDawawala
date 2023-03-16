@@ -122,7 +122,7 @@ public class Adapter_Recycler_Location extends RecyclerView.Adapter<Adapter_Recy
             protected void publishResults(CharSequence constraint, FilterResults results) {
 
                 list.clear();
-               // list.addAll((List)results.values);
+                 list.addAll((List)results.values);
                 notifyDataSetChanged();
             }
         };

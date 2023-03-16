@@ -193,7 +193,6 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
-                        android:fontFamily="@font/nunito"
                         android:hint="@string/accept_terms_of_use"
                         android:textColor="@color/black" />
 
@@ -203,7 +202,6 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
-                        android:fontFamily="@font/nunito"
                         android:hint="&amp; Privacy Policy"
                         android:textColor="@color/black"
                         android:visibility="gone" />
@@ -225,7 +223,6 @@
             android:layout_centerHorizontal="true"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
-            android:fontFamily="@font/nunito"
             android:text="Have an account?"
             android:textColor="@color/colorBlack" />
 
@@ -238,7 +235,6 @@
             android:layout_marginLeft="4dp"
             android:layout_marginTop="10dp"
             android:layout_toRightOf="@+id/tv_acc"
-            android:fontFamily="@font/nunito"
             android:text="Sign in"
             android:textColor="@color/appcolor" />
     </RelativeLayout>

@@ -1,12 +1,19 @@
 package com.example.genericdawawalauser.fragments.labTest;
 
+import android.Manifest;
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 
@@ -28,9 +35,11 @@ import com.example.genericdawawalauser.retrofit.ViewModalClass;
 import com.example.genericdawawalauser.utils.App;
 import com.example.genericdawawalauser.utils.AppConstants;
 import com.example.genericdawawalauser.utils.CommonUtils;
+import com.github.dhaval2404.imagepicker.ImagePicker;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 
 public class LabOrderFragment extends Fragment {
@@ -38,6 +47,7 @@ public class LabOrderFragment extends Fragment {
     String imagePath, total_price, total_patient, labId, total_patient_id, cart_total_item, address_id;
     int price;
     public static String appointmentSlot, appointmentDateToShow, appointmentDateToSend;
+    String stringPhotoPath;
 
 
     @Override
@@ -49,7 +59,45 @@ public class LabOrderFragment extends Fragment {
         setDetails();
         setAdapter();
 
+        if (Objects.equals(App.getSingleton().getPrescriptionCheck(), "1")) {
+
+            binding.prescriptionsLayout.setVisibility(View.VISIBLE);
+
+        } else {
+
+            binding.prescriptionsLayout.setVisibility(View.GONE);
+
+        }
+
+        binding.prescriptionsLayout.setOnClickListener(v -> {
+
+            try {
+                if (ContextCompat.checkSelfPermission(requireActivity(),
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                        != PackageManager.PERMISSION_GRANTED) {
+                    if (ActivityCompat.shouldShowRequestPermissionRationale(requireActivity(),
+                            Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+                    } else {
+                        ActivityCompat.requestPermissions(requireActivity(),
+                                new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                                12);
+                    }
+                } else {
+                    openGallery();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+
+
         return binding.getRoot();
+
+    }
+
+    private void openGallery() {
+
+        ImagePicker.with(this).galleryOnly().cropSquare().compress(1024).start();
 
     }
 
@@ -62,52 +110,61 @@ public class LabOrderFragment extends Fragment {
         cart_total_item = App.getSharedPre().getString(AppConstants.TOTAL_TEST);
         labId = App.getSingleton().getLabId();
         address_id = App.getSingleton().getPatient_address();
-
-        Toast.makeText(requireActivity(), ""+cart_total_item, Toast.LENGTH_SHORT).show();
         price = Integer.parseInt(total_price) * Integer.parseInt(total_patient);
         binding.address.setText(App.getSingleton().getPatient_address_details());
 
-        binding.totalAmount.setText("₹"+price);
-        binding.totalPaid.setText("₹"+price);
-        binding.amount.setText("₹"+price);
+        binding.totalAmount.setText("₹" + price);
+        binding.totalPaid.setText("₹" + price);
+        binding.amount.setText("₹" + price);
 
         binding.bookNow.setOnClickListener(view -> {
-            new  ViewModalClass().labBookModalLiveData(requireActivity(),
-                    CommonUtils.stringToRequestBody(labId),
-                    CommonUtils.stringToRequestBody(CommonUtils.getUserId()),
-                    CommonUtils.stringToRequestBody(total_patient_id),
-                    CommonUtils.stringToRequestBody("1"),
-                    CommonUtils.imageToMultiPart("",imagePath),
-                    CommonUtils.stringToRequestBody(String.valueOf(price)),
-                    CommonUtils.stringToRequestBody(address_id),
-                    CommonUtils.stringToRequestBody(appointmentDateToShow),
-                    CommonUtils.stringToRequestBody(appointmentSlot),
-                    CommonUtils.stringToRequestBody("1"),
-                    CommonUtils.stringToRequestBody(cart_total_item)
-            ).observe(requireActivity(), new Observer<LabBookModal>() {
-                @Override
-                public void onChanged(LabBookModal labBookModal) {
-                    if (labBookModal.getSuccess().equalsIgnoreCase("1"))
-                    {
-                        Toast.makeText(requireActivity(), ""+labBookModal.getMessage(), Toast.LENGTH_SHORT).show();
-                        confirmationPopUp();
 
-                    }else {
-                        Toast.makeText(requireActivity(), ""+labBookModal.getMessage(), Toast.LENGTH_SHORT).show();
+            if (Objects.equals(App.getSingleton().getPrescriptionCheck(), "1")) {
 
-                    }
+                if (stringPhotoPath != null) {
+                    bookAppointment();
+                } else {
+                    Toast.makeText(requireActivity(), "Please Upload Prescription First!", Toast.LENGTH_SHORT).show();
                 }
-            });
+
+            } else {
+
+                bookAppointment();
+            }
+
         });
+    }
 
+    private void bookAppointment() {
+        new ViewModalClass().labBookModalLiveData(requireActivity(),
+                CommonUtils.stringToRequestBody(labId),
+                CommonUtils.stringToRequestBody(CommonUtils.getUserId()),
+                CommonUtils.stringToRequestBody(total_patient_id),
+                CommonUtils.stringToRequestBody("1"),
+                CommonUtils.imageToMultiPart("prescription", stringPhotoPath),
+                CommonUtils.stringToRequestBody(String.valueOf(price)),
+                CommonUtils.stringToRequestBody(address_id),
+                CommonUtils.stringToRequestBody(appointmentDateToShow),
+                CommonUtils.stringToRequestBody(appointmentSlot),
+                CommonUtils.stringToRequestBody(App.getSingleton().getHomeCollectionCheck()),
+                CommonUtils.stringToRequestBody(cart_total_item)
+        ).observe(requireActivity(), new Observer<LabBookModal>() {
+            @Override
+            public void onChanged(LabBookModal labBookModal) {
+                if (labBookModal.getSuccess().equalsIgnoreCase("1")) {
+                    Toast.makeText(requireActivity(), "" + labBookModal.getMessage(), Toast.LENGTH_SHORT).show();
+                    confirmationPopUp();
 
+                } else {
+                    Toast.makeText(requireActivity(), "" + labBookModal.getMessage(), Toast.LENGTH_SHORT).show();
 
-
+                }
+            }
+        });
     }
 
 
     private void confirmationPopUp() {
-
         Dialog order_confirmation_box = new Dialog(requireActivity());
         order_confirmation_box.setContentView(R.layout.order_confirmation_dialogue_box);
         order_confirmation_box.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
@@ -131,19 +188,35 @@ public class LabOrderFragment extends Fragment {
     }
 
     private void setAdapter() {
-        new ViewModalClass().addCartLabModalLiveData(getActivity(), CommonUtils.getUserId(), labId).observe(getActivity(),
-                addCartLabModal -> {
+        new ViewModalClass().addCartLabModalLiveData(getActivity(), CommonUtils.getUserId(), labId).observe(getActivity(), addCartLabModal -> {
+
             if (addCartLabModal.getSuccess().equalsIgnoreCase("1")) {
+
                 LabTestOrderAdapter adapter = new LabTestOrderAdapter(addCartLabModal.getDetails(), getActivity());
+
                 binding.recyclerView.setAdapter(adapter);
 
             } else {
+
                 Toast.makeText(getActivity(), "" + addCartLabModal.getMessage(), Toast.LENGTH_SHORT).show();
+
             }
         });
-
-
     }
 
-
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == Activity.RESULT_OK) {
+            assert data != null;
+            Uri imageUriPhotos = data.getData();
+            stringPhotoPath = imageUriPhotos.getPath();
+            binding.prescriptionsUpload.setText(stringPhotoPath);
+            binding.prescriptionImage.setImageURI(imageUriPhotos);
+        } else if (resultCode == ImagePicker.RESULT_ERROR) {
+            Toast.makeText(requireContext(), ImagePicker.getError(data), Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(requireContext(), "Image Uploading Cancelled", Toast.LENGTH_SHORT).show();
+        }
+    }
 }

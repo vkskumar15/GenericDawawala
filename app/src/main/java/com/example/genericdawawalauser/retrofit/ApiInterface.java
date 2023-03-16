@@ -46,6 +46,7 @@ import retrofit2.http.POST;
 import retrofit2.http.Part;
 
 public interface ApiInterface {
+
     @FormUrlEncoded
     @POST("uniqueAPI")
     Call<UniqueAPiModel> checkEmailPhone(@Field("email") String str,
@@ -54,7 +55,7 @@ public interface ApiInterface {
     @FormUrlEncoded
     @POST("userLogin")
     Call<RegisterModelRoot> loginUser(@Field("emailPhone") String emailPhone,
-                                      @Field("password") String password,
+                                          @Field("password") String password,
                                       @Field("reg_id") String reg_id,
                                       @Field("device_id") String device_id,
                                       @Field("login_type") String login_type,
@@ -260,8 +261,7 @@ public interface ApiInterface {
     @POST("addToCartLabTest")
     Call<AddToCartModal> addToCartLabTest(
             @Field("userId") String userId,
-            @Field("labTestId") String labTestId
-    );
+            @Field("labTestId") String labTestId);
 
     @FormUrlEncoded
     @POST("removeCartDetails")
@@ -286,8 +286,7 @@ public interface ApiInterface {
     @POST("addToCartUser")
     Call<AddCartLabModal> addToCartUser(
             @Field("userId") String userId,
-            @Field("labTestId") String labTestId
-    );
+            @Field("labTestId") String labTestId);
 
 
     @FormUrlEncoded
@@ -395,9 +394,6 @@ public interface ApiInterface {
             @Field("gender") String gender,
             @Field("age") String age,
             @Field("relation") String relation);
-
-
-
     @Multipart
     @POST("labTestAppointments")
     Call<LabBookModal> labTestAppointments(
@@ -411,10 +407,7 @@ public interface ApiInterface {
             @Part("date") RequestBody date,
             @Part("time_slot") RequestBody time_slot,
             @Part("homeCollection") RequestBody homeCollectionCheck,
-            @Part("labTestId") RequestBody labTestId
-
-    );
-
+            @Part("labTestId") RequestBody labTestId);
 
     @FormUrlEncoded
     @POST("getAllTestPackages")

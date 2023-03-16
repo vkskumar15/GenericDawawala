@@ -1,18 +1,12 @@
 package com.example.genericdawawalauser.fragments.labTest;
 
-import android.content.Intent;
 import android.os.Bundle;
-
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
-
 import com.example.genericdawawalauser.R;
-import com.example.genericdawawalauser.activities.AddToCartActivity;
 import com.example.genericdawawalauser.adapters.labAdapter.LabDetailsAdapter;
 import com.example.genericdawawalauser.databinding.FragmentLabDetailsBinding;
 import com.example.genericdawawalauser.modalClass.LabDetailsModal;
@@ -43,7 +37,6 @@ public class LabDetailsFragment extends Fragment {
                 LabDetailsAdapter adapter = new LabDetailsAdapter(labDetailsModal.getDetails(), requireContext(), new LabDetailsAdapter.SelectLab() {
                     @Override
                     public void selectLab(LabDetailsModal.Detail detail) {
-
                         Fragment fragment = new Fragment();
                         Bundle bundle = new Bundle();
                         bundle.putString("id", detail.getLabId());
@@ -52,8 +45,10 @@ public class LabDetailsFragment extends Fragment {
                         bundle.putString("dis_per", String.valueOf(detail.getDiscount()));
                         bundle.putString("total_amount", String.valueOf(detail.getTotalPrice()));
                         fragment.setArguments(bundle);
-
                         App.getSingleton().setLabId(detail.getLabId());
+                        App.getSingleton().setHomeCollectionCheck("1");
+
+                        App.getSingleton().setPrescriptionCheck(detail.getPrescriptionCheck());
 
                         Navigation.findNavController(binding.getRoot()).navigate(R.id.addToCartActivity, bundle);
                     }

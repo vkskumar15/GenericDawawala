@@ -52,7 +52,9 @@ import retrofit2.Response;
 
 public class ViewModalClass extends ViewModel {
     ApiInterface apiInterface = BaseUrlRetrofit.getRetrofit().create(ApiInterface.class);
+
      private MutableLiveData<RegisterModelRoot> registerModelRootMutableLiveData;
+
      private MutableLiveData<RegisterModelRoot> registerModelRootMutableLiveData2;
      private MutableLiveData<UniqueAPiModel> uniqueAPiModelMutableLiveData;
      private MutableLiveData<RegisterModelRoot> updateUserDataModelRootMutableLiveData;
@@ -79,27 +81,39 @@ public class ViewModalClass extends ViewModel {
         return  uniqueAPiModelMutableLiveData;
     }
 
-    public LiveData<RegisterModelRoot> registerModelRootLiveData(final Activity activity, String user, String email, String phone, String password, String reg_id, String device_id, String login_type, String latitude, String longitude, String chatId) {
-        Activity activity2 = activity;
+
+    public LiveData<RegisterModelRoot> registerModelRootLiveData(final Activity activity, String user,
+                                                                 String email, String phone, String password,
+                                                                 String reg_id, String device_id, String login_type,
+                                                                 String latitude, String longitude, String chatId) {
+
          registerModelRootMutableLiveData = new MutableLiveData<>();
+
         CommonUtils.showProgressDialog(activity);
-         apiInterface.registerUser(user, email, phone, password, reg_id, device_id, login_type, latitude, longitude, chatId).enqueue(new Callback<RegisterModelRoot>() {
+
+        apiInterface.registerUser(user, email, phone, password, reg_id, device_id, login_type, latitude, longitude, chatId).enqueue(new Callback<RegisterModelRoot>() {
             public void onResponse(Call<RegisterModelRoot> call, Response<RegisterModelRoot> response) {
                 CommonUtils.dismissDialog();
+
                 if (response.body().getSuccess().equalsIgnoreCase("0")) {
                     Toast.makeText(activity, response.body().getMessage(), Toast.LENGTH_SHORT).show();
                 } else if (response.body() != null) {
                     ViewModalClass.this.registerModelRootMutableLiveData.postValue(response.body());
                 }
+
+
             }
 
             public void onFailure(Call<RegisterModelRoot> call, Throwable t) {
+
                 CommonUtils.dismissDialog();
                 Toast.makeText(activity, "" + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
         return this.registerModelRootMutableLiveData;
     }
+
+
 
     public LiveData<RegisterModelRoot> loginUserModelRootLiveData(Activity activity, String emailPhone, String password, String reg_id, String device_type, String device_id, String latitude, String longitude) {
         this.registerModelRootMutableLiveData2 = new MutableLiveData<>();
@@ -163,7 +177,10 @@ public class ViewModalClass extends ViewModel {
         return this.updateUserEmailPhoneModelMutableLiveData;
     }
 
-    public LiveData<RegisterModelRoot> updateUserDataModelRootLiveData(final Activity activity, RequestBody userId, RequestBody username, RequestBody gender, RequestBody email, RequestBody dob, RequestBody phone, RequestBody address, MultipartBody.Part image) {
+    public LiveData<RegisterModelRoot> updateUserDataModelRootLiveData(final Activity activity, RequestBody userId, RequestBody username,
+                                                                       RequestBody gender, RequestBody email,
+                                                                       RequestBody dob, RequestBody phone,
+                                                                       RequestBody address, MultipartBody.Part image) {
         Activity activity2 = activity;
         this.updateUserDataModelRootMutableLiveData = new MutableLiveData<>();
         CommonUtils.showProgressDialog(activity);

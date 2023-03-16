@@ -112,6 +112,24 @@ public class Singleton {
     public String cart_total_id;
     public String lab_name;
     public String lab_about;
+    public String prescriptionCheck;
+    public String homeCollectionCheck;
+
+    public String getHomeCollectionCheck() {
+        return homeCollectionCheck;
+    }
+
+    public void setHomeCollectionCheck(String homeCollectionCheck) {
+        this.homeCollectionCheck = homeCollectionCheck;
+    }
+
+    public String getPrescriptionCheck() {
+        return prescriptionCheck;
+    }
+
+    public void setPrescriptionCheck(String prescriptionCheck) {
+        this.prescriptionCheck = prescriptionCheck;
+    }
 
     public String getLab_name() {
         return lab_name;
@@ -137,7 +155,7 @@ public class Singleton {
         this.cart_total_id = cart_total_id;
     }
 
-    public List<GetPatientAddress> addressArrayList = new ArrayList<GetPatientAddress>();;
+    public List<GetPatientAddress> addressArrayList = new ArrayList<GetPatientAddress>();
 
     public List<GetPatientAddress> getAddressArrayList() {
         return addressArrayList;

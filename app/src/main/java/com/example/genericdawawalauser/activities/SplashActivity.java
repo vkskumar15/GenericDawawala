@@ -5,6 +5,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.res.Configuration;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
@@ -21,6 +22,7 @@ import androidx.core.app.ActivityCompat;
 import com.example.genericdawawalauser.R;
 import com.example.genericdawawalauser.utils.App;
 import com.example.genericdawawalauser.utils.AppConstants;
+import com.example.genericdawawalauser.utils.OnClearFromRecentService;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
@@ -43,10 +45,17 @@ public class SplashActivity extends AppCompatActivity {
 
         locationProviderClient = LocationServices.getFusedLocationProviderClient(SplashActivity.this);
 
+
+
+
+
     }
 
     public void onResume() {
         super.onResume();
+
+        startService(new Intent(getBaseContext(), OnClearFromRecentService.class));
+
         getLastLocation();
 
         new Handler().postDelayed(() -> {
@@ -60,8 +69,6 @@ public class SplashActivity extends AppCompatActivity {
             }
         }, 3000);
     }
-
-
     private boolean checkPermissions() {
         if (ActivityCompat.checkSelfPermission(SplashActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED &&
                 ActivityCompat.checkSelfPermission(SplashActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
@@ -69,23 +76,18 @@ public class SplashActivity extends AppCompatActivity {
         }
         return false;
     }
-
     private void requestPermissions() {
-        ActivityCompat.requestPermissions(
-                SplashActivity.this,
+        ActivityCompat.requestPermissions(SplashActivity.this,
                 new String[]{Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION},
                 PERMISSION_ID
         );
     }
-
     private boolean isLocationEnabled() {
         LocationManager locationManager = (LocationManager) SplashActivity.this.getSystemService(Context.LOCATION_SERVICE);
         return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) || locationManager.isProviderEnabled(
                 LocationManager.NETWORK_PROVIDER
         );
     }
-
-
     private void getLastLocation() {
         if (checkPermissions()) {
             if (isLocationEnabled()) {
@@ -119,7 +121,6 @@ public class SplashActivity extends AppCompatActivity {
             requestPermissions();
         }
     }
-
     @SuppressLint("MissingPermission")
     private void requestNewLocationData() {
 
@@ -135,7 +136,6 @@ public class SplashActivity extends AppCompatActivity {
                 Looper.myLooper()
         );
     }
-
     private LocationCallback mLocationCallback = new LocationCallback() {
         @Override
         public void onLocationResult(LocationResult locationResult) {
@@ -188,9 +188,7 @@ public class SplashActivity extends AppCompatActivity {
             addresses = geocoder.getFromLocation(latitude, longitude, 1);
         } catch (IOException e) {
             e.printStackTrace();
-
         }
-
 
         if (addresses != null) {
             Address returnedAddress = addresses.get(0);
@@ -208,4 +206,7 @@ public class SplashActivity extends AppCompatActivity {
         }
 
     }
+
+
+
 }

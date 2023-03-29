@@ -99,7 +99,6 @@ public class EditProfileFragment extends Fragment {
         CheckGender();
 
         new ViewModalClass().updateUserDataModelRootLiveData(requireActivity(),
-
                 CommonUtils.stringToRequestBody(CommonUtils.getUserId()),
                 CommonUtils.stringToRequestBody(binding.userName.getText().toString()),
                 CommonUtils.stringToRequestBody(gender),
@@ -107,8 +106,8 @@ public class EditProfileFragment extends Fragment {
                 CommonUtils.stringToRequestBody(binding.dob.getText().toString()),
                 CommonUtils.stringToRequestBody(binding.phoneNo.getText().toString()),
                 CommonUtils.stringToRequestBody(binding.address.getText().toString()),
-
                 CommonUtils.imageToMultiPart("image", imgPhotosPath)).observe(requireActivity(), registerModelRoot -> {
+
             if (registerModelRoot.getSuccess().equalsIgnoreCase("1")) {
 
                 Toast.makeText(requireActivity(), "" + registerModelRoot.getMessage(), Toast.LENGTH_SHORT).show();

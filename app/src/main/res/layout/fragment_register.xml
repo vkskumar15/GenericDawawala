@@ -55,6 +55,7 @@
                             android:layout_gravity="center"
                             android:layout_marginTop="10dp"
                             android:hint="User Name"
+
                             app:endIconMode="clear_text"
                             app:startIconDrawable="@drawable/ic_baseline_account_circle_24"
                             app:startIconTint="@color/appcolor">

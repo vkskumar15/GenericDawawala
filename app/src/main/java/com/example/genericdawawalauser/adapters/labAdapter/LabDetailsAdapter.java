@@ -51,6 +51,7 @@ public class LabDetailsAdapter extends RecyclerView.Adapter<LabDetailsAdapter.Vi
         holder.binding.discount.setText(String.valueOf("₹ "+list.get(position).getDiscountPrice()));
         holder.binding.off.setText(String.valueOf(list.get(position).getDiscount()+"%OFF"));
         holder.binding.price.setText(String.valueOf("₹ " + list.get(position).getTotalPrice() + "/-"));
+
         Glide.with(context).load(list.get(position).getImage()).into(holder.binding.profileImage);
 
         holder.binding.selectBtn.setOnClickListener(v -> {

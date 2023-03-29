@@ -7,12 +7,15 @@ import androidx.core.content.ContextCompat;
 
 import android.Manifest;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.widget.Toast;
 
 import com.example.genericdawawalauser.databinding.ActivityHomeBinding;
+import com.example.genericdawawalauser.utils.MyShutdownReceiver;
 
 
 public class HomeActivity extends AppCompatActivity {
@@ -26,12 +29,21 @@ public class HomeActivity extends AppCompatActivity {
         activityHomeBinding = ActivityHomeBinding.inflate(getLayoutInflater());
         setContentView(activityHomeBinding.getRoot());
 
+        registerShutdownReceiver();
+
         if (checkPermission()) {
 
         } else {
             requestPermission();
         }
 
+
+    }
+
+    private void registerShutdownReceiver() {
+        MyShutdownReceiver receiver = new MyShutdownReceiver();
+        IntentFilter filter = new IntentFilter(Intent.ACTION_SHUTDOWN);
+        registerReceiver(receiver, filter);
     }
 
     private boolean checkPermission() {
@@ -84,5 +96,7 @@ public class HomeActivity extends AppCompatActivity {
                 .create()
                 .show();
     }
+
+
 }
 

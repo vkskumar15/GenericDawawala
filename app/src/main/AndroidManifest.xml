@@ -25,6 +25,8 @@
 
     <application
         android:name=".utils.App"
+        android:excludeFromRecents="true"
+        android:noHistory="true"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -124,6 +126,18 @@
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
+
+        <service android:name="com.example.genericdawawalauser.utils.OnClearFromRecentService"
+            android:stopWithTask="true" />
+
+        <receiver android:name=".MyShutdownReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.ACTION_SHUTDOWN" />
+            </intent-filter>
+        </receiver>
+
+
     </application>
 
 </manifest>

@@ -24,14 +24,18 @@ public class LabPopularTestAdapter extends RecyclerView.Adapter<LabPopularTestAd
     DeletetoCart deletetoCart;
 
     public interface DetailsData {
+
         void details(MedicineDataModal.Detail detail);
+
     }
 
     public interface DeletetoCart {
+
         void deletetoCart(MedicineDataModal.Detail detail);
     }
 
     public interface AddtoCart {
+
         void addToCart(MedicineDataModal.Detail detail);
     }
 

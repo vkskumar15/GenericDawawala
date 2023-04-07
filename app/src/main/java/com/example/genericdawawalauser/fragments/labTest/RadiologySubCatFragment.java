@@ -35,12 +35,13 @@ public class RadiologySubCatFragment extends Fragment {
 
 
         setAdapter();
-       addToCartMedicine();
-//        AddCartTotalItem();
+        AddCartTotalItem();
+
         
         binding.back.setOnClickListener(v -> {
-            
+
             requireActivity().onBackPressed();
+
         });
 
         return binding.getRoot();
@@ -62,7 +63,7 @@ public class RadiologySubCatFragment extends Fragment {
                         public void addToCart(MedicineDataModal.Detail detail) {
 
                             catId  =detail.getId();
-                            addToCartMedicine();
+                            addToCartMedicine(detail.getId());
 
                         }
                     }, new LabPopularTestAdapter.DeletetoCart() {
@@ -83,20 +84,19 @@ public class RadiologySubCatFragment extends Fragment {
 
     }
 
-    private void addToCartMedicine() {
-        new ViewModalClass().addToCartRadioModalLiveData(requireActivity(), CommonUtils.getUserId(), catId).observe(requireActivity(), new Observer<AddToCartPackageModal>() {
+    private void addToCartMedicine(String id) {
+
+        Toast.makeText(requireContext(), ""+id, Toast.LENGTH_SHORT).show();
+
+        new ViewModalClass().addToCartRadioModalLiveData(requireActivity(), CommonUtils.getUserId(), id).observe(requireActivity(), new Observer<AddToCartPackageModal>() {
             @Override
             public void onChanged(AddToCartPackageModal addToCartPackageModal) {
                 if (addToCartPackageModal.getSuccess().equalsIgnoreCase("1"))
                 {
-                    binding.relative.setVisibility(View.VISIBLE);
-
-                //    AddCartTotalItem();
+                    AddCartTotalItem();
                     Toast.makeText(requireContext(), ""+addToCartPackageModal.getMessage(), Toast.LENGTH_SHORT).show();
 
                 }else {
-
-                    binding.relative.setVisibility(View.GONE);
 
                     Toast.makeText(requireContext(), ""+addToCartPackageModal.getMessage(), Toast.LENGTH_SHORT).show();
 

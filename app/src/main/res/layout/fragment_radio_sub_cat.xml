@@ -2,11 +2,10 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    tools:context=".fragments.labTest.RadiologySubCatFragment">
-
+    android:layout_height="match_parent"
+    tools:context=".fragments.labTest.RadioSubCatFragment">
 
     <LinearLayout
         android:id="@+id/header_title"
@@ -32,7 +31,6 @@
             android:text="@string/pathology_tests"
             android:textColor="@color/white" />
     </LinearLayout>
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview_condition"
         android:layout_width="match_parent"
@@ -43,7 +41,6 @@
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:spanCount="1"
         tools:listitem="@layout/popular_lab_test_layout" />
-
     <RelativeLayout
         android:id="@+id/relative"
         android:layout_width="match_parent"
@@ -87,4 +84,5 @@
             android:textStyle="bold" />
 
     </RelativeLayout>
+
 </RelativeLayout>

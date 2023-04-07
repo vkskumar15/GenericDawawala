@@ -60,6 +60,8 @@ dependencies {
     implementation 'com.squareup.okhttp3:okhttp:4.9.0'
     implementation 'android.arch.lifecycle:extensions:1.1.1'
     implementation 'com.github.angads25:toggle:1.1.0'
+    implementation 'com.squareup.retrofit2:converter-scalars:2.9.0'
+
 
     // Glide
     implementation 'com.github.bumptech.glide:glide:4.11.0'

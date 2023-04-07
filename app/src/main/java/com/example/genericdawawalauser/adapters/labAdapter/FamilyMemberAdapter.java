@@ -79,6 +79,7 @@ public class FamilyMemberAdapter extends RecyclerView.Adapter<FamilyMemberAdapte
 
     @Override
     public int getItemCount() {
+
         return list.size();
     }
 

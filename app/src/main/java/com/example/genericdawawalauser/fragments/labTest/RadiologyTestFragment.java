@@ -67,6 +67,8 @@ public class RadiologyTestFragment extends Fragment {
                         @Override
                         public void category(RadiologyCategoryModal.Detail detail) {
 
+                            RadiologySubCatFragment.detail = detail;
+                            Navigation.findNavController(binding.getRoot()).navigate(R.id.radiologySubCatFragment);
                         }
                     });
                     binding.categoryNameRecyclerview.setAdapter(adapter);

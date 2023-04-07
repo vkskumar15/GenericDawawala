@@ -50,7 +50,7 @@ public class PathologyFragment extends Fragment {
     }
 
     private void AddCartTotalItem() {
-        new ViewModalClass().countCartModalLiveData(requireActivity(), CommonUtils.getUserId()).observe(requireActivity(), new Observer<CountCartModal>() {
+        new ViewModalClass().countCartModalLiveData(requireActivity(), CommonUtils.getUserId(),"1").observe(requireActivity(), new Observer<CountCartModal>() {
             @Override
             public void onChanged(CountCartModal countCartModal) {
                 if (countCartModal.getSuccess().equalsIgnoreCase("1")) {

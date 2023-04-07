@@ -45,11 +45,11 @@ public class LabCouponCodeFragment extends Fragment {
             if (onlineAppointmentCouponModal.getSuccess().equalsIgnoreCase("1"))
             {
                 Toast.makeText(requireActivity(), ""+onlineAppointmentCouponModal.getMessage(), Toast.LENGTH_SHORT).show();
+                CouponAndOfferAdapter adapter = new CouponAndOfferAdapter(requireActivity(), onlineAppointmentCouponModal.getDetails(), detail -> {
+                    App.getSingleton().setCouponCode(detail.getCouponName());
 
-                CouponAndOfferAdapter adapter = new CouponAndOfferAdapter(requireActivity(),
-                        onlineAppointmentCouponModal.getDetails(), detail -> {
-                            App.getSingleton().setCouponCode(detail.getCouponName());
                             requireActivity().onBackPressed();
+
                         });
 
                 binding.recyclerView.setAdapter(adapter);

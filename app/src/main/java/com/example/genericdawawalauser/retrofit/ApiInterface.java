@@ -21,6 +21,7 @@ import com.example.genericdawawalauser.modalClass.LabPackageDetailsModal;
 import com.example.genericdawawalauser.modalClass.LabTestCategories;
 import com.example.genericdawawalauser.modalClass.MedicineDataModal;
 import com.example.genericdawawalauser.modalClass.PendingOnlineAppointmentModal;
+import com.example.genericdawawalauser.modalClass.RadioSubCatModal;
 import com.example.genericdawawalauser.modalClass.RadiologyCategoryModal;
 import com.example.genericdawawalauser.modalClass.RadiologyPackageTestModal;
 import com.example.genericdawawalauser.modalClass.ReScheduledAppointment;
@@ -273,7 +274,9 @@ public interface ApiInterface {
     @FormUrlEncoded
     @POST("getCartCountPrice")
     Call<CountCartModal> getCartCountPrice(
-            @Field("userId") String userId);
+            @Field("userId") String userId,
+            @Field("type") String type
+            );
 
     @FormUrlEncoded
     @POST("getLabsCategories")
@@ -426,5 +429,16 @@ public interface ApiInterface {
     Call<AddToCartPackageModal> addToCartLabTestPackage(
             @Field("userId") String userId,
             @Field("packageId") String packageId);
+
+    @FormUrlEncoded
+    @POST("addToCartRadioTest")
+    Call<AddToCartPackageModal> addToCartRadioTest(
+            @Field("userId") String userId,
+            @Field("testId") String testId);
+
+    @FormUrlEncoded
+    @POST("radioTestSubCat")
+    Call<MedicineDataModal> radioTestSubCat(
+            @Field("catId") String catId);
 
 }

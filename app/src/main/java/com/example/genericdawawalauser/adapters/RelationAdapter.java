@@ -20,11 +20,8 @@ public class RelationAdapter extends RecyclerView.Adapter<RelationAdapter.ViewHo
     private int rowIndex=-1;
 
     public interface SelectData{
-
         void onClick(RelationModal relationModal);
-
     }
-
 
     public RelationAdapter(Context context, List<RelationModal> list, SelectData selectData) {
         this.context = context;

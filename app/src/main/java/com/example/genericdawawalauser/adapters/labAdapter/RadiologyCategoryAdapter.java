@@ -46,6 +46,10 @@ public class RadiologyCategoryAdapter extends RecyclerView.Adapter<RadiologyCate
 
         holder.binding.categoryName.setText(list.get(position).getName());
         Glide.with(context).load(list.get(position).getImage()).into(holder.binding.categoryImg);
+        holder.itemView.setOnClickListener(v -> {
+
+            category.category(list.get(position));
+        });
     }
 
     @Override

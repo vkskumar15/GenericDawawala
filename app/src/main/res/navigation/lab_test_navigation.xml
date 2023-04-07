@@ -142,6 +142,9 @@
         <action
             android:id="@+id/action_radiologyTestFragment_to_labPackagesFragment"
             app:destination="@id/labPackagesFragment" />
+        <action
+            android:id="@+id/action_radiologyTestFragment_to_radiologySubCatFragment"
+            app:destination="@id/radiologySubCatFragment" />
     </fragment>
     <fragment
         android:id="@+id/radiologyDetailsFragment"
@@ -202,4 +205,9 @@
             android:id="@+id/action_addPackageCartFragment_to_getPatientFragment2"
             app:destination="@id/getPatientFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/radiologySubCatFragment"
+        android:name="com.example.genericdawawalauser.fragments.labTest.RadiologySubCatFragment"
+        android:label="fragment_radiology_sub_cat"
+        tools:layout="@layout/fragment_radiology_sub_cat" />
 </navigation>

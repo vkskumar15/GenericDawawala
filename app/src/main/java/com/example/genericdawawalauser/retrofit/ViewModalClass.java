@@ -29,6 +29,7 @@ import com.example.genericdawawalauser.modalClass.LabPackageDetailsModal;
 import com.example.genericdawawalauser.modalClass.LabTestCategories;
 import com.example.genericdawawalauser.modalClass.MedicineDataModal;
 import com.example.genericdawawalauser.modalClass.PendingOnlineAppointmentModal;
+import com.example.genericdawawalauser.modalClass.RadioSubCatModal;
 import com.example.genericdawawalauser.modalClass.RadiologyCategoryModal;
 import com.example.genericdawawalauser.modalClass.RadiologyPackageTestModal;
 import com.example.genericdawawalauser.modalClass.ReScheduledAppointment;
@@ -53,21 +54,21 @@ import retrofit2.Response;
 public class ViewModalClass extends ViewModel {
     ApiInterface apiInterface = BaseUrlRetrofit.getRetrofit().create(ApiInterface.class);
 
-     private MutableLiveData<RegisterModelRoot> registerModelRootMutableLiveData;
+    private MutableLiveData<RegisterModelRoot> registerModelRootMutableLiveData;
 
-     private MutableLiveData<RegisterModelRoot> registerModelRootMutableLiveData2;
-     private MutableLiveData<UniqueAPiModel> uniqueAPiModelMutableLiveData;
-     private MutableLiveData<RegisterModelRoot> updateUserDataModelRootMutableLiveData;
-     private MutableLiveData<ChangePasswordModal> updateUserEmailPhoneModelMutableLiveData;
-     private MutableLiveData<UpdateUserPhoneModel> updateUserPhoneModelMutableLiveData;
+    private MutableLiveData<RegisterModelRoot> registerModelRootMutableLiveData2;
+    private MutableLiveData<UniqueAPiModel> uniqueAPiModelMutableLiveData;
+    private MutableLiveData<RegisterModelRoot> updateUserDataModelRootMutableLiveData;
+    private MutableLiveData<ChangePasswordModal> updateUserEmailPhoneModelMutableLiveData;
+    private MutableLiveData<UpdateUserPhoneModel> updateUserPhoneModelMutableLiveData;
 
-     public LiveData<UniqueAPiModel> uniqueAPiModelLiveData(final Activity activity, String email, String phone) {
+    public LiveData<UniqueAPiModel> uniqueAPiModelLiveData(final Activity activity, String email, String phone) {
 
-         uniqueAPiModelMutableLiveData = new MutableLiveData<>();
+        uniqueAPiModelMutableLiveData = new MutableLiveData<>();
 
         apiInterface.checkEmailPhone(email, phone).enqueue(new Callback<UniqueAPiModel>() {
             public void onResponse(Call<UniqueAPiModel> call, Response<UniqueAPiModel> response) {
-                 if (response.body() != null) {
+                if (response.body() != null) {
 
                     uniqueAPiModelMutableLiveData.postValue(response.body());
                 }
@@ -78,7 +79,7 @@ public class ViewModalClass extends ViewModel {
                 Toast.makeText(activity, "" + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
-        return  uniqueAPiModelMutableLiveData;
+        return uniqueAPiModelMutableLiveData;
     }
 
 
@@ -87,7 +88,7 @@ public class ViewModalClass extends ViewModel {
                                                                  String reg_id, String device_id, String login_type,
                                                                  String latitude, String longitude, String chatId) {
 
-         registerModelRootMutableLiveData = new MutableLiveData<>();
+        registerModelRootMutableLiveData = new MutableLiveData<>();
 
         CommonUtils.showProgressDialog(activity);
 
@@ -112,7 +113,6 @@ public class ViewModalClass extends ViewModel {
         });
         return this.registerModelRootMutableLiveData;
     }
-
 
 
     public LiveData<RegisterModelRoot> loginUserModelRootLiveData(Activity activity, String emailPhone, String password, String reg_id, String device_type, String device_id, String latitude, String longitude) {
@@ -899,10 +899,10 @@ public class ViewModalClass extends ViewModel {
 
     private MutableLiveData<CountCartModal> countCartModalMutableLiveData;
 
-    public LiveData<CountCartModal> countCartModalLiveData(Activity activity, String userId) {
+    public LiveData<CountCartModal> countCartModalLiveData(Activity activity, String userId, String type) {
         countCartModalMutableLiveData = new MutableLiveData<>();
 
-        apiInterface.getCartCountPrice(userId).enqueue(new Callback<CountCartModal>() {
+        apiInterface.getCartCountPrice(userId, type).enqueue(new Callback<CountCartModal>() {
             @Override
             public void onResponse(@NonNull Call<CountCartModal> call, Response<CountCartModal> response) {
                 if (response.body() != null) {
@@ -1039,9 +1039,6 @@ public class ViewModalClass extends ViewModel {
     }
 
 
-
-
-
     private MutableLiveData<RemoveCartModal> removeCartPackageModalMutableLiveData;
 
     public LiveData<RemoveCartModal> removeCartPackageModalLiveData(Activity activity, String userid, String labId) {
@@ -1070,8 +1067,6 @@ public class ViewModalClass extends ViewModel {
 
         return removeCartPackageModalMutableLiveData;
     }
-
-
 
 
     private MutableLiveData<OnlineAppointmentCouponModal> getLabModalMutableLiveData;
@@ -1374,7 +1369,7 @@ public class ViewModalClass extends ViewModel {
 
         labBookModalMutableLiveData = new MutableLiveData<>();
         apiInterface.labTestAppointments(labId, userId, patient_id,
-                 type, image, amount,
+                type, image, amount,
                 address, date, time_slot, homeCollection, labTestId).enqueue(new Callback<LabBookModal>() {
             @Override
             public void onResponse(@NonNull Call<LabBookModal> call, Response<LabBookModal> response) {
@@ -1526,5 +1521,64 @@ public class ViewModalClass extends ViewModel {
         });
 
         return addToCartPackageModalMutableLiveData;
+    }
+
+
+    private MutableLiveData<MedicineDataModal> radioSubCatModalMutableLiveData;
+
+    public LiveData<MedicineDataModal> radioSubCatModalLiveData(Activity activity, String catId) {
+
+        CommonUtils.showProgressDialog(activity);
+        radioSubCatModalMutableLiveData = new MutableLiveData<>();
+        apiInterface.radioTestSubCat(catId).enqueue(new Callback<MedicineDataModal>() {
+            @Override
+            public void onResponse(@NonNull Call<MedicineDataModal> call, Response<MedicineDataModal> response) {
+                CommonUtils.dismissDialog();
+                if (response.body() != null) {
+                    radioSubCatModalMutableLiveData.postValue(response.body());
+                } else {
+                    radioSubCatModalMutableLiveData.postValue(null);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<MedicineDataModal> call, Throwable t) {
+                CommonUtils.dismissDialog();
+                radioSubCatModalMutableLiveData.postValue(null);
+
+            }
+        });
+
+        return radioSubCatModalMutableLiveData;
+    }
+
+    private MutableLiveData<AddToCartPackageModal> addToCartRadioTestModalMutableLiveData;
+
+    public LiveData<AddToCartPackageModal> addToCartRadioModalLiveData(Activity activity, String userId, String catId) {
+
+        CommonUtils.showProgressDialog(activity);
+
+        addToCartRadioTestModalMutableLiveData = new MutableLiveData<>();
+
+        apiInterface.addToCartRadioTest(userId, catId).enqueue(new Callback<AddToCartPackageModal>() {
+            @Override
+            public void onResponse(@NonNull Call<AddToCartPackageModal> call, Response<AddToCartPackageModal> response) {
+                CommonUtils.dismissDialog();
+                if (response.body() != null) {
+                    addToCartRadioTestModalMutableLiveData.postValue(response.body());
+                } else {
+                    addToCartRadioTestModalMutableLiveData.postValue(null);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<AddToCartPackageModal> call, Throwable t) {
+                CommonUtils.dismissDialog();
+                addToCartRadioTestModalMutableLiveData.postValue(null);
+
+            }
+        });
+
+        return addToCartRadioTestModalMutableLiveData;
     }
 }

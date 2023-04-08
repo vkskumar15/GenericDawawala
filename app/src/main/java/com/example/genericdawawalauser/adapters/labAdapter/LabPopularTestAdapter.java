@@ -51,6 +51,7 @@ public class LabPopularTestAdapter extends RecyclerView.Adapter<LabPopularTestAd
     @NonNull
     @Override
     public LabPopularTestAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+
         return new LabPopularTestAdapter.ViewHolder(PopularLabTestLayoutBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false));
 
     }
@@ -71,6 +72,7 @@ public class LabPopularTestAdapter extends RecyclerView.Adapter<LabPopularTestAd
         holder.binding.addCart.setOnClickListener(v -> {
 
             addtoCart.addToCart(list.get(position));
+
             notifyDataSetChanged();
 
         });
@@ -82,11 +84,12 @@ public class LabPopularTestAdapter extends RecyclerView.Adapter<LabPopularTestAd
 
         if (list.get(position).getAddToCartStatus().equalsIgnoreCase("1"))
         {
+
             holder.binding.addCart.setVisibility(View.INVISIBLE);
             holder.binding.delete.setVisibility(View.VISIBLE);
             holder.binding.addedInCart.setVisibility(View.VISIBLE);
-        }
 
+        }
 
         if (list.get(position).getHomeCollectionCheck().equalsIgnoreCase("0")) {
 
